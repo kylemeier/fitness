@@ -1,0 +1,96 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
+.group:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+html {
+  background: #dcd6dd; }
+
+header, h1, h2 {
+  color: #6B696D;
+  text-shadow: -1px -1px #DCD6DD;
+  background: none;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1em; }
+
+.container {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  width: 90%;
+  height: 500px;
+  margin: 5%;
+  padding: 20px;
+  background: #C0BFCB;
+  box-shadow: inset -1px 0px 3px #6B696D, inset 1px 2px 3px #6B696D;
+  border-radius: 10px;
+  overflow: hidden; }
+
+#exercises {
+  position: relative; }
+  #exercises form {
+    width: 100%;
+    text-align: center; }
+    #exercises form label {
+      display: block;
+      margin-top: 50px; }
+    #exercises form input {
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+      max-width: 500px;
+      margin-bottom: 25px;
+      border-radius: 5px; }
+    #exercises form #donebutton {
+      margin-top: 40px;
+      position: relative;
+      display: block;
+      padding: 10px 20px;
+      background: #00503F;
+      color: #fff;
+      box-shadow: -1px 0px 3px #6B696D;
+      border-radius: 50px 50px 0 0; }
+    #exercises form .nextexercisebutton {
+      display: block;
+      position: relative;
+      padding: 10px 20px;
+      background: #900022;
+      color: #FFFECB;
+      box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
+      border-radius: 0 0 50px 50px;
+      margin-bottom: 60px; }
+
+.resultbuttons {
+  margin-top: 25px; }
+
+.success {
+  position: relative;
+  padding: 10px 50px;
+  background: #00503F;
+  color: #fff;
+  box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
+  border-radius: 50px; }
+
+.fail {
+  padding: 10px 50px;
+  background: #900022;
+  color: #FFFECB;
+  box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
+  border-radius: 50px; }
+
+.timer {
+  display: block;
+  margin-top: 50px;
+  margin-left: 50px;
+  height: auto; }
+  .timer .starttimer {
+    display: block;
+    margin-top: 25px;
+    padding: 20px 10px 20px 15px;
+    background: #900022;
+    color: #500013;
+    border-radius: 50px;
+    box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
+    text-shadow: 0px 1px 0px #9D0025; }
