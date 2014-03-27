@@ -28,39 +28,47 @@ header, h1, h2 {
   border-radius: 10px;
   overflow: hidden; }
 
-#exercises {
+#slidingcontent {
   position: relative; }
-  #exercises form {
+
+#exercisepicker {
+  position: relative; }
+  #exercisepicker form {
     width: 100%;
     text-align: center; }
-    #exercises form label {
+    #exercisepicker form label {
       display: block;
-      margin-top: 50px; }
-    #exercises form input {
+      margin-top: 30px; }
+    #exercisepicker form input {
       display: block;
       margin: 0 auto;
       width: 80%;
       max-width: 500px;
       margin-bottom: 25px;
-      border-radius: 5px; }
-    #exercises form #donebutton {
-      margin-top: 40px;
+      border-radius: 5px;
+      padding: 10px 0; }
+    #exercisepicker form .donebutton, #exercisepicker form .nextexercisebutton {
       position: relative;
       display: block;
       padding: 10px 20px;
-      background: #00503F;
       color: #fff;
+      max-width: 100px;
+      margin: 0 auto; }
+    #exercisepicker form .donebutton {
+      margin-top: 40px;
+      background: #00503F;
       box-shadow: -1px 0px 3px #6B696D;
       border-radius: 50px 50px 0 0; }
-    #exercises form .nextexercisebutton {
-      display: block;
-      position: relative;
-      padding: 10px 20px;
+    #exercisepicker form .nextexercisebutton {
+      margin-bottom: 70px;
       background: #900022;
-      color: #FFFECB;
       box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-      border-radius: 0 0 50px 50px;
-      margin-bottom: 60px; }
+      border-radius: 0 0 50px 50px; }
+
+#workout {
+  text-align: center;
+  width: 100%;
+  padding-top: 50px; }
 
 .resultbuttons {
   margin-top: 25px; }
@@ -83,14 +91,14 @@ header, h1, h2 {
 .timer {
   display: block;
   margin-top: 50px;
-  margin-left: 50px;
   height: auto; }
   .timer .starttimer {
+    margin: 25px auto 0 auto;
     display: block;
-    margin-top: 25px;
+    width: 40px;
     padding: 20px 10px 20px 15px;
     background: #900022;
-    color: #500013;
+    color: #fff;
     border-radius: 50px;
     box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-    text-shadow: 0px 1px 0px #9D0025; }
+    text-shadow: -1px -1px #000; }
