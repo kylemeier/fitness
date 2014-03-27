@@ -1,4 +1,11 @@
-var movementDistance = 482;
+//WIP:
+//time adjustment to account for iOS' js freeze when the window is hidden
+//look into running app in background
+//only let users click the Start button once
+
+
+
+var movementDistance = 507;
 var nextMove = movementDistance;
 var currentStep = 1;
 var doneShift = $('#workout').offset().top-50;
@@ -11,31 +18,33 @@ var noRefresh = function(){
 	return false;
 }
 //if shift is off, change above nubmer to the number shown here:
-//console.log($('#exercise2pick').offset().top - $('#exercise1pick').offset().top);
+console.log($('#exercise2pick').offset().top - $('#exercise1pick').offset().top);
 
 $('.nextexercisebutton').click(function(){
-	// var empty = $(this).parent().find("input").filter(function() {
- //       	return this.value === "";
- //   		});
- //   		if(empty.length) {
- //       		console.log("No good!");
- //   		}else{
- //   			console.log("Good to go!");
+	var empty = $(this).parent().find("input").filter(function() {
+       	return this.value === "";
+   		});
+   		if(empty.length) {
+        alert("finish entering your shit!");
+       		console.log("No good!");
+   		}else{
+   			console.log("Good to go!");
     		$('#slidingcontent').animate({bottom:nextMove}, {duration:'slow', queue:false}); 
    			nextMove += movementDistance;
    			currenteStep++;  	
    			return false;
-   		// }
+   		}
 });
 
 $('.donebutton').click(function(){
-			// var empty = $(this).parent().find("input").filter(function() {
-  //       	return this.value === "";
-  //   		});
-  //   		if(empty.length) {
-  //       		console.log("No good!");
-  //   		}else{
-  //   			console.log("Good to go!");
+			var empty = $(this).parent().find("input").filter(function() {
+        	return this.value === "";
+    		});
+    		if(empty.length) {
+          alert("finish entering your shit!");
+        		console.log("No good!");
+    		}else{
+    			console.log("Good to go!");
 	exercise1Name = $("#exercise1name").val();
    	$("#exercise1workoutname").replaceWith( "<span id=\"exercise1workoutname\">"+exercise1Name+"</span>");
 	exercise1Weight = $("#exercise1weight").val();
@@ -45,11 +54,17 @@ $('.donebutton').click(function(){
 
     $('#slidingcontent').animate({bottom:doneShift}, {duration:'slow', queue:false});   	
     	return false;
-    	//}
+    	}
 });
 
-$('.timer').click(function(){
-  var totalTime = 5;
+
+var startTime = 0;
+
+$('.starttimer').click(function(){
+  var totalTime = 120;
+  startTime = new Date().getTime();
+
+  
   
   $('#clock').html(timeCalc(totalTime));
 
@@ -59,7 +74,7 @@ $('.timer').click(function(){
     $('#clock').html(timeCalc(totalTime));
 
     if(totalTime == 0){
-      window.navigator.vibrate(200);
+      alert("Done");
       clearInterval(countDown);
     }
   },1000);
@@ -69,10 +84,13 @@ $('.timer').click(function(){
 
 var timeCalc = function(totalTime){
 
+
   var minutes = Math.floor(totalTime/60);
   var seconds = Math.round(totalTime % 60);
   var minutesStr='';
   var secondsStr='';
+
+  
 
   if(minutes<10){
     minutesStr='0'+minutes;
@@ -88,5 +106,19 @@ var timeCalc = function(totalTime){
   return(minutesStr+":"+secondsStr);
 
 }
+
+
+
+var eventName = "visibilitychange";
+
+function visibilityChanged() {
+    if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
+      console.log("hiding!");
+    
+    } else  {
+        console.log(Math.round((new Date().getTime() - startTime)/1000));    
+    }
+}
+document.addEventListener(eventName, visibilityChanged, false);
 
 

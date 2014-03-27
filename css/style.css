@@ -8,12 +8,11 @@ html {
   background: #dcd6dd; }
 
 header, h1, h2 {
-  color: #6B696D;
-  text-shadow: -1px -1px #DCD6DD;
+  color: #000;
   background: none;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 300;
-  font-size: 1em; }
+  font-size: 2em; }
 
 .container {
   position: relative;
@@ -50,7 +49,7 @@ header, h1, h2 {
     #exercisepicker form .donebutton, #exercisepicker form .nextexercisebutton {
       position: relative;
       display: block;
-      padding: 10px 20px;
+      padding: 10px 100px 10px 30px;
       color: #fff;
       max-width: 100px;
       margin: 0 auto; }
@@ -93,10 +92,11 @@ header, h1, h2 {
   margin-top: 50px;
   height: auto; }
   .timer .starttimer {
+    box-sizing: border-box;
     margin: 25px auto 0 auto;
     display: block;
     width: 40px;
-    padding: 20px 10px 20px 15px;
+    padding: 20px 50px 20px 15px;
     background: #900022;
     color: #fff;
     border-radius: 50px;
