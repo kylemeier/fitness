@@ -123,16 +123,24 @@ header, h1, h2{
   display:block;
   margin-top:50px;
   height:auto;
-  .starttimer{
+  .start,.stop{
     box-sizing: border-box;
     margin:25px auto 0 auto;
     display:block;
     width:40px;
     padding:20px 50px 20px 15px;
-    background: #900022;
+    
     color:#fff;
     border-radius: 50px;
     box-shadow:  -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
     text-shadow: -1px -1px #000;
+
+  }
+  .start{
+    background: #900022;
+
+  }
+  .stop{
+    background:#6B696D;
   }
 }

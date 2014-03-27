@@ -11,13 +11,13 @@
 
 <div class="container">
 	<div id= "slidingcontent">
-		<div id="exercisepicker">
+		<!-- <div id="exercisepicker">
 			<div id="exercise1pick">
 				<header>First Exercise</header>
 				<form action="" method="post" onsubmit="return noRefresh();">
 					<label for="exercise1name">Exercise Name</label>
 					<input type="text" name="exercise1name" id="exercise1name" required>
-					<label for="exercise1weight">Weight (in lbs)</label>
+					<label for="exercise1weight">Weight lifted (in lbs)</label>
 					<input type="number" name="exercise1weight" id="exercise1weight" required>
 					<label for="exercise1weight">SetsxReps</label>
 					<input type="text" name="exercise1setsxreps" id="exercise1setsxreps" required>
@@ -32,7 +32,7 @@
 				<form action="" method="post" onsubmit="return noRefresh();">
 					<label for="exercise2name">Exercise Name</label>
 					<input type="text" name="exercise2name" id="exercise2name" required>
-					<label for="exercise2weight">Weight (in lbs)</label>
+					<label for="exercise2weight">Weight lifted (in lbs)</label>
 					<input type="number" name="exercise2weight" id="exercise2weight" required>
 					<label for="exercise2weight">SetsxReps</label>
 					<input type="text" name="exercise2setsxreps" id="exercise2setsxreps" required>
@@ -46,7 +46,7 @@
 				<form action="" method="post" onsubmit="return noRefresh();">
 					<label for="exercise3name">Exercise Name</label>
 					<input type="text" name="exercise3name" id="exercise3name" required>
-					<label for="exercise3weight">Weight (in lbs)</label>
+					<label for="exercise3weight">Weight lifted (in lbs)</label>
 					<input type="number" name="exercise3weight" id="exercise3weight" required>
 					<label for="exercise3weight">SetsxReps</label>
 					<input type="text" name="exercise3setsxreps" id="exercise3setsxreps" required>
@@ -60,7 +60,7 @@
 				<form action="" method="post" onsubmit="return noRefresh();">
 					<label for="exercise4name">Exercise Name</label>
 					<input type="text" name="exercise4name" id="exercise4name" required>
-					<label for="exercise4weight">Weight (in lbs)</label>
+					<label for="exercise4weight">Weight lifted (in lbs)</label>
 					<input type="number" name="exercise4weight" id="exercise4weight" required>
 					<label for="exercise4weight">SetsxReps</label>
 					<input type="text" name="exercise4setsxreps" id="exercise4setsxreps" required>
@@ -74,7 +74,7 @@
 				<form action="" onsubmit="return noRefresh();">
 					<label for="exercise5name">Exercise Name</label>
 					<input type="text" name="exercise5name" id="exercise5name" required>
-					<label for="exercise5weight">Weight (in lbs)</label>
+					<label for="exercise5weight">Weight lifted (in lbs)</label>
 					<input type="number" name="exercise5weight" id="exercise5weight" required>
 					<label for="exercise5weight">SetsxReps</label>
 					<input type="text" name="exercise5setsxreps" id="exercise5setsxreps" required>
@@ -86,11 +86,11 @@
 
 	
 		</div>
-
+ -->
 		<div id="workout">
 			<div id="exercise1workout">
-				<header><span id="exercise1workoutname"></span></header>
-				<h1><span id="exercise1workoutweight"></span></h1>
+				<header><span id="exercise1workoutname">BB Benchpress</span></header>
+				<h1><span id="exercise1workoutweight">60</span></h1>
 				<h2><span id="exercise1workoutsetsxreps"></span></h2>
 			</div>
 		
@@ -100,7 +100,7 @@
 			</div>
 			<div class="timer">
 				<h1><span id="clock">02:00</span></h1>
-				<a href="#" class="starttimer">Start</a>
+				<a href="#" id="timerbutton" class="start">Start</a>
 			</div>
 		</div>
 	</div>

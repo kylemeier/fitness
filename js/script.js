@@ -1,7 +1,7 @@
 //WIP:
-//time adjustment to account for iOS' js freeze when the window is hidden
-//look into running app in background
+//split sets/reps
 //only let users click the Start button once
+//add cookies
 
 
 
@@ -18,7 +18,7 @@ var noRefresh = function(){
 	return false;
 }
 //if shift is off, change above nubmer to the number shown here:
-console.log($('#exercise2pick').offset().top - $('#exercise1pick').offset().top);
+//console.log($('#exercise2pick').offset().top - $('#exercise1pick').offset().top);
 
 $('.nextexercisebutton').click(function(){
 	var empty = $(this).parent().find("input").filter(function() {
@@ -59,66 +59,88 @@ $('.donebutton').click(function(){
 
 
 var startTime = 0;
+var timeRunning = 0;
 
-$('.starttimer').click(function(){
-  var totalTime = 120;
-  startTime = new Date().getTime();
 
+
+$('#timerbutton').click(function(){
+  if(!timeRunning){
+    timeRunning = 1;
+      $( this ).removeClass("start");
+      $( this ).addClass("stop");
+
+    var totalTime = 120;
+    startTime = new Date().getTime();
   
-  
-  $('#clock').html(timeCalc(totalTime));
-
-  var countDown = setInterval(function(){
-    totalTime--;
     
-    $('#clock').html(timeCalc(totalTime));
-
-    if(totalTime == 0){
-      alert("Done");
-      clearInterval(countDown);
-    }
-  },1000);
-
+    
+    $('#clock').html(timeFormat(totalTime));
   
+      var countDown = setInterval(function(){
+  
+      //only subtract time when tab is showing
+        if(showing()){
+          totalTime=Math.ceil(120 - showing()); 
+        }
+        
+        if(totalTime <= 0){
+          $( '#timerbutton' ).removeClass("stop");
+          $( '#timerbutton' ).addClass("start");
+          $('#clock').html('02:00');
+          totalTime=120;
+          clearInterval(countDown);
+          timeRunning = 0;
+          alert("Done");
+        }
+  
+          $('#clock').html(timeFormat(totalTime));
+   
+       },1000);
+
+        }
+
+      
+
 });
 
-var timeCalc = function(totalTime){
-
-
-  var minutes = Math.floor(totalTime/60);
-  var seconds = Math.round(totalTime % 60);
-  var minutesStr='';
-  var secondsStr='';
-
-  
-
-  if(minutes<10){
-    minutesStr='0'+minutes;
-  }else{
-    minutesStr = minutes;
-  }
-  if(seconds<10){
-    secondsStr='0'+seconds;
-  }else{
-    secondsStr = seconds;
-  }
-
-  return(minutesStr+":"+secondsStr);
-
-}
-
-
-
-var eventName = "visibilitychange";
-
-function visibilityChanged() {
-    if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
-      console.log("hiding!");
+    var timeFormat = function(totalTime){
     
-    } else  {
-        console.log(Math.round((new Date().getTime() - startTime)/1000));    
+    
+      var minutes = Math.floor(totalTime/60);
+      var seconds = Math.round(totalTime % 60);
+      var minutesStr='';
+      var secondsStr='';
+    
+      if(minutes<10){
+        minutesStr='0'+minutes;
+      }else{
+        minutesStr = minutes;
+      }
+      if(seconds<10){
+        secondsStr='0'+seconds;
+      }else{
+        secondsStr = seconds;
+      }
+    
+      return(minutesStr+":"+secondsStr);
+    
     }
-}
-document.addEventListener(eventName, visibilityChanged, false);
+
+    var eventName = "visibilitychange";
+    
+    function showing() {
+      var timeDiff = 0;
+        if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
+          return false;
+        
+        } else  {
+            return timeDiff = (Math.ceil(new Date().getTime() - startTime)/1000);
+    
+        }
+        return false;
+    }
+    document.addEventListener(eventName, showing, false);
+
+
 
 
