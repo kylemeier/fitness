@@ -31,38 +31,36 @@ header, h1, h2 {
   position: relative; }
 
 #exercisepicker {
-  position: relative; }
-  #exercisepicker form {
-    width: 100%;
-    text-align: center; }
-    #exercisepicker form label {
-      display: block;
-      margin-top: 30px; }
-    #exercisepicker form input {
-      display: block;
-      margin: 0 auto;
-      width: 80%;
-      max-width: 500px;
-      margin-bottom: 25px;
-      border-radius: 5px;
-      padding: 10px 0; }
-    #exercisepicker form .donebutton, #exercisepicker form .nextexercisebutton {
-      position: relative;
-      display: block;
-      padding: 10px 100px 10px 30px;
-      color: #fff;
-      max-width: 100px;
-      margin: 0 auto; }
-    #exercisepicker form .donebutton {
-      margin-top: 40px;
-      background: #00503F;
-      box-shadow: -1px 0px 3px #6B696D;
-      border-radius: 50px 50px 0 0; }
-    #exercisepicker form .nextexercisebutton {
-      margin-bottom: 70px;
-      background: #900022;
-      box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-      border-radius: 0 0 50px 50px; }
+  position: relative;
+  width: 100%;
+  text-align: center; }
+  #exercisepicker label {
+    display: block;
+    margin-top: 15px; }
+  #exercisepicker input {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 10px 0; }
+  #exercisepicker .donebutton, #exercisepicker .nextexercisebutton {
+    position: relative;
+    display: block;
+    padding: 10px 100px 10px 30px;
+    color: #fff;
+    max-width: 100px;
+    margin: 0 auto; }
+  #exercisepicker .donebutton {
+    margin-top: 40px;
+    background: #00503F;
+    box-shadow: -1px 0px 3px #6B696D;
+    border-radius: 50px 50px 0 0; }
+  #exercisepicker .nextexercisebutton {
+    margin-bottom: 70px;
+    background: #900022;
+    box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
+    border-radius: 0 0 50px 50px; }
 
 #workout {
   text-align: center;

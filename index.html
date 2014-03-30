@@ -11,21 +11,19 @@
 
 <div class="container">
 	<div id= "slidingcontent">
-		<!-- <div id="exercisepicker">
+		<div id="exercisepicker">
 			<div id="exercise1pick">
 				<header>First Exercise</header>
-				<form action="" method="post" onsubmit="return noRefresh();">
-					<label for="exercise1name">Exercise Name</label>
-					<input type="text" name="exercise1name" id="exercise1name" required>
-					<label for="exercise1weight">Weight lifted (in lbs)</label>
-					<input type="number" name="exercise1weight" id="exercise1weight" required>
-					<label for="exercise1weight">SetsxReps</label>
-					<input type="text" name="exercise1setsxreps" id="exercise1setsxreps" required>
-					<input type="submit" class="donebutton" value="Finished">
-					<input type="submit" class="nextexercisebutton" value="Add More">
-				</form>
-	
-	
+				<label for="exercise1name">Exercise Name</label>
+				<input type="text" name="exercise1name" id="exercise1name" required>
+				<label for="exercise1weight">Weight lifted (in lbs)</label>
+				<input type="number" name="exercise1weight" id="exercise1weight" required>
+				<label for="exercise1sets">Sets</label>
+				<input type="number" name="exercise1sets" id="exercise1sets" required>
+				<label for="exercise1reps">Reps per set</label>
+				<input type="number" name="exercise1reps" id="exercise1reps" required>
+				<input type="submit" class="donebutton" value="Finished">
+				<input type="submit" class="nextexercisebutton" value="\/ Add More \/">
 			</div>
 			<div id="exercise2pick">
 				<header>Second Exercise</header>
@@ -86,12 +84,13 @@
 
 	
 		</div>
- -->
+
 		<div id="workout">
 			<div id="exercise1workout">
 				<header><span id="exercise1workoutname">BB Benchpress</span></header>
 				<h1><span id="exercise1workoutweight">60</span></h1>
-				<h2><span id="exercise1workoutsetsxreps"></span></h2>
+				<h2><span id="exercise1workoutsets"></span></h2>
+				<h2><span id="exercise1workoutreps"></span></h2>
 			</div>
 		
 			<div class="resultbuttons">
@@ -109,7 +108,9 @@
 
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script> -->
+<!-- if no internet -->
+<script src="js/jquery.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
