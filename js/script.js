@@ -71,6 +71,7 @@ var noRefresh = function(){
 
 $('#namerproceed').click(function(){
   groupName = $('#inputgroupname').val();
+  $('#exercisenumber').html(currentStep);
   $('.groupname').html(groupName);
   $('#slidingcontent').animate({
     top:-movementDistance
@@ -133,6 +134,7 @@ $('#nextexercisebutton').click(function(){
 
 $('#nextexercisegroup').click(function(){
   $("#inputgroupname").val("");
+  currentStep=1;
   $('#slidingcontent').animate({
     top:0
   }, {
