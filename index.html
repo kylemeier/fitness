@@ -11,9 +11,15 @@
 
 <div class="container">
 	<div id= "slidingcontent">
+		<div id="exercisegroupnamer">
+				<header>Please enter an exercise group name. This group will contain all exercises you perform on a given day. You will be creating a group for each day of exercises you perform.</header>
+				<input type="text" name="inputgroupname" id="inputgroupname" required>
+				<a href="#" id="namerproceed">Proceed</a>
+		</div>
 		<div id="exercisepicker">
 			<div>
-				<header>Exercise #<span id="exercisenumber"></span></header>
+				<header>Group: <span class="groupname"></span></header>
+				<h1>#<span id="exercisenumber"></span></h1>
 				<label for="exercisename">Exercise Name</label>
 				<input type="text" name="exercisename" id="exercisename" required>
 				<label for="exerciseweight">Weight lifted (in lbs)</label>
@@ -22,12 +28,22 @@
 				<input type="number" name="exercisesets" id="exercisesets" required>
 				<label for="exercisereps">Reps per set</label>
 				<input type="number" name="exercisereps" id="exercisereps" required>
-				<a href="" id="donebutton">Finished</a>
-				<a href="" id="nextexercisebutton">Add More</a>
+				<ul>
+					<li>
+				<a href="#" id="nextexercisebutton">Next Exercise</a>
+				</li>
+				<li>
+				<a href="#" id="nextexercisegroup">Next Group</a>
+				</li>
+				<li>
+				<a href="#" id="donebutton">Finished</a>	
+				</li>
+				</ul>
 			</div>
 
-			<div>
-				<header>Exercise #<span id="nextexercisenumber"></span></header>
+			<div id="exercisehide">
+				<header>Group: <span class="groupname"></span></header>
+				<h1>#<span id="nextexercisenumber"></span></h1>
 				<label>Exercise Name</label>
 				<input disabled="disabled">
 				<label>Weight lifted (in lbs)</label>
@@ -36,8 +52,17 @@
 				<input disabled="disabled">
 				<label>Reps per set</label>
 				<input disabled="disabled">
-				<a id="donebutton">Finished</a>
-				<a id="nextexercisebutton">Add More</a>
+				<ul>
+					<li>
+				<a href="#" id="nextexercisebutton">Next Exercise</a>
+				</li>
+				<li>
+				<a href="#" id="nextexercisegroup">Next Group</a>
+				</li>
+				<li>
+				<a href="#" id="donebutton">Finished</a>	
+				</li>
+				</ul>
 			</div>
 		</div>
 

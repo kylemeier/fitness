@@ -1,11 +1,10 @@
+//***exercise group name screen ***
+//
 //******in picker: ********
 //
-//ask user to name the exercise group and ask them what days they do that exercise
-//
-//make exercises into objects, put a method addExercise into the exercise obejct
 //
 //add cookies: run addExercse after every "add next" click
-//add way to go back
+//add way to go back, pull from exercise object
 //
 //allow user to click 'finish' at any time, but create a prompt letting them know 
 //any information on that page will not be saved if they didn't fill out every section
@@ -43,8 +42,9 @@
 
 
 
-var movementDistance = $('#nextexercisenumber').offset().top - $('#exercisenumber').offset().top;
-var shiftReset = $('#slidingcontent').offset().top;
+
+var movementDistance = $('#exercisehide').offset().top - $('#exercisepicker').offset().top;
+var shiftReset = 0;
 var nextMove = movementDistance;
 var currentStep = 1;
 var doneShift = $('#workout').offset().top-50;
@@ -53,7 +53,10 @@ var exercise2Weight = '';
 var exercise1Sets = '';
 var exercise1Reps = '';
 var exerciseArray = [];
+var groupName = '';
 var i = 0;
+
+console.log(movementDistance);
 
 $('#exercisenumber').html(currentStep);
 
@@ -66,65 +69,80 @@ var noRefresh = function(){
 	return false;
 }
 
+$('#namerproceed').click(function(){
+  groupName = $('#inputgroupname').val();
+  $('.groupname').html(groupName);
+  $('#slidingcontent').animate({
+    top:-movementDistance
+  }, {
+      duration:'slow', 
+      queue:false,
+      complete: function(){
+        shiftReset = $("#slidingcontent").offset().top;
+      }
+    });
+});
+
+
+
 $('#nextexercisebutton').click(function(){
-  console.log( $('#slidingcontent').offset().top);
+  $('.groupname').html(groupName);
+  console.log($("#slidingcontent").offset().top);
+  console.log(movementDistance);
+ 
   $('#nextexercisenumber').html(currentStep+1);
-
-
-  
-
   exerciseName = $("#exercisename").val();
   exerciseWeight = $("#exerciseweight").val();
   exerciseSets = $("#exercisesets").val();
   exerciseReps = $("#exercisereps").val();
 
-  console.log(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 
-    console.log(exerciseArray);
-  
-
-  
-
 	var empty = $(this).parent().find("input").filter(function() {
-    
-       	return this.value === "";
-   		});
-   		// if(empty.length) {
-  
-     //    alert("Please ensure all fields are filled out correctly.")
-   		// }else{
-        if(currentStep == 1){
-          exercise1Name = $("#exercise1name").val();
-          document.cookie = 'nameofcookie = '+exercise1Name+'; expires= 3 Aug 2015 20:47:11 UTC; path=/'
-      
-        }
-    		$('#slidingcontent').animate({
-         
-          top:-movementDistance
-        }, {
-          duration:'slow', 
-          queue:false,
-          complete: function(){
-              $("#exercisename").val("");
-              $("#exerciseweight").val("");
-              $("#exercisesets").val("");
-              $("#exercisereps").val("");
-              $('#exercisenumber').html(currentStep);
-              console.log( $('#slidingcontent').offset().top);
-              $( '#slidingcontent' ).offset({ top:shiftReset});
-              console.log( $('#slidingcontent').offset().top);
-          }
-        }); 
-   			nextMove += movementDistance;
-   			currentStep++;  	
-        console.log( $('#slidingcontent').offset().top, $('#slidingcontent').offset().bottom);
-   			return false;
-   		// }
+    return this.value === "";
+  });
+
+  // if(empty.length) {
+    // alert("Please ensure all fields are filled out correctly.")
+  // }else{
+
+    if(currentStep == 1){
+      exercise1Name = $("#exercise1name").val();
+      document.cookie = 'nameofcookie = '+exercise1Name+'; expires= 3 Aug 2015 20:47:11 UTC; path=/'
+    }
+    $('#slidingcontent').animate({
+      top:-movementDistance*2
+    }, {
+      duration:'slow', 
+      queue:false,
+      complete: function(){
+        console.log($("#slidingcontent").offset().top);
+        $("#exercisename").val("");
+        $("#exerciseweight").val("");
+        $("#exercisesets").val("");
+        $("#exercisereps").val("");
+        $('#exercisenumber').html(currentStep);
+        $( '#slidingcontent' ).offset({ top:shiftReset});
+      }
+    }); 
+   		nextMove += movementDistance;
+   		currentStep++;  	
+   		return false;
+  // }
 });
 
-$('.donebutton').click(function(){
+$('#nextexercisegroup').click(function(){
+  $("#inputgroupname").val("");
+  $('#slidingcontent').animate({
+    top:0
+  }, {
+      duration:'slow', 
+      queue:false,
+    });
+});
+
+$('#donebutton').click(function(){
+  $('#exercisehide').hide();
   var empty = $(this).parent().find("input").filter(function() {
     return this.value === "";
   });
@@ -141,7 +159,7 @@ $('.donebutton').click(function(){
     $("#exerciseworkoutreps").replaceWith( "<span id=\"exerciseworkoutreps\">"+exerciseReps+"</span>");
 
     $('#slidingcontent').animate({
-      bottom:doneShift
+      top:-movementDistance*2
       }, {
       duration: 'slow', 
       

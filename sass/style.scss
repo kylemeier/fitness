@@ -42,10 +42,51 @@ header, h1, h2{
   position:relative;
 }
 
+#exercisegroupnamer{
+  position:relative;
+  width:100%;
+  text-align:center;
+  height:475px;
+  // set equal to movementDistance
+    header{
+      padding-top:100px;
+    }
+    input{
+      padding:10px;
+      border-radius:5px;
+    }
+
+}
+
+#namerproceed{
+  position:relative;
+  display:block;
+  padding: 10px 30px;
+  color:#fff;
+  max-width:100px;
+  margin:0 auto;
+}
+
+#namerproceed{
+  margin-top:25px;
+  background:#00503F;
+  box-shadow:  -1px 0px 3px #6B696D;
+  border-radius: 50px;
+}
+
 #exercisepicker{
   position:relative;
   width:100%;
   text-align:center;
+  header{
+    
+    display:block;
+
+  }
+  h1{
+    font-size:1.5em;
+    margin: 10px 50px;
+  }
   label{
     display:block;
     margin-top:15px;
@@ -59,25 +100,42 @@ header, h1, h2{
     border-radius: 5px;
     padding:10px 0;
   }
-  #donebutton,#nextexercisebutton{
+  ul{
+
+    height:100px;
+    margin-top:10px;
+  }
+  li{
+    margin:0 15%;
+  }
+
+  a{
+    float:left;
+    font-size:.8em;
+    display:block;
     position:relative;
     display:block;
     padding: 10px 30px;
     color:#fff;
-    max-width:100px;
-    margin:0 auto;
+    min-width:70px;
+   
+    
+
   }
   #donebutton{
-    margin-top:40px;
     background:#00503F;
     box-shadow:  -1px 0px 3px #6B696D;
-    border-radius: 50px 50px 0 0;
+    border-radius: 50px;
   }
   #nextexercisebutton{
-    margin-bottom:70px;
     background: #900022;
     box-shadow:  -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-    border-radius: 0 0 50px 50px;
+    border-radius: 50px;
+  }
+  #nextexercisegroup{
+    background:#00503F;
+    box-shadow:  -1px 0px 3px #6B696D;
+    border-radius: 50px;
   }
 }
 
