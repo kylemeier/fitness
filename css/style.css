@@ -44,19 +44,19 @@ header, h1, h2 {
     max-width: 500px;
     border-radius: 5px;
     padding: 10px 0; }
-  #exercisepicker .donebutton, #exercisepicker .nextexercisebutton {
+  #exercisepicker #donebutton, #exercisepicker #nextexercisebutton {
     position: relative;
     display: block;
-    padding: 10px 100px 10px 30px;
+    padding: 10px 30px;
     color: #fff;
     max-width: 100px;
     margin: 0 auto; }
-  #exercisepicker .donebutton {
+  #exercisepicker #donebutton {
     margin-top: 40px;
     background: #00503F;
     box-shadow: -1px 0px 3px #6B696D;
     border-radius: 50px 50px 0 0; }
-  #exercisepicker .nextexercisebutton {
+  #exercisepicker #nextexercisebutton {
     margin-bottom: 70px;
     background: #900022;
     box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
