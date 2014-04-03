@@ -1,7 +1,6 @@
 $red: #900022;
-//$background: #262421; dark
-
-$background:#DCD6DD;
+$background: #000;
+$height: 476px;
  
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
 
@@ -15,13 +14,11 @@ html{
   background:$background;
 }
 
-header, h1, h2{
-  // color: #6B696D;
-  // text-shadow: -1px -1px #DCD6DD;
-  color:#000;
+header, h1, h2, label{
+  color:#fff;
   background:none;
   font-family: 'Roboto', Arial, sans-serif; font-weight: 300; 
-  font-size:2em;
+  font-size:1.5em;
 }
 
 .container{
@@ -32,8 +29,8 @@ header, h1, h2{
   height:500px;
   margin:5%;
   padding:20px;
-  background: #C0BFCB;
-  box-shadow: inset -1px 0px 3px #6B696D, inset 1px 2px 3px #6B696D;
+  background: #383838;
+  box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
   border-radius:10px;
   overflow:hidden;
 }
@@ -46,10 +43,10 @@ header, h1, h2{
   position:relative;
   width:100%;
   text-align:center;
-  height:475px;
+  height:$height;
   // set equal to movementDistance
     header{
-      padding-top:100px;
+      padding-top:50px;
     }
     input{
       padding:10px;
@@ -74,7 +71,7 @@ header, h1, h2{
   border-radius: 50px;
 }
 
-#exercisepicker{
+#exerciseenter{
   position:relative;
   width:100%;
   text-align:center;
@@ -90,6 +87,7 @@ header, h1, h2{
   label{
     display:block;
     margin-top:15px;
+    font-size:1em;
     
   }
   input{
@@ -101,7 +99,7 @@ header, h1, h2{
     padding:10px 0;
   }
   ul{
-
+    width:100%;
     height:100px;
     margin-top:10px;
   }
@@ -111,13 +109,14 @@ header, h1, h2{
 
   a{
     float:left;
-    font-size:.8em;
+    font-size:.7em;
     display:block;
     position:relative;
     display:block;
-    padding: 10px 30px;
+    padding: 10px 20px;
     color:#fff;
-    min-width:70px;
+    max-width:20px;
+    max-height:10px;
    
     
 
@@ -139,10 +138,29 @@ header, h1, h2{
   }
 }
 
+#exercisepicker{
+  height:$height;
+  color:#fff;
+  input{
+    color:#000;
+    display:block;
+  }
+  #exercisechosenbutton{
+    display:inline-block;
+    background:#00503F;
+    box-shadow:  -1px 0px 3px #6B696D;
+    margin-top:50px;
+    padding:20px;
+    border-radius: 50px;
+    color:#fff;
+  }
+}
+
 #workout{
  text-align:center;
  width:100%;
  padding-top:50px;
+ height:$height;
 
 }
 

@@ -5,14 +5,14 @@
   clear: both; }
 
 html {
-  background: #dcd6dd; }
+  background: black; }
 
-header, h1, h2 {
-  color: #000;
+header, h1, h2, label {
+  color: #fff;
   background: none;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 300;
-  font-size: 2em; }
+  font-size: 1.5em; }
 
 .container {
   position: relative;
@@ -22,8 +22,8 @@ header, h1, h2 {
   height: 500px;
   margin: 5%;
   padding: 20px;
-  background: #C0BFCB;
-  box-shadow: inset -1px 0px 3px #6B696D, inset 1px 2px 3px #6B696D;
+  background: #383838;
+  box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
   border-radius: 10px;
   overflow: hidden; }
 
@@ -34,9 +34,9 @@ header, h1, h2 {
   position: relative;
   width: 100%;
   text-align: center;
-  height: 475px; }
+  height: 476px; }
   #exercisegroupnamer header {
-    padding-top: 100px; }
+    padding-top: 50px; }
   #exercisegroupnamer input {
     padding: 10px;
     border-radius: 5px; }
@@ -55,56 +55,75 @@ header, h1, h2 {
   box-shadow: -1px 0px 3px #6B696D;
   border-radius: 50px; }
 
-#exercisepicker {
+#exerciseenter {
   position: relative;
   width: 100%;
   text-align: center; }
-  #exercisepicker header {
+  #exerciseenter header {
     display: block; }
-  #exercisepicker h1 {
+  #exerciseenter h1 {
     font-size: 1.5em;
     margin: 10px 50px; }
-  #exercisepicker label {
+  #exerciseenter label {
     display: block;
-    margin-top: 15px; }
-  #exercisepicker input {
+    margin-top: 15px;
+    font-size: 1em; }
+  #exerciseenter input {
     display: block;
     margin: 0 auto;
     width: 80%;
     max-width: 500px;
     border-radius: 5px;
     padding: 10px 0; }
-  #exercisepicker ul {
+  #exerciseenter ul {
+    width: 100%;
     height: 100px;
     margin-top: 10px; }
-  #exercisepicker li {
+  #exerciseenter li {
     margin: 0 15%; }
-  #exercisepicker a {
+  #exerciseenter a {
     float: left;
-    font-size: .8em;
+    font-size: .7em;
     display: block;
     position: relative;
     display: block;
-    padding: 10px 30px;
+    padding: 10px 20px;
     color: #fff;
-    min-width: 70px; }
-  #exercisepicker #donebutton {
+    max-width: 20px;
+    max-height: 10px; }
+  #exerciseenter #donebutton {
     background: #00503F;
     box-shadow: -1px 0px 3px #6B696D;
     border-radius: 50px; }
-  #exercisepicker #nextexercisebutton {
+  #exerciseenter #nextexercisebutton {
     background: #900022;
     box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
     border-radius: 50px; }
-  #exercisepicker #nextexercisegroup {
+  #exerciseenter #nextexercisegroup {
     background: #00503F;
     box-shadow: -1px 0px 3px #6B696D;
     border-radius: 50px; }
 
+#exercisepicker {
+  height: 476px;
+  color: #fff; }
+  #exercisepicker input {
+    color: #000;
+    display: block; }
+  #exercisepicker #exercisechosenbutton {
+    display: inline-block;
+    background: #00503F;
+    box-shadow: -1px 0px 3px #6B696D;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 50px;
+    color: #fff; }
+
 #workout {
   text-align: center;
   width: 100%;
-  padding-top: 50px; }
+  padding-top: 50px;
+  height: 476px; }
 
 .resultbuttons {
   margin-top: 25px; }

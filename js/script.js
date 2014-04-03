@@ -43,7 +43,7 @@
 
 
 
-var movementDistance = $('#exercisehide').offset().top - $('#exercisepicker').offset().top;
+var movementDistance = $('#exercisehide').offset().top - $('#exerciseenter').offset().top;
 var shiftReset = 0;
 var nextMove = movementDistance;
 var currentStep = 1;
@@ -54,15 +54,22 @@ var exercise1Sets = '';
 var exercise1Reps = '';
 var exerciseArray = [];
 var groupName = '';
-var i = 0;
+var groupNum = 0;
+var allExercises = {};
+var allGroups = [];
 
-console.log(movementDistance);
+console.log("Each screen should be this height: "+movementDistance);
 
 $('#exercisenumber').html(currentStep);
 
+function addGroup(groupName, groupNum){
+  allExercises["group"+groupNum] = {name: groupName, exerciseArray: []};
+  return true;
+}
+
 function addExercise(name,weight,sets,reps){
-  i++;
-  exerciseArray["exercise"+i] = {name: name, weight: weight, sets: sets, reps:reps};
+   allExercises["group"+groupNum]["exerciseArray"][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
+  return true;
 }
 
 var noRefresh = function(){
@@ -73,6 +80,10 @@ $('#namerproceed').click(function(){
   groupName = $('#inputgroupname').val();
   $('#exercisenumber').html(currentStep);
   $('.groupname').html(groupName);
+  groupNum++;
+  addGroup(groupName, groupNum);
+
+
   $('#slidingcontent').animate({
     top:-movementDistance
   }, {
@@ -87,9 +98,9 @@ $('#namerproceed').click(function(){
 
 
 $('#nextexercisebutton').click(function(){
+
+
   $('.groupname').html(groupName);
-  console.log($("#slidingcontent").offset().top);
-  console.log(movementDistance);
  
   $('#nextexercisenumber').html(currentStep+1);
   exerciseName = $("#exercisename").val();
@@ -117,7 +128,6 @@ $('#nextexercisebutton').click(function(){
       duration:'slow', 
       queue:false,
       complete: function(){
-        console.log($("#slidingcontent").offset().top);
         $("#exercisename").val("");
         $("#exerciseweight").val("");
         $("#exercisesets").val("");
@@ -145,12 +155,24 @@ $('#nextexercisegroup').click(function(){
 
 $('#donebutton').click(function(){
   $('#exercisehide').hide();
+  // number of exercises in a given group console.log(allExercises["group1"]["exerciseArray"].length);
+  // names of exercise groups
+
   var empty = $(this).parent().find("input").filter(function() {
     return this.value === "";
   });
   if(empty.length) {
     alert("Please ensure all fields are filled out correctly.");
   }else{
+    
+    var counter = 0;
+
+    for (items in allExercises){
+      counter++;
+      allGroups.push("<br>"+allExercises["group"+counter]["name"]);
+    }
+    $("#exercisegroups").html("Type which exercise group you'll be working on today:"+allGroups.join(""));
+
 	 exerciseName = $("#exercisename").val();
    	$("#exerciseworkoutname").replaceWith( "<span id=\"exerciseworkoutname\">"+exerciseName+"</span>");
 	 exerciseWeight = $("#exerciseweight").val();
