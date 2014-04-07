@@ -43,7 +43,8 @@
 
 
 
-var movementDistance = $('#exercisehide').offset().top - $('#exerciseenter').offset().top;
+// var movementDistance = $('#exercisehide').offset().top - $('#exerciseenter').offset().top;
+var movementDistance = 476;
 var shiftReset = 0;
 var nextMove = movementDistance;
 var currentStep = 1;
@@ -64,11 +65,13 @@ $('#exercisenumber').html(currentStep);
 
 function addGroup(groupName, groupNum){
   allExercises["group"+groupNum] = {name: groupName, exerciseArray: []};
+  console.log("New group object added named: "+ allExercises["group"+groupNum]["name"]);
   return true;
 }
 
 function addExercise(name,weight,sets,reps){
-   allExercises["group"+groupNum]["exerciseArray"][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
+  allExercises["group"+groupNum]["exerciseArray"][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
+  console.log(allExercises);
   return true;
 }
 

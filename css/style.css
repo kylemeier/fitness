@@ -41,19 +41,18 @@ header, h1, h2, label {
     padding: 10px;
     border-radius: 5px; }
 
-#namerproceed {
+.button {
   position: relative;
+  text-align: center;
   display: block;
   padding: 10px 30px;
   color: #fff;
   max-width: 100px;
-  margin: 0 auto; }
-
-#namerproceed {
-  margin-top: 25px;
-  background: #00503F;
-  box-shadow: -1px 0px 3px #6B696D;
-  border-radius: 50px; }
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-image: linear-gradient(#6293b2, #385466);
+  box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
 
 #exerciseenter {
   position: relative;
@@ -80,29 +79,10 @@ header, h1, h2, label {
     height: 100px;
     margin-top: 10px; }
   #exerciseenter li {
-    margin: 0 15%; }
+    width: 500px;
+    margin: 0 auto; }
   #exerciseenter a {
-    float: left;
-    font-size: .7em;
-    display: block;
-    position: relative;
-    display: block;
-    padding: 10px 20px;
-    color: #fff;
-    max-width: 20px;
-    max-height: 10px; }
-  #exerciseenter #donebutton {
-    background: #00503F;
-    box-shadow: -1px 0px 3px #6B696D;
-    border-radius: 50px; }
-  #exerciseenter #nextexercisebutton {
-    background: #900022;
-    box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-    border-radius: 50px; }
-  #exerciseenter #nextexercisegroup {
-    background: #00503F;
-    box-shadow: -1px 0px 3px #6B696D;
-    border-radius: 50px; }
+    float: left; }
 
 #exercisepicker {
   height: 476px;
@@ -110,14 +90,6 @@ header, h1, h2, label {
   #exercisepicker input {
     color: #000;
     display: block; }
-  #exercisepicker #exercisechosenbutton {
-    display: inline-block;
-    background: #00503F;
-    box-shadow: -1px 0px 3px #6B696D;
-    margin-top: 50px;
-    padding: 20px;
-    border-radius: 50px;
-    color: #fff; }
 
 #workout {
   text-align: center;
@@ -161,3 +133,8 @@ header, h1, h2, label {
     background: #900022; }
   .timer .stop {
     background: #6B696D; }
+
+@media (max-width: 520px) {
+  .button {
+    font-size: .7em;
+    padding: 7px; } }
