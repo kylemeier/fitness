@@ -138,7 +138,6 @@ $('#nextexercisebutton').click(function(){
         $('#exercisenumber').html(currentStep);
         $( '#slidingcontent' ).offset({ top:shiftReset});
         console.log("top offset after shiftback "+$("#slidingcontent").offset().top);
-        console.log()
       }
     }); 
    		nextMove += movementDistance;
