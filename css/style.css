@@ -45,7 +45,6 @@ header, h1, h2, label {
   position: relative;
   text-align: center;
   display: block;
-  padding: 10px 30px;
   color: #fff;
   max-width: 100px;
   margin: 0 auto;
@@ -54,34 +53,35 @@ header, h1, h2, label {
   background-image: linear-gradient(#6293b2, #385466);
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
 
-#exerciseenter {
+#exerciseenter, #exercisehide {
   position: relative;
   width: 100%;
-  text-align: center; }
-  #exerciseenter header {
+  text-align: center;
+  height: 476px; }
+  #exerciseenter header, #exercisehide header {
     display: block; }
-  #exerciseenter h1 {
+  #exerciseenter h1, #exercisehide h1 {
     font-size: 1.5em;
     margin: 10px 50px; }
-  #exerciseenter label {
+  #exerciseenter label, #exercisehide label {
     display: block;
     margin-top: 15px;
     font-size: 1em; }
-  #exerciseenter input {
+  #exerciseenter input, #exercisehide input {
     display: block;
     margin: 0 auto;
     width: 80%;
     max-width: 500px;
     border-radius: 5px;
     padding: 10px 0; }
-  #exerciseenter ul {
+  #exerciseenter ul, #exercisehide ul {
     width: 100%;
     height: 100px;
     margin-top: 10px; }
-  #exerciseenter li {
+  #exerciseenter li, #exercisehide li {
     width: 500px;
     margin: 0 auto; }
-  #exerciseenter a {
+  #exerciseenter a, #exercisehide a {
     float: left; }
 
 #exercisepicker {

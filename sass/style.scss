@@ -57,7 +57,7 @@ header, h1, h2, label{
   position:relative;
   text-align:center;
   display:block;
-  padding: 10px 30px;
+  // padding: 10px 30px;
   color:#fff;
   max-width:100px;
   margin:0 auto;
@@ -67,10 +67,11 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
-#exerciseenter{
+#exerciseenter, #exercisehide{
   position:relative;
   width:100%;
   text-align:center;
+  height: $height;
   header{
     
     display:block;
@@ -108,6 +109,7 @@ header, h1, h2, label{
     float:left;
   }
 }
+
 
 #exercisepicker{
   height:$height;

@@ -43,12 +43,10 @@
 
 
 
-// var movementDistance = $('#exercisehide').offset().top - $('#exerciseenter').offset().top;
-var movementDistance = 476;
+var movementDistance = $('#exercisehide').offset().top - $('#exerciseenter').offset().top;
 var shiftReset = 0;
 var nextMove = movementDistance;
 var currentStep = 1;
-var doneShift = $('#workout').offset().top-50;
 var exercise1Name = '';
 var exercise2Weight = '';
 var exercise1Sets = '';
@@ -71,7 +69,6 @@ function addGroup(groupName, groupNum){
 
 function addExercise(name,weight,sets,reps){
   allExercises["group"+groupNum]["exerciseArray"][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
-  console.log(allExercises);
   return true;
 }
 
@@ -94,6 +91,7 @@ $('#namerproceed').click(function(){
       queue:false,
       complete: function(){
         shiftReset = $("#slidingcontent").offset().top;
+        console.log("Sllidingcontent will get shifted back to this top offset "+shiftReset);
       }
     });
 });
@@ -131,12 +129,16 @@ $('#nextexercisebutton').click(function(){
       duration:'slow', 
       queue:false,
       complete: function(){
+        console.log("Top offset after next button clicked "+ $("#slidingcontent").offset().top );
+        console.log("Difference between top offset and shiftReset" + ($("#slidingcontent").offset().top - shiftReset));
         $("#exercisename").val("");
         $("#exerciseweight").val("");
         $("#exercisesets").val("");
         $("#exercisereps").val("");
         $('#exercisenumber').html(currentStep);
         $( '#slidingcontent' ).offset({ top:shiftReset});
+        console.log("top offset after shiftback "+$("#slidingcontent").offset().top);
+        console.log()
       }
     }); 
    		nextMove += movementDistance;
@@ -157,6 +159,7 @@ $('#nextexercisegroup').click(function(){
 });
 
 $('#donebutton').click(function(){
+  console.log(allExercises);
   $('#exercisehide').hide();
   // number of exercises in a given group console.log(allExercises["group1"]["exerciseArray"].length);
   // names of exercise groups
