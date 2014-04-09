@@ -1,3 +1,6 @@
+
+//make field validation its own function
+//
 //***exercise group name screen ***
 //
 //******in picker: ********
@@ -12,7 +15,6 @@
 //
 //*****in exercise section:**********
 //
-//upon initialization -- check day of week to see which workout to show
 //
 //every success click:
 //increment stored weight
@@ -36,9 +38,8 @@
 //  
 //if current weight is above stored weight:
 //  store current weight, keep weight at same level
-//
-//shift to next exercise
-
+// number of exercises in a given group console.log(allExercises['group1']['exerciseArray'].length);
+// grab group name given a groupNum console.log(allExercises['group'+groupNum]['name']);
 
 
 
@@ -54,10 +55,8 @@ var currentStep = 1;
     groupNum = 0;
     allExercises = {};
     allGroups = [];
-    position = 0;
-
     exerciseEnter =       
-      '<div id=\'exerciseenterid\' class=\'exerciseenter\'>'+
+      '<div id=\'exerciseenter\' class=\'inview\'>'+
       '<header>Group: <span class=\'groupname\'></span></header>'+
       '<h1>#<span class=\'exercisenumber\'></span></h1>'+
       '<label for=\'exercisename\'>Exercise Name</label>'+
@@ -80,22 +79,26 @@ var currentStep = 1;
       '</li>'+
       '</ul>'+
       '</div>'
-
     exerciseGroupNamer =
-      '<div id=\'exercisegroupnamerid\' class=\'exercisegroupnamer slideOutUp\'>'+
+      '<div id=\'exercisegroupnamer\' class=\'slideOutUp\'>'+
       '<header>Please enter an exercise group name. This group will contain all exercises you'+
       '        perform on a given day. You will be creating a group for each day of exercises you perform.</header>'+
       '<label for=\'inputgroupname\'>Group:</label>'+
       '<input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' required>'+
       '<a href=\'#\' class=\'button namerproceed\'>Proceed</a>'+
       '</div>'
+    exercisePicker =
+    '<div id=\'exercisepicker\'>'+
+      '<span id=\'exercisegroups\'></span>'+
+      '<input type=\'text\' name=\'exercisechoseninput\' id=\'exercisechoseninput\' required>'+
+      '<a href=\'#\' class=\'button\' id=\'exercisechosenbutton\'>Submit</a>'+
+    '</div>'
 
 
 $('#exercisenumber').html(currentStep);
 
 function addGroup(groupName, groupNum){
   allExercises['group'+groupNum] = {name: groupName, exerciseArray: []};
-  console.log('New group object added named: '+ allExercises['group'+groupNum]['name']);
   return true;
 }
 
@@ -104,16 +107,29 @@ function addExercise(name,weight,sets,reps){
   return true;
 }
 
+function fieldValidation(currentDiv){
+  var empty = $(currentDiv).find('input').filter(function() {
+    return this.value === '';
+  });
+  if(empty.length) {
+    return false
+  }
+  return true
+}
+
 $(document).on('click', '.namerproceed', function(){
-  $('#exercisegroupnamerid').attr('class','exercisegroupnamer slideOutUp');
+    if(!fieldValidation('#exercisegroupnamer')) {
+    alert('Be sure to enter an exercise group name.')
+  }else{
+  $('#exercisegroupnamer').attr('class','slideOutUp');
   $('.container').append(exerciseEnter);
 
   setTimeout(function(){
-    $('.exerciseenter').addClass('slideIn');
+    $('#exerciseenter').addClass('slideIn');
 
   }, 1);
   setTimeout(function(){
-    $('.exercisegroupnamer').remove();
+    $('#exercisegroupnamer').remove();
 
   },1000);
   groupName = $('#inputgroupname').val();
@@ -122,20 +138,23 @@ $(document).on('click', '.namerproceed', function(){
   $('.groupname').html(groupName);
   groupNum++;
   addGroup(groupName, groupNum);
-
+  console.log("Expand object to see all information currently stored:");
+  console.log(allExercises); 
+  }
 });
 
-
-
 $(document).on('click','.nextexercisebutton', function(){
-  $('#exerciseenterid').attr('class','exerciseremove slideOutUp');
+  if(!fieldValidation('#exerciseenter')) {
+    alert('Please ensure all fields are filled out correctly.')
+  }else{
+  $('#exerciseenter').attr('class','remove slideOutUp');
   $('.container').append(exerciseEnter);
   setTimeout(function(){
-    $('.exerciseenter').addClass('slideIn');
+    $('.inview').addClass('slideIn');
 
   }, 1);
   setTimeout(function(){
-    $('.exerciseremove').remove();
+    $('.remove').remove();
 
   },1000);
     setTimeout(function(){
@@ -146,113 +165,76 @@ $(document).on('click','.nextexercisebutton', function(){
   
   $('.groupname').html(groupName);
 
- 
-  // $('#nextexercisenumber').html(currentStep+1);
- //  exerciseName = $('#exercisename').val();
- //  exerciseWeight = $('#exerciseweight').val();
- //  exerciseSets = $('#exercisesets').val();
- //  exerciseReps = $('#exercisereps').val();
+  exerciseName = $('#exercisename').val();
+  exerciseWeight = $('#exerciseweight').val();
+  exerciseSets = $('#exercisesets').val();
+  exerciseReps = $('#exercisereps').val();
 
- //  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-
-	// var empty = $(this).parent().find('input').filter(function() {
- //    return this.value === '';
- //  });
-
- //  // if(empty.length) {
- //    // alert('Please ensure all fields are filled out correctly.')
- //  // }else{
-
- //    if(currentStep == 1){
- //      exercise1Name = $('#exercise1name').val();
- //      document.cookie = 'nameofcookie = '+exercise1Name+'; expires= 3 Aug 2015 20:47:11 UTC; path=/'
- //    }
- //    $('#slidingcontent').animate({
- //      top:-movementDistance*2
- //    }, {
- //      duration:'slow', 
- //      queue:false,
- //      complete: function(){
- //        console.log('Top offset after next button clicked '+ $('#slidingcontent').offset().top );
- //        console.log('Difference between top offset and shiftReset' + ($('#slidingcontent').offset().top - shiftReset));
- //        $('#exercisename').val('');
- //        $('#exerciseweight').val('');
- //        $('#exercisesets').val('');
- //        $('#exercisereps').val('');
- //        $('#exercisenumber').html(currentStep);
- //        $( '#slidingcontent' ).offset({ top:shiftReset});
- //        console.log('top offset after shiftback '+$('#slidingcontent').offset().top);
- //      }
- //    }); 
- //   		nextMove += movementDistance;
- //   		currentStep++;  	
- //   		return false;
-  // }
+  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+  console.log("Expand object to see all information currently stored:");
+  console.log(allExercises); 
+  }
 });
 
-$(document).on('click','.nextexercisegroup', function(){ 
-  $('#exerciseenterid').attr('class','exerciseremove slideOutDown');
+$(document).on('click','.nextexercisegroup', function(){
+  if(!fieldValidation('#exerciseenter')) {
+    alert('Please ensure all fields are filled out correctly.')
+  }else{
+  $('#exerciseenter').attr('class','exerciseremove slideOutDown');
   $('.container').append(exerciseGroupNamer);
   setTimeout(function(){
-    $('#exercisegroupnamerid').attr('class', 'exercisegroupnamer slideIn');
+    $('#exercisegroupnamer').attr('class', 'slideIn');
 
   },1);
   setTimeout(function(){
     $('.exerciseremove').remove();
   },1000);
 
+  exerciseName = $('#exercisename').val();
+  exerciseWeight = $('#exerciseweight').val();
+  exerciseSets = $('#exercisesets').val();
+  exerciseReps = $('#exercisereps').val();
 
+  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+  console.log("Expand object to see all information currently stored:");
+  console.log(allExercises); 
+    }
   });
 
-//   $('#inputgroupname').val('');
-//   currentStep=1;
-//   $('#slidingcontent').animate({
-//     top:0
-//   }, {
-//       duration:'slow', 
-//       queue:false,
-//     });
-// });
+$(document).on('click', '.donebutton', function(){
+  if(!fieldValidation('#exerciseenter')) {
+    alert('Please ensure all fields are filled out correctly.')
+  }else{
+  $('#exerciseenter').attr('class','remove slideOutUp');
+  $('.container').append(exercisePicker);
 
-// $('#donebutton').click(function(){
-//   console.log(allExercises);
-//   $('#exercisehide').hide();
-//   // number of exercises in a given group console.log(allExercises['group1']['exerciseArray'].length);
-//   // names of exercise groups
+  setTimeout(function(){
+    $('#exercisepicker').attr('class', 'slideIn');
+  },1);
 
-//   var empty = $(this).parent().find('input').filter(function() {
-//     return this.value === '';
-//   });
-//   if(empty.length) {
-//     alert('Please ensure all fields are filled out correctly.');
-//   }else{
-    
-//     var counter = 0;
+  setTimeout(function(){
+    $('.remove').remove();
+  },1000);
 
-//     for (items in allExercises){
-//       counter++;
-//       allGroups.push('<br>'+allExercises['group'+counter]['name']);
-//     }
-//     $('#exercisegroups').html('Type which exercise group you'll be working on today:'+allGroups.join(''));
+    var counter = 0;
 
-// 	 exerciseName = $('#exercisename').val();
-//    	$('#exerciseworkoutname').replaceWith( '<span id=\'exerciseworkoutname\'>'+exerciseName+'</span>');
-// 	 exerciseWeight = $('#exerciseweight').val();
-//    	$('#exerciseworkoutweight').replaceWith( '<span id=\'exerciseworkoutweight\'>'+exerciseWeight+'</span>');   	
-// 	 exerciseSets = $('#exercisesets').val();
-//    	$('#exerciseworkoutsets').replaceWith( '<span id=\'exerciseworkoutsets\'>'+exerciseSets+'</span>');
-//     exerciseReps = $('#exercisereps').val();
-//     $('#exerciseworkoutreps').replaceWith( '<span id=\'exerciseworkoutreps\'>'+exerciseReps+'</span>');
+    for (items in allExercises){
+      counter++;
+      allGroups.push('<br>'+allExercises['group'+counter]['name']);
+    }
+    $('#exercisegroups').html('Type which exercise group you\'ll be working on today:'+allGroups.join(''));
 
-//     $('#slidingcontent').animate({
-//       top:-movementDistance*2
-//       }, {
-//       duration: 'slow', 
-      
-//   });   	
-//     	return false;
-//     	}
-// });
+  exerciseName = $('#exercisename').val();
+  exerciseWeight = $('#exerciseweight').val();
+  exerciseSets = $('#exercisesets').val();
+  exerciseReps = $('#exercisereps').val();
+
+  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+
+  console.log("Expand object to see all information currently stored:");
+  console.log(allExercises); 
+  }
+});
 
 
 var startTime = 0;

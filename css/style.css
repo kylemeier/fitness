@@ -39,7 +39,7 @@ header, h1, h2, label {
   position: relative;
   height: 476px; }
 
-.exercisegroupnamer {
+#exercisegroupnamer {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   position: absolute;
@@ -47,9 +47,9 @@ header, h1, h2, label {
   height: 476px;
   bottom: -100%;
   margin: 0 5%; }
-  .exercisegroupnamer header {
+  #exercisegroupnamer header {
     padding-top: 50px; }
-  .exercisegroupnamer input {
+  #exercisegroupnamer input {
     padding: 10px;
     border-radius: 5px; }
 
@@ -66,7 +66,7 @@ header, h1, h2, label {
   background-image: linear-gradient(#6293b2, #385466);
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
 
-.exerciseenter, .exerciseremove {
+#exerciseenter {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   position: absolute;
@@ -74,35 +74,39 @@ header, h1, h2, label {
   text-align: center;
   height: 476px;
   bottom: -100%; }
-  .exerciseenter header, .exerciseremove header {
+  #exerciseenter header {
     display: block; }
-  .exerciseenter h1, .exerciseremove h1 {
+  #exerciseenter h1 {
     font-size: 1.5em;
     margin: 10px 50px; }
-  .exerciseenter label, .exerciseremove label {
+  #exerciseenter label {
     display: block;
     margin-top: 15px;
     font-size: 1em; }
-  .exerciseenter input, .exerciseremove input {
+  #exerciseenter input {
     display: block;
     margin: 0 auto;
     width: 80%;
     max-width: 500px;
     border-radius: 5px;
     padding: 10px 0; }
-  .exerciseenter ul, .exerciseremove ul {
+  #exerciseenter ul {
     width: 100%;
     height: 100px;
     margin-top: 10px; }
-  .exerciseenter li, .exerciseremove li {
+  #exerciseenter li {
     width: 500px;
     margin: 0 auto; }
-  .exerciseenter a, .exerciseremove a {
+  #exerciseenter a {
     float: left; }
 
 #exercisepicker {
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
   height: 476px;
-  color: #fff; }
+  color: #fff;
+  position: absolute;
+  bottom: -100%; }
   #exercisepicker input {
     color: #000;
     display: block; }

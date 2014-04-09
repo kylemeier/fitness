@@ -53,7 +53,7 @@ header, h1, h2, label{
   height:$height;
 }
 
-.exercisegroupnamer{
+#exercisegroupnamer{
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   position:absolute;
@@ -84,9 +84,9 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
-.exerciseenter, .exerciseremove{
-      -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+#exerciseenter{
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
   position:absolute;
   width:100%;
   text-align:center;
@@ -132,8 +132,12 @@ header, h1, h2, label{
 
 
 #exercisepicker{
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
   height:$height;
   color:#fff;
+  position:absolute;
+  bottom:-100%;
   input{
     color:#000;
     display:block;
