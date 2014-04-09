@@ -3,7 +3,7 @@
 //******in picker: ********
 //
 //
-//add cookies: run addExercse after every "add next" click
+//add cookies: run addExercse after every 'add next' click
 //add way to go back, pull from exercise object
 //
 //allow user to click 'finish' at any time, but create a prompt letting them know 
@@ -44,61 +44,68 @@
 
 
 
-// var currentStep = 1;
-// var exercise1Name = '';
-// var exercise2Weight = '';
-// var exercise1Sets = '';
-// var exercise1Reps = '';
-// var exerciseArray = [];
-// var groupName = '';
-// var groupNum = 0;
-// var allExercises = {};
-// var allGroups = [];
+var currentStep = 1;
+    exercise1Name = '';
+    exercise2Weight = '';
+    exercise1Sets = '';
+    exercise1Reps = '';
+    exerciseArray = [];
+    groupName = '';
+    groupNum = 0;
+    allExercises = {};
+    allGroups = [];
+    position = 0;
 
-var exerciseEnter =       
-      "<div id=\"exerciseenterid\" class=\"exerciseenter\">"+
-      "<header>Group: <span class=\"groupname\"></span></header>"+
-      "<h1>#<span id=\"exercisenumber\"></span></h1>"+
-      "<label for=\"exercisename\">Exercise Name</label>"+
-      "<input type=\"text\" name=\"exercisename\" id=\"exercisename\" required>"+
-      "<label for=\"exerciseweight\">Weight lifted (in lbs)</label>"+
-      "<input type=\"number\" name=\"exerciseweight\" id=\"exerciseweight\" required>"+
-      "<label for=\"exercisesets\">Sets</label>"+
-      "<input type=\"number\" name=\"exercisesets\" id=\"exercisesets\" required>"+
-      "<label for=\"exercisereps\">Reps per set</label>"+
-      "<input type=\"number\" name=\"exercisereps\" id=\"exercisereps\" required>"+
-      "<ul>"+
-      "  <li>"+
-      "<a href=\"#\" class=\"button nextexercisebutton\">Next Exercise</a>"+
-      "</li>"+
-      "<li>"+
-      "<a href=\"#\" class=\"button\" id=\"nextexercisegroup\">Next Group</a>"+
-      "</li>"+
-      "<li>"+
-      "<a href=\"#\" class=\"button\" id=\"donebutton\">Finished</a>"+
-      "</li>"+
-      "</ul>"+
-      "</div>"
+    exerciseEnter =       
+      '<div id=\'exerciseenterid\' class=\'exerciseenter\'>'+
+      '<header>Group: <span class=\'groupname\'></span></header>'+
+      '<h1>#<span class=\'exercisenumber\'></span></h1>'+
+      '<label for=\'exercisename\'>Exercise Name</label>'+
+      '<input type=\'text\' name=\'exercisename\' id=\'exercisename\' required>'+
+      '<label for=\'exerciseweight\'>Weight lifted (in lbs)</label>'+
+      '<input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\' required>'+
+      '<label for=\'exercisesets\'>Sets</label>'+
+      '<input type=\'number\' name=\'exercisesets\' id=\'exercisesets\' required>'+
+      '<label for=\'exercisereps\'>Reps per set</label>'+
+      '<input type=\'number\' name=\'exercisereps\' id=\'exercisereps\' required>'+
+      '<ul>'+
+      '  <li>'+
+      '<a href=\'#\' class=\'button nextexercisebutton\'>Next Exercise</a>'+
+      '</li>'+
+      '<li>'+
+      '<a href=\'#\' class=\'button nextexercisegroup\'>Next Group</a>'+
+      '</li>'+
+      '<li>'+
+      '<a href=\'#\' class=\'button donebutton\'>Finished</a>'+
+      '</li>'+
+      '</ul>'+
+      '</div>'
 
-// $('#exercisenumber').html(currentStep);
+    exerciseGroupNamer =
+      '<div id=\'exercisegroupnamerid\' class=\'exercisegroupnamer slideOutUp\'>'+
+      '<header>Please enter an exercise group name. This group will contain all exercises you'+
+      '        perform on a given day. You will be creating a group for each day of exercises you perform.</header>'+
+      '<label for=\'inputgroupname\'>Group:</label>'+
+      '<input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' required>'+
+      '<a href=\'#\' class=\'button namerproceed\'>Proceed</a>'+
+      '</div>'
 
-// function addGroup(groupName, groupNum){
-//   allExercises["group"+groupNum] = {name: groupName, exerciseArray: []};
-//   console.log("New group object added named: "+ allExercises["group"+groupNum]["name"]);
-//   return true;
-// }
 
-// function addExercise(name,weight,sets,reps){
-//   allExercises["group"+groupNum]["exerciseArray"][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
-//   return true;
-// }
+$('#exercisenumber').html(currentStep);
 
-// var noRefresh = function(){
-// 	return false;
-// }
+function addGroup(groupName, groupNum){
+  allExercises['group'+groupNum] = {name: groupName, exerciseArray: []};
+  console.log('New group object added named: '+ allExercises['group'+groupNum]['name']);
+  return true;
+}
 
-$(document).on("click", ".namerproceed", function(){
-  $('.exercisegroupnamer').addClass('slideOut');
+function addExercise(name,weight,sets,reps){
+  allExercises['group'+groupNum]['exerciseArray'][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
+  return true;
+}
+
+$(document).on('click', '.namerproceed', function(){
+  $('#exercisegroupnamerid').attr('class','exercisegroupnamer slideOutUp');
   $('.container').append(exerciseEnter);
 
   setTimeout(function(){
@@ -109,19 +116,19 @@ $(document).on("click", ".namerproceed", function(){
     $('.exercisegroupnamer').remove();
 
   },1000);
-//   groupName = $('#inputgroupname').val();
-  // $('#exercisenumber').html(currentStep);
-//   $('.groupname').html(groupName);
-//   groupNum++;
-//   addGroup(groupName, groupNum);
+  groupName = $('#inputgroupname').val();
+  currentStep=1;
+  $('.exercisenumber').html(currentStep);
+  $('.groupname').html(groupName);
+  groupNum++;
+  addGroup(groupName, groupNum);
 
 });
 
 
 
-$(document).on("click",".nextexercisebutton", function(){
-  $('#exerciseenterid').toggleClass();
-  $('#exerciseenterid').toggleClass("exerciseremove slideOut");
+$(document).on('click','.nextexercisebutton', function(){
+  $('#exerciseenterid').attr('class','exerciseremove slideOutUp');
   $('.container').append(exerciseEnter);
   setTimeout(function(){
     $('.exerciseenter').addClass('slideIn');
@@ -131,31 +138,33 @@ $(document).on("click",".nextexercisebutton", function(){
     $('.exerciseremove').remove();
 
   },1000);
+    setTimeout(function(){
+    currentStep++;
+    $('.exercisenumber').html(currentStep);
 
+  },325);
+  
+  $('.groupname').html(groupName);
 
-
-
-
- // $('.groupname').html(groupName);
  
   // $('#nextexercisenumber').html(currentStep+1);
- //  exerciseName = $("#exercisename").val();
- //  exerciseWeight = $("#exerciseweight").val();
- //  exerciseSets = $("#exercisesets").val();
- //  exerciseReps = $("#exercisereps").val();
+ //  exerciseName = $('#exercisename').val();
+ //  exerciseWeight = $('#exerciseweight').val();
+ //  exerciseSets = $('#exercisesets').val();
+ //  exerciseReps = $('#exercisereps').val();
 
  //  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 
-	// var empty = $(this).parent().find("input").filter(function() {
- //    return this.value === "";
+	// var empty = $(this).parent().find('input').filter(function() {
+ //    return this.value === '';
  //  });
 
  //  // if(empty.length) {
- //    // alert("Please ensure all fields are filled out correctly.")
+ //    // alert('Please ensure all fields are filled out correctly.')
  //  // }else{
 
  //    if(currentStep == 1){
- //      exercise1Name = $("#exercise1name").val();
+ //      exercise1Name = $('#exercise1name').val();
  //      document.cookie = 'nameofcookie = '+exercise1Name+'; expires= 3 Aug 2015 20:47:11 UTC; path=/'
  //    }
  //    $('#slidingcontent').animate({
@@ -164,15 +173,15 @@ $(document).on("click",".nextexercisebutton", function(){
  //      duration:'slow', 
  //      queue:false,
  //      complete: function(){
- //        console.log("Top offset after next button clicked "+ $("#slidingcontent").offset().top );
- //        console.log("Difference between top offset and shiftReset" + ($("#slidingcontent").offset().top - shiftReset));
- //        $("#exercisename").val("");
- //        $("#exerciseweight").val("");
- //        $("#exercisesets").val("");
- //        $("#exercisereps").val("");
+ //        console.log('Top offset after next button clicked '+ $('#slidingcontent').offset().top );
+ //        console.log('Difference between top offset and shiftReset' + ($('#slidingcontent').offset().top - shiftReset));
+ //        $('#exercisename').val('');
+ //        $('#exerciseweight').val('');
+ //        $('#exercisesets').val('');
+ //        $('#exercisereps').val('');
  //        $('#exercisenumber').html(currentStep);
  //        $( '#slidingcontent' ).offset({ top:shiftReset});
- //        console.log("top offset after shiftback "+$("#slidingcontent").offset().top);
+ //        console.log('top offset after shiftback '+$('#slidingcontent').offset().top);
  //      }
  //    }); 
  //   		nextMove += movementDistance;
@@ -181,8 +190,21 @@ $(document).on("click",".nextexercisebutton", function(){
   // }
 });
 
-// $('#nextexercisegroup').click(function(){
-//   $("#inputgroupname").val("");
+$(document).on('click','.nextexercisegroup', function(){ 
+  $('#exerciseenterid').attr('class','exerciseremove slideOutDown');
+  $('.container').append(exerciseGroupNamer);
+  setTimeout(function(){
+    $('#exercisegroupnamerid').attr('class', 'exercisegroupnamer slideIn');
+
+  },1);
+  setTimeout(function(){
+    $('.exerciseremove').remove();
+  },1000);
+
+
+  });
+
+//   $('#inputgroupname').val('');
 //   currentStep=1;
 //   $('#slidingcontent').animate({
 //     top:0
@@ -195,32 +217,32 @@ $(document).on("click",".nextexercisebutton", function(){
 // $('#donebutton').click(function(){
 //   console.log(allExercises);
 //   $('#exercisehide').hide();
-//   // number of exercises in a given group console.log(allExercises["group1"]["exerciseArray"].length);
+//   // number of exercises in a given group console.log(allExercises['group1']['exerciseArray'].length);
 //   // names of exercise groups
 
-//   var empty = $(this).parent().find("input").filter(function() {
-//     return this.value === "";
+//   var empty = $(this).parent().find('input').filter(function() {
+//     return this.value === '';
 //   });
 //   if(empty.length) {
-//     alert("Please ensure all fields are filled out correctly.");
+//     alert('Please ensure all fields are filled out correctly.');
 //   }else{
     
 //     var counter = 0;
 
 //     for (items in allExercises){
 //       counter++;
-//       allGroups.push("<br>"+allExercises["group"+counter]["name"]);
+//       allGroups.push('<br>'+allExercises['group'+counter]['name']);
 //     }
-//     $("#exercisegroups").html("Type which exercise group you'll be working on today:"+allGroups.join(""));
+//     $('#exercisegroups').html('Type which exercise group you'll be working on today:'+allGroups.join(''));
 
-// 	 exerciseName = $("#exercisename").val();
-//    	$("#exerciseworkoutname").replaceWith( "<span id=\"exerciseworkoutname\">"+exerciseName+"</span>");
-// 	 exerciseWeight = $("#exerciseweight").val();
-//    	$("#exerciseworkoutweight").replaceWith( "<span id=\"exerciseworkoutweight\">"+exerciseWeight+"</span>");   	
-// 	 exerciseSets = $("#exercisesets").val();
-//    	$("#exerciseworkoutsets").replaceWith( "<span id=\"exerciseworkoutsets\">"+exerciseSets+"</span>");
-//     exerciseReps = $("#exercisereps").val();
-//     $("#exerciseworkoutreps").replaceWith( "<span id=\"exerciseworkoutreps\">"+exerciseReps+"</span>");
+// 	 exerciseName = $('#exercisename').val();
+//    	$('#exerciseworkoutname').replaceWith( '<span id=\'exerciseworkoutname\'>'+exerciseName+'</span>');
+// 	 exerciseWeight = $('#exerciseweight').val();
+//    	$('#exerciseworkoutweight').replaceWith( '<span id=\'exerciseworkoutweight\'>'+exerciseWeight+'</span>');   	
+// 	 exerciseSets = $('#exercisesets').val();
+//    	$('#exerciseworkoutsets').replaceWith( '<span id=\'exerciseworkoutsets\'>'+exerciseSets+'</span>');
+//     exerciseReps = $('#exercisereps').val();
+//     $('#exerciseworkoutreps').replaceWith( '<span id=\'exerciseworkoutreps\'>'+exerciseReps+'</span>');
 
 //     $('#slidingcontent').animate({
 //       top:-movementDistance*2
@@ -241,8 +263,8 @@ var timeRunning = 0;
 $('#timerbutton').click(function(){
   if(!timeRunning){
     timeRunning = 1;
-      $( this ).removeClass("start");
-      $( this ).addClass("stop");
+      $( this ).removeClass('start');
+      $( this ).addClass('stop');
 
     var totalTime = 120;
     startTime = new Date().getTime();
@@ -259,13 +281,13 @@ $('#timerbutton').click(function(){
         }
         
         if(totalTime <= 0){
-          $( '#timerbutton' ).removeClass("stop");
-          $( '#timerbutton' ).addClass("start");
+          $( '#timerbutton' ).removeClass('stop');
+          $( '#timerbutton' ).addClass('start');
           $('#clock').html('02:00');
           totalTime=120;
           clearInterval(countDown);
           timeRunning = 0;
-          alert("Done");
+          alert('Done');
         }
   
           $('#clock').html(timeFormat(totalTime));
@@ -297,11 +319,11 @@ $('#timerbutton').click(function(){
         secondsStr = seconds;
       }
     
-      return(minutesStr+":"+secondsStr);
+      return(minutesStr+':'+secondsStr);
     
     };
 
-    var eventName = "visibilitychange";
+    var eventName = 'visibilitychange';
     
     function showing() {
       var timeDiff = 0;

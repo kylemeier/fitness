@@ -26,11 +26,14 @@ header, h1, h2, label {
   border-radius: 10px;
   overflow: hidden; }
 
-.slideOut {
+.slideOutUp {
   bottom: 100% !important; }
 
 .slideIn {
   bottom: 0% !important; }
+
+.slideOutDown {
+  bottom: -100% !important; }
 
 #slidingcontent {
   position: relative;
@@ -42,7 +45,7 @@ header, h1, h2, label {
   position: absolute;
   text-align: center;
   height: 476px;
-  bottom: 0%;
+  bottom: -100%;
   margin: 0 5%; }
   .exercisegroupnamer header {
     padding-top: 50px; }
@@ -148,6 +151,9 @@ header, h1, h2, label {
     background: #6B696D; }
 
 @media (max-width: 520px) {
+  header, h1, h2, label {
+    font-size: 1em; }
+
   .button {
     font-size: .7em;
     padding: 7px; } }
