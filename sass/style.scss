@@ -28,22 +28,34 @@ header, h1, h2, label{
   width:90%;
   height:500px;
   margin:5%;
-  padding:20px;
   background: #383838;
   box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
   border-radius:10px;
   overflow:hidden;
 }
 
-#slidingcontent{
-  position:relative;
+.slideOut{
+  bottom:100% !important;
+
 }
 
-#exercisegroupnamer{
+.slideIn{
+  bottom:0% !important;
+}
+
+#slidingcontent{
   position:relative;
-  width:100%;
+  height:$height;
+}
+
+.exercisegroupnamer{
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  position:absolute;
   text-align:center;
   height:$height;
+  bottom:0%;
+  margin: 0 5%;
     header{
       padding-top:50px;
     }
@@ -57,7 +69,7 @@ header, h1, h2, label{
   position:relative;
   text-align:center;
   display:block;
-  // padding: 10px 30px;
+  padding: 5px 5px;
   color:#fff;
   max-width:100px;
   margin:0 auto;
@@ -67,11 +79,14 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
-#exerciseenter, #exercisehide{
-  position:relative;
+.exerciseenter, .exerciseremove{
+      -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+  position:absolute;
   width:100%;
   text-align:center;
   height: $height;
+  bottom:-100%;
   header{
     
     display:block;
