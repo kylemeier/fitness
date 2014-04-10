@@ -39,21 +39,6 @@ header, h1, h2, label {
   position: relative;
   height: 476px; }
 
-#exercisegroupnamer, #exerciseenter, #exercisepicker {
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-  position: absolute;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  right: -100%; }
-
-#exercisegroupnamer header {
-  padding-top: 50px; }
-#exercisegroupnamer input {
-  padding: 10px;
-  border-radius: 5px; }
-
 .button {
   position: relative;
   text-align: center;
@@ -67,12 +52,31 @@ header, h1, h2, label {
   background-image: linear-gradient(#6293b2, #385466);
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
 
+#exercisegroupnamer, #exerciseenter, #exercisepicker {
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  right: -100%;
+  padding: 20px;
+  top: 0;
+  box-sizing: border-box; }
+
+#exercisegroupnamer {
+  top: 0; }
+  #exercisegroupnamer header {
+    padding-top: 50px; }
+  #exercisegroupnamer input {
+    padding: 10px;
+    border-radius: 5px; }
+
 #exerciseenter header {
-  padding: 15px;
+  padding-top: 15px;
   display: block; }
 #exerciseenter h1 {
   font-size: 1.5em;
-  padding: 15px;
   margin: 10px 50px; }
 #exerciseenter label {
   display: block;
@@ -93,6 +97,7 @@ header, h1, h2, label {
   width: 500px;
   margin: 0 auto; }
 #exerciseenter a {
+  position: relative;
   float: left; }
 
 #exercisepicker span {

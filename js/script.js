@@ -90,8 +90,8 @@ var currentStep = 1;
     exercisePicker =
     '<div id=\'exercisepicker\'>'+
       '<span id=\'exercisegroups\'></span>'+
-      '<input type=\'text\' name=\'exercisechoseninput\' id=\'exercisechoseninput\' required>'+
-      '<a href=\'#\' class=\'button\' id=\'exercisechosenbutton\'>Submit</a>'+
+      // '<input type=\'text\' name=\'exercisechoseninput\' id=\'exercisechoseninput\' required>'+
+      // '<a href=\'#\' class=\'button\' id=\'exercisechosenbutton\'>Submit</a>'+
     '</div>'
 
 
@@ -222,7 +222,7 @@ $(document).on('click', '.donebutton', function(){
       counter++;
       allGroups.push('<br>'+allExercises['group'+counter]['name']);
     }
-    $('#exercisegroups').html('Type which exercise group you\'ll be working on today:'+allGroups.join(''));
+    $('#exercisegroups').html('Your exercise groups:'+allGroups.join(''));
 
   exerciseName = $('#exercisename').val();
   exerciseWeight = $('#exerciseweight').val();

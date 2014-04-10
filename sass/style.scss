@@ -52,27 +52,6 @@ header, h1, h2, label{
   height:$height;
 }
 
-#exercisegroupnamer,#exerciseenter, #exercisepicker{
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-  position:absolute;
-  text-align:center;
-  height:100%;
-  width:100%;
-  right:-100%;
-}
-
-#exercisegroupnamer{
-
-    header{
-      padding-top:50px;
-    }
-    input{
-      padding:10px;
-      border-radius:5px;
-    }
-}
-
 .button{
   position:relative;
   text-align:center;
@@ -87,15 +66,38 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
+#exercisegroupnamer,#exerciseenter, #exercisepicker{
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  position:absolute;
+  text-align:center;
+  height:100%;
+  width:100%;
+  right:-100%;
+  padding:20px;
+  top:0;
+  box-sizing:border-box;
+}
+
+#exercisegroupnamer{
+  top:0;
+    header{
+      padding-top:50px;
+    }
+    input{
+      padding:10px;
+      border-radius:5px;
+    }
+}
+
 #exerciseenter{
   header{
-    padding:15px;
+    padding-top:15px;
     display:block;
 
   }
   h1{
     font-size:1.5em;
-    padding:15px;
     margin: 10px 50px;
   }
   label{
@@ -123,6 +125,7 @@ header, h1, h2, label{
   }
 
   a{
+    position:relative;
     float:left;
   }
 }
