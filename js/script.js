@@ -5,7 +5,7 @@
 //
 //******in picker: ********
 //
-//
+//change exercise # incrementer to show different numbers on slideout/slidein
 //add cookies: run addExercse after every 'add next' click
 //add way to go back, pull from exercise object
 //
@@ -80,7 +80,7 @@ var currentStep = 1;
       '</ul>'+
       '</div>'
     exerciseGroupNamer =
-      '<div id=\'exercisegroupnamer\' class=\'slideOutUp\'>'+
+      '<div id=\'exercisegroupnamer\' class=\'slideOutLeft\'>'+
       '<header>Please enter an exercise group name. This group will contain all exercises you'+
       '        perform on a given day. You will be creating a group for each day of exercises you perform.</header>'+
       '<label for=\'inputgroupname\'>Group:</label>'+
@@ -108,30 +108,29 @@ function addExercise(name,weight,sets,reps){
 }
 
 function fieldValidation(currentDiv){
-  var empty = $(currentDiv).find('input').filter(function() {
-    return this.value === '';
-  });
-  if(empty.length) {
-    return false
-  }
+  // var empty = $(currentDiv).find('input').filter(function() {
+  //   return this.value === '';
+  // });
+  // if(empty.length) {
+  //   return false
+  // }
   return true
 }
 
 $(document).on('click', '.namerproceed', function(){
+  event.preventDefault();
     if(!fieldValidation('#exercisegroupnamer')) {
     alert('Be sure to enter an exercise group name.')
   }else{
-  $('#exercisegroupnamer').attr('class','slideOutUp');
+    setTimeout(function(){
+      $('#exercisegroupnamer').attr('class','slideOutLeft');
+      $('#exerciseenter').addClass('slideIn');
+        setTimeout(function(){
+          $('#exercisegroupnamer').remove();
+      },1000);
+    },1);
   $('.container').append(exerciseEnter);
 
-  setTimeout(function(){
-    $('#exerciseenter').addClass('slideIn');
-
-  }, 1);
-  setTimeout(function(){
-    $('#exercisegroupnamer').remove();
-
-  },1000);
   groupName = $('#inputgroupname').val();
   currentStep=1;
   $('.exercisenumber').html(currentStep);
@@ -144,24 +143,23 @@ $(document).on('click', '.namerproceed', function(){
 });
 
 $(document).on('click','.nextexercisebutton', function(){
+  event.preventDefault();
   if(!fieldValidation('#exerciseenter')) {
     alert('Please ensure all fields are filled out correctly.')
   }else{
-  $('#exerciseenter').attr('class','remove slideOutUp');
+    setTimeout(function(){
+      $('#exerciseenter').attr('class','remove slideOutLeft');
+      $('.inview').addClass('slideIn');
+        setTimeout(function(){
+          $('.remove').remove();
+      },1000);
+    },1);
   $('.container').append(exerciseEnter);
-  setTimeout(function(){
-    $('.inview').addClass('slideIn');
-
-  }, 1);
-  setTimeout(function(){
-    $('.remove').remove();
-
-  },1000);
     setTimeout(function(){
     currentStep++;
     $('.exercisenumber').html(currentStep);
 
-  },325);
+  },550);
   
   $('.groupname').html(groupName);
 
@@ -177,10 +175,11 @@ $(document).on('click','.nextexercisebutton', function(){
 });
 
 $(document).on('click','.nextexercisegroup', function(){
+  event.preventDefault();
   if(!fieldValidation('#exerciseenter')) {
     alert('Please ensure all fields are filled out correctly.')
   }else{
-  $('#exerciseenter').attr('class','exerciseremove slideOutDown');
+  $('#exerciseenter').attr('class','exerciseremove slideOutRight');
   $('.container').append(exerciseGroupNamer);
   setTimeout(function(){
     $('#exercisegroupnamer').attr('class', 'slideIn');
@@ -202,10 +201,11 @@ $(document).on('click','.nextexercisegroup', function(){
   });
 
 $(document).on('click', '.donebutton', function(){
+  event.preventDefault();
   if(!fieldValidation('#exerciseenter')) {
     alert('Please ensure all fields are filled out correctly.')
   }else{
-  $('#exerciseenter').attr('class','remove slideOutUp');
+  $('#exerciseenter').attr('class','remove slideOutLeft');
   $('.container').append(exercisePicker);
 
   setTimeout(function(){

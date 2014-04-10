@@ -28,23 +28,22 @@ header, h1, h2, label{
   width:90%;
   height:500px;
   margin:5%;
-  background: #383838;
   box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
   border-radius:10px;
+  background:#383838;
   overflow:hidden;
 }
 
-.slideOutUp{
-  bottom:100% !important;
-
+.slideOutLeft{
+  right:100% !important;
 }
 
 .slideIn{
-  bottom:0% !important;
+  right:0% !important;
 }
 
-.slideOutDown{
-  bottom:-100% !important;
+.slideOutRight{
+  right:-100% !important;
 
 }
 
@@ -53,14 +52,18 @@ header, h1, h2, label{
   height:$height;
 }
 
-#exercisegroupnamer{
+#exercisegroupnamer,#exerciseenter, #exercisepicker{
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   position:absolute;
   text-align:center;
-  height:$height;
-  bottom:-100%;
-  margin: 0 5%;
+  height:100%;
+  width:100%;
+  right:-100%;
+}
+
+#exercisegroupnamer{
+
     header{
       padding-top:50px;
     }
@@ -85,20 +88,14 @@ header, h1, h2, label{
 }
 
 #exerciseenter{
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-  position:absolute;
-  width:100%;
-  text-align:center;
-  height: $height;
-  bottom:-100%;
   header{
-    
+    padding:15px;
     display:block;
 
   }
   h1{
     font-size:1.5em;
+    padding:15px;
     margin: 10px 50px;
   }
   label{
@@ -132,12 +129,9 @@ header, h1, h2, label{
 
 
 #exercisepicker{
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-  height:$height;
-  color:#fff;
-  position:absolute;
-  bottom:-100%;
+  span{
+    color:#fff;
+  }
   input{
     color:#000;
     display:block;
