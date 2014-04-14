@@ -80,7 +80,7 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
-#exercisegroupnamer,#exerciseenter, #exercisepicker{
+#exercisegroupnamer,#exerciseenter, #exercisepicker, #workout{
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   position:absolute;
@@ -155,15 +155,9 @@ header, h1, h2, label{
   }
 }
 
-#workout{
- text-align:center;
- width:100%;
- padding-top:50px;
- height:$height;
 
-}
 
-.resultbuttons{
+#resultbuttons{
   margin-top:25px;
 }
 .success{
@@ -183,7 +177,7 @@ header, h1, h2, label{
   border-radius: 50px;
 }
 
-.timer{
+#timer{
   display:block;
   margin-top:50px;
   height:auto;

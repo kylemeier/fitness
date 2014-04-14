@@ -49,15 +49,15 @@
 
 
 var currentStep = 1;
-    exercise1Name = '';
-    exercise2Weight = '';
-    exercise1Sets = '';
-    exercise1Reps = '';
+    exerciseName = '';
+    exerciseWeight = '';
+    exerciseSets = '';
+    exerciseReps = '';
     exerciseArray = [];
     groupName = '';
     groupNum = 0;
     allExercises = {};
-    allGroups = [];
+    currentExercises = [];
     exerciseGroupNamer =
       '<div id=\'exercisegroupnamer\' class=\'slideOutLeft\'> \
       <header>Please enter an exercise group name. This group will contain all exercises you \
@@ -91,9 +91,26 @@ var currentStep = 1;
       </ul> \
       </div>'
     exercisePicker =
-    '<div id=\'exercisepicker\'> \
-    <header>Your exercise groups:</header> \
-    </div>'
+      '<div id=\'exercisepicker\'> \
+      <header>Your exercise groups:</header> \
+      </div>'
+    workout = 
+      '<div id=\'workout\'> \
+        <header id=\'workoutname\'></header> \
+        <h1 id=\'workoutweight\'></h1> \
+        <h1 id=\'workoutsets\'></h1> \
+        <h1 id=\'workoutreps\'></h1> \
+        <div id=\'resultbuttons\'> \
+          <a href=\'#\' class=\'success\'></a> \
+          <a href=\'#\' class=\'fail\'></a> \
+        </div> \
+        <div id=\'timer\'> \
+          <h1 id=\'clock\'>02:00</h1> \
+          <a href=\'#\' id=\'timerbutton\' class=\'start\'>Start</a> \
+          </div> \
+        </div> \
+      </div> '
+
 
 
 $('#exercisenumber').html(currentStep);
@@ -127,25 +144,22 @@ $(document).on('click', '.autofill', function(){
     },1000);
   },1);
   $('.container').append(exercisePicker);
-  groupNum = 2;
   allExercises = {group1: {name:"Tuesday", exerciseArray:
-                          [{name:'DB Bench Press', weight: 65, set:3, reps:6}, 
-                           {name:'DB Incline Bench Press', weight: 40, set:2, reps:10},
-                           {name:'DB Military Press', weight: 35, set:3, reps:6},
-                           {name:'BB Lying Tricep Extensions', weight: 22.5, set:3, reps:10}]},                                                          
+                          [{name:'DB Bench Press', weight: 65, sets:3, reps:6}, 
+                           {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
+                           {name:'DB Military Press', weight: 35, sets:3, reps:6},
+                           {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                                          
                   group2: {name:"Thursday", exerciseArray:
-                          [{name:'Pullups', weight: 5, set:3, reps:10}, 
-                           {name:'Bentover Rows', weight: 85, set:3, reps:8},
-                           {name:'DB Hammercurls', weight: 30, set:2, reps:10},
-                           {name:'Situps', weight: 20, set:3, reps:10}]}  
+                          [{name:'Pullups', weight: 5, sets:3, reps:10}, 
+                           {name:'Bentover Rows', weight: 85, sets:3, reps:8},
+                           {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
+                           {name:'Situps', weight: 20, sets:3, reps:10}]}  
                   };
-
+  groupNum = 2;
   for (var i=1; i<=groupNum; i++){
       $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
     }
 
-  console.log(allExercises['group'+1]['name']);
-  console.log(allExercises['group1']);
   console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
 });
@@ -155,6 +169,7 @@ $(document).on('click', '.namerproceed', function(){
     if(!fieldValidation('#exercisegroupnamer')) {
     alert('Be sure to enter an exercise group name.')
   }else{
+    $('.container').append(exerciseEnter);
     setTimeout(function(){
       $('#exercisegroupnamer').attr('class','slideOutLeft');
       $('#exerciseenter').addClass('slideIn');
@@ -162,7 +177,6 @@ $(document).on('click', '.namerproceed', function(){
           $('#exercisegroupnamer').remove();
       },1000);
     },1);
-  $('.container').append(exerciseEnter);
 
   groupName = $('#inputgroupname').val();
   currentStep=1;
@@ -175,19 +189,45 @@ $(document).on('click', '.namerproceed', function(){
   }
 });
 
+$(document).on('click','.nextexercisegroup', function(){
+  event.preventDefault();
+  if(!fieldValidation('#exerciseenter')) {
+    alert('Please ensure all fields are filled out correctly.')
+  }else{
+  $('.container').append(exerciseGroupNamer);
+  setTimeout(function(){
+    $('#exerciseenter').attr('class','exerciseremove slideOutRight');
+    $('#exercisegroupnamer').attr('class', 'slideIn');
+    setTimeout(function(){
+      $('.exerciseremove').remove();
+    },1000);
+  },1);
+
+  exerciseName = $('#exercisename').val();
+  exerciseWeight = $('#exerciseweight').val();
+  exerciseSets = $('#exercisesets').val();
+  exerciseReps = $('#exercisereps').val();
+
+  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+  console.log('Expand object to see all information currently stored:');
+  console.log(allExercises); 
+    }
+});
+
 $(document).on('click','.nextexercisebutton', function(){
   event.preventDefault();
   if(!fieldValidation('#exerciseenter')) {
     alert('Please ensure all fields are filled out correctly.')
   }else{
+    $('.container').append(exerciseEnter);
     setTimeout(function(){
       $('#exerciseenter').attr('class','remove slideOutLeft');
       $('.inview').addClass('slideIn');
-        setTimeout(function(){
-          $('.remove').remove();
+      setTimeout(function(){
+        $('.remove').remove();
       },1000);
     },1);
-  $('.container').append(exerciseEnter);
+
     setTimeout(function(){
     currentStep++;
     $('.exercisenumber').html(currentStep);
@@ -207,47 +247,21 @@ $(document).on('click','.nextexercisebutton', function(){
   }
 });
 
-$(document).on('click','.nextexercisegroup', function(){
-  event.preventDefault();
-  if(!fieldValidation('#exerciseenter')) {
-    alert('Please ensure all fields are filled out correctly.')
-  }else{
-  $('#exerciseenter').attr('class','exerciseremove slideOutRight');
-  $('.container').append(exerciseGroupNamer);
-  setTimeout(function(){
-    $('#exercisegroupnamer').attr('class', 'slideIn');
 
-  },1);
-  setTimeout(function(){
-    $('.exerciseremove').remove();
-  },1000);
-
-  exerciseName = $('#exercisename').val();
-  exerciseWeight = $('#exerciseweight').val();
-  exerciseSets = $('#exercisesets').val();
-  exerciseReps = $('#exercisereps').val();
-
-  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
-    }
-  });
 
 $(document).on('click', '.donebutton', function(){
   event.preventDefault();
   if(!fieldValidation('#exerciseenter')) {
     alert('Please ensure all fields are filled out correctly.')
   }else{
-  $('#exerciseenter').attr('class','remove slideOutLeft');
   $('.container').append(exercisePicker);
-
   setTimeout(function(){
+    $('#exerciseenter').attr('class','remove slideOutLeft');
     $('#exercisepicker').attr('class', 'slideIn');
+    setTimeout(function(){
+      $('.remove').remove();
+    },1000);
   },1);
-
-  setTimeout(function(){
-    $('.remove').remove();
-  },1000);
 
     for (var i=1; i<=groupNum; i++){
       $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
@@ -266,7 +280,28 @@ $(document).on('click', '.donebutton', function(){
 });
 
 $(document).on('click', '.groupbutton', function(){
-  console.log("hey");
+  event.preventDefault();
+  var groupClicked = this.id;
+   for (var i=1; i<=groupNum; i++){
+    if(groupClicked === allExercises['group'+i]['name']){
+      currentExercises = allExercises['group'+i]['exerciseArray'];
+
+    }
+  }
+  $('.container').append(workout);
+  $('#workoutname').html(currentExercises[0]["name"]);
+  $('#workoutweight').html(currentExercises[0]["weight"]);
+  $('#workoutsets').html(currentExercises[0]["sets"]);
+  $('#workoutreps').html(currentExercises[0]["reps"]);
+  setTimeout(function(){
+    $('#exercisepicker').attr('class','slideOutLeft');
+    $('#workout').addClass('slideIn');
+    setTimeout(function(){
+      $('#exercisepicker').remove();
+    },1000);  
+  },1);
+
+  
 });
 
 
@@ -309,10 +344,7 @@ $('#timerbutton').click(function(){
    
        },1000);
 
-        }
-
-      
-
+  }    
 });
 
     var timeFormat = function(totalTime){
