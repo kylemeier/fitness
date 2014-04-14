@@ -66,6 +66,20 @@ header, h1, h2, label{
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
+.groupbutton{
+  position:relative;
+  text-align:center;
+  display:block;
+  padding: 5px 5px;
+  color:#fff;
+  max-width:200px;
+  margin:0 auto;
+  border-radius: 5px;
+  border:1px solid #000;
+  background-image: linear-gradient(#6293B2, #385466 );
+  box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
+}
+
 #exercisegroupnamer,#exerciseenter, #exercisepicker{
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
@@ -132,7 +146,7 @@ header, h1, h2, label{
 
 
 #exercisepicker{
-  span{
+  header{
     color:#fff;
   }
   input{

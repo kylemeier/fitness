@@ -3,17 +3,19 @@
 //
 //***exercise group name screen ***
 //
-//******in picker: ********
+//******exercise enter screen********
 //
-//change exercise # incrementer to show different numbers on slideout/slidein
 //add cookies: run addExercse after every 'add next' click
 //add way to go back, pull from exercise object
 //
 //allow user to click 'finish' at any time, but create a prompt letting them know 
 //any information on that page will not be saved if they didn't fill out every section
 //
+//******exercise group select screen********
 //
-//*****in exercise section:**********
+//dynamically create buttons for each exercise group
+//
+//*****exercise section**********
 //
 //
 //every success click:
@@ -38,6 +40,7 @@
 //  
 //if current weight is above stored weight:
 //  store current weight, keep weight at same level
+
 // number of exercises in a given group console.log(allExercises['group1']['exerciseArray'].length);
 // grab group name given a groupNum console.log(allExercises['group'+groupNum]['name']);
 
@@ -55,44 +58,42 @@ var currentStep = 1;
     groupNum = 0;
     allExercises = {};
     allGroups = [];
-    exerciseEnter =       
-      '<div id=\'exerciseenter\' class=\'inview\'>'+
-      '<header>Group: <span class=\'groupname\'></span></header>'+
-      '<h1>#<span class=\'exercisenumber\'></span></h1>'+
-      '<label for=\'exercisename\'>Exercise Name</label>'+
-      '<input type=\'text\' name=\'exercisename\' id=\'exercisename\' required>'+
-      '<label for=\'exerciseweight\'>Weight lifted (in lbs)</label>'+
-      '<input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\' required>'+
-      '<label for=\'exercisesets\'>Sets</label>'+
-      '<input type=\'number\' name=\'exercisesets\' id=\'exercisesets\' required>'+
-      '<label for=\'exercisereps\'>Reps per set</label>'+
-      '<input type=\'number\' name=\'exercisereps\' id=\'exercisereps\' required>'+
-      '<ul>'+
-      '  <li>'+
-      '<a href=\'#\' class=\'button nextexercisebutton\'>Next Exercise</a>'+
-      '</li>'+
-      '<li>'+
-      '<a href=\'#\' class=\'button nextexercisegroup\'>Next Group</a>'+
-      '</li>'+
-      '<li>'+
-      '<a href=\'#\' class=\'button donebutton\'>Finished</a>'+
-      '</li>'+
-      '</ul>'+
-      '</div>'
     exerciseGroupNamer =
-      '<div id=\'exercisegroupnamer\' class=\'slideOutLeft\'>'+
-      '<header>Please enter an exercise group name. This group will contain all exercises you'+
-      '        perform on a given day. You will be creating a group for each day of exercises you perform.</header>'+
-      '<label for=\'inputgroupname\'>Group:</label>'+
-      '<input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' required>'+
-      '<a href=\'#\' class=\'button namerproceed\'>Proceed</a>'+
-      '</div>'
+      '<div id=\'exercisegroupnamer\' class=\'slideOutLeft\'> \
+      <header>Please enter an exercise group name. This group will contain all exercises you \
+      perform on a given day. You will be creating a group for each day of exercises you perform.</header> \
+      <label for=\'inputgroupname\'>Group:</label> \
+      <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\' required> \
+      <a href=\'#\' class=\'button namerproceed\'>Proceed</a> \
+      </div>'
+    exerciseEnter =       
+      '<div id=\'exerciseenter\' class=\'inview\'> \
+      <header>Group: <span class=\'groupname\'></span></header> \
+      <h1>#<span class=\'exercisenumber\'></span></h1> \
+      <label for=\'exercisename\'>Exercise Name</label> \
+      <input type=\'text\' name=\'exercisename\' id=\'exercisename\' required> \
+      <label for=\'exerciseweight\'>Weight lifted (in lbs)</label> \
+      <input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\' required> \
+      <label for=\'exercisesets\'>Sets</label> \
+      <input type=\'number\' name=\'exercisesets\' id=\'exercisesets\' required> \
+      <label for=\'exercisereps\'>Reps per set</label> \
+      <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\' required> \
+      <ul> \
+        <li> \
+      <a href=\'#\' class=\'button nextexercisegroup\'>Next Group</a> \
+      </li> \
+      <li> \
+      <a href=\'#\' class=\'button nextexercisebutton\'>Next Exercise</a> \
+      </li> \
+      <li> \
+      <a href=\'#\' class=\'button donebutton\'>Finished</a> \
+      </li> \
+      </ul> \
+      </div>'
     exercisePicker =
-    '<div id=\'exercisepicker\'>'+
-      '<span id=\'exercisegroups\'></span>'+
-      // '<input type=\'text\' name=\'exercisechoseninput\' id=\'exercisechoseninput\' required>'+
-      // '<a href=\'#\' class=\'button\' id=\'exercisechosenbutton\'>Submit</a>'+
-    '</div>'
+    '<div id=\'exercisepicker\'> \
+    <header>Your exercise groups:</header> \
+    </div>'
 
 
 $('#exercisenumber').html(currentStep);
@@ -108,14 +109,46 @@ function addExercise(name,weight,sets,reps){
 }
 
 function fieldValidation(currentDiv){
-  // var empty = $(currentDiv).find('input').filter(function() {
-  //   return this.value === '';
-  // });
-  // if(empty.length) {
-  //   return false
-  // }
+  var empty = $(currentDiv).find('input').filter(function() {
+    return this.value === '';
+  });
+  if(empty.length) {
+    return false
+  }
   return true
 }
+
+$(document).on('click', '.autofill', function(){
+  setTimeout(function(){
+    $('#exercisegroupnamer').attr('class','slideOutLeft');
+    $('#exercisepicker').addClass('slideIn');
+    setTimeout(function(){
+      $('#exercisegroupnamer').remove();
+    },1000);
+  },1);
+  $('.container').append(exercisePicker);
+  groupNum = 2;
+  allExercises = {group1: {name:"Tuesday", exerciseArray:
+                          [{name:'DB Bench Press', weight: 65, set:3, reps:6}, 
+                           {name:'DB Incline Bench Press', weight: 40, set:2, reps:10},
+                           {name:'DB Military Press', weight: 35, set:3, reps:6},
+                           {name:'BB Lying Tricep Extensions', weight: 22.5, set:3, reps:10}]},                                                          
+                  group2: {name:"Thursday", exerciseArray:
+                          [{name:'Pullups', weight: 5, set:3, reps:10}, 
+                           {name:'Bentover Rows', weight: 85, set:3, reps:8},
+                           {name:'DB Hammercurls', weight: 30, set:2, reps:10},
+                           {name:'Situps', weight: 20, set:3, reps:10}]}  
+                  };
+
+  for (var i=1; i<=groupNum; i++){
+      $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
+    }
+
+  console.log(allExercises['group'+1]['name']);
+  console.log(allExercises['group1']);
+  console.log('Expand object to see all information currently stored:');
+  console.log(allExercises); 
+});
 
 $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
@@ -137,7 +170,7 @@ $(document).on('click', '.namerproceed', function(){
   $('.groupname').html(groupName);
   groupNum++;
   addGroup(groupName, groupNum);
-  console.log("Expand object to see all information currently stored:");
+  console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
   }
 });
@@ -169,7 +202,7 @@ $(document).on('click','.nextexercisebutton', function(){
   exerciseReps = $('#exercisereps').val();
 
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  console.log("Expand object to see all information currently stored:");
+  console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
   }
 });
@@ -195,7 +228,7 @@ $(document).on('click','.nextexercisegroup', function(){
   exerciseReps = $('#exercisereps').val();
 
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  console.log("Expand object to see all information currently stored:");
+  console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
     }
   });
@@ -216,13 +249,9 @@ $(document).on('click', '.donebutton', function(){
     $('.remove').remove();
   },1000);
 
-    var counter = 0;
-
-    for (items in allExercises){
-      counter++;
-      allGroups.push('<br>'+allExercises['group'+counter]['name']);
+    for (var i=1; i<=groupNum; i++){
+      $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
     }
-    $('#exercisegroups').html('Your exercise groups:'+allGroups.join(''));
 
   exerciseName = $('#exercisename').val();
   exerciseWeight = $('#exerciseweight').val();
@@ -231,9 +260,13 @@ $(document).on('click', '.donebutton', function(){
 
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 
-  console.log("Expand object to see all information currently stored:");
+  console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
   }
+});
+
+$(document).on('click', '.groupbutton', function(){
+  console.log("hey");
 });
 
 
