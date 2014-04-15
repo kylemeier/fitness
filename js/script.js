@@ -144,12 +144,12 @@ $(document).on('click', '.autofill', function(){
     },1000);
   },1);
   $('.container').append(exercisePicker);
-  allExercises = {group1: {name:"Tuesday", exerciseArray:
+  allExercises = {group1: {name:'Tuesday', exerciseArray:
                           [{name:'DB Bench Press', weight: 65, sets:3, reps:6}, 
                            {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
                            {name:'DB Military Press', weight: 35, sets:3, reps:6},
                            {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                                          
-                  group2: {name:"Thursday", exerciseArray:
+                  group2: {name:'Thursday', exerciseArray:
                           [{name:'Pullups', weight: 5, sets:3, reps:10}, 
                            {name:'Bentover Rows', weight: 85, sets:3, reps:8},
                            {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
@@ -289,10 +289,10 @@ $(document).on('click', '.groupbutton', function(){
     }
   }
   $('.container').append(workout);
-  $('#workoutname').html(currentExercises[0]["name"]);
-  $('#workoutweight').html(currentExercises[0]["weight"]);
-  $('#workoutsets').html(currentExercises[0]["sets"]);
-  $('#workoutreps').html(currentExercises[0]["reps"]);
+  $('#workoutname').html('Name: '+currentExercises[0]['name']);
+  $('#workoutweight').html('Weight: '+currentExercises[0]['weight']+'lbs');
+  $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);
+  $('#workoutreps').html('Reps: '+currentExercises[0]['reps']);
   setTimeout(function(){
     $('#exercisepicker').attr('class','slideOutLeft');
     $('#workout').addClass('slideIn');
