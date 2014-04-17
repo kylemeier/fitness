@@ -161,6 +161,11 @@ header, h1, h2, label {
   #timer .stop {
     background: #6B696D; }
 
+.disabled {
+  background-image: none;
+  background-color: #848484;
+  color: #383838; }
+
 @media (max-width: 520px) {
   header, h1, h2, label {
     font-size: 1em; }
