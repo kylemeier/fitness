@@ -48,7 +48,7 @@
 
 
 
-var currentStep = 1;
+var currentExerciseNum = 1;
     exerciseName = '';
     exerciseWeight = '';
     exerciseSets = '';
@@ -59,7 +59,7 @@ var currentStep = 1;
     allExercises = {};
     currentExercises = [];
     exerciseGroupNamer =
-      '<div id=\'exercisegroupnamer\' class=\'slideOutLeft\'> \
+      '<div id=\'exercisegroupnamer\'> \
       <header>Please enter an exercise group name. This group will contain all exercises you \
       perform on a given day. You will be creating a group for each day of exercises you perform.</header> \
       <label for=\'inputgroupname\'>Group:</label> \
@@ -72,15 +72,18 @@ var currentStep = 1;
       <h1>#<span class=\'exercisenumber\'></span></h1> \
       <label for=\'exercisename\'>Exercise Name</label> \
       <input type=\'text\' name=\'exercisename\' id=\'exercisename\' required> \
-      <label for=\'exerciseweight\'>Weight lifted (in lbs)</label> \
+      <label for=\'exerciseweight\'>Weight lifted (in lbs) *only numbers accepted</label> \
       <input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\' required> \
-      <label for=\'exercisesets\'>Sets</label> \
+      <label for=\'exercisesets\'>Sets *only numbers accepted</label> \
       <input type=\'number\' name=\'exercisesets\' id=\'exercisesets\' required> \
-      <label for=\'exercisereps\'>Reps per set</label> \
+      <label for=\'exercisereps\'>Reps per set *only numbers accepted</label> \
       <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\' required> \
       <ul> \
         <li> \
       <a href=\'#\' class=\'button nextexercisegroup\'>Next Group</a> \
+      </li> \
+      <li> \
+      <a href=\'#\' class=\'button prevexercisebutton\'>Prev Exercise</a> \
       </li> \
       <li> \
       <a href=\'#\' class=\'button nextexercisebutton\'>Next Exercise</a> \
@@ -113,7 +116,7 @@ var currentStep = 1;
 
 
 
-$('#exercisenumber').html(currentStep);
+$('#exercisenumber').html(currentExerciseNum);
 
 function addGroup(groupName, groupNum){
   allExercises['group'+groupNum] = {name: groupName, exerciseArray: []};
@@ -121,7 +124,8 @@ function addGroup(groupName, groupNum){
 }
 
 function addExercise(name,weight,sets,reps){
-  allExercises['group'+groupNum]['exerciseArray'][currentStep-1] = {name: name, weight: weight, sets: sets, reps:reps};
+  console.log(groupNum);
+  allExercises['group'+groupNum]['exerciseArray'].push({name: name, weight: weight, sets: sets, reps:reps});
   return true;
 }
 
@@ -129,10 +133,55 @@ function fieldValidation(currentDiv){
   var empty = $(currentDiv).find('input').filter(function() {
     return this.value === '';
   });
-  if(empty.length) {
-    return false
+  return empty.length;
+}
+
+function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
+  var c = "save";
+  if(fieldValidation(slideOutDiv)>0) {
+    if(clickedButton === '.namerproceed'){
+      alert('Be sure to enter an exercise group name.');
+      return false;
+    }else if(clickedButton === '.nextexercisebutton'){
+        alert('Please ensure all fields are filled out correctly.');
+        return false;
+    }else{
+      c = confirm('Please ensure all fields are filled out correctly. If you would like to proceed without saving any information from this screen, click OK.');
+    }
+  }  
+  if (c || c === "save"){
+    $('.container').append(appendDiv);
+    $(slideInDiv).addClass(slideInDir);
+    setTimeout(function(){
+      $(slideOutDiv).attr('class',slideOutClasses);
+      $(slideInDiv).addClass('slideIn');
+      setTimeout(function(){
+        $('.remove').remove();
+      },1000);
+    },1);
+    setTimeout(function(){
+      if(clickedButton === '.prevexercisebutton'){
+        currentExerciseNum--;
+      }
+      if(clickedButton === '.nextexercisebutton'){
+        currentExerciseNum++;
+      }
+      $('.exercisenumber').html(currentExerciseNum);
+    },550); 
   }
-  return true
+  if(c ==="save" && clickedButton !== '.namerproceed'){
+    exerciseName = $('#exercisename').val();
+    exerciseWeight = $('#exerciseweight').val();
+    exerciseSets = $('#exercisesets').val();
+    exerciseReps = $('#exercisereps').val();
+    addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+  }
+  $('.groupname').html(groupName); 
+};
+
+function displaySaved(){
+  console.log('Expand object to see all information currently stored:');
+  console.log(allExercises); 
 }
 
 $(document).on('click', '.autofill', function(){
@@ -159,124 +208,51 @@ $(document).on('click', '.autofill', function(){
   for (var i=1; i<=groupNum; i++){
       $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
     }
-
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
 });
 
 $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
-    if(!fieldValidation('#exercisegroupnamer')) {
+  if(fieldValidation('#exercisegroupnamer')) {
     alert('Be sure to enter an exercise group name.')
   }else{
-    $('.container').append(exerciseEnter);
-    setTimeout(function(){
-      $('#exercisegroupnamer').attr('class','slideOutLeft');
-      $('#exerciseenter').addClass('slideIn');
-        setTimeout(function(){
-          $('#exercisegroupnamer').remove();
-      },1000);
-    },1);
-
-  groupName = $('#inputgroupname').val();
-  currentStep=1;
-  $('.exercisenumber').html(currentStep);
-  $('.groupname').html(groupName);
-  groupNum++;
-  addGroup(groupName, groupNum);
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
+      groupName = $('#inputgroupname').val();
+      nextScreen('.namerproceed', exerciseEnter, '#exerciseenter', 'right', '#exercisegroupnamer', 'remove slideOutLeft');
+      groupNum++;
+      addGroup(groupName, groupNum);
   }
+  displaySaved();
 });
 
 $(document).on('click','.nextexercisegroup', function(){
   event.preventDefault();
-  if(!fieldValidation('#exerciseenter')) {
-    alert('Please ensure all fields are filled out correctly.')
-  }else{
-  $('.container').append(exerciseGroupNamer);
-  setTimeout(function(){
-    $('#exerciseenter').attr('class','exerciseremove slideOutRight');
-    $('#exercisegroupnamer').attr('class', 'slideIn');
-    setTimeout(function(){
-      $('.exerciseremove').remove();
-    },1000);
-  },1);
+  currentExerciseNum = 1;
+  nextScreen('.nextexercisegroup', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
+  displaySaved();
+});
 
-  exerciseName = $('#exercisename').val();
-  exerciseWeight = $('#exerciseweight').val();
-  exerciseSets = $('#exercisesets').val();
-  exerciseReps = $('#exercisereps').val();
-
-  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
-    }
+$(document).on('click','.prevexercisebutton', function(){
+  event.preventDefault();
+  if(currentExerciseNum===1){
+    alert("No previous exercises found for this group.");
+    return false;
+  }
+  nextScreen('.prevexercisebutton', exerciseEnter, '.inview','left','#exerciseenter', 'remove slideOutRight');
+  displaySaved();
 });
 
 $(document).on('click','.nextexercisebutton', function(){
   event.preventDefault();
-  if(!fieldValidation('#exerciseenter')) {
-    alert('Please ensure all fields are filled out correctly.')
-  }else{
-    $('.container').append(exerciseEnter);
-    setTimeout(function(){
-      $('#exerciseenter').attr('class','remove slideOutLeft');
-      $('.inview').addClass('slideIn');
-      setTimeout(function(){
-        $('.remove').remove();
-      },1000);
-    },1);
-
-    setTimeout(function(){
-    currentStep++;
-    $('.exercisenumber').html(currentStep);
-
-  },550);
-  
-  $('.groupname').html(groupName);
-
-  exerciseName = $('#exercisename').val();
-  exerciseWeight = $('#exerciseweight').val();
-  exerciseSets = $('#exercisesets').val();
-  exerciseReps = $('#exercisereps').val();
-
-  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
-  }
+  nextScreen('.nextexercisebutton', exerciseEnter, '.inview','right', '#exerciseenter','remove slideOutLeft');
+  displaySaved()
 });
-
-
 
 $(document).on('click', '.donebutton', function(){
   event.preventDefault();
-  if(!fieldValidation('#exerciseenter')) {
-    alert('Please ensure all fields are filled out correctly.')
-  }else{
-  $('.container').append(exercisePicker);
-  setTimeout(function(){
-    $('#exerciseenter').attr('class','remove slideOutLeft');
-    $('#exercisepicker').attr('class', 'slideIn');
-    setTimeout(function(){
-      $('.remove').remove();
-    },1000);
-  },1);
-
+  nextScreen('.donebutton', exercisePicker, '#exercisepicker','right', '#exerciseenter','remove slideOutLeft');
+  displaySaved();
     for (var i=1; i<=groupNum; i++){
       $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
     }
-
-  exerciseName = $('#exercisename').val();
-  exerciseWeight = $('#exerciseweight').val();
-  exerciseSets = $('#exercisesets').val();
-  exerciseReps = $('#exercisereps').val();
-
-  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-
-  console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
-  }
 });
 
 $(document).on('click', '.groupbutton', function(){
@@ -285,6 +261,8 @@ $(document).on('click', '.groupbutton', function(){
    for (var i=1; i<=groupNum; i++){
     if(groupClicked === allExercises['group'+i]['name']){
       currentExercises = allExercises['group'+i]['exerciseArray'];
+      console.log("Expand objects below to view currently selected exercises: ");
+      console.log(currentExercises);
 
     }
   }

@@ -26,14 +26,20 @@ header, h1, h2, label {
   background: #383838;
   overflow: hidden; }
 
+.right {
+  right: -100%; }
+
+.left {
+  right: 100%; }
+
 .slideOutLeft {
-  right: 100% !important; }
+  right: 100%; }
 
 .slideIn {
-  right: 0% !important; }
+  right: 0%; }
 
 .slideOutRight {
-  right: -100% !important; }
+  right: -100%; }
 
 #slidingcontent {
   position: relative;
@@ -72,7 +78,6 @@ header, h1, h2, label {
   text-align: center;
   height: 100%;
   width: 100%;
-  right: -100%;
   padding: 20px;
   top: 0;
   box-sizing: border-box; }
