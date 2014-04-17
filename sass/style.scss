@@ -4,6 +4,16 @@ $height: 476px;
  
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
 
+.autofill{
+  color:#fff;
+  background-color:#900022;
+  padding:10px;
+  border-radius:5px;
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+
 .group:after {
   content: "";
   display: table;
@@ -66,7 +76,7 @@ header, h1, h2, label{
   padding: 5px 5px;
   color:#fff;
   max-width:100px;
-  margin:0 auto;
+  margin:10px auto;
   border-radius: 5px;
   border:1px solid #000;
   background-image: linear-gradient(#6293B2, #385466 );
