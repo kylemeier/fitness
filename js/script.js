@@ -1,19 +1,15 @@
-
-//make field validation its own function
 //
 //***exercise group name screen ***
+//prevent duplicate group names
 //
 //******exercise enter screen********
 //
-//add cookies: run addExercse after every 'add next' click
+//add cookies
 //add way to go back, pull from exercise object
 //
-//allow user to click 'finish' at any time, but create a prompt letting them know 
-//any information on that page will not be saved if they didn't fill out every section
 //
 //******exercise group select screen********
 //
-//dynamically create buttons for each exercise group
 //
 //*****exercise section**********
 //
@@ -86,7 +82,7 @@ var currentExerciseNum = 1;
       <a href=\'#\' class=\'button prevexercisebutton\'>Prev Exercise</a> \
       </li> \
       <li> \
-      <a href=\'#\' class=\'button nextexercisebutton\'>Next Exercise</a> \
+      <a href=\'#\' class=\'button nextexercisebutton\'>Add Exercise</a> \
       </li> \
       <li> \
       <a href=\'#\' class=\'button donebutton\'>Finished</a> \
@@ -135,7 +131,8 @@ function fieldValidation(currentDiv){
   });
   return empty.length;
 }
-
+//pull out field validation and confirm box, too many variations
+//investigate if c variable is necessary, namerproceed may be able to just use the slide function
 function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
   var c = "save";
   if(fieldValidation(slideOutDiv)>0) {
@@ -143,22 +140,14 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
       alert('Be sure to enter an exercise group name.');
       return false;
     }else if(clickedButton === '.nextexercisebutton'){
-        alert('Please ensure all fields are filled out correctly.');
-        return false;
+      alert('Please ensure all fields are filled out correctly.');
+      return false;
     }else{
       c = confirm('Please ensure all fields are filled out correctly. If you would like to proceed without saving any information from this screen, click OK.');
     }
   }  
   if (c || c === "save"){
-    $('.container').append(appendDiv);
-    $(slideInDiv).addClass(slideInDir);
-    setTimeout(function(){
-      $(slideOutDiv).attr('class',slideOutClasses);
-      $(slideInDiv).addClass('slideIn');
-      setTimeout(function(){
-        $('.remove').remove();
-      },1000);
-    },1);
+    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses,slideInDiv);
     setTimeout(function(){
       if(clickedButton === '.prevexercisebutton'){
         currentExerciseNum--;
@@ -179,20 +168,36 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
   $('.groupname').html(groupName); 
 };
 
+function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
+      $('.container').append(appendDiv);
+    $(slideInDiv).addClass(slideInDir);
+    setTimeout(function(){
+      $(slideOutDiv).attr('class',slideOutClasses);
+      $(slideInDiv).addClass('slideIn');
+      setTimeout(function(){
+        $('.remove').remove();
+      },1000);
+    },1);
+}
+
+function exerciseEmpty(){
+  for(var i = 1; i<=groupNum; i++){
+    if(groupName == allExercises['group'+i]['name']){
+      if(!allExercises['group'+i]['exerciseArray'].length){
+        return 'Be sure to add an exercise before proceeding.';
+      }
+    }
+  }
+  return false;
+}
+
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
   console.log(allExercises); 
 }
 
 $(document).on('click', '.autofill', function(){
-  setTimeout(function(){
-    $('#exercisegroupnamer').attr('class','slideOutLeft');
-    $('#exercisepicker').addClass('slideIn');
-    setTimeout(function(){
-      $('#exercisegroupnamer').remove();
-    },1000);
-  },1);
-  $('.container').append(exercisePicker);
+  screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove slideOutLeft'); 
   allExercises = {group1: {name:'Tuesday', exerciseArray:
                           [{name:'DB Bench Press', weight: 65, sets:3, reps:6}, 
                            {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
@@ -225,6 +230,13 @@ $(document).on('click', '.namerproceed', function(){
 
 $(document).on('click','.nextexercisegroup', function(){
   event.preventDefault();
+  if(fieldValidation('#exercisegroupnamer')) {
+  if(exerciseEmpty() !== false){
+    alert(exerciseEmpty());
+    return false;
+  }
+}
+
   currentExerciseNum = 1;
   nextScreen('.nextexercisegroup', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
   displaySaved();
@@ -248,6 +260,10 @@ $(document).on('click','.nextexercisebutton', function(){
 
 $(document).on('click', '.donebutton', function(){
   event.preventDefault();
+  if(exerciseEmpty() !== false){
+    alert(exerciseEmpty());
+    return false;
+  }
   nextScreen('.donebutton', exercisePicker, '#exercisepicker','right', '#exerciseenter','remove slideOutLeft');
   displaySaved();
     for (var i=1; i<=groupNum; i++){
@@ -266,20 +282,11 @@ $(document).on('click', '.groupbutton', function(){
 
     }
   }
-  $('.container').append(workout);
+  screenSlide(workout, '#workout', 'right', '#exercisepicker', 'remove slideOutLeft'); 
   $('#workoutname').html('Name: '+currentExercises[0]['name']);
   $('#workoutweight').html('Weight: '+currentExercises[0]['weight']+'lbs');
   $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);
   $('#workoutreps').html('Reps: '+currentExercises[0]['reps']);
-  setTimeout(function(){
-    $('#exercisepicker').attr('class','slideOutLeft');
-    $('#workout').addClass('slideIn');
-    setTimeout(function(){
-      $('#exercisepicker').remove();
-    },1000);  
-  },1);
-
-  
 });
 
 
