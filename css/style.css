@@ -54,18 +54,23 @@ header, h1, h2, label {
   position: relative;
   height: 476px; }
 
-.button {
+button {
   position: relative;
   text-align: center;
   display: block;
   padding: 5px 5px;
   color: #fff;
+  outline: none;
   max-width: 100px;
   margin: 10px auto;
   border-radius: 5px;
   border: 1px solid #000;
   background-image: linear-gradient(#6293b2, #385466);
   box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
+  button[disabled] {
+    background-image: none;
+    background-color: #848484;
+    color: #383838; }
 
 .groupbutton {
   position: relative;
@@ -123,7 +128,7 @@ header, h1, h2, label {
 #exerciseenter li {
   width: 500px;
   margin: 0 auto; }
-#exerciseenter a {
+#exerciseenter button {
   position: relative;
   float: left; }
 
@@ -173,12 +178,13 @@ header, h1, h2, label {
 .disabled {
   background-image: none;
   background-color: #848484;
-  color: #383838; }
+  color: #383838;
+  cursor: default; }
 
 @media (max-width: 520px) {
   header, h1, h2, label {
     font-size: 1em; }
 
-  .button {
+  button {
     font-size: .7em;
     padding: 7px; } }

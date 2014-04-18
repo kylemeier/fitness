@@ -55,33 +55,33 @@ var currentExerciseNum = 1;
       <header>Please enter an exercise group name. This group will contain all exercises you \
       perform on a given day. You will be creating a group for each day of exercises you perform.</header> \
       <label for=\'inputgroupname\'>Group:</label> \
-      <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\' required> \
-      <a href=\'#\' class=\'button namerproceed disabled\'>Proceed</a> \
+      <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\'> \
+      <button class=\'namerproceed\' disabled>Proceed</button> \
       </div>'
     exerciseEnter =       
       '<div id=\'exerciseenter\' class=\'inview\'> \
       <header>Group: <span class=\'groupname\'></span></header> \
       <h1>#<span class=\'exercisenumber\'></span></h1> \
       <label for=\'exercisename\'>Exercise Name</label> \
-      <input type=\'text\' name=\'exercisename\' id=\'exercisename\' required> \
+      <input type=\'text\' name=\'exercisename\' id=\'exercisename\'> \
       <label for=\'exerciseweight\'>Weight lifted (in lbs) *only numbers accepted</label> \
-      <input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\' required> \
+      <input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\'> \
       <label for=\'exercisesets\'>Sets *only numbers accepted</label> \
-      <input type=\'number\' name=\'exercisesets\' id=\'exercisesets\' required> \
+      <input type=\'number\' name=\'exercisesets\' id=\'exercisesets\'> \
       <label for=\'exercisereps\'>Reps per set *only numbers accepted</label> \
-      <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\' required> \
+      <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\'> \
       <ul> \
         <li> \
-      <a href=\'#\' class=\'button nextexercisegroup disabled\'>Next Group</a> \
+      <button class=\'nextexercisegroup\'>Next Group</button> \
       </li> \
       <li> \
-      <a href=\'#\' class=\'button prevexercisebutton disabled\'>Prev Exercise</a> \
+      <button class=\'prevexercisebutton\'>Prev Exercise</button> \
       </li> \
       <li> \
-      <a href=\'#\' class=\'button nextexercisebutton disabled\'>Add Exercise</a> \
+      <button class=\'nextexercisebutton\'>Next Exercise</button> \
       </li> \
       <li> \
-      <a href=\'#\' class=\'button donebutton disabled\'>Finished</a> \
+      <button class=\'donebutton\'>Finished</button> \
       </li> \
       </ul> \
       </div>'
@@ -96,12 +96,12 @@ var currentExerciseNum = 1;
         <h1 id=\'workoutsets\'></h1> \
         <h1 id=\'workoutreps\'></h1> \
         <div id=\'resultbuttons\'> \
-          <a href=\'#\' class=\'success\'></a> \
-          <a href=\'#\' class=\'fail\'></a> \
+          <button class=\'success\'></button> \
+          <button class=\'fail\'></button> \
         </div> \
         <div id=\'timer\'> \
           <h1 id=\'clock\'>02:00</h1> \
-          <a href=\'#\' id=\'timerbutton\' class=\'start\'>Start</a> \
+          <button id=\'timerbutton\' class=\'start\'>Start</button> \
           </div> \
         </div> \
       </div> '
@@ -127,23 +127,16 @@ function fieldValidation(){
   });
   return empty.length;
 }
-//pull out field validation and confirm box, too many variations
-//investigate if c variable is necessary, namerproceed may be able to just use the slide function
+//refactor this function into multiple functions
 function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
-  var c = "save";
-  if(fieldValidation()>0) {
-    if(clickedButton === '.namerproceed'){
-      alert('Be sure to enter an exercise group name.');
+  if(fieldValidation()){
+    var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+    if(!c){
       return false;
-    }else if(clickedButton === '.nextexercisebutton'){
-      alert('Please ensure all fields are filled out correctly.');
-      return false;
-    }else{
-      c = confirm('Please ensure all fields are filled out correctly. If you would like to proceed without saving any information from this screen, click OK.');
     }
-  }  
-  if (c || c === "save"){
-    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses,slideInDiv);
+  }
+
+    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses);
     setTimeout(function(){
       if(clickedButton === '.prevexercisebutton'){
         currentExerciseNum--;
@@ -152,24 +145,37 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
         currentExerciseNum++;
       }
       $('.exercisenumber').html(currentExerciseNum);
-    },550); 
-  }
-  if(c ==="save" && clickedButton !== '.namerproceed'){
+    },550);
+
+    $('.groupname').html(groupName);
+
     exerciseName = $('#exercisename').val();
     exerciseWeight = $('#exerciseweight').val();
     exerciseSets = $('#exercisesets').val();
     exerciseReps = $('#exercisereps').val();
     addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  }
-  $('.groupname').html(groupName); 
-  $(document).find('input').keyup(function(){
-  console.log(fieldValidation());
-  if(!fieldValidation()){
-    $(document).find('.button').removeClass('disabled');
+
+  console.log("currentexercise"+currentExerciseNum);
+  if(currentExerciseNum===2){
+    $(slideInDiv).find('.nextexercisegroup').addClass('toggledisable');
+    $(slideInDiv).find('.nextexercisebutton').addClass('toggledisable');
+    $(slideInDiv).find('.donebutton').addClass('toggledisable');
+    $('.prevexercisebutton').attr('disabled', true);
+    $('.toggledisable').attr('disabled', true);
   }else{
-    $(document).find('.button').addClass('disabled');
-  }
-});
+    $(slideInDiv).find('.nextexercisebutton').addClass('toggledisable');
+    $(slideInDiv).find('.nextexercisebutton').attr('disabled',true);
+  }  
+ 
+ $(document).find('input').keyup(function(){
+    console.log(fieldValidation());
+    if(!fieldValidation()){
+      $('.toggledisable').attr('disabled', false);
+    }else{
+      $('.toggledisable').attr('disabled', true);
+    }
+    });
+
 };
 
 function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
@@ -184,16 +190,6 @@ function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutCla
     },1);
 }
 
-function exerciseEmpty(){
-  for(var i = 1; i<=groupNum; i++){
-    if(groupName == allExercises['group'+i]['name']){
-      if(!allExercises['group'+i]['exerciseArray'].length){
-        return 'Be sure to add an exercise before proceeding.';
-      }
-    }
-  }
-  return false;
-}
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
@@ -215,27 +211,39 @@ $(document).on('click', '.autofill', function(){
                   };
   groupNum = 2;
   for (var i=1; i<=groupNum; i++){
-      $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
+      $('#exercisepicker').append('<button class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</button>');
     }
 });
 
 $(document).find('input').keyup(function(){
   console.log(fieldValidation());
   if(!fieldValidation()){
-    $(document).find('.button').removeClass('disabled');
+    $('.toggledisable').attr('disabled', false);
   }else{
-    $(document).find('.button').addClass('disabled');
+    $('.toggledisable').attr('disabled', true);
   }
 });
 
 $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
-  if ($(this).hasClass('disabled')){
-    return false;
-  }
-
   groupName = $('#inputgroupname').val();
-  nextScreen('.namerproceed', exerciseEnter, '#exerciseenter', 'right', '#exercisegroupnamer', 'remove slideOutLeft');
+  screenSlide(exerciseEnter,'#exerciseenter','right','#exercisegroupnamer','remove slideOutLeft');
+
+  $('.nextexercisegroup').addClass('toggledisable');
+  $('.nextexercisebutton').addClass('toggledisable');
+  $('.donebutton').addClass('toggledisable');
+  $('.prevexercisebutton').attr('disabled', true);
+  $('.toggledisable').attr('disabled', true);
+  $(document).find('input').keyup(function(){
+  if(!fieldValidation()){
+    $('.toggledisable').attr('disabled', false);
+  }else{
+    $('.toggledisable').attr('disabled', true);
+  }
+});
+
+  $('.exercisenumber').html(currentExerciseNum);
+  $('.groupname').html(groupName);
   groupNum++;
   addGroup(groupName, groupNum);
   displaySaved();
@@ -243,11 +251,9 @@ $(document).on('click', '.namerproceed', function(){
 
 $(document).on('click','.nextexercisegroup', function(){
   event.preventDefault();
-    if ($(this).hasClass('disabled')){
-    return false;
-  }
   currentExerciseNum = 1;
   nextScreen('.nextexercisegroup', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
+  $('.namerproceed').addClass('toggledisable');
   displaySaved();
 });
 
@@ -269,14 +275,10 @@ $(document).on('click','.nextexercisebutton', function(){
 
 $(document).on('click', '.donebutton', function(){
   event.preventDefault();
-  if(exerciseEmpty() !== false){
-    alert(exerciseEmpty());
-    return false;
-  }
   nextScreen('.donebutton', exercisePicker, '#exercisepicker','right', '#exerciseenter','remove slideOutLeft');
   displaySaved();
     for (var i=1; i<=groupNum; i++){
-      $('#exercisepicker').append('<a href=\'#\' class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</a>');
+      $('#exercisepicker').append('<button class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</button>');
     }
 });
 
