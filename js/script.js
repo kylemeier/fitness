@@ -1,3 +1,5 @@
+//**general**
+//see if creating a 'searchgroups' function that returns the requested group would be useful
 //
 //***exercise group name screen ***
 //prevent duplicate group names
@@ -40,16 +42,16 @@
 //  store current weight, keep weight at same level
 
 
-var currentExerciseNum = 1;
-    exerciseName = '';
-    exerciseWeight = '';
-    exerciseSets = '';
-    exerciseReps = '';
-    exerciseArray = [];
-    groupName = '';
-    groupNum = 0;
-    allExercises = {};
-    currentExercises = [];
+var currentExerciseNum = 1,
+    exerciseName = '',
+    exerciseWeight = '',
+    exerciseSets = '',
+    exerciseReps = '',
+    groupName = '',
+    groupNum = 0,
+    allExercises = {},
+    currentExercises = [],
+    // jshint multistr: true
     exerciseGroupNamer =
       '<div id=\'exercisegroupnamer\'> \
       <header>Please enter an exercise group name. This group will contain all exercises you \
@@ -57,8 +59,8 @@ var currentExerciseNum = 1;
       <label for=\'inputgroupname\'>Group:</label> \
       <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\'> \
       <button class=\'namerproceed\' disabled>Proceed</button> \
-      </div>'
-    exerciseEnter =       
+      </div>',
+    exerciseEnter =
       '<div id=\'exerciseenter\' class=\'inview\'> \
       <header>Group: <span class=\'groupname\'></span></header> \
       <h1>#<span class=\'exercisenumber\'></span></h1> \
@@ -84,12 +86,12 @@ var currentExerciseNum = 1;
       <button class=\'donebutton\'>Finished</button> \
       </li> \
       </ul> \
-      </div>'
+      </div>',
     exercisePicker =
       '<div id=\'exercisepicker\'> \
       <header>Your exercise groups:</header> \
-      </div>'
-    workout = 
+      </div>',
+    workout =
       '<div id=\'workout\'> \
         <header id=\'workoutname\'></header> \
         <h1 id=\'workoutweight\'></h1> \
@@ -104,7 +106,7 @@ var currentExerciseNum = 1;
           <button id=\'timerbutton\' class=\'start\'>Start</button> \
           </div> \
         </div> \
-      </div> '
+      </div> ';
 
 
 
@@ -126,34 +128,6 @@ function fieldValidation(div){
   });
   return empty.length;
 }
-//refactor this function into multiple functions
-function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
-  var $nextgroup = $(slideInDiv).find('.nextexercisegroup');
-      $nextexercise = $(slideInDiv).find('.nextexercisebutton');
-      $done = $(slideInDiv).find('.donebutton');
-      $prevexercise = $('.prevexercisebutton');
-
-  if(fieldValidation(slideOutDiv)){
-    var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
-    if(!c){
-      return false;
-    }
-  }
-
-    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses);
-    
-      
-    $('.groupname').html(groupName);
-
-    exerciseName = $('#exercisename').val();
-    exerciseWeight = $('#exerciseweight').val();
-    exerciseSets = $('#exercisesets').val();
-    exerciseReps = $('#exercisereps').val();
-    addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  
-  disableButtons(slideInDiv, slideOutDiv);
-  exerciseNumAdjust(clickedButton, slideInDiv);
-};
 
 function exerciseNumAdjust(clickedButton, slideInDiv){
 
@@ -205,25 +179,54 @@ setTimeout(function(){
   });
 },1);
 }
+
+//refactor this function into multiple functions
+function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
+
+  if(fieldValidation(slideOutDiv)){
+    var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+    if(!c){
+      return false;
+    }
+  }
+
+    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses);
+    
+      
+    $('.groupname').html(groupName);
+
+    exerciseName = $('#exercisename').val();
+    exerciseWeight = $('#exerciseweight').val();
+    exerciseSets = $('#exercisesets').val();
+    exerciseReps = $('#exercisereps').val();
+    addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
+  
+  disableButtons(slideInDiv, slideOutDiv);
+  exerciseNumAdjust(clickedButton, slideInDiv);
+}
+
+
+
+
 disableButtons('#exercisegroupnamer','');
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
-  console.log(allExercises); 
+  console.log(allExercises);
 }
 
 $(document).on('click', '.autofill', function(){
-  screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove slideOutLeft'); 
+  screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove slideOutLeft');
   allExercises = {group1: {name:'Tuesday', exerciseArray:
-                          [{name:'DB Bench Press', weight: 65, sets:3, reps:6}, 
+                          [{name:'DB Bench Press', weight: 65, sets:3, reps:6},
                            {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
                            {name:'DB Military Press', weight: 35, sets:3, reps:6},
-                           {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                                          
+                           {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                                  
                   group2: {name:'Thursday', exerciseArray:
-                          [{name:'Pullups', weight: 5, sets:3, reps:10}, 
+                          [{name:'Pullups', weight: 5, sets:3, reps:10},
                            {name:'Bentover Rows', weight: 85, sets:3, reps:8},
                            {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
-                           {name:'Situps', weight: 20, sets:3, reps:10}]}  
+                           {name:'Situps', weight: 20, sets:3, reps:10}]}
                   };
   groupNum = 2;
   for (var i=1; i<=groupNum; i++){
@@ -258,19 +261,18 @@ $(document).on('click','.prevexercisebutton', function(){
     alert("No previous exercises found for this group.");
     return false;
   }
-   for (var i=1; i<=groupNum; i++){
+
+  for (var i=1; i<=groupNum; i++){
     if(groupName === allExercises['group'+i]['name']){
       screenSlide(exerciseEnter, '.inview', 'left', '#exerciseenter', 'remove slideOutRight');
-
       exerciseNumAdjust('.prevexercisebutton','.inview');
       setTimeout(function(){
-      $('.inview').find('#exercisename').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['name']));
-      $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
-      $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
-      $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
-      disableButtons('.inview','.remove');
+        $('.inview').find('#exercisename').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['name']));
+        $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
+        $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
+        $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
+        disableButtons('.inview','.remove');
       },1);
-      
       break;
     }
   }
@@ -292,10 +294,11 @@ $(document).on('click','.nextexercisebutton', function(){
           $('.inview').find('#exercisesets').val((currentGroup[currentExerciseNum-1]['sets']));
           $('.inview').find('#exercisereps').val((currentGroup[currentExerciseNum-1]['reps']));
         },1);
+        break;
       }
     }
   }
-  displaySaved()
+  displaySaved();
 });
 
 $(document).on('click', '.donebutton', function(){
@@ -313,12 +316,12 @@ $(document).on('click', '.groupbutton', function(){
    for (var i=1; i<=groupNum; i++){
     if(groupClicked === allExercises['group'+i]['name']){
       currentExercises = allExercises['group'+i]['exerciseArray'];
-      displaySaved()
+      displaySaved();
       break;
 
     }
   }
-  screenSlide(workout, '#workout', 'right', '#exercisepicker', 'remove slideOutLeft'); 
+  screenSlide(workout, '#workout', 'right', '#exercisepicker', 'remove slideOutLeft');
   $('#workoutname').html('Name: '+currentExercises[0]['name']);
   $('#workoutweight').html('Weight: '+currentExercises[0]['weight']+'lbs');
   $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);
@@ -326,82 +329,82 @@ $(document).on('click', '.groupbutton', function(){
 });
 
 
-var startTime = 0;
-var timeRunning = 0;
+// var startTime = 0;
+// var timeRunning = 0;
 
 
 
-$('#timerbutton').click(function(){
-  if(!timeRunning){
-    timeRunning = 1;
-      $( this ).removeClass('start');
-      $( this ).addClass('stop');
+// $('#timerbutton').click(function(){
+//   if(!timeRunning){
+//     timeRunning = 1;
+//       $( this ).removeClass('start');
+//       $( this ).addClass('stop');
 
-    var totalTime = 120;
-    startTime = new Date().getTime();
+//     var totalTime = 120;
+//     startTime = new Date().getTime();
   
     
     
-    $('#clock').html(timeFormat(totalTime));
+//     $('#clock').html(timeFormat(totalTime));
   
-      var countDown = setInterval(function(){
+//       var countDown = setInterval(function(){
   
-      //only subtract time when tab is showing
-        if(showing()){
-          totalTime=Math.ceil(120 - showing()); 
-        }
+//       //only subtract time when tab is showing
+//         if(showing()){
+//           totalTime=Math.ceil(120 - showing()); 
+//         }
         
-        if(totalTime <= 0){
-          $( '#timerbutton' ).removeClass('stop');
-          $( '#timerbutton' ).addClass('start');
-          $('#clock').html('02:00');
-          totalTime=120;
-          clearInterval(countDown);
-          timeRunning = 0;
-          alert('Done');
-        }
+//         if(totalTime <= 0){
+//           $( '#timerbutton' ).removeClass('stop');
+//           $( '#timerbutton' ).addClass('start');
+//           $('#clock').html('02:00');
+//           totalTime=120;
+//           clearInterval(countDown);
+//           timeRunning = 0;
+//           alert('Done');
+//         }
   
-          $('#clock').html(timeFormat(totalTime));
+//           $('#clock').html(timeFormat(totalTime));
    
-       },1000);
+//        },1000);
 
-  }    
-});
+//   }    
+// });
 
-    var timeFormat = function(totalTime){
+//     var timeFormat = function(totalTime){
     
     
-      var minutes = Math.floor(totalTime/60);
-      var seconds = Math.round(totalTime % 60);
-      var minutesStr='';
-      var secondsStr='';
+//       var minutes = Math.floor(totalTime/60);
+//       var seconds = Math.round(totalTime % 60);
+//       var minutesStr='';
+//       var secondsStr='';
     
-      if(minutes<10){
-        minutesStr='0'+minutes;
-      }else{
-        minutesStr = minutes;
-      }
-      if(seconds<10){
-        secondsStr='0'+seconds;
-      }else{
-        secondsStr = seconds;
-      }
+//       if(minutes<10){
+//         minutesStr='0'+minutes;
+//       }else{
+//         minutesStr = minutes;
+//       }
+//       if(seconds<10){
+//         secondsStr='0'+seconds;
+//       }else{
+//         secondsStr = seconds;
+//       }
     
-      return(minutesStr+':'+secondsStr);
+//       return(minutesStr+':'+secondsStr);
     
-    };
+//     };
     
-    function showing() {
-      var timeDiff = 0;
-        if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
-          return false;
+//     function showing() {
+//       var timeDiff = 0;
+//         if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
+//           return false;
         
-        } else  {
-            return timeDiff = (Math.ceil(new Date().getTime() - startTime)/1000);
+//         } else  {
+//             return timeDiff = (Math.ceil(new Date().getTime() - startTime)/1000);
     
-        }
-        return false;
-    }
-    document.addEventListener('visibilitychange', showing);
+//         }
+//         return false;
+//     }
+//     document.addEventListener('visibilitychange', showing);
 
 
