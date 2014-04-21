@@ -5,8 +5,10 @@
 //******exercise enter screen********
 //
 //add cookies
-//add way to go back, pull from exercise object
-//
+//nextexercisegroup button always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
+//see if timeouts can be grouped together
+//activate 'nextexercise' if fields are full
+//create a save function ('previous exercise' doesn't save the current screen)
 //
 //******exercise group select screen********
 //
@@ -37,8 +39,6 @@
 //if current weight is above stored weight:
 //  store current weight, keep weight at same level
 
-// number of exercises in a given group console.log(allExercises['group1']['exerciseArray'].length);
-// grab group name given a groupNum console.log(allExercises['group'+groupNum]['name']);
 
 var currentExerciseNum = 1;
     exerciseName = '';
@@ -116,13 +116,12 @@ function addGroup(groupName, groupNum){
 }
 
 function addExercise(name,weight,sets,reps){
-  console.log(groupNum);
-  allExercises['group'+groupNum]['exerciseArray'][currentExerciseNum-2]=({name: name, weight: weight, sets: sets, reps:reps});
+  allExercises['group'+groupNum]['exerciseArray'][currentExerciseNum-1]=({name: name, weight: weight, sets: sets, reps:reps});
   return true;
 }
 
-function fieldValidation(slideInDiv){
-  var empty = $(slideInDiv).find('input').filter(function() {
+function fieldValidation(div){
+  var empty = $(div).find('input').filter(function() {
     return this.value === '';
   });
   return empty.length;
@@ -134,16 +133,15 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
       $done = $(slideInDiv).find('.donebutton');
       $prevexercise = $('.prevexercisebutton');
 
-//change this to look at current fields
-  // if(fieldValidation()){
-  //   var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
-  //   if(!c){
-  //     return false;
-  //   }
-  // }
+  if(fieldValidation(slideOutDiv)){
+    var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+    if(!c){
+      return false;
+    }
+  }
 
     screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses);
-    exerciseNumAdjust(clickedButton, slideInDiv);
+    
       
     $('.groupname').html(groupName);
 
@@ -153,8 +151,8 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
     exerciseReps = $('#exercisereps').val();
     addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
   
-  disableButtons(slideInDiv);
-
+  disableButtons(slideInDiv, slideOutDiv);
+  exerciseNumAdjust(clickedButton, slideInDiv);
 };
 
 function exerciseNumAdjust(clickedButton, slideInDiv){
@@ -182,8 +180,9 @@ function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutCla
     },1);
 }
 
-function disableButtons(slideInDiv){
-  console.log("currentExerciseNum: "+currentExerciseNum, "empty fields"+fieldValidation(slideInDiv));
+function disableButtons(slideInDiv,slideOutDiv){
+  $(slideOutDiv).find('.toggledisable').removeClass('toggledisable');
+setTimeout(function(){
   if(currentExerciseNum===1){
     $(slideInDiv).find('.nextexercisegroup').addClass('toggledisable');
     $(slideInDiv).find('.nextexercisebutton').addClass('toggledisable');
@@ -204,8 +203,9 @@ function disableButtons(slideInDiv){
       $('.toggledisable').attr('disabled', true);
     }
   });
+},1);
 }
-disableButtons('#exercisegroupnamer');
+disableButtons('#exercisegroupnamer','');
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
@@ -235,7 +235,7 @@ $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
   groupName = $('#inputgroupname').val();
   screenSlide(exerciseEnter,'#exerciseenter','right','#exercisegroupnamer','remove slideOutLeft');
-  disableButtons('.inview');
+  disableButtons('.inview','#exercisegroupnamer');
   $('.exercisenumber').html(currentExerciseNum);
   $('.groupname').html(groupName);
   groupNum++;
@@ -245,7 +245,7 @@ $(document).on('click', '.namerproceed', function(){
 
 $(document).on('click','.nextexercisegroup', function(){
   event.preventDefault();
-  //resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
+  //always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
   currentExerciseNum = 1;
   nextScreen('.nextexercisegroup', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
   $('.namerproceed').addClass('toggledisable');
@@ -268,7 +268,7 @@ $(document).on('click','.prevexercisebutton', function(){
       $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
       $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
       $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
-      disableButtons('.inview');
+      disableButtons('.inview','.remove');
       },1);
       
       break;
@@ -282,6 +282,19 @@ $(document).on('click','.prevexercisebutton', function(){
 $(document).on('click','.nextexercisebutton', function(){
   event.preventDefault();
   nextScreen('.nextexercisebutton', exerciseEnter, '.inview','right', '#exerciseenter','remove slideOutLeft');
+  for (var i=1; i<=groupNum; i++){
+    if(groupName === allExercises['group'+i]['name']){
+      var currentGroup = allExercises['group'+i]['exerciseArray'];
+      if(currentGroup.length >= currentExerciseNum){
+        setTimeout(function(){
+          $('.inview').find('#exercisename').val((currentGroup[currentExerciseNum-1]['name']));
+          $('.inview').find('#exerciseweight').val((currentGroup[currentExerciseNum-1]['weight']));
+          $('.inview').find('#exercisesets').val((currentGroup[currentExerciseNum-1]['sets']));
+          $('.inview').find('#exercisereps').val((currentGroup[currentExerciseNum-1]['reps']));
+        },1);
+      }
+    }
+  }
   displaySaved()
 });
 
@@ -300,8 +313,7 @@ $(document).on('click', '.groupbutton', function(){
    for (var i=1; i<=groupNum; i++){
     if(groupClicked === allExercises['group'+i]['name']){
       currentExercises = allExercises['group'+i]['exerciseArray'];
-      console.log("Expand objects below to view currently selected exercises: ");
-      console.log(currentExercises);
+      displaySaved()
       break;
 
     }
