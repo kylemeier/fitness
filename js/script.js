@@ -7,9 +7,8 @@
 //******exercise enter screen********
 //
 //add cookies
-//nextexercisegroup button always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
+//nextexercisegroupbutton button always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
 //see if timeouts can be grouped together
-//activate 'nextexercise' if fields are full
 //create a save function ('previous exercise' doesn't save the current screen)
 //
 //******exercise group select screen********
@@ -74,7 +73,7 @@ var currentExerciseNum = 1,
       <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\'> \
       <ul> \
         <li> \
-      <button class=\'nextexercisegroup\'>Next Group</button> \
+      <button class=\'nextexercisegroupbutton\'>Next Group</button> \
       </li> \
       <li> \
       <button class=\'prevexercisebutton\'>Prev Exercise</button> \
@@ -122,7 +121,7 @@ function addExercise(name,weight,sets,reps){
   return true;
 }
 
-function fieldValidation(div){
+function emptyFields(div){
   var empty = $(div).find('input').filter(function() {
     return this.value === '';
   });
@@ -132,80 +131,80 @@ function fieldValidation(div){
 function exerciseNumAdjust(clickedButton, slideInDiv){
 
   if(clickedButton === '.prevexercisebutton'){
-        currentExerciseNum--;
-      }
-      if(clickedButton === '.nextexercisebutton'){
-        currentExerciseNum++;
-      }
-      setTimeout(function(){
-      $(slideInDiv).find('.exercisenumber').html(currentExerciseNum);
-    },1);
+    currentExerciseNum--;
+  }
+  if(clickedButton === '.nextexercisebutton'){
+    currentExerciseNum++;
+  }
+  setTimeout(function(){
+    $(slideInDiv).find('.exercisenumber').html(currentExerciseNum);
+  },1);
 }
 
 function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
-      $('.container').append(appendDiv);
-    $(slideInDiv).addClass(slideInDir);
+  $('.container').append(appendDiv);
+  $(slideInDiv).addClass(slideInDir);
+  setTimeout(function(){
+    $(slideOutDiv).attr('class',slideOutClasses);
+    $(slideInDiv).addClass('slideIn');
     setTimeout(function(){
-      $(slideOutDiv).attr('class',slideOutClasses);
-      $(slideInDiv).addClass('slideIn');
-      setTimeout(function(){
-        $('.remove').remove();
-      },1000);
-    },1);
+      $('.remove').remove();
+    },1000);
+  },1);
 }
 
 function disableButtons(slideInDiv,slideOutDiv){
-  $(slideOutDiv).find('.toggledisable').removeClass('toggledisable');
 setTimeout(function(){
-  if(currentExerciseNum===1){
-    $(slideInDiv).find('.nextexercisegroup').addClass('toggledisable');
-    $(slideInDiv).find('.nextexercisebutton').addClass('toggledisable');
-    $(slideInDiv).find('.donebutton').addClass('toggledisable');
-    $(slideInDiv).find('.prevexercisebutton').attr('disabled', true);
-    if(fieldValidation(slideInDiv)){
-      $('.toggledisable').attr('disabled', true);
-    }
-  }else{
-    $(slideInDiv).find('.nextexercisebutton').addClass('toggledisable');
-    $(slideInDiv).find('.nextexercisebutton').attr('disabled',true);
-  }
+  var $nextExerciseGroupButton = $(slideInDiv).find('.nextexercisegroupbutton'),
+      $nextExerciseButton = $(slideInDiv).find('.nextexercisebutton'),
+      $doneButton = $(slideInDiv).find('.donebutton'),
+      $prevExerciseButton = $(slideInDiv).find('.prevexercisebutton');
 
-  $(document).find('input').keyup(function(){
-    if(!fieldValidation(slideInDiv)){
-      $('.toggledisable').attr('disabled', false);
+
+    if(currentExerciseNum===1){
+      $nextExerciseGroupButton.addClass('toggledisable');
+      $nextExerciseButton.addClass('toggledisable');
+      $doneButton.addClass('toggledisable');
+      $prevExerciseButton.attr('disabled', true);
     }else{
-      $('.toggledisable').attr('disabled', true);
+      $nextExerciseButton.addClass('toggledisable');
     }
-  });
-},1);
+    console.log('currentNum '+currentExerciseNum, '# of empty fields '+emptyFields(slideInDiv));
+    if(emptyFields(slideInDiv)){
+      $(slideInDiv).find('.toggledisable').attr('disabled', true);
+    }
+    $(document).find('input').keyup(function(){
+      if(!emptyFields(slideInDiv)){
+        $(slideInDiv).find('.toggledisable').attr('disabled', false);
+      }else{
+        $(slideInDiv).find('.toggledisable').attr('disabled', true);
+      }
+    });
+  },50);
+}
+
+
+function save(){
+  exerciseName = $('#exercisename').val();
+  exerciseWeight = $('#exerciseweight').val();
+  exerciseSets = $('#exercisesets').val();
+  exerciseReps = $('#exercisereps').val();
+  addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 }
 
 //refactor this function into multiple functions
 function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
-
-  if(fieldValidation(slideOutDiv)){
+  if(emptyFields(slideOutDiv)){
     var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
     if(!c){
       return false;
     }
   }
-
-    screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses);
-    
-      
-    $('.groupname').html(groupName);
-
-    exerciseName = $('#exercisename').val();
-    exerciseWeight = $('#exerciseweight').val();
-    exerciseSets = $('#exercisesets').val();
-    exerciseReps = $('#exercisereps').val();
-    addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
-  
-  disableButtons(slideInDiv, slideOutDiv);
+  screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses); 
+  $('.groupname').html(groupName); 
+  save();
   exerciseNumAdjust(clickedButton, slideInDiv);
 }
-
-
 
 
 disableButtons('#exercisegroupnamer','');
@@ -246,11 +245,12 @@ $(document).on('click', '.namerproceed', function(){
   displaySaved();
 });
 
-$(document).on('click','.nextexercisegroup', function(){
+$(document).on('click','.nextexercisegroupbutton', function(){
   event.preventDefault();
   //always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
   currentExerciseNum = 1;
-  nextScreen('.nextexercisegroup', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
+  nextScreen('.nextexercisegroupbutton', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
+  disableButtons('#exercisegroupnamer','.remove');
   $('.namerproceed').addClass('toggledisable');
   displaySaved();
 });
@@ -261,7 +261,7 @@ $(document).on('click','.prevexercisebutton', function(){
     alert("No previous exercises found for this group.");
     return false;
   }
-
+  save();
   for (var i=1; i<=groupNum; i++){
     if(groupName === allExercises['group'+i]['name']){
       screenSlide(exerciseEnter, '.inview', 'left', '#exerciseenter', 'remove slideOutRight');
@@ -298,6 +298,7 @@ $(document).on('click','.nextexercisebutton', function(){
       }
     }
   }
+  disableButtons('.inview','.remove');
   displaySaved();
 });
 
@@ -318,7 +319,6 @@ $(document).on('click', '.groupbutton', function(){
       currentExercises = allExercises['group'+i]['exerciseArray'];
       displaySaved();
       break;
-
     }
   }
   screenSlide(workout, '#workout', 'right', '#exercisepicker', 'remove slideOutLeft');
