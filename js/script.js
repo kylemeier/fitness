@@ -153,13 +153,12 @@ function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutCla
   },1);
 }
 
-function disableButtons(slideInDiv,slideOutDiv){
+function disableButtons(slideInDiv){
 setTimeout(function(){
   var $nextExerciseGroupButton = $(slideInDiv).find('.nextexercisegroupbutton'),
       $nextExerciseButton = $(slideInDiv).find('.nextexercisebutton'),
       $doneButton = $(slideInDiv).find('.donebutton'),
       $prevExerciseButton = $(slideInDiv).find('.prevexercisebutton');
-
 
     if(currentExerciseNum===1){
       $nextExerciseGroupButton.addClass('toggledisable');
@@ -192,14 +191,20 @@ function save(){
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 }
 
+function confirmation(){
+  return confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+}
+
 //refactor this function into multiple functions
 function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
+  var c = 1;
   if(emptyFields(slideOutDiv)){
     var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
     if(!c){
       return false;
     }
   }
+  console.log('got here');
   screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses); 
   $('.groupname').html(groupName); 
   save();
@@ -207,7 +212,7 @@ function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDi
 }
 
 
-disableButtons('#exercisegroupnamer','');
+disableButtons('#exercisegroupnamer');
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
@@ -235,24 +240,36 @@ $(document).on('click', '.autofill', function(){
 
 $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
+  currentExerciseNum = 1;
   groupName = $('#inputgroupname').val();
   screenSlide(exerciseEnter,'#exerciseenter','right','#exercisegroupnamer','remove slideOutLeft');
-  disableButtons('.inview','#exercisegroupnamer');
+  disableButtons('.inview');
   $('.exercisenumber').html(currentExerciseNum);
   $('.groupname').html(groupName);
   groupNum++;
+
   addGroup(groupName, groupNum);
   displaySaved();
 });
 
 $(document).on('click','.nextexercisegroupbutton', function(){
   event.preventDefault();
-  //always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
-  currentExerciseNum = 1;
-  nextScreen('.nextexercisegroupbutton', exerciseGroupNamer, '#exercisegroupnamer','left','#exerciseenter', 'remove slideOutRight');
-  disableButtons('#exercisegroupnamer','.remove');
+  var c = 2;
+  //doesnt come up at all: save, slide, disable
+  //ok is clicked: slide, disable
+  if(emptyFields('#exerciseenter')){
+    c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+  }
+  // if(!c){}
+  
+  screenSlide(exerciseGroupNamer,'#exercisegroupnamer','left','#exerciseenter','remove slideOutRight');
+  disableButtons('#exercisegroupnamer'); 
   $('.namerproceed').addClass('toggledisable');
   displaySaved();
+  if(confirmation()){
+    return false;
+  }
+  save();
 });
 
 $(document).on('click','.prevexercisebutton', function(){
@@ -271,7 +288,7 @@ $(document).on('click','.prevexercisebutton', function(){
         $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
         $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
         $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
-        disableButtons('.inview','.remove');
+        disableButtons('.inview');
       },1);
       break;
     }
@@ -298,7 +315,7 @@ $(document).on('click','.nextexercisebutton', function(){
       }
     }
   }
-  disableButtons('.inview','.remove');
+  disableButtons('.inview');
   displaySaved();
 });
 
