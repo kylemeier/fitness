@@ -7,11 +7,11 @@
 //******exercise enter screen********
 //
 //add cookies
-//nextexercisegroupbutton button always resets exercise num to 1, need to fix to account for user clicking 'cancel' on confirm box
-//see if timeouts can be grouped together
-//create a save function ('previous exercise' doesn't save the current screen)
+//
 //
 //******exercise group select screen********
+//add expand and start workout buttons
+//expand shows the exercise group below the button with an edit and delete button next to each exercise item
 //
 //
 //*****exercise section**********
@@ -89,6 +89,8 @@ var currentExerciseNum = 1,
     exercisePicker =
       '<div id=\'exercisepicker\'> \
       <header>Your exercise groups:</header> \
+      <ul> \
+      </ul> \
       </div>',
     workout =
       '<div id=\'workout\'> \
@@ -193,8 +195,8 @@ function save(){
 
 function confirmation(slideOutDiv){
   var c = 'no confirm box';
-  if(emptyFields(slideOutDiv)){
-    c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+  if(0 < emptyFields(slideOutDiv) && emptyFields(slideOutDiv) < 4){
+    c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
   }
   return c;
 }
@@ -203,7 +205,7 @@ function confirmation(slideOutDiv){
 function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
   var c = 1;
   if(emptyFields(slideOutDiv)){
-    var c = confirm("Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?");
+    var c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
     if(!c){
       return false;
     }
@@ -223,6 +225,17 @@ function displaySaved(){
   console.log(allExercises);
 }
 
+function addExerciseGroups(){
+    for (var i=1; i<=groupNum; i++){
+      var exerciseList = [];
+      for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
+        exerciseList.push('<li>'+allExercises['group'+i]['exerciseArray'][e]['name']+'</li>');
+      }
+      console.log(exerciseList);
+      $('#exercisepicker').find('ul').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>+ '+allExercises['group'+i]['name']+' +</button></button><ol>'+exerciseList.join('')+'</ol><button class=\'startworkout\'>Start Workout</button></li>');
+    }
+}
+
 $(document).on('click', '.autofill', function(){
   screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove left');
   allExercises = {group1: {name:'Tuesday', exerciseArray:
@@ -237,9 +250,7 @@ $(document).on('click', '.autofill', function(){
                            {name:'Situps', weight: 20, sets:3, reps:10}]}
                   };
   groupNum = 2;
-  for (var i=1; i<=groupNum; i++){
-      $('#exercisepicker').append('<button class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</button>');
-    }
+  addExerciseGroups();
 });
 
 $(document).on('click', '.namerproceed', function(){
@@ -336,14 +347,13 @@ $(document).on('click', '.donebutton', function(){
   screenSlide(exercisePicker,'#exercisepicker','right','#exerciseenter','remove left'); 
   exerciseNumAdjust('.donebutton', '#exercisepicker');
   displaySaved();
-    for (var i=1; i<=groupNum; i++){
-      $('#exercisepicker').append('<button class=\'groupbutton\' id='+allExercises['group'+i]['name']+'>'+allExercises['group'+i]['name']+'</button>');
-    }
+  addExerciseGroups();
 });
 
-$(document).on('click', '.groupbutton', function(){
+$(document).on('click', '.startworkout', function(){
   event.preventDefault();
-  var groupClicked = this.id;
+  var groupClicked = $(this).closest('li').attr('id');
+
    for (var i=1; i<=groupNum; i++){
     if(groupClicked === allExercises['group'+i]['name']){
       currentExercises = allExercises['group'+i]['exerciseArray'];
@@ -357,6 +367,14 @@ $(document).on('click', '.groupbutton', function(){
   $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);
   $('#workoutreps').html('Reps: '+currentExercises[0]['reps']);
 });
+
+$(document).on('click', '.groupbutton', function(){
+  event.preventDefault();
+  $(this).next('ol').slideToggle();
+
+
+});
+
 
 
 // var startTime = 0;

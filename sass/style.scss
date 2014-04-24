@@ -87,7 +87,7 @@ button{
   display:block;
   padding: 5px 5px;
   color:#fff;
-  max-width:200px;
+  max-width:300px;
   margin:0 auto;
   border-radius: 5px;
   border:1px solid #000;
@@ -169,9 +169,20 @@ button{
     color:#000;
     display:block;
   }
+  ul{
+    min-width:215px;
+    margin:0 auto;
+  }
+  ol{
+    display:none;
+    li{
+      color:#fff;
+    }
+  }
+  li{
+    display: block;
+  } 
 }
-
-
 
 #resultbuttons{
   margin-top:25px;
@@ -230,6 +241,9 @@ button{
   header, h1, h2, label{
     font-size:1em;
   }
+    .groupbutton{
+      font-size:1.2em;
+    }
   button{
     font-size:.7em;
     padding:7px;

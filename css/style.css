@@ -72,7 +72,7 @@ button {
   display: block;
   padding: 5px 5px;
   color: #fff;
-  max-width: 200px;
+  max-width: 300px;
   margin: 0 auto;
   border-radius: 5px;
   border: 1px solid #000;
@@ -131,6 +131,15 @@ button {
 #exercisepicker input {
   color: #000;
   display: block; }
+#exercisepicker ul {
+  min-width: 215px;
+  margin: 0 auto; }
+#exercisepicker ol {
+  display: none; }
+  #exercisepicker ol li {
+    color: #fff; }
+#exercisepicker li {
+  display: block; }
 
 #resultbuttons {
   margin-top: 25px; }
@@ -178,6 +187,9 @@ button {
 @media (max-width: 520px) {
   header, h1, h2, label {
     font-size: 1em; }
+
+  .groupbutton {
+    font-size: 1.2em; }
 
   button {
     font-size: .7em;
