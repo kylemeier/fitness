@@ -7,7 +7,7 @@
 //******exercise enter screen********
 //
 //add cookies
-//
+//remove alert, insert modal window
 //
 //******exercise group select screen********
 //add expand and start workout buttons
@@ -86,9 +86,18 @@ var currentExerciseNum = 1,
       </li> \
       </ul> \
       </div>',
+    modalConfirm = 
+      '<div class=\'modalconfirm\'> \
+        <div> \
+          <p>Because the fields are not complete, information from this screen will not be saved. Do you  wish to proceed?</p> \
+          <button class=\'modalbutton confirm\'>Yes</button> \
+          <button class=\'modalbutton deny\'>No</button> \
+        </div> \
+      </div>',
     exercisePicker =
       '<div id=\'exercisepicker\'> \
       <header>Your exercise groups:</header> \
+      <h1>(click a group name to view its exercises)</h1> \
       <ul> \
       </ul> \
       </div>',
@@ -170,7 +179,6 @@ setTimeout(function(){
     }else{
       $nextExerciseButton.addClass('toggledisable');
     }
-    console.log('currentNum '+currentExerciseNum, '# of empty fields '+emptyFields(slideInDiv));
     if(emptyFields(slideInDiv)){
       $(slideInDiv).find('.toggledisable').attr('disabled', true);
     }
@@ -184,7 +192,6 @@ setTimeout(function(){
   },50);
 }
 
-
 function save(){
   exerciseName = $('#exercisename').val();
   exerciseWeight = $('#exerciseweight').val();
@@ -193,32 +200,35 @@ function save(){
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 }
 
-function confirmation(slideOutDiv){
-  var c = 'no confirm box';
+function confirmation(slideOutDiv, buttonclicked){
+  console.log('in confirm function');
   if(0 < emptyFields(slideOutDiv) && emptyFields(slideOutDiv) < 4){
-    c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
+    $('.container').append(modalConfirm);
+    $(document).on('click','.confirm',function(){
+      console.log('clicked');
+      buttonclicked(1);
+      $('.modalconfirm').remove();
+      $(document).off('click', '.confirm');      
+    });
+    $(document).on('click','.deny',function(){
+      buttonclicked(0);
+      $('.modalconfirm').remove();
+      $(document).off('click', '.deny'); 
+    });
+  }else{
+    buttonclicked('no confirm box');
+    return false;
   }
-  return c;
-}
+};
 
-//refactor this function into multiple functions
-function nextScreen(clickedButton, appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutClasses){
-  var c = 1;
-  if(emptyFields(slideOutDiv)){
-    var c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
-    if(!c){
-      return false;
-    }
-  }
-  console.log('got here');
-  screenSlide(appendDiv,slideInDiv,slideInDir,slideOutDiv,slideOutClasses); 
-  $('.groupname').html(groupName); 
-  save();
-  exerciseNumAdjust(clickedButton, slideInDiv);
-}
+  // return c;
+  
+  // if(0 < emptyFields(slideOutDiv) && emptyFields(slideOutDiv) < 4){
+  //   c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
+  // }
+  // return c;
 
 
-disableButtons('#exercisegroupnamer');
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
@@ -231,10 +241,11 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
         exerciseList.push('<li>'+allExercises['group'+i]['exerciseArray'][e]['name']+'</li>');
       }
-      console.log(exerciseList);
-      $('#exercisepicker').find('ul').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>+ '+allExercises['group'+i]['name']+' +</button></button><ol>'+exerciseList.join('')+'</ol><button class=\'startworkout\'>Start Workout</button></li>');
+      $('#exercisepicker').find('ul').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ol>'+exerciseList.join('')+'</ol><button class=\'startworkout\'>Start Workout</button></li>');
     }
 }
+
+disableButtons('#exercisegroupnamer');
 
 $(document).on('click', '.autofill', function(){
   screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove left');
@@ -251,6 +262,7 @@ $(document).on('click', '.autofill', function(){
                   };
   groupNum = 2;
   addExerciseGroups();
+  displaySaved();
 });
 
 $(document).on('click', '.namerproceed', function(){
@@ -262,14 +274,13 @@ $(document).on('click', '.namerproceed', function(){
   $('.exercisenumber').html(currentExerciseNum);
   $('.groupname').html(groupName);
   groupNum++;
-
   addGroup(groupName, groupNum);
   displaySaved();
 });
 
 $(document).on('click','.nextexercisegroupbutton', function(){
   event.preventDefault();
-  var c = confirmation('#exerciseenter');
+  confirmation('#exerciseenter', function(c){
   if (!c){
     return false;
   }  
@@ -280,35 +291,36 @@ $(document).on('click','.nextexercisegroupbutton', function(){
   if(c === 'no confirm box'){
     save();
   }
+  });
 });
 
 $(document).on('click','.prevexercisebutton', function(){
   event.preventDefault();
-  var c = confirmation('#exerciseenter');
-  if (!c){
-    return false;
-  }
-  if(c === 'no confirm box'){
-    save();
-  }
-  for (var i=1; i<=groupNum; i++){
-    if(groupName === allExercises['group'+i]['name']){
-      console.log(c);
-      screenSlide(exerciseEnter, '.inview', 'left', '#exerciseenter', 'remove right');
-      exerciseNumAdjust('.prevexercisebutton','.inview');
-      setTimeout(function(){
-        $('.inview').find('#exercisename').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['name']));
-        $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
-        $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
-        $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
-        disableButtons('.inview');
-      },1);
-      break;
-    } 
-  }
+  confirmation('#exerciseenter', function(c){
+    if (!c){
+      return false;
+    }
+    if(c === 'no confirm box'){
+      save();
+    }
+    for (var i=1; i<=groupNum; i++){
+      if(groupName === allExercises['group'+i]['name']){
+        screenSlide(exerciseEnter, '.inview', 'left', '#exerciseenter', 'remove right');
+        exerciseNumAdjust('.prevexercisebutton','.inview');
+        setTimeout(function(){
+          $('.inview').find('#exercisename').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['name']));
+          $('.inview').find('#exerciseweight').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['weight']));
+          $('.inview').find('#exercisesets').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['sets']));
+          $('.inview').find('#exercisereps').val((allExercises['group'+i]['exerciseArray'][currentExerciseNum-1]['reps']));
+          disableButtons('.inview');
+        },1);
+        break;
+      } 
+    }
 
-  $('.groupname').html(groupName);
-  displaySaved();
+    $('.groupname').html(groupName);
+    displaySaved();
+  });
 });
 
 $(document).on('click','.nextexercisebutton', function(){
@@ -337,7 +349,7 @@ $(document).on('click','.nextexercisebutton', function(){
 
 $(document).on('click', '.donebutton', function(){
   event.preventDefault();
-  var c = confirmation('#exerciseenter');
+  confirmation('#exerciseenter', function(c){
   if (!c){
     return false;
   }
@@ -348,6 +360,7 @@ $(document).on('click', '.donebutton', function(){
   exerciseNumAdjust('.donebutton', '#exercisepicker');
   displaySaved();
   addExerciseGroups();
+  });
 });
 
 $(document).on('click', '.startworkout', function(){
@@ -377,82 +390,82 @@ $(document).on('click', '.groupbutton', function(){
 
 
 
-// var startTime = 0;
-// var timeRunning = 0;
+var startTime = 0;
+var timeRunning = 0;
 
 
 
-// $('#timerbutton').click(function(){
-//   if(!timeRunning){
-//     timeRunning = 1;
-//       $( this ).removeClass('start');
-//       $( this ).addClass('stop');
+$(document).on('click', '#timerbutton', function(){
+  if(!timeRunning){
+    timeRunning = 1;
+      $( this ).removeClass('start');
+      $( this ).addClass('stop');
 
-//     var totalTime = 120;
-//     startTime = new Date().getTime();
+    var totalTime = 120;
+    startTime = new Date().getTime();
   
     
     
-//     $('#clock').html(timeFormat(totalTime));
+    $('#clock').html(timeFormat(totalTime));
   
-//       var countDown = setInterval(function(){
+      var countDown = setInterval(function(){
   
-//       //only subtract time when tab is showing
-//         if(showing()){
-//           totalTime=Math.ceil(120 - showing()); 
-//         }
+      //only subtract time when tab is showing
+        if(showing()){
+          totalTime=Math.ceil(120 - showing()); 
+        }
         
-//         if(totalTime <= 0){
-//           $( '#timerbutton' ).removeClass('stop');
-//           $( '#timerbutton' ).addClass('start');
-//           $('#clock').html('02:00');
-//           totalTime=120;
-//           clearInterval(countDown);
-//           timeRunning = 0;
-//           alert('Done');
-//         }
+        if(totalTime <= 0){
+          $( '#timerbutton' ).removeClass('stop');
+          $( '#timerbutton' ).addClass('start');
+          $('#clock').html('02:00');
+          totalTime=120;
+          clearInterval(countDown);
+          timeRunning = 0;
+          alert('Done');
+        }
   
-//           $('#clock').html(timeFormat(totalTime));
+          $('#clock').html(timeFormat(totalTime));
    
-//        },1000);
+       },1000);
 
-//   }    
-// });
+  }    
+});
 
-//     var timeFormat = function(totalTime){
+    var timeFormat = function(totalTime){
     
     
-//       var minutes = Math.floor(totalTime/60);
-//       var seconds = Math.round(totalTime % 60);
-//       var minutesStr='';
-//       var secondsStr='';
+      var minutes = Math.floor(totalTime/60);
+      var seconds = Math.round(totalTime % 60);
+      var minutesStr='';
+      var secondsStr='';
     
-//       if(minutes<10){
-//         minutesStr='0'+minutes;
-//       }else{
-//         minutesStr = minutes;
-//       }
-//       if(seconds<10){
-//         secondsStr='0'+seconds;
-//       }else{
-//         secondsStr = seconds;
-//       }
+      if(minutes<10){
+        minutesStr='0'+minutes;
+      }else{
+        minutesStr = minutes;
+      }
+      if(seconds<10){
+        secondsStr='0'+seconds;
+      }else{
+        secondsStr = seconds;
+      }
     
-//       return(minutesStr+':'+secondsStr);
+      return(minutesStr+':'+secondsStr);
     
-//     };
+    };
     
-//     function showing() {
-//       var timeDiff = 0;
-//         if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
-//           return false;
+    function showing() {
+      var timeDiff = 0;
+        if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden) {
+          return false;
         
-//         } else  {
-//             return timeDiff = (Math.ceil(new Date().getTime() - startTime)/1000);
+        } else  {
+            return timeDiff = (Math.ceil(new Date().getTime() - startTime)/1000);
     
-//         }
-//         return false;
-//     }
-//     document.addEventListener('visibilitychange', showing);
+        }
+        return false;
+    }
+    document.addEventListener('visibilitychange', showing);
 
 
