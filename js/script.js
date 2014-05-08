@@ -89,7 +89,7 @@ var currentExerciseNum = 1,
     modalConfirm = 
       '<div class=\'modalconfirm\'> \
         <div> \
-          <p>Because the fields are not complete, information from this screen will not be saved. Do you  wish to proceed?</p> \
+          <p>Because the fields are not complete, your information will not be saved. Do you wish to proceed?</p> \
           <button class=\'modalbutton confirm\'>Yes</button> \
           <button class=\'modalbutton deny\'>No</button> \
         </div> \
@@ -200,35 +200,26 @@ function save(){
   addExercise(exerciseName, exerciseWeight, exerciseSets, exerciseReps);
 }
 
-function confirmation(slideOutDiv, buttonclicked){
+function confirmation(slideOutDiv, action){
   console.log('in confirm function');
   if(0 < emptyFields(slideOutDiv) && emptyFields(slideOutDiv) < 4){
     $('.container').append(modalConfirm);
     $(document).on('click','.confirm',function(){
-      console.log('clicked');
-      buttonclicked(1);
+      action(1);
       $('.modalconfirm').remove();
-      $(document).off('click', '.confirm');      
+      $(document).off('click','.confirm');
+      $(document).off('click','.deny');     
     });
     $(document).on('click','.deny',function(){
-      buttonclicked(0);
+      action(0);
       $('.modalconfirm').remove();
-      $(document).off('click', '.deny'); 
+      $(document).off('click','.deny');
+      $(document).off('click','.confirm'); 
     });
   }else{
-    buttonclicked('no confirm box');
-    return false;
+    action('no confirm box');
   }
 };
-
-  // return c;
-  
-  // if(0 < emptyFields(slideOutDiv) && emptyFields(slideOutDiv) < 4){
-  //   c = confirm('Because the fields are not complete, information from this screen will not be saved. Do you wish to proceed?');
-  // }
-  // return c;
-
-
 
 function displaySaved(){
   console.log('Expand object to see all information currently stored:');
