@@ -51,7 +51,7 @@ var currentExerciseNum = 1,
       perform on a given day. You will be creating a group for each day of exercises you perform.</header> \
       <label for=\'inputgroupname\'>Group:</label> \
       <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\'> \
-      <button class=\'namerproceed\' disabled>Proceed</button> \
+      <button class=\'namerproceed toggledisable\' disabled>Proceed</button> \
       </div>',
     exerciseEnter =
       '<div id=\'exerciseenter\' class=\'inview\'> \
@@ -81,8 +81,8 @@ var currentExerciseNum = 1,
       </ul> \
       </div>',
     modalConfirm =
-      '<div class=\'modalconfirm\'> \
-        <div> \
+      '<div class=\'modalconfirm invisible\'> \
+        <div class= \'confirmbox\'> \
           <p>Because the fields are not complete, your information will not be saved. Do you wish to proceed?</p> \
           <button class=\'modalbutton confirm\'>Yes</button> \
           <button class=\'modalbutton deny\'>No</button> \
@@ -236,9 +236,13 @@ function confirmation(div, action){
    * @param {function} action: callback function that fires if user wants to continue
    */
   
-  //Remove modal and prevent click events from stacking after user clicks a modal button
-  var cleanUp = function(){
-      $('.modalconfirm').remove();
+  //Fade out modal, remove modal, and prevent click events from stacking after user clicks a modal button
+  function cleanUp(){
+      $('.modalconfirm').removeClass('visible');
+      $('.modalconfirm').addClass('invisible');
+      setTimeout(function(){
+        $('.modalconfirm').remove();
+      },500);
       $(document).off('click','.confirm');
       $(document).off('click','.deny');
   };
@@ -253,6 +257,13 @@ function confirmation(div, action){
 
     //Create modal if fields are partially filled in
     $('.container').append(modalConfirm);
+
+    //Fade in modal
+    setTimeout(function(){
+      $('.modalconfirm').removeClass('invisible');
+      $('.modalconfirm').addClass('visible');
+    },1);
+
     $(document).on('click','.confirm',function(){
 
       //Send confirmation to the callback function
@@ -265,7 +276,7 @@ function confirmation(div, action){
       //Send denial to the callback function
       action(0);
 
-     cleanUp();
+      cleanUp();
     });
   }
 }
@@ -354,9 +365,6 @@ $(document).on('click','.nextexercisegroupbutton', function(){
 
     screenSlide(exerciseGroupNamer,'#exercisegroupnamer','left','#exerciseenter','remove right');
     disableButtons('#exercisegroupnamer');
-
-    //Allow button on group namer screen to be disabled/enabled
-    $('.namerproceed').addClass('toggledisable');
 
     //Only add user entered data if the fields are full
     if(c === 'fields full'){
@@ -493,7 +501,7 @@ $(document).on('click', '.groupbutton', function(){
    */
   event.preventDefault();
 
-  //Slide out list of exercise names for the selected group
+  //Slide list of exercise names for the selected group
   $(this).next('ol').slideToggle();
 });
 
