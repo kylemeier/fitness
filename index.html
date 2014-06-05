@@ -1,29 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
-        <meta charset='UTF-8'>
-        <title>Fitness</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, minimal-ui'>
-        <!-- minimal-ui will throw an error unless you're using mobile safari. expalanation here http://darkblue.sdf.org/weblog/ios-7-dot-1-mobile-safari-minimal-ui.html -->
-        <link rel='stylesheet' href='css/reset.css'>
-        <link rel='stylesheet' href='css/style.css' >
+    <meta charset='UTF-8'>
+    <title>Fitness</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, minimal-ui'>
+    <!-- minimal-ui will throw an error unless you're using mobile safari. expalanation here http://darkblue.sdf.org/weblog/ios-7-dot-1-mobile-safari-minimal-ui.html -->
+    <link rel='stylesheet' href='css/reset.css'>
+    <link rel='stylesheet' href='css/style.css' >
 </head>
 <body>
-
-<div class='container'>
+	<div class='container'>
 		<div id='exercisegroupnamer' class='slideIn'>
-				<header>Please enter an exercise group name. This group will contain all exercises you perform on a given day. You will be creating a group for each day of exercises you perform.</header>
-				<label for='inputgroupname'>Group:</label>
-				<input type='text' maxlength= 20 name='inputgroupname' id='inputgroupname' required>
-				<button class='namerproceed toggledisable' disabled>Proceed</button>
-				<a href="#" class='autofill'>Autofill with test values</a>
+			<h1>Welcome!</h1>
+			<h2>Please enter an exercise group name. This group will contain all exercises you perform on a given day. You will be creating a group for each day of exercises you perform.</h2>
+			<label for='inputgroupname'>Group:</label>
+			<input type='text' maxlength= 20 name='inputgroupname' id='inputgroupname' required>
+			<button class='namerproceed toggledisable' disabled>Proceed</button>
+			<a href="#" class='autofill'>Autofill with test values</a>
 		</div>
-</div>
-
-
-<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
-<!-- if no internet -->
-<script src='js/jquery.js'></script>
-<script src='js/script.js'></script>
+	</div>
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
+	<!-- if no internet -->
+	<!-- <script src='js/jquery.js'></script> -->
+	<script src='js/script.js'></script>
 </body>
 </html>
