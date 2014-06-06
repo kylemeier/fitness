@@ -172,7 +172,7 @@ function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutCla
     $(slideInDiv).addClass('slideIn');
     setTimeout(function(){
       $('.remove').remove();
-    },1000);
+    },500);
   },1);
 }
 
