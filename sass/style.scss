@@ -1,7 +1,9 @@
 $red: #900022;
 $background: #78A8B9;
 $background: #53A491;
+$background: #B1462D;
 $height: 476px;
+$headerHeight: 50px;
 
 @font-face {
     font-family: 'proxima_nova';
@@ -47,6 +49,10 @@ html{
   background:$background;
 }
 
+body{
+  overflow:hidden;
+}
+
 header, h1, h2, label{
   color:#373A3A;
   background:none;
@@ -55,18 +61,37 @@ header, h1, h2, label{
   font-size:1.5em;
 }
 
-.container{
-  position:absolute;
-  top:5%;
-  box-sizing:border-box;
-  float:left;
-  width:90%;
-  height:90%;
-  margin:0 5%;
-  box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
-  border-radius:10px;
-  background:#EBEAE6;
-  overflow:hidden;
+// .container{
+//   position:absolute;
+//   top:5%;
+//   box-sizing:border-box;
+//   float:left;
+//   width:90%;
+//   height:90%;
+//   margin:0 5%;
+//   box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
+//   border-radius:10px;
+//   background:#EBEAE6;
+//   overflow:hidden;
+// }
+
+header{
+  height:50px;
+  width:100%;
+  background:$background;
+  position:fixed;
+  top:0;
+  line-height:50px;
+  h1{
+    position:fixed;
+    width:20%;
+    display:block;
+  }
+  button{
+    position:fixed;
+    right:0;
+    top:0;
+  }
 }
 
 .right{
@@ -86,26 +111,7 @@ header, h1, h2, label{
   height:$height;
 }
 
-button{
-  position:relative;
-  text-align:center;
-  display:block;
-  padding: 5px 10px;
-  color:#EBEAE6;
-  outline:none;
-  max-width:100px;
-  margin:10px auto;
-  border-radius: 50px;
-  background: #53A491;
-  border:none;
-  &[disabled]{
-    background-image:none;
-    background-color:#848484;
-    background-color:#EBEAE6;
-    border:1px solid #ABABA8;
-    color:#ABABA8;
-  }
-}
+
 
 .groupbutton{
   position:relative;
@@ -172,7 +178,6 @@ button{
   text-align:center;
   height:100%;
   width:100%;
-  // margin:10px;
   top:0;
   box-sizing:border-box;
 }
@@ -330,51 +335,91 @@ button{
   cursor: default;
 }
 
-@media(min-width:1100px){
-  .container{
-    display:block;
-    max-width:1000px;
-    left:50%;
-    margin-left:-500px;
-  }
-  #exercisegroupnamer,#exerciseenter, #exercisepicker, #workout{
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-  position:absolute;
-  text-align:center;
-  height:100%;
-  width:100%;
-  padding:20px;
-  top:0;
-  box-sizing:border-box;
-}
-}
+// @media(min-width:1100px){
+//   .container{
+//     display:block;
+//     max-width:1000px;
+//     left:50%;
+//     margin-left:-500px;
+//   }
+//   #exercisegroupnamer,#exerciseenter, #exercisepicker, #workout{
+//   -webkit-transition: all .5s ease-in-out;
+//   transition: all .5s ease-in-out;
+//   position:absolute;
+//   text-align:center;
+//   height:100%;
+//   width:100%;
+//   padding:20px;
+//   top:0;
+//   box-sizing:border-box;
+//   }
+// }
 
-@media (max-width:520px){
+@media (max-width:5000px){
   header, h1, h2, label{
     font-size:1em;
   }
-
   .container{
-  position:absolute;
-  top:0;
-  width:100%;
-  height:100%;
-  margin:0;
-  border-radius:0px;
-  box-shadow:none;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:0;
+    border-radius:0px;
+    background:#EBEAE6;
   }
-    .groupbutton{
-      font-size:1.2em;
+  .header-bar{
+    position:absolute;
+    top:0;
+    height:$headerHeight;
+    background:$background;
+    width:100%;
+  }
+  .remove{
+    opacity:0;
+  }
+  header{
+    height:$headerHeight;
+    width:100%;
+    position:absolute;
+    top:0;
+    line-height:$headerHeight;
+    h1{
+      position:relative;
+      width:100px;
+      display:block;
+      color:#E1CCAD;
+      margin:0 auto;
     }
-    ul{
-      width:70%;
+    button{
+      font-size:2em;
+      position:absolute;
+      right:0;
+      top:0;
+      background:none;
+      // background:grey;
+      line-height:$headerHeight;
+      border:none;
+      color:#712D1D;
+      &[disabled]{
+        background-color:#848484;
+        background-color:#EBEAE6;
+        border:1px solid #ABABA8;
+        color:#ABABA8;
+      }
     }
-  button{
-    font-size:.7em;
-    padding:7px;
-    min-width:80px;
-    margin: 5 10px;
-
+  }
+  .intro-text{
+    position:absolute;
+    top:$headerHeight;
+    width:100%;
+    background:#fff;
+    color:#040E0F;
+    p{
+      color:#4C4C4C;
+      border-top:1px solid #EBEAE6;
+      padding:15px 5%;
+    }
   }
 }

@@ -1,15 +1,19 @@
 //**general**
 //see if creating a 'searchgroups' function that returns the requested group would be useful
-//combine 'exercise group name screen' with 'exercise group select screen' and make it the intro page
+//make 'exercise group select screen' the intro page
+//create log page
 //
 //***exercise group name screen ***
 //prevent duplicate group names
+//remove name limit
 //
 //******exercise enter screen********
 //
 //add cookies
 //
 //******exercise group select screen********
+//add 'add group' button in top right (a plus sign)
+//add text explaining how to add new group for first time users
 //add expand and start workout buttons
 //expand shows the exercise group below the button with an edit and delete button next to each exercise item
 //
@@ -84,7 +88,7 @@ var currentExerciseNum = 1,
     modalConfirm =
       '<div class=\'modalconfirm invisible\'> \
         <div class= \'confirmbox\'> \
-          <p>Because the fields are not complete, your information will not be saved. Do you wish to proceed?</p> \
+          <p>Because the fields are not complete, changes made on this screen will not be saved. Do you wish to proceed?</p> \
           <button class=\'modalbutton confirm\'>Yes</button> \
           <button class=\'modalbutton deny\'>No</button> \
         </div> \
@@ -114,7 +118,11 @@ var currentExerciseNum = 1,
       </div> ';
 
 
+$(window).resize(resetScroll);
 
+function resetScroll(){
+  $(document).scrollTop(0);
+}
 $('#exercisenumber').html(currentExerciseNum);
 
 function addGroup(groupName, groupNum){
@@ -334,6 +342,14 @@ $(document).on('click', '.autofill', function(){
   groupNum = 2;
   addExerciseGroups();
   displaySaved();
+});
+
+/**
+* '+' button on 'Groups' screen
+*/
+$(document).on('click', '.add-group', function(event){
+  event.preventDefault();
+  screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right','#exercisepicker','remove left');
 });
 
 $(document).on('click', '.namerproceed', function(){
