@@ -1,5 +1,6 @@
 //**general**
 //see if creating a 'searchgroups' function that returns the requested group would be useful
+//combine 'exercise group name screen' with 'exercise group select screen' and make it the intro page
 //
 //***exercise group name screen ***
 //prevent duplicate group names
@@ -59,11 +60,11 @@ var currentExerciseNum = 1,
       <h1>#<span class=\'exercisenumber\'></span></h1> \
       <label for=\'exercisename\'>Exercise Name</label> \
       <input type=\'text\' name=\'exercisename\' id=\'exercisename\'> \
-      <label for=\'exerciseweight\'>Weight lifted (in lbs) *only numbers accepted</label> \
+      <label for=\'exerciseweight\'>Weight lifted (in lbs)</label> \
       <input type=\'number\' name=\'exerciseweight\' id=\'exerciseweight\'> \
-      <label for=\'exercisesets\'>Sets *only numbers accepted</label> \
+      <label for=\'exercisesets\'>Sets</label> \
       <input type=\'number\' name=\'exercisesets\' id=\'exercisesets\'> \
-      <label for=\'exercisereps\'>Reps per set *only numbers accepted</label> \
+      <label for=\'exercisereps\'>Reps per set</label> \
       <input type=\'number\' name=\'exercisereps\' id=\'exercisereps\'> \
       <ul> \
         <li> \

@@ -172,7 +172,7 @@ button{
   text-align:center;
   height:100%;
   width:100%;
-  padding:20px;
+  // margin:10px;
   top:0;
   box-sizing:border-box;
 }
@@ -202,6 +202,7 @@ button{
       border-radius:5px;
       background:#F8F7F2;
       width:100%;
+      height:50px;
       border:none;
     }
 }
@@ -225,25 +226,23 @@ button{
   input{
     display:block;
     margin:0 auto;
-    width:80%;
-    max-width: 500px;
-    border-radius: 5px;
-    padding:10px 0;
+    width:100%;
+    height:50px;
+    border:none;
+    border-bottom:1px solid #EBEAE6;
   }
   ul{
     width:100%;
-    height:100px;
+    height:200px;
     margin-top:10px;
   }
   li{
-    width:500px;
-    margin:0 auto;
-  }
-
-  button{
+    display:inline-block;
     position:relative;
-    float:left;
   }
+  .prevexercisebutton{
+      
+    }
 }
 
 #exercisepicker{
@@ -363,12 +362,19 @@ button{
   height:100%;
   margin:0;
   border-radius:0px;
+  box-shadow:none;
   }
     .groupbutton{
       font-size:1.2em;
     }
+    ul{
+      width:70%;
+    }
   button{
     font-size:.7em;
     padding:7px;
+    min-width:80px;
+    margin: 5 10px;
+
   }
 }
