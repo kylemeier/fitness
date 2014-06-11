@@ -13,6 +13,13 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: 'icons';
+  src: url("../icons/icons.eot?dcizy3");
+  src: url("../icons/icons.eot?#iefixdcizy3") format("embedded-opentype"), url("../icons/icons.woff?dcizy3") format("woff"), url("../icons/icons.ttf?dcizy3") format("truetype"), url("../icons/icons.svg?dcizy3#icons") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 .autofill {
   color: #fff;
   background-color: #900022;
@@ -184,6 +191,8 @@ header, h1, h2, label {
     border: none;
     background: none;
     padding: 0; }
+    button:focus {
+      outline: 0; }
 
   input {
     padding: 0;
@@ -268,7 +277,7 @@ header, h1, h2, label {
           left: 0;
           padding-left: 16px;
           font-size: .9em;
-          line-height: 25px;
+          line-height: 40px;
           border: none; }
   #exercisepicker .groupbutton {
     position: relative;
@@ -284,10 +293,42 @@ header, h1, h2, label {
     right: 0;
     padding-right: 16px;
     line-height: 50px; }
+  #exercisepicker .exercise-delete {
+    transition: all .5s; }
+  #exercisepicker .exercise-delete:before {
+    font-family: 'icons';
+    content: "\e600";
+    color: #C83029;
+    font-size: 1.1em;
+    line-height: 40px;
+    margin-right: 5px; }
+  #exercisepicker .active {
+    -webkit-transform: scale(1.3, 1.3); }
+  #exercisepicker .exercise-edit {
+    position: absolute;
+    right: 0;
+    padding-right: 16px; }
+  #exercisepicker .confirm-delete {
+    position: absolute;
+    right: 0;
+    width: 0;
+    transition: all .5s;
+    background: #C83029;
+    color: #EBEAE6; }
+  #exercisepicker .delete-active {
+    width: 100px; }
 
-  #exercisegroupnamer header button {
+  #exercisegroupnamer .groups-back {
     left: 0;
     padding-left: 16px; }
+  #exercisegroupnamer .namerproceed {
+    right: 0;
+    padding-right: 16px;
+    transition: all .7s; }
+    #exercisegroupnamer .namerproceed[disabled] {
+      background: #b1462d;
+      color: #b1462d;
+      border: none; }
   #exercisegroupnamer input {
     position: absolute;
     left: 0;
@@ -297,15 +338,4 @@ header, h1, h2, label {
     height: 50px;
     border: none;
     border-radius: 0;
-    box-sizing: border-box; }
-  #exercisegroupnamer span button {
-    position: absolute;
-    top: 100px;
-    right: 0;
-    padding-right: 16px;
-    font-size: 3em;
-    line-height: 50px;
-    color: #ABABA8;
-    transition: all .5s; }
-    #exercisegroupnamer span button[disabled] {
-      color: #F8F7F2; } }
+    box-sizing: border-box; } }

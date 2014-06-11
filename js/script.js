@@ -1,19 +1,16 @@
 //**general**
 //see if creating a 'searchgroups' function that returns the requested group would be useful
-//make 'exercise group select screen' the intro page
 //create log page
+//crate truncate function that adds an ellipses to long group names
 //
 //***exercise group name screen ***
 //prevent duplicate group names
-//remove name limit
 //
 //******exercise enter screen********
 //
 //add cookies
 //
 //******exercise group select screen********
-//add 'add group' button in top right (a plus sign)
-//add text explaining how to add new group for first time users
 //add expand and start workout buttons
 //expand shows the exercise group below the button with an edit and delete button next to each exercise item
 //
@@ -69,10 +66,9 @@ var currentExerciseNum = 1,
         <header> \
           <h1>New Group</h1> \
           <button class=\'groups-back\'> &lsaquo; Groups</button> \
-          </header> \
+          <button class=\'namerproceed toggledisable\'> Next &rsaquo;</button> \
+        </header> \
           <input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' placeholder=\'Enter group name\' maxlength=\'26\'> \
-        <span><button class=\'namerproceed toggledisable\'>&rsaquo;</button></span> \
-        </div> \
       </div>',
     exerciseEnter =
       '<div id=\'exerciseenter\' class=\'inview\'> \
@@ -332,7 +328,7 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-        exerciseList.push('<li><button>-</button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button>edit</button></li>');
+        exerciseList.push('<li><button class=\'exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
       }
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
@@ -552,7 +548,7 @@ $(document).on('click', '.startworkout', function(){
   $('#workoutreps').html('Reps: '+currentExercises[0]['reps']);
 });
 
-$(document).on('click', '.groupbutton', function(){
+$(document).on('click', '.groupbutton', function(event){
   /**
    * Buttons with the names of the user's exercise groups
    */
@@ -562,7 +558,23 @@ $(document).on('click', '.groupbutton', function(){
   $(this).next('ul').slideToggle();
 });
 
+$(document).on('click', '.exercise-delete',function(event){
+  if($(this).hasClass('active')){
+    $(this).removeClass('active');
+    $(this).siblings('.confirm-delete').removeClass('delete-active');
+  }else{
+    $('.confirm-delete').removeClass('delete-active');
+    $('.exercise-delete').removeClass('active');
+    $(this).addClass('active');
+    $(this).siblings('.confirm-delete').addClass('delete-active');
+  }
+  event.stopPropagation();
+});
 
+$(document).on('click',function(event){
+    $('.confirm-delete').removeClass('delete-active');
+    $('.exercise-delete').removeClass('active');
+});    
 
 // var startTime = 0;
 // var timeRunning = 0;
