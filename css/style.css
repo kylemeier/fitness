@@ -20,6 +20,18 @@
   font-weight: normal;
   font-style: normal; }
 
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
 .autofill {
   color: #fff;
   background-color: #900022;
@@ -206,7 +218,8 @@ header, h1, h2, label {
     bottom: 0;
     right: 0;
     width: 100%;
-    background: #EBEAE6; }
+    background: #EBEAE6;
+    cursor: pointer; }
 
   .header-bar {
     position: absolute;
@@ -293,17 +306,16 @@ header, h1, h2, label {
     right: 0;
     padding-right: 16px;
     line-height: 50px; }
-  #exercisepicker .exercise-delete {
+  #exercisepicker .icon-exercise-delete {
     transition: all .5s; }
-  #exercisepicker .exercise-delete:before {
-    font-family: 'icons';
+  #exercisepicker .icon-exercise-delete:before {
     content: "\e600";
     color: #C83029;
     font-size: 1.1em;
     line-height: 40px;
     margin-right: 5px; }
   #exercisepicker .active {
-    -webkit-transform: scale(1.3, 1.3); }
+    -webkit-transform: translateX(-100px); }
   #exercisepicker .exercise-edit {
     position: absolute;
     right: 0;

@@ -11,7 +11,7 @@
 //add cookies
 //
 //******exercise group select screen********
-//add expand and start workout buttons
+//add indicator groups can be expanded
 //expand shows the exercise group below the button with an edit and delete button next to each exercise item
 //
 //
@@ -55,7 +55,7 @@ var currentExerciseNum = 1,
         </header> \
         <div class=\'intro-text\'> \
           <p>Looks like you don\'t have any exercise groups set up!</p> \
-          <p>In each group you\'ll be entering all the exercises you do in a day (Leg Day, Thursday Workout, etc).</p> \
+          <p>In each group you\'ll be entering all the exercises you do in a day (such as Leg Day, Thursday Workout, etc).</p> \
           <p>Click on the \'+\' in the top right to get started.</p> \
         </div> \
       <ul class=\'group-list\'> \
@@ -328,12 +328,12 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-        exerciseList.push('<li><button class=\'exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
+        exerciseList.push('<li id='+e+'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
       }
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
       // with its exercise names flattened into a viewable unordered list below it
-      $('#exercisepicker').find('.group-list').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
+      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
     }
 }
 
@@ -558,22 +558,25 @@ $(document).on('click', '.groupbutton', function(event){
   $(this).next('ul').slideToggle();
 });
 
-$(document).on('click', '.exercise-delete',function(event){
-  if($(this).hasClass('active')){
-    $(this).removeClass('active');
-    $(this).siblings('.confirm-delete').removeClass('delete-active');
-  }else{
-    $('.confirm-delete').removeClass('delete-active');
-    $('.exercise-delete').removeClass('active');
-    $(this).addClass('active');
-    $(this).siblings('.confirm-delete').addClass('delete-active');
-  }
+$(document).on('click', '.icon-exercise-delete',function(event){
+  $('.confirm-delete').removeClass('delete-active');
+  $('.icon-exercise-delete').removeClass('active');
+  $(this).addClass('active');
+  $(this).siblings('.confirm-delete').addClass('delete-active');
   event.stopPropagation();
 });
 
+$(document).on('click', '.confirm-delete', function(event){
+  var parent = $(this).parent();
+  var group = parent.parent().parent().attr('id');
+  var exercise = parent.attr('id');
+  allExercises[group]['exerciseArray'].splice(exercise,1);
+  parent.remove();
+});
+
 $(document).on('click',function(event){
-    $('.confirm-delete').removeClass('delete-active');
-    $('.exercise-delete').removeClass('active');
+  $('.confirm-delete').removeClass('delete-active');
+  $('.icon-exercise-delete').removeClass('active');
 });    
 
 // var startTime = 0;
