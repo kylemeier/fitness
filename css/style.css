@@ -27,33 +27,11 @@
   display: table;
   clear: both; }
 
-html {
-  background: #b1462d; }
-
-body {
-  overflow: hidden; }
-
 header, h1, h2, label {
   color: #373A3A;
   background: none;
   font-family: 'proxima_nova';
   font-size: 1.5em; }
-
-header {
-  height: 50px;
-  width: 100%;
-  background: #b1462d;
-  position: fixed;
-  top: 0;
-  line-height: 50px; }
-  header h1 {
-    position: fixed;
-    width: 20%;
-    display: block; }
-  header button {
-    position: fixed;
-    right: 0;
-    top: 0; }
 
 .right {
   right: -100%; }
@@ -67,19 +45,6 @@ header {
 #slidingcontent {
   position: relative;
   height: 476px; }
-
-.groupbutton {
-  position: relative;
-  text-align: center;
-  display: block;
-  padding: 5px 5px;
-  color: #fff;
-  max-width: 300px;
-  margin: 0 auto;
-  border-radius: 5px;
-  border: 1px solid #000;
-  background-image: linear-gradient(#6293b2, #385466);
-  box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2; }
 
 .modalconfirm {
   position: absolute;
@@ -123,22 +88,10 @@ header {
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
   position: absolute;
-  text-align: center;
   height: 100%;
   width: 100%;
   top: 0;
   box-sizing: border-box; }
-
-#exercisegroupnamer {
-  top: 0; }
-  #exercisegroupnamer header {
-    padding-top: 50px; }
-  #exercisegroupnamer input {
-    border-radius: 5px;
-    background: #F8F7F2;
-    width: 100%;
-    height: 50px;
-    border: none; }
 
 #exerciseenter header {
   padding-top: 15px;
@@ -164,27 +117,6 @@ header {
 #exerciseenter li {
   display: inline-block;
   position: relative; }
-
-#exercisepicker header {
-  color: #fff; }
-#exercisepicker input {
-  color: #000;
-  display: block; }
-#exercisepicker ul {
-  min-width: 215px;
-  margin: 0 auto; }
-#exercisepicker ol {
-  display: none; }
-  #exercisepicker ol li {
-    color: #fff; }
-#exercisepicker li {
-  display: block; }
-#exercisepicker .groupbutton {
-  margin-top: 15px;
-  font-size: 1.2em; }
-#exercisepicker .startworkout {
-  font-size: .8em;
-  margin-bottom: 30px; }
 
 #resultbuttons {
   margin-top: 25px; }
@@ -234,14 +166,37 @@ header {
   header, h1, h2, label {
     font-size: 1em; }
 
+  ::-webkit-input-placeholder {
+    color: #ABABA8; }
+
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: #ABABA8; }
+
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ABABA8; }
+
+  :-ms-input-placeholder {
+    color: #ABABA8; }
+
+  button {
+    border: none;
+    background: none;
+    padding: 0; }
+
+  input {
+    padding: 0;
+    color: #4C4C4C;
+    background: #F8F7F2; }
+
   .container {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    margin: 0;
-    border-radius: 0px;
+    width: 100%;
     background: #EBEAE6; }
 
   .header-bar {
@@ -254,40 +209,103 @@ header {
   .remove {
     opacity: 0; }
 
-  header {
+  #exercisepicker header, #exercisegroupnamer header {
+    text-align: center;
     height: 50px;
     width: 100%;
     position: absolute;
     top: 0;
     line-height: 50px; }
-    header h1 {
+    #exercisepicker header h1, #exercisegroupnamer header h1 {
       position: relative;
-      width: 100px;
       display: block;
-      color: #E1CCAD;
-      margin: 0 auto; }
-    header button {
-      font-size: 2em;
+      color: #E1CCAD; }
+    #exercisepicker header button, #exercisegroupnamer header button {
       position: absolute;
-      right: 0;
-      top: 0;
-      background: none;
       line-height: 50px;
-      border: none;
-      color: #712D1D; }
-      header button[disabled] {
+      color: #712D1D;
+      top: 0; }
+      #exercisepicker header button[disabled], #exercisegroupnamer header button[disabled] {
         background-color: #848484;
         background-color: #EBEAE6;
         border: 1px solid #ABABA8;
         color: #ABABA8; }
 
-  .intro-text {
+  #exercisepicker header button {
+    font-size: 2em;
+    right: 0;
+    padding-right: 16px;
+    color: #712D1D; }
+  #exercisepicker .intro-text {
     position: absolute;
     top: 50px;
     width: 100%;
-    background: #fff;
-    color: #040E0F; }
-    .intro-text p {
+    background: #F8F7F2;
+    color: #040E0F;
+    text-align: center; }
+    #exercisepicker .intro-text p {
       color: #4C4C4C;
       border-top: 1px solid #EBEAE6;
-      padding: 15px 5%; } }
+      padding: 15px 5%; }
+  #exercisepicker ul {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 100%;
+    background: #F8F7F2; }
+    #exercisepicker ul li {
+      position: relative;
+      border-top: 1px solid #EBEAE6;
+      left: 0; }
+      #exercisepicker ul li ul {
+        position: relative;
+        display: none;
+        top: 0;
+        left: 0;
+        border-top: 3px solid #EBEAE6;
+        border-bottom: 3px solid #EBEAE6; }
+        #exercisepicker ul li ul li {
+          left: 0;
+          padding-left: 16px;
+          font-size: .9em;
+          line-height: 25px;
+          border: none; }
+  #exercisepicker .groupbutton {
+    position: relative;
+    width: 100%;
+    font-size: 1em;
+    text-align: left;
+    padding-left: 16px;
+    border-top: 1px solid #EBEAE6;
+    line-height: 50px; }
+  #exercisepicker .startworkout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 16px;
+    line-height: 50px; }
+
+  #exercisegroupnamer header button {
+    left: 0;
+    padding-left: 16px; }
+  #exercisegroupnamer input {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    padding-left: 16px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box; }
+  #exercisegroupnamer span button {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    padding-right: 16px;
+    font-size: 3em;
+    line-height: 50px;
+    color: #ABABA8;
+    transition: all .5s; }
+    #exercisegroupnamer span button[disabled] {
+      color: #F8F7F2; } }

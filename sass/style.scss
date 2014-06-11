@@ -45,13 +45,13 @@ $headerHeight: 50px;
   clear: both; 
 }
 
-html{
-  background:$background;
-}
+// html{
+//   background:$background;
+// }
 
-body{
-  overflow:hidden;
-}
+// body{
+//   overflow:hidden;
+// }
 
 header, h1, h2, label{
   color:#373A3A;
@@ -59,39 +59,6 @@ header, h1, h2, label{
   // font-family: 'Roboto', Arial, sans-serif; font-weight: 300; 
   font-family: 'proxima_nova';
   font-size:1.5em;
-}
-
-// .container{
-//   position:absolute;
-//   top:5%;
-//   box-sizing:border-box;
-//   float:left;
-//   width:90%;
-//   height:90%;
-//   margin:0 5%;
-//   box-shadow: inset -1px 0px 3px #262421, inset 1px 2px 3px #262421;
-//   border-radius:10px;
-//   background:#EBEAE6;
-//   overflow:hidden;
-// }
-
-header{
-  height:50px;
-  width:100%;
-  background:$background;
-  position:fixed;
-  top:0;
-  line-height:50px;
-  h1{
-    position:fixed;
-    width:20%;
-    display:block;
-  }
-  button{
-    position:fixed;
-    right:0;
-    top:0;
-  }
 }
 
 .right{
@@ -109,22 +76,6 @@ header{
 #slidingcontent{
   position:relative;
   height:$height;
-}
-
-
-
-.groupbutton{
-  position:relative;
-  text-align:center;
-  display:block;
-  padding: 5px 5px;
-  color:#fff;
-  max-width:300px;
-  margin:0 auto;
-  border-radius: 5px;
-  border:1px solid #000;
-  background-image: linear-gradient(#6293B2, #385466 );
-  box-shadow: inset -1px -1px #98A8B2, inset 0 1px #98A8B2, inset 1px 0 #98A8B2;  
 }
 
 .modalconfirm{
@@ -175,41 +126,10 @@ header{
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
   position:absolute;
-  text-align:center;
   height:100%;
   width:100%;
   top:0;
   box-sizing:border-box;
-}
-
-// ::-webkit-input-placeholder {
-//    color: red;
-// }
-
-// :-moz-placeholder { /* Firefox 18- */
-//    color: red;  
-// }
-
-// ::-moz-placeholder {  /* Firefox 19+ */
-//    color: red;  
-// }
-
-// :-ms-input-placeholder {  
-//    color: red;  
-// }
-
-#exercisegroupnamer{
-  top:0;
-    header{
-      padding-top:50px;
-    }
-    input{
-      border-radius:5px;
-      background:#F8F7F2;
-      width:100%;
-      height:50px;
-      border:none;
-    }
 }
 
 #exerciseenter{
@@ -248,37 +168,6 @@ header{
   .prevexercisebutton{
       
     }
-}
-
-#exercisepicker{
-  header{
-    color:#fff;
-  }
-  input{
-    color:#000;
-    display:block;
-  }
-  ul{
-    min-width:215px;
-    margin:0 auto;
-  }
-  ol{
-    display:none;
-    li{
-      color:#fff;
-    }
-  }
-  li{
-    display: block;
-  }
-  .groupbutton{
-    margin-top:15px;
-    font-size:1.2em;
-  } 
-  .startworkout{
-    font-size:.8em;
-    margin-bottom:30px;
-  }
 }
 
 #resultbuttons{
@@ -359,14 +248,38 @@ header{
   header, h1, h2, label{
     font-size:1em;
   }
+  ::-webkit-input-placeholder {
+    color: #ABABA8;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: #ABABA8;  
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: #ABABA8;  
+  }
+
+  :-ms-input-placeholder {  
+   color: #ABABA8;  
+  }
+  button{
+    border:none;
+    background:none;
+    padding:0;
+  }
+  input{
+    padding:0;
+    color:#4C4C4C;
+    background:#F8F7F2;
+  }
   .container{
     position:absolute;
     top:0;
     left:0;
     bottom:0;
     right:0;
-    margin:0;
-    border-radius:0px;
+    width:100%;
     background:#EBEAE6;
   }
   .header-bar{
@@ -379,7 +292,9 @@ header{
   .remove{
     opacity:0;
   }
+#exercisepicker, #exercisegroupnamer{ 
   header{
+    text-align:center;
     height:$headerHeight;
     width:100%;
     position:absolute;
@@ -387,21 +302,14 @@ header{
     line-height:$headerHeight;
     h1{
       position:relative;
-      width:100px;
       display:block;
       color:#E1CCAD;
-      margin:0 auto;
     }
     button{
-      font-size:2em;
       position:absolute;
-      right:0;
-      top:0;
-      background:none;
-      // background:grey;
       line-height:$headerHeight;
-      border:none;
       color:#712D1D;
+      top:0;
       &[disabled]{
         background-color:#848484;
         background-color:#EBEAE6;
@@ -410,16 +318,105 @@ header{
       }
     }
   }
+}
+#exercisepicker{
+  header{
+    button{
+      font-size:2em;
+      right:0;
+      padding-right:16px;
+      color:#712D1D;
+    }
+  }
   .intro-text{
     position:absolute;
     top:$headerHeight;
     width:100%;
-    background:#fff;
+    background:#F8F7F2;
     color:#040E0F;
+    text-align:center;
     p{
       color:#4C4C4C;
       border-top:1px solid #EBEAE6;
       padding:15px 5%;
+    }
+  }
+  ul{
+    position:absolute;
+    left:0;
+    top:100px;
+    width:100%;
+    background:#F8F7F2;
+    li{
+      position:relative;
+      border-top: 1px solid #EBEAE6;
+      left:0;
+      ul{
+        position:relative;
+        display:none;
+        top:0;
+        left:0;
+        border-top:3px solid #EBEAE6;
+        border-bottom:3px solid #EBEAE6;
+        li{
+          left:0;
+          padding-left:16px;
+          font-size:.9em;
+          line-height:25px;
+          border: none;
+        }
+      }
+    }
+  }
+  .groupbutton{
+    position:relative;
+    width:100%;
+    font-size:1em;
+    text-align:left;
+    padding-left:16px;
+    border-top: 1px solid #EBEAE6;
+    line-height:50px;
+  }
+  .startworkout{
+    position:absolute;
+    top:0;
+    right:0;
+    padding-right:16px;
+    line-height:50px;
+  }
+}
+#exercisegroupnamer{
+  header{
+  button{
+    left:0;
+    padding-left:16px;
+  }
+  }
+    input{
+      position:absolute;
+      left:0;
+      top:100px;
+      padding-left:16px;
+      width:100%;
+      height:50px;
+      border:none;
+      border-radius:0;
+      box-sizing:border-box;
+    }
+    span{
+      button{
+        position:absolute;
+        top:100px;
+        right:0;
+        padding-right:16px;
+        font-size:3em;
+        line-height:50px;
+        color:#ABABA8;
+        transition: all .5s;
+        &[disabled]{
+          color:#F8F7F2;
+        }
+      }
     }
   }
 }

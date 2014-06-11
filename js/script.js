@@ -50,13 +50,29 @@ var currentExerciseNum = 1,
     groupNum = 0,
     allExercises = {},
     // jshint multistr: true
+    exercisePicker =
+      '<div id=\'exercisepicker\'> \
+        <header> \
+          <h1>Groups</h1> \
+          <button class =\'add-group\'>+</button> \
+        </header> \
+        <div class=\'intro-text\'> \
+          <p>Looks like you don\'t have any exercise groups set up!</p> \
+          <p>In each group you\'ll be entering all the exercises you do in a day (Leg Day, Thursday Workout, etc).</p> \
+          <p>Click on the \'+\' in the top right to get started.</p> \
+        </div> \
+      <ul class=\'group-list\'> \
+      </ul> \
+      </div>',
     exerciseGroupNamer =
       '<div id=\'exercisegroupnamer\'> \
-      <header>Please enter an exercise group name. This group will contain all exercises you \
-      perform on a given day. You will be creating a group for each day of exercises you perform.</header> \
-      <label for=\'inputgroupname\'>Group:</label> \
-      <input type=\'text\' maxlength = 20 name=\'inputgroupname\' id=\'inputgroupname\'> \
-      <button class=\'namerproceed toggledisable\' disabled>Proceed</button> \
+        <header> \
+          <h1>New Group</h1> \
+          <button class=\'groups-back\'> &lsaquo; Groups</button> \
+          </header> \
+          <input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' placeholder=\'Enter group name\' maxlength=\'26\'> \
+        <span><button class=\'namerproceed toggledisable\'>&rsaquo;</button></span> \
+        </div> \
       </div>',
     exerciseEnter =
       '<div id=\'exerciseenter\' class=\'inview\'> \
@@ -93,13 +109,6 @@ var currentExerciseNum = 1,
           <button class=\'modalbutton deny\'>No</button> \
         </div> \
       </div>',
-    exercisePicker =
-      '<div id=\'exercisepicker\'> \
-      <header>Your exercise groups:</header> \
-      <h1>(click a group name to view its exercises)</h1> \
-      <ul> \
-      </ul> \
-      </div>',
     workout =
       '<div id=\'workout\'> \
         <header id=\'workoutname\'></header> \
@@ -133,6 +142,15 @@ function addGroup(groupName, groupNum){
    */
   allExercises['group'+groupNum] = {name: groupName, exerciseArray: []};
 }
+
+function isObjEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return true;
+}
+
 
 function emptyFields(div){
   /**
@@ -217,9 +235,12 @@ setTimeout(function(){
 
     //Update button states on each key press
     $(document).find('input').keyup(function(){
+      console.log('in here', slideInDiv);
       if(!emptyFields(slideInDiv)){
+        console.log('in here2');
         $(slideInDiv).find('.toggledisable').attr('disabled', false);
       }else{
+        console.log('in here3');
         $(slideInDiv).find('.toggledisable').attr('disabled', true);
       }
     });
@@ -300,23 +321,23 @@ function addExerciseGroups(){
    * Create buttons for each exercise group and add their respective exercises into a list below each button
    * 
    */
-  
+    var exerciseList = [];
     //Iterate through all exercise groups
     for (var i=1; i<=groupNum; i++){
 
       //Empty array that fills with current group's exercises 
-      var exerciseList = [];
+      exerciseList = [];
 
       //Iterate through all exercises in each group
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-        exerciseList.push('<li>'+allExercises['group'+i]['exerciseArray'][e]['name']+'</li>');
+        exerciseList.push('<li><button>-</button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button>edit</button></li>');
       }
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
-      // with its exercise names flattened into a viewable ordered list below it
-      $('#exercisepicker').find('ul').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ol>'+exerciseList.join('')+'</ol><button class=\'startworkout\'>Start Workout</button></li>');
+      // with its exercise names flattened into a viewable unordered list below it
+      $('#exercisepicker').find('.group-list').append('<li id='+allExercises['group'+i]['name']+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
     }
 }
 
@@ -327,7 +348,6 @@ $(document).on('click', '.autofill', function(){
   /**
    * Autofill with test values to skip exercise enter screens
    */
-  screenSlide(exercisePicker, '#exercisepicker', 'right', '#exercisegroupnamer', 'remove left');
   allExercises = {group1: {name:'Tuesday', exerciseArray:
                           [{name:'DB Bench Press', weight: 65, sets:3, reps:6},
                            {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
@@ -341,16 +361,36 @@ $(document).on('click', '.autofill', function(){
                   };
   groupNum = 2;
   addExerciseGroups();
+  $('.intro-text').hide();
   displaySaved();
 });
 
 /**
-* '+' button on 'Groups' screen
+* '+' button on #exercisepicker screen
 */
 $(document).on('click', '.add-group', function(event){
   event.preventDefault();
   screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right','#exercisepicker','remove left');
+  disableButtons('#exercisegroupnamer');
 });
+
+/**
+* '< Groups' button on e#xercisegroupnamer screen
+*/
+$(document).on('click', '.groups-back', function(event){
+  event.preventDefault();
+  groupName = $('#inputgroupname').val();
+  screenSlide(exercisePicker,'#exercisepicker','left','#exercisegroupnamer','remove right');
+  if(groupName){
+    groupNum++;
+    addGroup(groupName, groupNum);
+  }
+  if(!isObjEmpty(allExercises)){
+    $('.intro-text').hide();
+  }
+  addExerciseGroups();
+  displaySaved();
+  });
 
 $(document).on('click', '.namerproceed', function(){
   /**
@@ -519,7 +559,7 @@ $(document).on('click', '.groupbutton', function(){
   event.preventDefault();
 
   //Slide list of exercise names for the selected group
-  $(this).next('ol').slideToggle();
+  $(this).next('ul').slideToggle();
 });
 
 
