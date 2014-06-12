@@ -84,15 +84,15 @@ header, h1, h2, label{
   font-size:1.5em;
 }
 
-.right{
+.right-slide{
   right:-100%;
 }
 
-.left{
+.left-slide{
   right:100%;
 }
 
-.slideIn{
+.slide-in{
   right:0%;
 }
 
@@ -294,6 +294,41 @@ header, h1, h2, label{
       outline:0;
     }
   }
+  header{
+    text-align:center;
+    height:$headerHeight;
+    width:100%;
+    position:absolute;
+    top:0;
+    line-height:$headerHeight;
+    h1{
+      position:relative;
+      display:block;
+      color:#E1CCAD;
+    }
+    button{
+      position:absolute;
+      line-height:$headerHeight;
+      color:#712D1D;
+      top:0;
+      &[disabled]{
+        background-color:#848484;
+        background-color:#EBEAE6;
+        border:1px solid #ABABA8;
+        color:#ABABA8;
+      }
+    }
+  }
+  .left{
+    position:absolute;
+    left:0;
+    padding-left:16px;
+  }
+  .right{
+    position:absolute;
+    right:0;
+    padding-right:16px;
+  }
   input{
     padding:0;
     color:#4C4C4C;
@@ -321,40 +356,11 @@ header, h1, h2, label{
     opacity:0;
   }
 #exercisepicker, #exercisegroupnamer{ 
-  header{
-    text-align:center;
-    height:$headerHeight;
-    width:100%;
-    position:absolute;
-    top:0;
-    line-height:$headerHeight;
-    h1{
-      position:relative;
-      display:block;
-      color:#E1CCAD;
-    }
-    button{
-      position:absolute;
-      line-height:$headerHeight;
-      color:#712D1D;
-      top:0;
-      &[disabled]{
-        background-color:#848484;
-        background-color:#EBEAE6;
-        border:1px solid #ABABA8;
-        color:#ABABA8;
-      }
-    }
-  }
+
 }
 #exercisepicker{
-  header{
-    button{
-      font-size:2em;
-      right:0;
-      padding-right:16px;
-      color:#712D1D;
-    }
+  .add-group{
+    font-size:2em;
   }
   .intro-text{
     position:absolute;
@@ -385,10 +391,8 @@ header, h1, h2, label{
         top:0;
         left:0;
         border-top:3px solid #EBEAE6;
-        border-bottom:3px solid #EBEAE6;
+        border-bottom:2px solid #EBEAE6;
         li{
-          left:0;
-          padding-left:16px;
           font-size:.9em;
           line-height:40px;
           border: none;
@@ -406,10 +410,7 @@ header, h1, h2, label{
     line-height:50px;
   }
   .startworkout{
-    position:absolute;
     top:0;
-    right:0;
-    padding-right:16px;
     line-height:50px;
   }
   
@@ -420,9 +421,6 @@ header, h1, h2, label{
     top:1px;
   }
 
-  .icon-expand-list-down{
-    // top:-2px;
-  }
   .icon-expand-list-up{
     -webkit-transform: rotate(-180deg) translateY(4px);
   }
@@ -430,11 +428,6 @@ header, h1, h2, label{
   .icon-expand-list-down:before, .icon-expand-list-up:before{
     content: '\e601';
     line-height:50px;
-  }
-
-  .up{
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(-180deg);
   }
   
   .icon-exercise-delete{
@@ -451,11 +444,7 @@ header, h1, h2, label{
   .active{
       -webkit-transform: translateX(-100px);
   }
-  .exercise-edit{
-    position:absolute;
-    right:0;
-    padding-right:16px;
-  }
+
   .confirm-delete{
     position:absolute;
     right:0;
@@ -470,13 +459,7 @@ header, h1, h2, label{
   }
 }
 #exercisegroupnamer{
-  .groups-back{
-    left:0;
-    padding-left:16px;
-  }
   .namerproceed{
-    right:0;
-    padding-right:16px;
     transition: all .7s;
     &[disabled]{
       background:$background;

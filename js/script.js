@@ -2,21 +2,23 @@
 //see if creating a 'searchgroups' function that returns the requested group would be useful
 //create log page
 //crate truncate function that adds an ellipses to long group names
+//add cookies
+//
+//******exercise group select screen********
+//fade out if sample workouts button is clicked
+//check for empty groups when expanded out exercise list
+//add 'add exercise' below each exercise list
+//edit button in top left that allows for deletion/renaming of groups
+//expand shows the exercise group below the button with an edit and delete button next to each exercise item
 //
 //***exercise group name screen ***
 //prevent duplicate group names
 //
 //******exercise enter screen********
-//
-//add cookies
-//
-//******exercise group select screen********
-//add indicator groups can be expanded
-//expand shows the exercise group below the button with an edit and delete button next to each exercise item
-//
+//restyle
 //
 //*****exercise section**********
-//
+//restyle
 //
 //every success click:
 //increment stored weight
@@ -66,8 +68,8 @@ var currentExerciseNum = 1,
       '<div id=\'exercisegroupnamer\'> \
         <header> \
           <h1>New Group</h1> \
-          <button class=\'groups-back\'> &lsaquo; Groups</button> \
-          <button class=\'namerproceed toggledisable\'> Next &rsaquo;</button> \
+          <button class=\'groups-back left\'> &lsaquo; Groups</button> \
+          <button class=\'namerproceed toggledisable right\'> Next &rsaquo;</button> \
         </header> \
           <input type=\'text\' name=\'inputgroupname\' id=\'inputgroupname\' placeholder=\'Enter group name\' maxlength=\'26\'> \
       </div>',
@@ -192,7 +194,7 @@ function screenSlide(appendDiv, slideInDiv, slideInDir, slideOutDiv, slideOutCla
   $(slideInDiv).addClass(slideInDir);
   setTimeout(function(){
     $(slideOutDiv).attr('class',slideOutClasses);
-    $(slideInDiv).addClass('slideIn');
+    $(slideInDiv).addClass('slide-in');
     setTimeout(function(){
       $('.remove').remove();
     },500);
@@ -328,13 +330,13 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-          exerciseList.push('<li id='+e+'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
+          exerciseList.push('<li id='+e+' class=\'left\'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit right\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
         }
       
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
       // with its exercise names flattened into a viewable unordered list below it
-      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><span class=\'icon-expand-list-down\'></span><span class=\'icon-expand-list-up invisible\'></span><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
+      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><span class=\'icon-expand-list-down\'></span><span class=\'icon-expand-list-up invisible\'></span><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout right\'>Start Workout</button></li>');
     }
 }
 
@@ -367,7 +369,7 @@ $(document).on('click', '.autofill', function(){
 */
 $(document).on('click', '.add-group', function(event){
   event.preventDefault();
-  screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right','#exercisepicker','remove left');
+  screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right-slide','#exercisepicker','remove left-slide');
   disableButtons('#exercisegroupnamer');
   cleanGroups();
 });
@@ -378,7 +380,7 @@ $(document).on('click', '.add-group', function(event){
 $(document).on('click', '.groups-back', function(event){
   event.preventDefault();
   groupName = $('#inputgroupname').val();
-  screenSlide(exercisePicker,'#exercisepicker','left','#exercisegroupnamer','remove right');
+  screenSlide(exercisePicker,'#exercisepicker','left-slide','#exercisegroupnamer','remove right-slide');
   if(groupName){
     groupNum++;
     addGroup(groupName, groupNum);
@@ -397,7 +399,7 @@ $(document).on('click', '.namerproceed', function(){
   event.preventDefault();
   currentExerciseNum = 1;
   groupName = $('#inputgroupname').val();
-  screenSlide(exerciseEnter,'#exerciseenter','right','#exercisegroupnamer','remove left');
+  screenSlide(exerciseEnter,'#exerciseenter','right-slide','#exercisegroupnamer','remove left-slide');
   disableButtons('.inview');
   $('.exercisenumber').html(currentExerciseNum);
   $('.groupname').html(groupName);
@@ -418,7 +420,7 @@ $(document).on('click','.nextexercisegroupbutton', function(){
       return false;
     }
 
-    screenSlide(exerciseGroupNamer,'#exercisegroupnamer','left','#exerciseenter','remove right');
+    screenSlide(exerciseGroupNamer,'#exercisegroupnamer','left-slide','#exerciseenter','remove right-slide');
     disableButtons('#exercisegroupnamer');
 
     //Only add user entered data if the fields are full
@@ -445,7 +447,7 @@ $(document).on('click','.prevexercisebutton', function(){
     //Find and display exercise information for previous exercise in current exercise group
     for (var i=1; i<=groupNum; i++){
       if(groupName === allExercises['group'+i]['name']){
-        screenSlide(exerciseEnter, '.inview', 'left', '#exerciseenter', 'remove right');
+        screenSlide(exerciseEnter, '.inview', 'left-slide', '#exerciseenter', 'remove right-slide');
         exerciseNumAdjust('.prevexercisebutton','.inview');
 
         //Set timeout to ensure new div has been generated before populating it
@@ -472,7 +474,7 @@ $(document).on('click','.nextexercisebutton', function(){
    * 'Next Exercise'
    */
   event.preventDefault();
-  screenSlide(exerciseEnter, '.inview', 'right', '#exerciseenter', 'remove left');
+  screenSlide(exerciseEnter, '.inview', 'right-slide', '#exerciseenter', 'remove left-slide');
   $('.groupname').html(groupName);
   addExercise();
   exerciseNumAdjust('.nextexercisebutton', '.inview');
@@ -512,7 +514,7 @@ $(document).on('click', '.donebutton', function(){
   if(c === 'fields full'){
     addExercise();
   }
-  screenSlide(exercisePicker,'#exercisepicker','right','#exerciseenter','remove left');
+  screenSlide(exercisePicker,'#exercisepicker','right-slide','#exerciseenter','remove left-slide');
   exerciseNumAdjust('.donebutton', '#exercisepicker');
   displaySaved();
   addExerciseGroups();
@@ -543,7 +545,7 @@ $(document).on('click', '.startworkout', function(){
       break;
     }
   }
-  screenSlide(workout, '#workout', 'right', '#exercisepicker', 'remove left');
+  screenSlide(workout, '#workout', 'right-slide', '#exercisepicker', 'remove left-slide');
   $('#workoutname').html('Name: '+currentExercises[0]['name']);
   $('#workoutweight').html('Weight: '+currentExercises[0]['weight']+'lbs');
   $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);

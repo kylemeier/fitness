@@ -49,13 +49,13 @@ header, h1, h2, label {
   font-family: 'proxima_nova';
   font-size: 1.5em; }
 
-.right {
+.right-slide {
   right: -100%; }
 
-.left {
+.left-slide {
   right: 100%; }
 
-.slideIn {
+.slide-in {
   right: 0%; }
 
 #slidingcontent {
@@ -203,6 +203,38 @@ header, h1, h2, label {
     button:focus {
       outline: 0; }
 
+  header {
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    line-height: 50px; }
+    header h1 {
+      position: relative;
+      display: block;
+      color: #E1CCAD; }
+    header button {
+      position: absolute;
+      line-height: 50px;
+      color: #712D1D;
+      top: 0; }
+      header button[disabled] {
+        background-color: #848484;
+        background-color: #EBEAE6;
+        border: 1px solid #ABABA8;
+        color: #ABABA8; }
+
+  .left {
+    position: absolute;
+    left: 0;
+    padding-left: 16px; }
+
+  .right {
+    position: absolute;
+    right: 0;
+    padding-right: 16px; }
+
   input {
     padding: 0;
     color: #4C4C4C;
@@ -229,33 +261,8 @@ header, h1, h2, label {
   .remove {
     opacity: 0; }
 
-  #exercisepicker header, #exercisegroupnamer header {
-    text-align: center;
-    height: 50px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    line-height: 50px; }
-    #exercisepicker header h1, #exercisegroupnamer header h1 {
-      position: relative;
-      display: block;
-      color: #E1CCAD; }
-    #exercisepicker header button, #exercisegroupnamer header button {
-      position: absolute;
-      line-height: 50px;
-      color: #712D1D;
-      top: 0; }
-      #exercisepicker header button[disabled], #exercisegroupnamer header button[disabled] {
-        background-color: #848484;
-        background-color: #EBEAE6;
-        border: 1px solid #ABABA8;
-        color: #ABABA8; }
-
-  #exercisepicker header button {
-    font-size: 2em;
-    right: 0;
-    padding-right: 16px;
-    color: #712D1D; }
+  #exercisepicker .add-group {
+    font-size: 2em; }
   #exercisepicker .intro-text {
     position: absolute;
     top: 50px;
@@ -283,10 +290,8 @@ header, h1, h2, label {
         top: 0;
         left: 0;
         border-top: 3px solid #EBEAE6;
-        border-bottom: 3px solid #EBEAE6; }
+        border-bottom: 2px solid #EBEAE6; }
         #exercisepicker ul li ul li {
-          left: 0;
-          padding-left: 16px;
           font-size: .9em;
           line-height: 40px;
           border: none; }
@@ -299,10 +304,7 @@ header, h1, h2, label {
     border-top: 1px solid #EBEAE6;
     line-height: 50px; }
   #exercisepicker .startworkout {
-    position: absolute;
     top: 0;
-    right: 0;
-    padding-right: 16px;
     line-height: 50px; }
   #exercisepicker .icon-expand-list-down, #exercisepicker .icon-expand-list-up {
     position: absolute;
@@ -314,9 +316,6 @@ header, h1, h2, label {
   #exercisepicker .icon-expand-list-down:before, #exercisepicker .icon-expand-list-up:before {
     content: '\e601';
     line-height: 50px; }
-  #exercisepicker .up {
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(-180deg); }
   #exercisepicker .icon-exercise-delete {
     transition: all .5s;
     margin-right: 5px; }
@@ -327,10 +326,6 @@ header, h1, h2, label {
     line-height: 40px; }
   #exercisepicker .active {
     -webkit-transform: translateX(-100px); }
-  #exercisepicker .exercise-edit {
-    position: absolute;
-    right: 0;
-    padding-right: 16px; }
   #exercisepicker .confirm-delete {
     position: absolute;
     right: 0;
@@ -341,12 +336,7 @@ header, h1, h2, label {
   #exercisepicker .delete-active {
     width: 100px; }
 
-  #exercisegroupnamer .groups-back {
-    left: 0;
-    padding-left: 16px; }
   #exercisegroupnamer .namerproceed {
-    right: 0;
-    padding-right: 16px;
     transition: all .7s; }
     #exercisegroupnamer .namerproceed[disabled] {
       background: #b1462d;
