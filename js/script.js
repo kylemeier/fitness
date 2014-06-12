@@ -46,6 +46,7 @@ var currentExerciseNum = 1,
     groupName = '',
     groupNum = 0,
     allExercises = {},
+    groupsToClean = [],
     // jshint multistr: true
     exercisePicker =
       '<div id=\'exercisepicker\'> \
@@ -121,7 +122,6 @@ var currentExerciseNum = 1,
           </div> \
         </div> \
       </div> ';
-
 
 $(window).resize(resetScroll);
 
@@ -247,9 +247,9 @@ function addExercise(){
   /**
    * Add exercise input by user to current exercise group
    */
-  var name = $('#exercisename').val();
-      weight = $('#exerciseweight').val();
-      sets = $('#exercisesets').val();
+  var name = $('#exercisename').val(),
+      weight = $('#exerciseweight').val(),
+      sets = $('#exercisesets').val(),
       reps = $('#exercisereps').val();
   allExercises['group'+groupNum]['exerciseArray'][currentExerciseNum-1]=({name: name, weight: weight, sets: sets, reps: reps});
 }
@@ -328,12 +328,13 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-        exerciseList.push('<li id='+e+'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
-      }
+          exerciseList.push('<li id='+e+'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
+        }
+      
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
       // with its exercise names flattened into a viewable unordered list below it
-      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
+      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><span class=\'icon-expand-list-down\'></span><span class=\'icon-expand-list-up invisible\'></span><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout\'>Start Workout</button></li>');
     }
 }
 
@@ -368,6 +369,7 @@ $(document).on('click', '.add-group', function(event){
   event.preventDefault();
   screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right','#exercisepicker','remove left');
   disableButtons('#exercisegroupnamer');
+  cleanGroups();
 });
 
 /**
@@ -552,10 +554,14 @@ $(document).on('click', '.groupbutton', function(event){
   /**
    * Buttons with the names of the user's exercise groups
    */
+
   event.preventDefault();
 
+    $(this).siblings('span').toggleClass('invisible');
+
   //Slide list of exercise names for the selected group
-  $(this).next('ul').slideToggle();
+    $(this).next('ul').slideToggle();
+
 });
 
 $(document).on('click', '.icon-exercise-delete',function(event){
@@ -566,18 +572,43 @@ $(document).on('click', '.icon-exercise-delete',function(event){
   event.stopPropagation();
 });
 
+/**
+ * [description]
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
 $(document).on('click', '.confirm-delete', function(event){
-  var parent = $(this).parent();
-  var group = parent.parent().parent().attr('id');
-  var exercise = parent.attr('id');
-  allExercises[group]['exerciseArray'].splice(exercise,1);
+  var parent = $(this).parent(),
+      group = parent.parent().parent().attr('id'),
+      exercise = parent.attr('id'),
+      exerciseArray = allExercises[group]['exerciseArray'];
+
+  //using delete rather than splice in order to retain indexes, undefined values are removed when user changes screen
+  delete exerciseArray[exercise];
+  if(groupsToClean.indexOf(exerciseArray) === -1){
+    groupsToClean.push(group);
+  }
   parent.remove();
 });
+
+/**
+ * Removes undefined values from exercise arrays
+ */
+function cleanGroups(){
+
+  //cycle through groups that need cleaning
+  for (var i = 0; i<groupsToClean.length; i++){
+
+    //update array by filtering out all undefined values
+    allExercises[groupsToClean[i]]['exerciseArray'] = allExercises[groupsToClean[i]]['exerciseArray'].filter(function(e){ return e });
+  }
+}
 
 $(document).on('click',function(event){
   $('.confirm-delete').removeClass('delete-active');
   $('.icon-exercise-delete').removeClass('active');
 });    
+
 
 // var startTime = 0;
 // var timeRunning = 0;

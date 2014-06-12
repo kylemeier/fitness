@@ -15,8 +15,8 @@
 
 @font-face {
   font-family: 'icons';
-  src: url("../icons/icons.eot?dcizy3");
-  src: url("../icons/icons.eot?#iefixdcizy3") format("embedded-opentype"), url("../icons/icons.woff?dcizy3") format("woff"), url("../icons/icons.ttf?dcizy3") format("truetype"), url("../icons/icons.svg?dcizy3#icons") format("svg");
+  src: url("../icons/icons.eot");
+  src: url("../icons/icons.eot?#iefix") format("embedded-opentype"), url("../icons/icons.woff?") format("woff"), url("../icons/icons.ttf?") format("truetype"), url("../icons/icons.svg?#icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -33,13 +33,10 @@
   -moz-osx-font-smoothing: grayscale; }
 
 .autofill {
-  color: #fff;
-  background-color: #900022;
-  padding: 10px;
+  color: #373A3A;
+  padding: 3px;
   border-radius: 5px;
-  position: absolute;
-  bottom: 0;
-  right: 0; }
+  border: 2px solid #373A3A; }
 
 .group:after {
   content: "";
@@ -219,7 +216,8 @@ header, h1, h2, label {
     right: 0;
     width: 100%;
     background: #EBEAE6;
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
   .header-bar {
     position: absolute;
@@ -297,7 +295,7 @@ header, h1, h2, label {
     width: 100%;
     font-size: 1em;
     text-align: left;
-    padding-left: 16px;
+    padding-left: 40px;
     border-top: 1px solid #EBEAE6;
     line-height: 50px; }
   #exercisepicker .startworkout {
@@ -306,14 +304,27 @@ header, h1, h2, label {
     right: 0;
     padding-right: 16px;
     line-height: 50px; }
+  #exercisepicker .icon-expand-list-down, #exercisepicker .icon-expand-list-up {
+    position: absolute;
+    margin-left: 16px;
+    transition: all .5s;
+    top: 1px; }
+  #exercisepicker .icon-expand-list-up {
+    -webkit-transform: rotate(-180deg) translateY(4px); }
+  #exercisepicker .icon-expand-list-down:before, #exercisepicker .icon-expand-list-up:before {
+    content: '\e601';
+    line-height: 50px; }
+  #exercisepicker .up {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg); }
   #exercisepicker .icon-exercise-delete {
-    transition: all .5s; }
+    transition: all .5s;
+    margin-right: 5px; }
   #exercisepicker .icon-exercise-delete:before {
     content: "\e600";
     color: #C83029;
     font-size: 1.1em;
-    line-height: 40px;
-    margin-right: 5px; }
+    line-height: 40px; }
   #exercisepicker .active {
     -webkit-transform: translateX(-100px); }
   #exercisepicker .exercise-edit {

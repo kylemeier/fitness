@@ -29,11 +29,11 @@ $headerHeight: 50px;
 
 @font-face {
   font-family: 'icons';
-  src:url('../icons/icons.eot?dcizy3');
-  src:url('../icons/icons.eot?#iefixdcizy3') format('embedded-opentype'),
-    url('../icons/icons.woff?dcizy3') format('woff'),
-    url('../icons/icons.ttf?dcizy3') format('truetype'),
-    url('../icons/icons.svg?dcizy3#icons') format('svg');
+  src:url('../icons/icons.eot');
+  src:url('../icons/icons.eot?#iefix') format('embedded-opentype'),
+    url('../icons/icons.woff?') format('woff'),
+    url('../icons/icons.ttf?') format('truetype'),
+    url('../icons/icons.svg?#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -56,13 +56,10 @@ $headerHeight: 50px;
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
 
 .autofill{
-  color:#fff;
-  background-color:#900022;
-  padding:10px;
+  color:#373A3A;
+  padding:3px;
   border-radius:5px;
-  position:absolute;
-  bottom:0;
-  right:0;
+  border: 2px solid #373A3A;
 }
 
 .group:after {
@@ -311,6 +308,7 @@ header, h1, h2, label{
     width:100%;
     background:#EBEAE6;
     cursor:pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
   .header-bar{
     position:absolute;
@@ -403,7 +401,7 @@ header, h1, h2, label{
     width:100%;
     font-size:1em;
     text-align:left;
-    padding-left:16px;
+    padding-left:40px;
     border-top: 1px solid #EBEAE6;
     line-height:50px;
   }
@@ -414,16 +412,41 @@ header, h1, h2, label{
     padding-right:16px;
     line-height:50px;
   }
+  
+  .icon-expand-list-down, .icon-expand-list-up{
+    position:absolute;
+    margin-left:16px;
+    transition: all .5s;
+    top:1px;
+  }
+
+  .icon-expand-list-down{
+    // top:-2px;
+  }
+  .icon-expand-list-up{
+    -webkit-transform: rotate(-180deg) translateY(4px);
+  }
+
+  .icon-expand-list-down:before, .icon-expand-list-up:before{
+    content: '\e601';
+    line-height:50px;
+  }
+
+  .up{
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+  
   .icon-exercise-delete{
     transition: all .5s;
+    margin-right: 5px;
   }
   .icon-exercise-delete:before{
-      // font-family:'icons';
       content: "\e600";
       color:#C83029;
       font-size:1.1em;
       line-height:40px;
-      margin-right: 5px;
+
     }
   .active{
       -webkit-transform: translateX(-100px);
