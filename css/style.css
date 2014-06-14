@@ -100,7 +100,7 @@ header, h1, h2, label {
 .visible {
   opacity: 1; }
 
-#exercisegroupnamer, #exerciseenter, #exercisepicker, #workout {
+#group-namer, #exerciseenter, #groups-page, #workout {
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
   position: absolute;
@@ -218,12 +218,10 @@ header, h1, h2, label {
       position: absolute;
       line-height: 50px;
       color: #712D1D;
-      top: 0; }
+      top: 0;
+      transition: all .7s; }
       header button[disabled] {
-        background-color: #848484;
-        background-color: #EBEAE6;
-        border: 1px solid #ABABA8;
-        color: #ABABA8; }
+        opacity: 0; }
 
   .left {
     position: absolute;
@@ -261,41 +259,41 @@ header, h1, h2, label {
   .remove {
     opacity: 0; }
 
-  #exercisepicker .add-group {
+  #groups-page .add-group {
     font-size: 2em; }
-  #exercisepicker .intro-text {
+  #groups-page .intro-text {
     position: absolute;
     top: 50px;
     width: 100%;
     background: #F8F7F2;
     color: #040E0F;
     text-align: center; }
-    #exercisepicker .intro-text p {
+    #groups-page .intro-text p {
       color: #4C4C4C;
       border-top: 1px solid #EBEAE6;
       padding: 15px 5%; }
-  #exercisepicker ul {
+  #groups-page ul {
     position: absolute;
     left: 0;
     top: 100px;
     width: 100%;
     background: #F8F7F2; }
-    #exercisepicker ul li {
+    #groups-page ul li {
       position: relative;
       border-top: 1px solid #EBEAE6;
       left: 0; }
-      #exercisepicker ul li ul {
+      #groups-page ul li ul {
         position: relative;
         display: none;
         top: 0;
         left: 0;
         border-top: 3px solid #EBEAE6;
         border-bottom: 2px solid #EBEAE6; }
-        #exercisepicker ul li ul li {
+        #groups-page ul li ul li {
           font-size: .9em;
           line-height: 40px;
           border: none; }
-  #exercisepicker .groupbutton {
+  #groups-page .groupbutton {
     position: relative;
     width: 100%;
     font-size: 1em;
@@ -303,46 +301,40 @@ header, h1, h2, label {
     padding-left: 40px;
     border-top: 1px solid #EBEAE6;
     line-height: 50px; }
-  #exercisepicker .startworkout {
+  #groups-page .startworkout {
     top: 0;
     line-height: 50px; }
-  #exercisepicker .icon-expand-list-down, #exercisepicker .icon-expand-list-up {
+  #groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up {
     position: absolute;
     margin-left: 16px;
     transition: all .5s;
     top: 1px; }
-  #exercisepicker .icon-expand-list-up {
+  #groups-page .icon-expand-list-up {
     -webkit-transform: rotate(-180deg) translateY(4px); }
-  #exercisepicker .icon-expand-list-down:before, #exercisepicker .icon-expand-list-up:before {
+  #groups-page .icon-expand-list-down:before, #groups-page .icon-expand-list-up:before {
     content: '\e601';
     line-height: 50px; }
-  #exercisepicker .icon-exercise-delete {
+  #groups-page .icon-exercise-delete {
     transition: all .5s;
     margin-right: 5px; }
-  #exercisepicker .icon-exercise-delete:before {
+  #groups-page .icon-exercise-delete:before {
     content: "\e600";
     color: #C83029;
     font-size: 1.1em;
     line-height: 40px; }
-  #exercisepicker .active {
+  #groups-page .active {
     -webkit-transform: translateX(-100px); }
-  #exercisepicker .confirm-delete {
+  #groups-page .confirm-delete {
     position: absolute;
     right: 0;
     width: 0;
     transition: all .5s;
     background: #C83029;
     color: #EBEAE6; }
-  #exercisepicker .delete-active {
+  #groups-page .delete-active {
     width: 100px; }
 
-  #exercisegroupnamer .namerproceed {
-    transition: all .7s; }
-    #exercisegroupnamer .namerproceed[disabled] {
-      background: #b1462d;
-      color: #b1462d;
-      border: none; }
-  #exercisegroupnamer input {
+  #group-namer input {
     position: absolute;
     left: 0;
     top: 100px;

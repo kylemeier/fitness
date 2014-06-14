@@ -145,7 +145,7 @@ header, h1, h2, label{
   opacity:1;
 }
 
-#exercisegroupnamer,#exerciseenter, #exercisepicker, #workout{
+#group-namer,#exerciseenter, #groups-page, #workout{
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
   position:absolute;
@@ -254,7 +254,7 @@ header, h1, h2, label{
 //     left:50%;
 //     margin-left:-500px;
 //   }
-//   #exercisegroupnamer,#exerciseenter, #exercisepicker, #workout{
+//   #group-namer,#exerciseenter, #groups-page, #workout{
 //   -webkit-transition: all .5s ease-in-out;
 //   transition: all .5s ease-in-out;
 //   position:absolute;
@@ -311,11 +311,9 @@ header, h1, h2, label{
       line-height:$headerHeight;
       color:#712D1D;
       top:0;
+      transition: all .7s;
       &[disabled]{
-        background-color:#848484;
-        background-color:#EBEAE6;
-        border:1px solid #ABABA8;
-        color:#ABABA8;
+        opacity:0;
       }
     }
   }
@@ -355,10 +353,10 @@ header, h1, h2, label{
   .remove{
     opacity:0;
   }
-#exercisepicker, #exercisegroupnamer{ 
+#groups-page, #group-namer{ 
 
 }
-#exercisepicker{
+#groups-page{
   .add-group{
     font-size:2em;
   }
@@ -458,15 +456,7 @@ header, h1, h2, label{
 
   }
 }
-#exercisegroupnamer{
-  .namerproceed{
-    transition: all .7s;
-    &[disabled]{
-      background:$background;
-      color: $background;
-      border:none;
-    }
-  }
+#group-namer{
     input{
       position:absolute;
       left:0;

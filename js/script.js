@@ -1,3 +1,4 @@
+(function(){
 //**general**
 //see if creating a 'searchgroups' function that returns the requested group would be useful
 //create log page
@@ -42,7 +43,7 @@
 //  
 //if current weight is above stored weight:
 //  store current weight, keep weight at same level
-
+//  
 
 var currentExerciseNum = 1,
     groupName = '',
@@ -50,8 +51,8 @@ var currentExerciseNum = 1,
     allExercises = {},
     groupsToClean = [],
     // jshint multistr: true
-    exercisePicker =
-      '<div id=\'exercisepicker\'> \
+    groupsPage =
+      '<div id=\'groups-page\'> \
         <header> \
           <h1>Groups</h1> \
           <button class =\'add-group\'>+</button> \
@@ -330,13 +331,13 @@ function addExerciseGroups(){
       for(var e=0; e<allExercises['group'+i]['exerciseArray'].length; e++){
 
         //Add each exercise name into the array with line item markup
-          exerciseList.push('<li id='+e+' class=\'left\'><button class=\'icon-exercise-delete\'></button>'+allExercises['group'+i]['exerciseArray'][e]['name']+'<button class=\'exercise-edit right\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
+          exerciseList.push('<li id='+e+' class=\'left\'><button class=\'icon-exercise-delete\'></button><span>'+allExercises['group'+i]['exerciseArray'][e]['name']+'</span><button class=\'edit-exercise right\'>edit</button><button class=\'confirm-delete\'>DELETE</button></li>');
         }
       
 
       //Find the unordered list element in the DOM and add the current exercise group name as a button
       // with its exercise names flattened into a viewable unordered list below it
-      $('#exercisepicker').find('.group-list').append('<li id='+'group'+i+'><span class=\'icon-expand-list-down\'></span><span class=\'icon-expand-list-up invisible\'></span><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout right\'>Start Workout</button></li>');
+      $('#groups-page').find('.group-list').append('<li id='+'group'+i+'><span class=\'icon-expand-list-down\'></span><span class=\'icon-expand-list-up invisible\'></span><button class=\'groupbutton\'>'+allExercises['group'+i]['name']+'</button></button><ul>'+exerciseList.join('')+'</ul><button class=\'startworkout right\'>Start Workout</button></li>');
     }
 }
 
@@ -361,18 +362,19 @@ $(document).on('click', '.autofill', function(){
   groupNum = 2;
   addExerciseGroups();
   $('.intro-text').hide();
+  $('.edit-group').attr('disabled', false);
   displaySaved();
 });
 
 /**
-* '+' button on #exercisepicker screen
+* '+' button on #groups-page screen
 */
-$(document).on('click', '.add-group', function(event){
-  event.preventDefault();
-  screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right-slide','#exercisepicker','remove left-slide');
-  disableButtons('#exercisegroupnamer');
-  cleanGroups();
-});
+// $(document).on('click', '.add-group', function(event){
+//   event.preventDefault();
+//   screenSlide(exerciseGroupNamer,'#exercisegroupnamer','right-slide','#groups-page','remove left-slide');
+//   disableButtons('#exercisegroupnamer');
+//   cleanGroups();
+// });
 
 /**
 * '< Groups' button on e#xercisegroupnamer screen
@@ -380,13 +382,14 @@ $(document).on('click', '.add-group', function(event){
 $(document).on('click', '.groups-back', function(event){
   event.preventDefault();
   groupName = $('#inputgroupname').val();
-  screenSlide(exercisePicker,'#exercisepicker','left-slide','#exercisegroupnamer','remove right-slide');
+  screenSlide(groupsPage,'#groups-page','left-slide','#exercisegroupnamer','remove right-slide');
   if(groupName){
     groupNum++;
     addGroup(groupName, groupNum);
   }
   if(!isObjEmpty(allExercises)){
     $('.intro-text').hide();
+    $('.edit-group').attr('disabled', false);
   }
   addExerciseGroups();
   displaySaved();
@@ -514,8 +517,8 @@ $(document).on('click', '.donebutton', function(){
   if(c === 'fields full'){
     addExercise();
   }
-  screenSlide(exercisePicker,'#exercisepicker','right-slide','#exerciseenter','remove left-slide');
-  exerciseNumAdjust('.donebutton', '#exercisepicker');
+  screenSlide(groupsPage,'#groups-page','right-slide','#exerciseenter','remove left-slide');
+  exerciseNumAdjust('.donebutton', '#groups-page');
   displaySaved();
   addExerciseGroups();
   });
@@ -545,7 +548,7 @@ $(document).on('click', '.startworkout', function(){
       break;
     }
   }
-  screenSlide(workout, '#workout', 'right-slide', '#exercisepicker', 'remove left-slide');
+  screenSlide(workout, '#workout', 'right-slide', '#groups-page', 'remove left-slide');
   $('#workoutname').html('Name: '+currentExercises[0]['name']);
   $('#workoutweight').html('Weight: '+currentExercises[0]['weight']+'lbs');
   $('#workoutsets').html('Sets: '+currentExercises[0]['sets']);
@@ -605,6 +608,17 @@ function cleanGroups(){
     allExercises[groupsToClean[i]]['exerciseArray'] = allExercises[groupsToClean[i]]['exerciseArray'].filter(function(e){ return e });
   }
 }
+
+$(document).on('click', '.edit-exercise', function(){
+  console.log($(this).parent().parent().parent().attr('id'));
+  console.log($(this).prev().html());
+
+  screenSlide(exerciseEnter, '.inview', 'right-slide', '#exerciseenter', 'remove left-slide');
+  $('.groupname').html(groupName);
+
+
+
+});
 
 $(document).on('click',function(event){
   $('.confirm-delete').removeClass('delete-active');
@@ -689,3 +703,5 @@ $(document).on('click',function(event){
 //         return false;
 //     }
 //     document.addEventListener('visibilitychange', showing);
+
+})();
