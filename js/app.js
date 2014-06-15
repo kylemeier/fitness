@@ -11,9 +11,9 @@
         controller: 'groupsController'
       })
 
-      .when('/group-namer',{
-        templateUrl: 'pages/page-group-namer.html',
-        controller: 'groupsNamerController'
+      .when('/new-group',{
+        templateUrl: 'pages/page-new-group.html',
+        controller: 'newGroupController'
       });
 
     });
@@ -22,8 +22,8 @@
       $scope.pageClass = 'page-groups';
     });
 
-    app.controller('groupsNamerController',function($scope){
-      $scope.pageClass = 'page-group-namer';
+    app.controller('newGroupController',function($scope){
+      $scope.pageClass = 'page-new-group';
     });
 
     app.controller('slideController',['$scope','$location', function($scope, $location){
