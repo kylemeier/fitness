@@ -8,28 +8,31 @@
       //groups page
       .when('/', {
         templateUrl: 'pages/page-groups.html',
-        controller: 'groupsController'
+        controller: 'groupsController',
+        controllerAs: 'groupsCtrl'
       })
 
       .when('/new-group',{
         templateUrl: 'pages/page-new-group.html',
-        controller: 'newGroupController'
+        controller: 'newGroupController',
+        controllerAs: 'newGroupCtrl'
       });
 
     });
 
-    app.controller('groupsController',function($scope){
-      $scope.pageClass = 'page-groups';
+    app.controller('groupsController',function(){
+      // this.pageClass = 'page-groups';
     });
 
-    app.controller('newGroupController',function($scope){
-      $scope.pageClass = 'page-new-group';
+    app.controller('newGroupController',function(){
+      // this.pageClass = 'page-new-group';
     });
 
-    app.controller('slideController',['$scope','$location', function($scope, $location){
-      $scope.goNext = function (hash){
-        $location.path(hash);
-      };
-    }]);
+  app.controller( 'slideController', function($rootScope, $scope, $location) {
+    $scope.slideView = function (direction, url) {
+        $rootScope.slideDir = direction; 
+        $location.path(url);
+    }  
+  });
 
 })();

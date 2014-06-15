@@ -49,14 +49,46 @@ header, h1, h2, label {
   font-family: 'proxima_nova';
   font-size: 1.5em; }
 
-.right-slide {
-  right: -100%; }
+.slide-left.ng-enter,
+.slide-left.ng-leave,
+.slide-right.ng-enter,
+.slide-right.ng-leave {
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out; }
 
-.left-slide {
-  right: 100%; }
+.slide-left.ng-enter {
+  -webkit-transform: translate(100%, 0);
+  opacity: 0; }
 
-.slide-in {
-  right: 0%; }
+.slide-left.ng-enter.ng-enter-active {
+  -webkit-transform: translate(0, 0);
+  opacity: 1; }
+
+.slide-left.ng-leave {
+  -webkit-transform: translate(0, 0);
+  opacity: 1; }
+
+.slide-left.ng-leave.ng-leave-active {
+  -webkit-transform: translate(-100%, 0);
+  opacity: 0; }
+
+.slide-right.ng-enter {
+  -webkit-transform: translate(-100%, 0);
+  opacity: 0; }
+
+.slide-right.ng-enter.ng-enter-active {
+  -webkit-transform: translate(0, 0);
+  opacity: 1; }
+
+.slide-right.ng-leave {
+  -webkit-transform: translate(0, 0);
+  opacity: 1; }
+
+.slide-right.ng-leave.ng-leave-active {
+  -webkit-transform: translate(100%, 0);
+  opacity: 0; }
 
 #slidingcontent {
   position: relative;
@@ -334,7 +366,7 @@ header, h1, h2, label {
   #groups-page .delete-active {
     width: 100px; }
 
-  #group-namer input {
+  #new-group input {
     position: absolute;
     left: 0;
     top: 100px;
