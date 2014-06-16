@@ -1,17 +1,30 @@
 <div id='groups-page'>
   <header>
     <h1>Groups</h1>
-    <button class ='edit-group left' ng-show='allExercises'>Edit</button>
+    <button class ='edit-group left fadein fadeout' ng-show='allExercises'>Edit</button>
     <button class ='add-group right' ng-click='slideView("slide-left","/new-group")'>+</button>
   </header>
-  <div class="intro-text" ng-hide='allExercises'>
+  <div class="intro-text fadeout" ng-hide='allExercises'>
     <p>Looks like you don't have any exercise groups set up!</p>
     <p>In each group you'll be entering all the exercises you do in a day (Leg Day, Thursday Workout, etc).</p>
     <p>Click on the '+' in the top right or the button below to get started.</p>
     <p><button class="autofill" ng-click='autofill()'>Load Sample Workouts</button></p>
   </div>
-  <ul class='group-list'>
-        <li ng-repeat="exerciseGroup in allExercises">{{exerciseGroup.name}}</li>
+  <ul class='group-list fadein' ng-show='allExercises'>
+    <li ng-repeat='exerciseGroup in allExercises'>
+      <button class='icon-expand-list-up fadein fadeout' ng-show='isSet(exerciseGroup.name)'></button>
+      <button class='icon-expand-list-down fadein fadeout' ng-hide='isSet(exerciseGroup.name)'></button>
+      <button class='groupbutton' ng-click='setGroup(exerciseGroup.name)'>{{exerciseGroup.name}}</button>
+      <ul>
+        <li class='left slideDown slideUp' ng-repeat='exercise in exerciseGroup.exerciseArray' ng-show='isSet(exerciseGroup.name)'>
+          <button class='icon-exercise-delete'></button>
+          <span>{{exercise.name}}</span>
+          <button class='exercise-edit right'>edit</button>
+          <button class='confirm-delete'>DELETE</button>
+        </li>
+      </ul>
+      <button class='startworkout right'>Start Workout</button>
+    </li>
   </ul>
 </div>
       

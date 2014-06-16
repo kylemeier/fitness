@@ -140,6 +140,48 @@ header, h1, h2, label{
     opacity:0;
 }
 
+.fadein,
+.fadeout {
+  -webkit-transition:all .3s ease-out; 
+  -moz-transition:all .3s ease-out;
+  -o-transition:all .3s ease-out;
+  transition:all .3s ease-out;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
+}
+
+.slideDown,
+.slideUp{
+    -webkit-transition:all .3s ease-out; 
+  -moz-transition:all .3s ease-out;
+  -o-transition:all .3s ease-out;
+  transition:all .3s ease-out;
+}
+
+.slideDown.ng-hide-remove,
+.slideUp.ng-hide-add.ng-hide-add-active {
+  height:0;
+  opacity:0;
+  display: block !important;
+}
+
+.slideUp.ng-hide-add,
+.slideDown.ng-hide-remove.ng-hide-remove-active {
+  height:40px;
+  opacity:1;
+  display: block !important;
+}
+
 #slidingcontent{
   position:relative;
   height:$height;
@@ -429,15 +471,19 @@ header, h1, h2, label{
       left:0;
       ul{
         position:relative;
-        display:none;
         top:0;
         left:0;
-        border-top:3px solid #EBEAE6;
-        border-bottom:2px solid #EBEAE6;
         li{
           font-size:.9em;
           line-height:40px;
           border: none;
+          //using first/last child instead of putting the borders on the ul as the ul's visibility isn't changing
+          &:first-child{
+            border-top:3px solid #EBEAE6; 
+          }
+          &:last-child{
+            border-bottom:3px solid #EBEAE6;
+          }
         }
       }
     }

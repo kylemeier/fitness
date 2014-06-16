@@ -22,6 +22,8 @@
     });
 
     app.controller('groupsController',function($rootScope, $scope){
+
+        $scope.currentGroup = '';
         $scope.autofill = function(){ 
           $rootScope.allExercises = [
             {name:'Tuesday', exerciseArray:
@@ -35,6 +37,20 @@
               {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
               {name:'Situps', weight: 20, sets:3, reps:10}]}
           ]
+        }
+
+        $scope.setGroup = function(clickedGroup){
+
+          //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
+          if($scope.currentGroup === clickedGroup){
+            $scope.currentGroup = '';
+          }else{
+            $scope.currentGroup = clickedGroup;
+          }
+        }
+
+        $scope.isSet = function(checkGroup){
+          return $scope.currentGroup === checkGroup;
         }      
     });
 
