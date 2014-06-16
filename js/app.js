@@ -3,7 +3,8 @@
   
 
   app.run(function($rootScope) {
-   $rootScope.allExercises = [];
+   $rootScope.allGroups = [],
+   $rootScope.currentExerciseDelete = {};
   });
 
     app.config(function($routeProvider){
@@ -19,19 +20,23 @@
         controller: 'newGroupController'
       });
 
+      app.factory('cancelDelete', function(){
+        return 
+      })
+
     });
 
     app.controller('groupsController',function($rootScope, $scope){
 
-        $scope.currentGroup = '';
+        var currentGroup = {};
         $scope.autofill = function(){ 
-          $rootScope.allExercises = [
-            {name:'Tuesday', exerciseArray:
+          $rootScope.allGroups = [
+            {name:'Tuesday Workout', exerciseArray:
              [{name:'DB Bench Press', weight: 65, sets:3, reps:6},
               {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
               {name:'DB Military Press', weight: 35, sets:3, reps:6},
               {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                              
-              {name:'Thursday', exerciseArray:
+              {name:'Thursday Workout', exerciseArray:
              [{name:'Pullups', weight: 5, sets:3, reps:10},
               {name:'Bentover Rows', weight: 85, sets:3, reps:8},
               {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
@@ -40,18 +45,33 @@
         }
 
         $scope.setGroup = function(clickedGroup){
-
           //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
-          if($scope.currentGroup === clickedGroup){
-            $scope.currentGroup = '';
+          if(currentGroup === clickedGroup){
+            currentGroup = {};
           }else{
-            $scope.currentGroup = clickedGroup;
+            currentGroup = clickedGroup;
           }
         }
 
-        $scope.isSet = function(checkGroup){
-          return $scope.currentGroup === checkGroup;
-        }      
+        $scope.isGroupClicked = function(checkGroup){
+          return currentGroup === checkGroup;
+        }
+
+        $scope.setExercise = function(clickedExercise){
+          //Check if exercise is already clicked
+          if($rootScope.currentExerciseDelete === clickedExercise){
+            $rootScope.currentExerciseDelete = {};
+          }else{
+            $rootScope.currentExerciseDelete = clickedExercise;
+          }
+
+        } 
+        $scope.isExerciseClicked = function(checkExercise){
+          return $rootScope.currentExerciseDelete === checkExercise;
+        }
+
+        //look into giving this function to a parent controller
+        //Slides delete confirm button away by clearing $rootScope.currentExerciseDelete object  
     });
 
     app.controller('newGroupController',function(){
@@ -65,8 +85,11 @@
     }  
   });
 
-  app.controller( 'mainController',function($scope){
-
+  app.controller( 'mainController',function($rootScope,$scope){
+    $scope.clearDelete = function(){
+      console.log('click registered');
+      $rootScope.currentExerciseDelete = {};
+    }  
   });
 
 })();

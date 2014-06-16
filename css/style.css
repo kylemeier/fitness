@@ -53,10 +53,10 @@ header, h1, h2, label {
 .slide-left.ng-leave,
 .slide-right.ng-enter,
 .slide-right.ng-leave {
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out; }
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out; }
 
 .slide-left.ng-enter {
   -webkit-transform: translate(100%, 0);
@@ -90,40 +90,63 @@ header, h1, h2, label {
   -webkit-transform: translate(100%, 0);
   opacity: 0; }
 
-.fadein,
-.fadeout {
+.fade-in-out {
   -webkit-transition: all .3s ease-out;
   -moz-transition: all .3s ease-out;
   -o-transition: all .3s ease-out;
   transition: all .3s ease-out; }
 
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
+.fade-in-out.ng-hide-remove,
+.fade-in-out.ng-hide-add.ng-hide-add-active {
   opacity: 0;
   display: block !important; }
 
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
+.fade-in-out.ng-hide-add,
+.fade-in-out.ng-hide-remove.ng-hide-remove-active {
   opacity: 1;
   display: block !important; }
 
-.slideDown,
-.slideUp {
+.fade-in-out.ng-enter,
+.fade-in-out.ng-leave.ng-leave-active {
+  opacity: 0; }
+
+.fade-in-out.ng-leave,
+.fade-in-out.ng-enter.ng-enter-active {
+  opacity: 1; }
+
+.slide-up-down {
   -webkit-transition: all .3s ease-out;
   -moz-transition: all .3s ease-out;
   -o-transition: all .3s ease-out;
   transition: all .3s ease-out; }
 
-.slideDown.ng-hide-remove,
-.slideUp.ng-hide-add.ng-hide-add-active {
+.slide-up-down.ng-hide-remove,
+.slide-up-down.ng-hide-add.ng-hide-add-active {
   height: 0;
   opacity: 0;
   display: block !important; }
 
-.slideUp.ng-hide-add,
-.slideDown.ng-hide-remove.ng-hide-remove-active {
+.slide-up-down.ng-hide-add,
+.slide-up-down.ng-hide-remove.ng-hide-remove-active {
   height: 40px;
   opacity: 1;
+  display: block !important; }
+
+.slideDelete,
+.slideCancelDelete {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  transition: all .3s ease-out; }
+
+.slideDelete.ng-hide-remove,
+.slideCancelDelete.ng-hide-add.ng-hide-add-active {
+  -webkit-transform: translate(100%, 0);
+  display: block !important; }
+
+.slideCancelDelete.ng-hide-add,
+.slideDelete.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transform: translate(0, 0);
   display: block !important; }
 
 #slidingcontent {
@@ -167,15 +190,6 @@ header, h1, h2, label {
 
 .visible {
   opacity: 1; }
-
-#group-namer, #exerciseenter, #groups-page, #workout {
-  -webkit-transition: all .5s ease-out;
-  transition: all .5s ease-out;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  box-sizing: border-box; }
 
 #exerciseenter header {
   padding-top: 15px;
@@ -327,6 +341,13 @@ header, h1, h2, label {
   .remove {
     opacity: 0; }
 
+  #groups-page, #new-group, #exerciseenter, #workout {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box; }
+
   #groups-page .add-group {
     font-size: 2em; }
   #groups-page .intro-text {
@@ -361,7 +382,14 @@ header, h1, h2, label {
           #groups-page ul li ul li:first-child {
             border-top: 3px solid #EBEAE6; }
           #groups-page ul li ul li:last-child {
-            border-bottom: 3px solid #EBEAE6; }
+            border-bottom: 1px solid #EBEAE6;
+            text-align: center; }
+    #groups-page ul .exercise-info {
+      font-size: .8em;
+      color: grey;
+      top: 20px;
+      left: 41px;
+      padding: 0; }
   #groups-page .groupbutton {
     position: relative;
     width: 100%;
@@ -385,7 +413,8 @@ header, h1, h2, label {
     line-height: 50px; }
   #groups-page .icon-exercise-delete {
     transition: all .5s;
-    margin-right: 5px; }
+    padding-right: 5px;
+    z-index: 100; }
   #groups-page .icon-exercise-delete:before {
     content: "\e600";
     color: #C83029;
@@ -395,9 +424,10 @@ header, h1, h2, label {
     -webkit-transform: translateX(-100px); }
   #groups-page .confirm-delete {
     position: absolute;
+    z-index: 1;
     right: 0;
-    width: 0;
-    transition: all .5s;
+    top: 0;
+    padding: 0 3px;
     background: #C83029;
     color: #EBEAE6; }
   #groups-page .delete-active {

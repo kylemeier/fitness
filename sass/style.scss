@@ -100,10 +100,10 @@ header, h1, h2, label{
 .slide-left.ng-leave,
 .slide-right.ng-enter,
 .slide-right.ng-leave {
-  -webkit-transition: 0.5s ease-in-out ;
-  -moz-transition: 0.5s ease-in-out ;
-  -o-transition: 0.5s ease-in-out ;
-  transition: 0.5s ease-in-out ;
+  -webkit-transition: 0.5s ease-out ;
+  -moz-transition: 0.5s ease-out ;
+  -o-transition: 0.5s ease-out ;
+  transition: 0.5s ease-out ;
 }
 
 .slide-left.ng-enter {
@@ -140,45 +140,76 @@ header, h1, h2, label{
     opacity:0;
 }
 
-.fadein,
-.fadeout {
+.fade-in-out{
   -webkit-transition:all .3s ease-out; 
   -moz-transition:all .3s ease-out;
   -o-transition:all .3s ease-out;
   transition:all .3s ease-out;
 }
 
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
+.fade-in-out.ng-hide-remove,
+.fade-in-out.ng-hide-add.ng-hide-add-active{
   opacity: 0;
   display: block !important;
 }
 
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
+.fade-in-out.ng-hide-add,
+.fade-in-out.ng-hide-remove.ng-hide-remove-active {
   opacity: 1;
   display: block !important;
 }
 
-.slideDown,
-.slideUp{
+.fade-in-out.ng-enter,
+.fade-in-out.ng-leave.ng-leave-active{
+  opacity:0;
+}
+
+.fade-in-out.ng-leave,
+.fade-in-out.ng-enter.ng-enter-active{
+  opacity:1;
+}
+
+.slide-up-down{
+  -webkit-transition:all .3s ease-out; 
+  -moz-transition:all .3s ease-out;
+  -o-transition:all .3s ease-out;
+  transition:all .3s ease-out;
+}
+
+.slide-up-down.ng-hide-remove,
+.slide-up-down.ng-hide-add.ng-hide-add-active {
+  // -webkit-transform: scaleY(0);
+  height:0;
+  opacity:0;
+  display: block !important;
+}
+
+.slide-up-down.ng-hide-add,
+.slide-up-down.ng-hide-remove.ng-hide-remove-active {
+  // -webkit-transform: scaleY(1);
+  height:40px;
+  opacity:1;
+  display: block !important;
+}
+
+.slideDelete,
+.slideCancelDelete{
     -webkit-transition:all .3s ease-out; 
   -moz-transition:all .3s ease-out;
   -o-transition:all .3s ease-out;
   transition:all .3s ease-out;
 }
 
-.slideDown.ng-hide-remove,
-.slideUp.ng-hide-add.ng-hide-add-active {
-  height:0;
-  opacity:0;
+.slideDelete.ng-hide-remove,
+.slideCancelDelete.ng-hide-add.ng-hide-add-active {
+  -webkit-transform: translate(100%,0);
   display: block !important;
 }
 
-.slideUp.ng-hide-add,
-.slideDown.ng-hide-remove.ng-hide-remove-active {
-  height:40px;
-  opacity:1;
+.slideCancelDelete.ng-hide-add,
+.slideDelete.ng-hide-remove.ng-hide-remove-active {
+  // -webkit-transform: scaleY(1);
+  -webkit-transform: translate(0,0);
   display: block !important;
 }
 
@@ -229,16 +260,6 @@ header, h1, h2, label{
 }
 .visible{
   opacity:1;
-}
-
-#group-namer,#exerciseenter, #groups-page, #workout{
-  -webkit-transition: all .5s ease-out;
-  transition: all .5s ease-out;
-  position:absolute;
-  height:100%;
-  width:100%;
-  top:0;
-  box-sizing:border-box;
 }
 
 #exerciseenter{
@@ -439,9 +460,16 @@ header, h1, h2, label{
   .remove{
     opacity:0;
   }
-#groups-page, #group-namer{ 
-
+#groups-page, #new-group, #exerciseenter, #workout{
+  // -webkit-transition: all .5s ease-out;
+  // transition: all .5s ease-out;
+  position:absolute;
+  height:100%;
+  width:100%;
+  top:0;
+  box-sizing:border-box;
 }
+
 #groups-page{
   .add-group{
     font-size:2em;
@@ -482,10 +510,18 @@ header, h1, h2, label{
             border-top:3px solid #EBEAE6; 
           }
           &:last-child{
-            border-bottom:3px solid #EBEAE6;
+            border-bottom:1px solid #EBEAE6;
+            text-align:center;
           }
         }
       }
+    }
+    .exercise-info{
+      font-size:.8em;
+      color:grey;
+      top:20px;
+      left:41px;
+      padding:0;
     }
   }
   .groupbutton{
@@ -520,7 +556,8 @@ header, h1, h2, label{
   
   .icon-exercise-delete{
     transition: all .5s;
-    margin-right: 5px;
+    padding-right: 5px;
+    z-index:100;
   }
   .icon-exercise-delete:before{
       content: "\e600";
@@ -535,9 +572,10 @@ header, h1, h2, label{
 
   .confirm-delete{
     position:absolute;
+    z-index:1;
     right:0;
-    width:0;
-    transition: all .5s;
+    top:0;
+    padding:0 3px;
     background:#C83029;
     color:#EBEAE6;
   }
