@@ -29,6 +29,7 @@
     app.controller('groupsController',function($rootScope, $scope){
 
         var currentGroup = {};
+            $scope.editMode = false;
         $scope.autofill = function(){ 
           $rootScope.allGroups = [
             {name:'Tuesday Workout', exerciseArray:
@@ -54,7 +55,7 @@
         }
 
         $scope.isGroupClicked = function(checkGroup){
-          return currentGroup === checkGroup;
+            return currentGroup === checkGroup;
         }
 
         $scope.setExercise = function(clickedExercise){
@@ -69,9 +70,17 @@
         $scope.isExerciseClicked = function(checkExercise){
           return $rootScope.currentExerciseDelete === checkExercise;
         }
+      
 
-        //look into giving this function to a parent controller
-        //Slides delete confirm button away by clearing $rootScope.currentExerciseDelete object  
+        $scope.showEdit = function(){
+          if($rootScope.allGroups.length > 0 && $scope.editMode === false){
+            return true
+          }else{
+            return false
+          }
+        }
+
+
     });
 
     app.controller('newGroupController',function(){
@@ -86,8 +95,8 @@
   });
 
   app.controller( 'mainController',function($rootScope,$scope){
+    //in mainController to track a click anywhere in the app
     $scope.clearDelete = function(){
-      console.log('click registered');
       $rootScope.currentExerciseDelete = {};
     }  
   });

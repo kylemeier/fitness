@@ -49,44 +49,44 @@ header, h1, h2, label {
   font-family: 'proxima_nova';
   font-size: 1.5em; }
 
-.slide-left.ng-enter,
-.slide-left.ng-leave,
-.slide-right.ng-enter,
-.slide-right.ng-leave {
+.view-slide-left.ng-enter,
+.view-slide-left.ng-leave,
+.view-slide-right.ng-enter,
+.view-slide-right.ng-leave {
   -webkit-transition: 0.5s ease-out;
   -moz-transition: 0.5s ease-out;
   -o-transition: 0.5s ease-out;
   transition: 0.5s ease-out; }
 
-.slide-left.ng-enter {
+.view-slide-left.ng-enter {
   -webkit-transform: translate(100%, 0);
   opacity: 0; }
 
-.slide-left.ng-enter.ng-enter-active {
+.view-slide-left.ng-enter.ng-enter-active {
   -webkit-transform: translate(0, 0);
   opacity: 1; }
 
-.slide-left.ng-leave {
+.view-slide-left.ng-leave {
   -webkit-transform: translate(0, 0);
   opacity: 1; }
 
-.slide-left.ng-leave.ng-leave-active {
+.view-slide-left.ng-leave.ng-leave-active {
   -webkit-transform: translate(-100%, 0);
   opacity: 0; }
 
-.slide-right.ng-enter {
+.view-slide-right.ng-enter {
   -webkit-transform: translate(-100%, 0);
   opacity: 0; }
 
-.slide-right.ng-enter.ng-enter-active {
+.view-slide-right.ng-enter.ng-enter-active {
   -webkit-transform: translate(0, 0);
   opacity: 1; }
 
-.slide-right.ng-leave {
+.view-slide-right.ng-leave {
   -webkit-transform: translate(0, 0);
   opacity: 1; }
 
-.slide-right.ng-leave.ng-leave-active {
+.view-slide-right.ng-leave.ng-leave-active {
   -webkit-transform: translate(100%, 0);
   opacity: 0; }
 
@@ -97,22 +97,18 @@ header, h1, h2, label {
   transition: all .3s ease-out; }
 
 .fade-in-out.ng-hide-remove,
-.fade-in-out.ng-hide-add.ng-hide-add-active {
+.fade-in-out.ng-hide-add.ng-hide-add-active,
+.fade-in-out.ng-enter,
+.fade-in-out.ng-leave.ng-leave-active {
   opacity: 0;
   display: block !important; }
 
 .fade-in-out.ng-hide-add,
-.fade-in-out.ng-hide-remove.ng-hide-remove-active {
-  opacity: 1;
-  display: block !important; }
-
-.fade-in-out.ng-enter,
-.fade-in-out.ng-leave.ng-leave-active {
-  opacity: 0; }
-
+.fade-in-out.ng-hide-remove.ng-hide-remove-active,
 .fade-in-out.ng-leave,
 .fade-in-out.ng-enter.ng-enter-active {
-  opacity: 1; }
+  opacity: 1;
+  display: block !important; }
 
 .slide-up-down {
   -webkit-transition: all .3s ease-out;
@@ -132,20 +128,35 @@ header, h1, h2, label {
   opacity: 1;
   display: block !important; }
 
-.slideDelete,
-.slideCancelDelete {
+.icon-slide-right-side {
   -webkit-transition: all .3s ease-out;
   -moz-transition: all .3s ease-out;
   -o-transition: all .3s ease-out;
   transition: all .3s ease-out; }
 
-.slideDelete.ng-hide-remove,
-.slideCancelDelete.ng-hide-add.ng-hide-add-active {
+.icon-slide-right-side.ng-hide-remove,
+.icon-slide-right-side.ng-hide-add.ng-hide-add-active {
   -webkit-transform: translate(100%, 0);
   display: block !important; }
 
-.slideCancelDelete.ng-hide-add,
-.slideDelete.ng-hide-remove.ng-hide-remove-active {
+.icon-slide-right-side.ng-hide-add,
+.icon-slide-right-side.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transform: translate(0, 0);
+  display: block !important; }
+
+.icon-slide-left-side {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  transition: all .3s ease-out; }
+
+.icon-slide-left-side.ng-hide-remove,
+.icon-slide-left-side.ng-hide-add.ng-hide-add-active {
+  -webkit-transform: translate(-200%, 0);
+  display: block !important; }
+
+.icon-slide-left-side.ng-hide-add,
+.icon-slide-left-side.ng-hide-remove.ng-hide-remove-active {
   -webkit-transform: translate(0, 0);
   display: block !important; }
 
@@ -390,7 +401,7 @@ header, h1, h2, label {
       top: 20px;
       left: 41px;
       padding: 0; }
-  #groups-page .groupbutton {
+  #groups-page .group-button {
     position: relative;
     width: 100%;
     font-size: 1em;
@@ -398,38 +409,46 @@ header, h1, h2, label {
     padding-left: 40px;
     border-top: 1px solid #EBEAE6;
     line-height: 50px; }
-  #groups-page .startworkout {
-    top: 0;
-    line-height: 50px; }
-  #groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up {
+  #groups-page .group-action-button {
+    font-size: .9em;
+    line-height: 50px;
+    background: #F8F7F2;
+    top: 1px; }
+  #groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up, #groups-page .icon-group-delete {
     position: absolute;
     margin-left: 16px;
-    transition: all .5s;
     top: 1px; }
+  #groups-page .icon-group-delete {
+    z-index: 2; }
   #groups-page .icon-expand-list-up {
     -webkit-transform: rotate(-180deg) translateY(4px); }
   #groups-page .icon-expand-list-down:before, #groups-page .icon-expand-list-up:before {
     content: '\e601';
     line-height: 50px; }
   #groups-page .icon-exercise-delete {
-    transition: all .5s;
-    padding-right: 5px;
-    z-index: 100; }
-  #groups-page .icon-exercise-delete:before {
+    margin-right: 5px; }
+  #groups-page .icon-exercise-delete:before,
+  #groups-page .icon-group-delete:before {
     content: "\e600";
     color: #C83029;
     font-size: 1.1em;
     line-height: 40px; }
   #groups-page .active {
     -webkit-transform: translateX(-100px); }
-  #groups-page .confirm-delete {
+  #groups-page .confirm-delete-exercise, #groups-page .confirm-delete-group {
     position: absolute;
     z-index: 1;
     right: 0;
     top: 0;
-    padding: 0 3px;
     background: #C83029;
     color: #EBEAE6; }
+  #groups-page .confirm-delete-exercise {
+    padding: 0 3px;
+    line-height: 40px; }
+  #groups-page .confirm-delete-group {
+    line-height: 50px;
+    top: 1px;
+    padding: 0 15px; }
   #groups-page .delete-active {
     width: 100px; }
 

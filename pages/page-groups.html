@@ -1,8 +1,9 @@
 <div id='groups-page'>
   <header>
     <h1>Groups</h1>
-    <button class ='edit-group left fade-in-out' ng-show='allGroups'>Edit</button>
-    <button class ='add-group right' ng-click='slideView("slide-left","/new-group")'>+</button>
+    <button class ='edit-group left fade-in-out' ng-show='showEdit()' ng-click='setGroup(); editMode = true;'>Edit</button>
+    <button class ='edit-group left fade-in-out' ng-show='editMode' ng-click='editMode = false'>Done</button>
+    <button class ='add-group right' ng-click='slideView("view-slide-left","/new-group")'>+</button>
   </header>
   <div class="intro-text fade-in-out" ng-if='allGroups.length === 0'>
     <p>Looks like you don't have any exercise groups set up!</p>
@@ -11,21 +12,26 @@
     <p><button class="autofill" ng-click='autofill()'>Load Sample Workouts</button></p>
   </div>
   <ul class='group-list fade-in-out' ng-show='allGroups'>
-    <li ng-repeat='exerciseGroup in allGroups'>
-      <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(exerciseGroup)'></span>
-      <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(exerciseGroup)'></span>
-      <button class='groupbutton' ng-click='setGroup(exerciseGroup)'>{{exerciseGroup.name}}</button>
+    <li ng-repeat='group in allGroups'>
+      <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(group) && !editMode'></span>
+      <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(group) || editMode'></span>
+      <button class='icon-group-delete icon-slide-left-side' ng-show='editMode' ng-click='setGroup(group); $event.stopPropagation();'></button>
+      <button class='group-button' ng-click='setGroup(group)' ng-disabled='editMode'>{{group.name}}</button>
       <ul>
-        <li class='slide-up-down left' ng-repeat='exercise in exerciseGroup.exerciseArray' ng-show='isGroupClicked(exerciseGroup)'>
-          <button class='icon-exercise-delete slideDelete slideCancelDelete' ng-click='setExercise(exercise); $event.stopPropagation();'></button>
-          <button class='confirm-delete slideDelete slideCancelDelete' ng-show='isExerciseClicked(exercise)'>DELETE</button>
+        <li class='slide-up-down left' ng-repeat='exercise in group.exerciseArray' ng-show='isGroupClicked(group) && !editMode'>
+          <button class='icon-exercise-delete' ng-click='setExercise(exercise); $event.stopPropagation();'></button>
+          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise)'>DELETE</button>
           <span>{{exercise.name}}</span>
           <span class='exercise-info left'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</span>
           <button class='exercise-edit right'>edit</button>
         </li>
-        <li class='slide-up-down' ng-show='isGroupClicked(exerciseGroup)'><button>Add New Exercise</button></li>
+        <li class='slide-up-down' ng-show='isGroupClicked(group) && !editMode'><button>Add New Exercise</button></li>
       </ul>
-      <button class='startworkout right'>Start Workout</button>
+
+      <button class='group-action-button right icon-slide-right-side' ng-hide='editMode'>Start Workout</button>
+      <button class='group-action-button right icon-slide-right-side' ng-show='editMode'>Edit Name</button>
+      <button class='confirm-delete-group icon-slide-right-side' ng-show='isGroupClicked(group) && editMode'>DELETE</button>
+      
     </li>
   </ul>
 </div>
