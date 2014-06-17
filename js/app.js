@@ -5,6 +5,7 @@
   app.run(function($rootScope) {
    $rootScope.allGroups = [],
    $rootScope.currentExerciseDelete = {};
+   $rootScope.currentGroup = {};
   });
 
     app.config(function($routeProvider){
@@ -19,10 +20,6 @@
         templateUrl: 'pages/page-new-group.html',
         controller: 'newGroupController'
       });
-
-      app.factory('cancelDelete', function(){
-        return 
-      })
 
     });
 
@@ -47,15 +44,15 @@
 
         $scope.setGroup = function(clickedGroup){
           //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
-          if(currentGroup === clickedGroup){
-            currentGroup = {};
+          if($rootScope.currentGroup === clickedGroup){
+            $rootScope.currentGroup = {};
           }else{
-            currentGroup = clickedGroup;
+            $rootScope.currentGroup = clickedGroup;
           }
         }
 
         $scope.isGroupClicked = function(checkGroup){
-            return currentGroup === checkGroup;
+            return $rootScope.currentGroup === checkGroup;
         }
 
         $scope.setExercise = function(clickedExercise){
@@ -98,6 +95,7 @@
     //in mainController to track a click anywhere in the app
     $scope.clearDelete = function(){
       $rootScope.currentExerciseDelete = {};
+      $rootScope.currentGroup = {};
     }  
   });
 

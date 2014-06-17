@@ -2,7 +2,7 @@
   <header>
     <h1>Groups</h1>
     <button class ='edit-group left fade-in-out' ng-show='showEdit()' ng-click='setGroup(); editMode = true;'>Edit</button>
-    <button class ='edit-group left fade-in-out' ng-show='editMode' ng-click='editMode = false'>Done</button>
+    <button class ='edit-group left fade-in-out' ng-show='editMode' ng-click='editMode = false; $event.stopPropagation()'>Done</button>
     <button class ='add-group right' ng-click='slideView("view-slide-left","/new-group")'>+</button>
   </header>
   <div class="intro-text fade-in-out" ng-if='allGroups.length === 0'>
@@ -15,12 +15,12 @@
     <li ng-repeat='group in allGroups'>
       <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(group) && !editMode'></span>
       <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(group) || editMode'></span>
-      <button class='icon-group-delete icon-slide-left-side' ng-show='editMode' ng-click='setGroup(group); $event.stopPropagation();'></button>
-      <button class='group-button' ng-click='setGroup(group)' ng-disabled='editMode'>{{group.name}}</button>
+      <button class='icon-group-delete icon-slide-left-side' ng-show='editMode' ng-click='setGroup(group); $event.stopPropagation()'></button>
+      <button class='group-button' ng-click='setGroup(group); $event.stopPropagation()' ng-disabled='editMode'>{{group.name}}</button>
       <ul>
         <li class='slide-up-down left' ng-repeat='exercise in group.exerciseArray' ng-show='isGroupClicked(group) && !editMode'>
           <button class='icon-exercise-delete' ng-click='setExercise(exercise); $event.stopPropagation();'></button>
-          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise)'>DELETE</button>
+          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise) && !editMode'>DELETE</button>
           <span>{{exercise.name}}</span>
           <span class='exercise-info left'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</span>
           <button class='exercise-edit right'>edit</button>
