@@ -32,22 +32,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.autofill {
-  color: #373A3A;
-  padding: 3px;
-  border-radius: 5px;
-  border: 2px solid #373A3A; }
-
-.group:after {
-  content: "";
-  display: table;
-  clear: both; }
-
-header, h1, h2, label {
-  color: #373A3A;
-  background: none;
-  font-family: 'proxima_nova';
-  font-size: 1.5em; }
+body {
+  font-family: "proxima_nova"; }
 
 .view-slide-left.ng-enter,
 .view-slide-left.ng-leave,
@@ -90,7 +76,7 @@ header, h1, h2, label {
   -webkit-transform: translate(100%, 0);
   opacity: 0; }
 
-.fade-in-out {
+.fade-in-out, .slide-up-down, .icon-slide-right-side, .icon-slide-left-side {
   -webkit-transition: all .3s ease-out;
   -moz-transition: all .3s ease-out;
   -o-transition: all .3s ease-out;
@@ -110,12 +96,6 @@ header, h1, h2, label {
   opacity: 1;
   display: block !important; }
 
-.slide-up-down {
-  -webkit-transition: all .3s ease-out;
-  -moz-transition: all .3s ease-out;
-  -o-transition: all .3s ease-out;
-  transition: all .3s ease-out; }
-
 .slide-up-down.ng-hide-remove,
 .slide-up-down.ng-hide-add.ng-hide-add-active {
   height: 0;
@@ -128,12 +108,6 @@ header, h1, h2, label {
   opacity: 1;
   display: block !important; }
 
-.icon-slide-right-side {
-  -webkit-transition: all .3s ease-out;
-  -moz-transition: all .3s ease-out;
-  -o-transition: all .3s ease-out;
-  transition: all .3s ease-out; }
-
 .icon-slide-right-side.ng-hide-remove,
 .icon-slide-right-side.ng-hide-add.ng-hide-add-active {
   -webkit-transform: translate(100%, 0);
@@ -144,12 +118,6 @@ header, h1, h2, label {
   -webkit-transform: translate(0, 0);
   display: block !important; }
 
-.icon-slide-left-side {
-  -webkit-transition: all .3s ease-out;
-  -moz-transition: all .3s ease-out;
-  -o-transition: all .3s ease-out;
-  transition: all .3s ease-out; }
-
 .icon-slide-left-side.ng-hide-remove,
 .icon-slide-left-side.ng-hide-add.ng-hide-add-active {
   -webkit-transform: translate(-200%, 0);
@@ -159,10 +127,6 @@ header, h1, h2, label {
 .icon-slide-left-side.ng-hide-remove.ng-hide-remove-active {
   -webkit-transform: translate(0, 0);
   display: block !important; }
-
-#slidingcontent {
-  position: relative;
-  height: 476px; }
 
 .modalconfirm {
   position: absolute;
@@ -195,12 +159,6 @@ header, h1, h2, label {
     background: #900022;
     border: none;
     box-shadow: none; }
-
-.invisible {
-  opacity: 0; }
-
-.visible {
-  opacity: 1; }
 
 #exerciseenter header {
   padding-top: 15px;
@@ -264,201 +222,189 @@ header, h1, h2, label {
   #timer .stop {
     background: #6B696D; }
 
-.disabled {
-  background-image: none;
-  background-color: #848484;
-  background-color: #A0A1A0;
-  color: #383838;
-  cursor: default; }
+::-webkit-input-placeholder {
+  color: #ABABA8; }
 
-@media (max-width: 5000px) {
-  header, h1, h2, label {
-    font-size: 1em; }
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ABABA8; }
 
-  ::-webkit-input-placeholder {
-    color: #ABABA8; }
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ABABA8; }
 
-  :-moz-placeholder {
-    /* Firefox 18- */
-    color: #ABABA8; }
+:-ms-input-placeholder {
+  color: #ABABA8; }
 
-  ::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #ABABA8; }
+button {
+  border: none;
+  background: none;
+  padding: 0; }
+  button:focus {
+    outline: 0; }
 
-  :-ms-input-placeholder {
-    color: #ABABA8; }
-
-  button {
-    border: none;
-    background: none;
-    padding: 0; }
-    button:focus {
-      outline: 0; }
-
-  header {
-    text-align: center;
-    height: 50px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    line-height: 50px; }
-    header h1 {
-      position: relative;
-      display: block;
-      color: #E1CCAD; }
-    header button {
-      position: absolute;
-      line-height: 50px;
-      color: #712D1D;
-      top: 0;
-      transition: all .7s; }
-      header button[disabled] {
-        opacity: 0; }
-
-  .left {
-    position: absolute;
-    left: 0;
-    padding-left: 16px; }
-
-  .right {
-    position: absolute;
-    right: 0;
-    padding-right: 16px; }
-
-  input {
-    padding: 0;
-    color: #4C4C4C;
-    background: #F8F7F2; }
-
-  .container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    background: #EBEAE6;
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-
-  .header-bar {
-    position: absolute;
-    top: 0;
-    height: 50px;
-    background: #b1462d;
-    width: 100%; }
-
-  .remove {
-    opacity: 0; }
-
-  #groups-page, #new-group, #exerciseenter, #workout {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    box-sizing: border-box; }
-
-  #groups-page .add-group {
-    font-size: 2em; }
-  #groups-page .intro-text {
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    background: #F8F7F2;
-    color: #040E0F;
-    text-align: center; }
-    #groups-page .intro-text p {
-      color: #4C4C4C;
-      border-top: 1px solid #EBEAE6;
-      padding: 15px 5%; }
-  #groups-page ul {
-    position: absolute;
-    left: 0;
-    top: 100px;
-    width: 100%;
-    background: #F8F7F2; }
-    #groups-page ul li {
-      position: relative;
-      border-top: 1px solid #EBEAE6;
-      left: 0; }
-      #groups-page ul li ul {
-        position: relative;
-        top: 0;
-        left: 0; }
-        #groups-page ul li ul li {
-          font-size: .9em;
-          line-height: 40px;
-          border: none; }
-          #groups-page ul li ul li:first-child {
-            border-top: 3px solid #EBEAE6; }
-          #groups-page ul li ul li:last-child {
-            border-bottom: 1px solid #EBEAE6;
-            text-align: center; }
-    #groups-page ul .exercise-info {
-      font-size: .8em;
-      color: grey;
-      top: 20px;
-      left: 41px;
-      padding: 0; }
-  #groups-page .group-button {
+header {
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  line-height: 50px; }
+  header h1 {
     position: relative;
-    width: 100%;
-    font-size: 1em;
-    text-align: left;
-    padding-left: 40px;
-    border-top: 1px solid #EBEAE6;
-    line-height: 50px; }
-  #groups-page .group-action-button {
-    font-size: .9em;
-    line-height: 50px;
-    background: #F8F7F2;
-    top: 1px; }
-  #groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up, #groups-page .icon-group-delete {
+    display: block;
+    color: #E1CCAD; }
+  header button {
     position: absolute;
-    margin-left: 16px;
-    top: 1px; }
-  #groups-page .icon-group-delete {
-    z-index: 2; }
-  #groups-page .icon-expand-list-up {
-    -webkit-transform: rotate(-180deg) translateY(4px); }
-  #groups-page .icon-expand-list-down:before, #groups-page .icon-expand-list-up:before {
-    content: '\e601';
-    line-height: 50px; }
-  #groups-page .icon-exercise-delete {
-    margin-right: 5px; }
-  #groups-page .icon-exercise-delete:before,
-  #groups-page .icon-group-delete:before {
-    content: "\e600";
-    color: #C83029;
-    font-size: 1.1em;
-    line-height: 40px; }
-  #groups-page .active {
-    -webkit-transform: translateX(-100px); }
-  #groups-page .confirm-delete-exercise, #groups-page .confirm-delete-group {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    top: 0;
-    background: #C83029;
-    color: #EBEAE6; }
-  #groups-page .confirm-delete-exercise {
-    padding: 0 3px;
-    line-height: 40px; }
-  #groups-page .confirm-delete-group {
     line-height: 50px;
-    top: 1px;
-    padding: 0 15px; }
-  #groups-page .delete-active {
-    width: 100px; }
+    color: #712D1D;
+    top: 0; }
 
-  #new-group input {
-    position: absolute;
-    left: 0;
-    top: 100px;
-    padding-left: 16px;
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 0;
-    box-sizing: border-box; } }
+.left {
+  position: absolute;
+  left: 0;
+  padding-left: 16px; }
+
+.right {
+  position: absolute;
+  right: 0;
+  padding-right: 16px; }
+
+input {
+  padding: 0;
+  color: #4C4C4C;
+  background: #f8f7f2; }
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: #EBEAE6;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.header-bar {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  background: #b1462d;
+  width: 100%; }
+
+#groups-page, #new-group, #exerciseenter, #workout {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  box-sizing: border-box; }
+
+#groups-page .add-group {
+  font-size: 2em; }
+#groups-page .intro-text {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  background: #f8f7f2;
+  color: #040E0F;
+  text-align: center; }
+  #groups-page .intro-text p {
+    color: #4C4C4C;
+    border-top: 1px solid #EBEAE6;
+    padding: 15px 5%; }
+#groups-page .autofill {
+  color: #373a3a;
+  padding: 3px;
+  border-radius: 5px;
+  border: 2px solid #373a3a; }
+#groups-page ul {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  background: #f8f7f2; }
+  #groups-page ul li {
+    position: relative;
+    border-top: 1px solid #EBEAE6;
+    left: 0; }
+    #groups-page ul li ul {
+      position: relative;
+      top: 0;
+      left: 0; }
+      #groups-page ul li ul li {
+        font-size: .9em;
+        line-height: 40px;
+        border: none; }
+        #groups-page ul li ul li:first-child {
+          border-top: 3px solid #EBEAE6; }
+        #groups-page ul li ul li:last-child {
+          border-bottom: 1px solid #EBEAE6;
+          text-align: center; }
+  #groups-page ul .exercise-info {
+    font-size: .8em;
+    color: grey;
+    top: 20px;
+    left: 41px;
+    padding: 0; }
+#groups-page .exercise-name, #groups-page .group-name {
+  text-align: left;
+  padding-left: 40px;
+  width: 100%; }
+#groups-page .group-name {
+  position: relative;
+  font-size: 1em;
+  top: 1px;
+  line-height: 50px; }
+#groups-page .group-action-button {
+  font-size: .9em;
+  line-height: 50px;
+  background: #f8f7f2;
+  top: 1px; }
+#groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up, #groups-page .icon-group-delete {
+  position: absolute;
+  margin-left: 16px;
+  top: 1px; }
+#groups-page .icon-expand-list-up {
+  -webkit-transform: rotate(-180deg) translateY(4px); }
+#groups-page .icon-expand-list-down:before, #groups-page .icon-expand-list-up:before {
+  content: '\e601';
+  line-height: 50px; }
+#groups-page .icon-exercise-delete:before,
+#groups-page .icon-group-delete:before {
+  content: "\e600";
+  color: #C83029;
+  font-size: 1.1em;
+  position: relative; }
+#groups-page .icon-exercise-delete {
+  line-height: 40px; }
+#groups-page .icon-group-delete {
+  line-height: 50px;
+  top: -1px; }
+#groups-page .confirm-delete-exercise, #groups-page .confirm-delete-group {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  background: #C83029;
+  color: #EBEAE6; }
+#groups-page .confirm-delete-exercise {
+  padding: 0 3px;
+  line-height: 40px; }
+#groups-page .confirm-delete-group {
+  line-height: 50px;
+  top: 1px;
+  padding: 0 15px; }
+#groups-page .delete-active {
+  width: 100px; }
+
+#new-group input {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  padding-left: 16px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box; }

@@ -1,9 +1,7 @@
-$red: #900022;
-$background: #78A8B9;
-$background: #53A491;
-$background: #B1462D;
-$height: 476px;
-$headerHeight: 50px;
+$headerBar: #B1462D;
+$lineHeight: 50px;
+$mainTextColor: #373A3A;
+$textBackground: #F8F7F2;
 
 @font-face {
     font-family: 'proxima_nova';
@@ -55,55 +53,19 @@ $headerHeight: 50px;
 
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
 
-.autofill{
-  color:#373A3A;
-  padding:3px;
-  border-radius:5px;
-  border: 2px solid #373A3A;
+body{
+  font-family: 'proxima_nova'
+
 }
-
-.group:after {
-  content: "";
-  display: table;
-  clear: both; 
-}
-
-// html{
-//   background:$background;
-// }
-
-// body{
-//   overflow:hidden;
-// }
-
-header, h1, h2, label{
-  color:#373A3A;
-  background:none;
-  // font-family: 'Roboto', Arial, sans-serif; font-weight: 300; 
-  font-family: 'proxima_nova';
-  font-size:1.5em;
-}
-
-// .slide-right{
-//   right:-100%;
-// }
-
-// .slide-left{
-//   right:100%;
-// }
-
-// .slide-in{
-//   right:0%;
-// }
 
 .view-slide-left.ng-enter,
 .view-slide-left.ng-leave,
 .view-slide-right.ng-enter,
 .view-slide-right.ng-leave {
-  -webkit-transition: 0.5s ease-out ;
-  -moz-transition: 0.5s ease-out ;
-  -o-transition: 0.5s ease-out ;
-  transition: 0.5s ease-out ;
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
 }
 
 .view-slide-left.ng-enter {
@@ -140,7 +102,7 @@ header, h1, h2, label{
     opacity:0;
 }
 
-.fade-in-out{
+.fade-in-out, .slide-up-down, .icon-slide-right-side, .icon-slide-left-side{
   -webkit-transition:all .3s ease-out; 
   -moz-transition:all .3s ease-out;
   -o-transition:all .3s ease-out;
@@ -163,13 +125,6 @@ header, h1, h2, label{
   display: block !important;
 }
 
-.slide-up-down{
-  -webkit-transition:all .3s ease-out; 
-  -moz-transition:all .3s ease-out;
-  -o-transition:all .3s ease-out;
-  transition:all .3s ease-out;
-}
-
 .slide-up-down.ng-hide-remove,
 .slide-up-down.ng-hide-add.ng-hide-add-active {
   // -webkit-transform: scaleY(0);
@@ -186,13 +141,6 @@ header, h1, h2, label{
   display: block !important;
 }
 
-.icon-slide-right-side{
-    -webkit-transition:all .3s ease-out; 
-  -moz-transition:all .3s ease-out;
-  -o-transition:all .3s ease-out;
-  transition:all .3s ease-out;
-}
-
 .icon-slide-right-side.ng-hide-remove,
 .icon-slide-right-side.ng-hide-add.ng-hide-add-active{
   -webkit-transform: translate(100%,0);
@@ -206,13 +154,6 @@ header, h1, h2, label{
   display: block !important;
 }
 
-.icon-slide-left-side{
-    -webkit-transition:all .3s ease-out; 
-  -moz-transition:all .3s ease-out;
-  -o-transition:all .3s ease-out;
-  transition:all .3s ease-out;
-}
-
 .icon-slide-left-side.ng-hide-remove,
 .icon-slide-left-side.ng-hide-add.ng-hide-add-active{
   -webkit-transform: translate(-200%,0);
@@ -224,11 +165,6 @@ header, h1, h2, label{
   // -webkit-transform: scaleY(1);
   -webkit-transform: translate(0,0);
   display: block !important;
-}
-
-#slidingcontent{
-  position:relative;
-  height:$height;
 }
 
 .modalconfirm{
@@ -266,13 +202,6 @@ header, h1, h2, label{
     border:none;
     box-shadow:none;
   }
-}
-
-.invisible{
-  opacity:0;
-}
-.visible{
-  opacity:1;
 }
 
 #exerciseenter{
@@ -359,38 +288,6 @@ header, h1, h2, label{
   }
 }
 
-.disabled{
-  background-image:none;
-  background-color:#848484;
-  background-color:#A0A1A0;
-  color: #383838;
-  cursor: default;
-}
-
-// @media(min-width:1100px){
-//   .container{
-//     display:block;
-//     max-width:1000px;
-//     left:50%;
-//     margin-left:-500px;
-//   }
-//   #group-namer,#exerciseenter, #groups-page, #workout{
-//   -webkit-transition: all .5s ease-in-out;
-//   transition: all .5s ease-in-out;
-//   position:absolute;
-//   text-align:center;
-//   height:100%;
-//   width:100%;
-//   padding:20px;
-//   top:0;
-//   box-sizing:border-box;
-//   }
-// }
-
-@media (max-width:5000px){
-  header, h1, h2, label{
-    font-size:1em;
-  }
   ::-webkit-input-placeholder {
     color: #ABABA8;
   }
@@ -416,11 +313,11 @@ header, h1, h2, label{
   }
   header{
     text-align:center;
-    height:$headerHeight;
+    height:$lineHeight;
     width:100%;
     position:absolute;
     top:0;
-    line-height:$headerHeight;
+    line-height:$lineHeight;
     h1{
       position:relative;
       display:block;
@@ -428,13 +325,12 @@ header, h1, h2, label{
     }
     button{
       position:absolute;
-      line-height:$headerHeight;
+      line-height:$lineHeight;
       color:#712D1D;
       top:0;
-      transition: all .7s;
-      &[disabled]{
-        opacity:0;
-      }
+      // &[disabled]{
+      //   opacity:0;
+      // }
     }
   }
   .left{
@@ -450,7 +346,7 @@ header, h1, h2, label{
   input{
     padding:0;
     color:#4C4C4C;
-    background:#F8F7F2;
+    background:$textBackground;
   }
   .container{
     position:absolute;
@@ -466,16 +362,12 @@ header, h1, h2, label{
   .header-bar{
     position:absolute;
     top:0;
-    height:$headerHeight;
-    background:$background;
+    height:$lineHeight;
+    background:$headerBar;
     width:100%;
   }
-  .remove{
-    opacity:0;
-  }
+
 #groups-page, #new-group, #exerciseenter, #workout{
-  // -webkit-transition: all .5s ease-out;
-  // transition: all .5s ease-out;
   position:absolute;
   height:100%;
   width:100%;
@@ -489,9 +381,9 @@ header, h1, h2, label{
   }
   .intro-text{
     position:absolute;
-    top:$headerHeight;
+    top:$lineHeight;
     width:100%;
-    background:#F8F7F2;
+    background:$textBackground;
     color:#040E0F;
     text-align:center;
     p{
@@ -500,12 +392,18 @@ header, h1, h2, label{
       padding:15px 5%;
     }
   }
+  .autofill{
+    color:$mainTextColor;
+    padding:3px;
+    border-radius:5px;
+    border: 2px solid $mainTextColor;
+  }
   ul{
     position:absolute;
     left:0;
     top:100px;
     width:100%;
-    background:#F8F7F2;
+    background:$textBackground;
     li{
       position:relative;
       border-top: 1px solid #EBEAE6;
@@ -537,19 +435,24 @@ header, h1, h2, label{
       padding:0;
     }
   }
-  .group-button{
-    position:relative;
-    width:100%;
-    font-size:1em;
+  
+  .exercise-name, .group-name{
     text-align:left;
     padding-left:40px;
-    border-top: 1px solid #EBEAE6;
-    line-height:50px;
+    width:100%;
   }
+
+  .group-name{
+    position:relative;
+    font-size:1em;
+    top:1px;
+    line-height:$lineHeight;
+  }
+
   .group-action-button{
     font-size:.9em;
-    line-height:50px;
-    background:#F8F7F2;
+    line-height:$lineHeight;
+    background:$textBackground;
     top:1px;
   }
 
@@ -559,33 +462,30 @@ header, h1, h2, label{
     top:1px;
   }
 
-  .icon-group-delete{
-    z-index:2;
-  }
-
   .icon-expand-list-up{
     -webkit-transform: rotate(-180deg) translateY(4px);
   }
 
   .icon-expand-list-down:before, .icon-expand-list-up:before{
     content: '\e601';
-    line-height:50px;
+    line-height:$lineHeight;
   }
   
-  .icon-exercise-delete{
-    margin-right: 5px;
-  }
   .icon-exercise-delete:before,
   .icon-group-delete:before{
       content: "\e600";
       color:#C83029;
       font-size:1.1em;
-      line-height:40px;
-
+      position:relative;
     }
-  .active{
-      -webkit-transform: translateX(-100px);
-  }
+
+    .icon-exercise-delete{
+      line-height:40px;
+    }
+    .icon-group-delete{
+      line-height:$lineHeight;
+      top:-1px;
+    }
 
   .confirm-delete-exercise, .confirm-delete-group{
     position:absolute;
@@ -602,7 +502,7 @@ header, h1, h2, label{
   }
 
   .confirm-delete-group{
-    line-height:50px;
+    line-height:$lineHeight;
     top:1px;
     padding:0 15px;
   }
@@ -610,6 +510,7 @@ header, h1, h2, label{
     width:100px;
   }
 }
+
 #new-group{
     input{
       position:absolute;
@@ -617,10 +518,9 @@ header, h1, h2, label{
       top:100px;
       padding-left:16px;
       width:100%;
-      height:50px;
+      height:$lineHeight;
       border:none;
       border-radius:0;
       box-sizing:border-box;
     }
   }
-}

@@ -1,10 +1,11 @@
+//edit > delete icon > done: exercise group will expand
 (function(){
 	var app = angular.module('fitness', ['ngAnimate', 'ngRoute']);
   
 
   app.run(function($rootScope) {
    $rootScope.allGroups = [],
-   $rootScope.currentExerciseDelete = {};
+   $rootScope.currentExercise = {};
    $rootScope.currentGroup = {};
   });
 
@@ -44,8 +45,10 @@
 
         $scope.setGroup = function(clickedGroup){
           //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
+          //also clears currentExercise to hide any viewable delete confirm buttons
           if($rootScope.currentGroup === clickedGroup){
             $rootScope.currentGroup = {};
+            $rootScope.currentExercise = {};
           }else{
             $rootScope.currentGroup = clickedGroup;
           }
@@ -57,15 +60,15 @@
 
         $scope.setExercise = function(clickedExercise){
           //Check if exercise is already clicked
-          if($rootScope.currentExerciseDelete === clickedExercise){
-            $rootScope.currentExerciseDelete = {};
+          if($rootScope.currentExercise === clickedExercise){
+            $rootScope.currentExercise = {};
           }else{
-            $rootScope.currentExerciseDelete = clickedExercise;
+            $rootScope.currentExercise = clickedExercise;
           }
 
         } 
         $scope.isExerciseClicked = function(checkExercise){
-          return $rootScope.currentExerciseDelete === checkExercise;
+          return $rootScope.currentExercise === checkExercise;
         }
       
 
@@ -94,7 +97,7 @@
   app.controller( 'mainController',function($rootScope,$scope){
     //in mainController to track a click anywhere in the app
     $scope.clearDelete = function(){
-      $rootScope.currentExerciseDelete = {};
+      $rootScope.currentExercise = {};
       $rootScope.currentGroup = {};
     }  
   });
