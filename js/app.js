@@ -1,4 +1,5 @@
-//edit > delete icon > done: exercise group will expand
+//edit should inject name without using setGroup
+//realign exericse delete/edit/confirm
 (function(){
 	var app = angular.module('fitness', ['ngAnimate', 'ngRoute']);
   
@@ -20,9 +21,29 @@
       .when('/new-group',{
         templateUrl: 'pages/page-new-group.html',
         controller: 'newGroupController'
+      })
+
+      .when('/edit-group',{
+        templateUrl: 'pages/page-edit-group.html',
+        controller: 'editGroupController'
       });
 
     });
+
+  app.controller( 'slideController', function($rootScope, $scope, $location) {
+    $scope.slideView = function (direction, url) {
+        $rootScope.slideDir = direction; 
+        $location.path(url);
+    }  
+  });
+
+  app.controller( 'mainController',function($rootScope,$scope){
+    //in mainController to track a click anywhere in the app
+    $scope.clearDelete = function(){
+      $rootScope.currentExercise = {};
+      $rootScope.currentGroup = {};
+    }  
+  });
 
     app.controller('groupsController',function($rootScope, $scope){
 
@@ -30,12 +51,12 @@
             $scope.editMode = false;
         $scope.autofill = function(){ 
           $rootScope.allGroups = [
-            {name:'Tuesday Workout', exerciseArray:
+            {groupID: 'g1', name:'Tuesday Workout', exerciseArray:
              [{name:'DB Bench Press', weight: 65, sets:3, reps:6},
               {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
               {name:'DB Military Press', weight: 35, sets:3, reps:6},
               {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                              
-              {name:'Thursday Workout', exerciseArray:
+            {groupID: 'g2', name:'Thursday Workout', exerciseArray:
              [{name:'Pullups', weight: 5, sets:3, reps:10},
               {name:'Bentover Rows', weight: 85, sets:3, reps:8},
               {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
@@ -66,12 +87,13 @@
             $rootScope.currentExercise = clickedExercise;
           }
 
-        } 
+        }
+
         $scope.isExerciseClicked = function(checkExercise){
           return $rootScope.currentExercise === checkExercise;
         }
-      
 
+        //Logic for showing/hiding the Edit button in the top right
         $scope.showEdit = function(){
           if($rootScope.allGroups.length > 0 && $scope.editMode === false){
             return true
@@ -79,27 +101,28 @@
             return false
           }
         }
-
-
     });
 
-    app.controller('newGroupController',function(){
-      // this.pageClass = 'page-new-group';
+    app.controller('newGroupController',function($rootScope, $scope){
+      $scope.input = {};
+      $scope.input.groupName = $rootScope.currentGroup.name;
+      $scope.addGroup = function(){
+        if($scope.input.groupName){
+          $rootScope.allGroups.push({name: $scope.input.groupName, exerciseArray:[]});  
+        }
+      }
     });
 
-  app.controller( 'slideController', function($rootScope, $scope, $location) {
-    $scope.slideView = function (direction, url) {
-        $rootScope.slideDir = direction; 
-        $location.path(url);
-    }  
-  });
+    app.controller('editGroupController',function($rootScope, $scope){
+      $scope.input = {};
+      //find group name and insert it
+      $scope.input.groupNameEdit = '';
+      $scope.addGroup = function(){
+        if($scope.input.groupName){
+          //find and edit group name 
+        }
+      }
+    });
 
-  app.controller( 'mainController',function($rootScope,$scope){
-    //in mainController to track a click anywhere in the app
-    $scope.clearDelete = function(){
-      $rootScope.currentExercise = {};
-      $rootScope.currentGroup = {};
-    }  
-  });
 
 })();

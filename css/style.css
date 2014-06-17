@@ -82,6 +82,12 @@ body {
   -o-transition: all .3s ease-out;
   transition: all .3s ease-out; }
 
+.fade-in-out.ng-enter-stagger {
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+  -webkit-transition-duration: 0;
+  transition-duration: 0; }
+
 .fade-in-out.ng-hide-remove,
 .fade-in-out.ng-hide-add.ng-hide-add-active,
 .fade-in-out.ng-enter,
@@ -105,6 +111,12 @@ body {
 .slide-up-down.ng-hide-add,
 .slide-up-down.ng-hide-remove.ng-hide-remove-active {
   height: 40px;
+  opacity: 1;
+  display: block !important; }
+
+.slide-up-down.ng-hide-add,
+.slide-up-down.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transform: scaleY(1);
   opacity: 1;
   display: block !important; }
 
@@ -331,15 +343,14 @@ input {
     #groups-page ul li ul {
       position: relative;
       top: 0;
-      left: 0; }
+      left: 0;
+      overflow: hidden; }
       #groups-page ul li ul li {
         font-size: .9em;
         line-height: 40px;
+        max-height: 40px;
         border: none; }
-        #groups-page ul li ul li:first-child {
-          border-top: 3px solid #EBEAE6; }
         #groups-page ul li ul li:last-child {
-          border-bottom: 1px solid #EBEAE6;
           text-align: center; }
   #groups-page ul .exercise-info {
     font-size: .8em;
@@ -393,12 +404,11 @@ input {
   line-height: 40px; }
 #groups-page .confirm-delete-group {
   line-height: 50px;
-  top: 1px;
   padding: 0 15px; }
 #groups-page .delete-active {
   width: 100px; }
 
-#new-group input {
+#new-group input, #edit-group input {
   position: absolute;
   left: 0;
   top: 100px;
