@@ -1,6 +1,8 @@
 //edit should inject name without using setGroup
 //realign exericse delete/edit/confirm
-//footer: infront or behind?
+//add workout page
+//test group/exercise name length
+
 (function(){
 	var app = angular.module('fitness', ['ngAnimate', 'ngRoute']);
   
@@ -42,6 +44,11 @@
       .when('/edit-exercise',{
         templateUrl: 'pages/edit-exercise.html',
         controller: 'editExerciseController'
+      })
+
+      .when('/workout',{
+        templateUrl: 'pages/workout.html',
+        controller: 'workoutController'
       });
 
     });
@@ -68,14 +75,14 @@
         $scope.autofill = function(){ 
           $rootScope.allGroups = [
             {groupID: 'g1', name:'Tuesday Workout', exerciseArray:
-             [{name:'DB Bench Press', weight: 65, sets:3, reps:6},
-              {name:'DB Incline Bench Press', weight: 40, sets:2, reps:10},
-              {name:'DB Military Press', weight: 35, sets:3, reps:6},
-              {name:'BB Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                              
+             [{name:'Dumbbell Bench Press', weight: 65, sets:3, reps:6},
+              {name:'Dumbbell Incline Bench Press', weight: 40, sets:2, reps:10},
+              {name:'Dumbbell Military Press', weight: 35, sets:3, reps:6},
+              {name:'Barbell Lying Tricep Extensions', weight: 22.5, sets:3, reps:10}]},                                              
             {groupID: 'g2', name:'Thursday Workout', exerciseArray:
              [{name:'Pullups', weight: 5, sets:3, reps:10},
               {name:'Bentover Rows', weight: 85, sets:3, reps:8},
-              {name:'DB Hammercurls', weight: 30, sets:2, reps:10},
+              {name:'Dumbbell Hammercurls', weight: 30, sets:2, reps:10},
               {name:'Situps', weight: 20, sets:3, reps:10}]}
           ]
         }
@@ -147,5 +154,8 @@
 
     });
 
+    app.controller('workoutController',function(){
+
+    });
 
 })();

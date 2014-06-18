@@ -219,90 +219,6 @@ body{
   }
 }
 
-#new-exerciseasdf{
-  header{
-    padding-top:15px;
-    display:block;
-
-  }
-  h1{
-    font-size:1.5em;
-    margin: 10px 50px;
-  }
-  label{
-    display:block;
-    margin-top:15px;
-    font-size:1em;
-    
-  }
-  input{
-    display:block;
-    margin:0 auto;
-    width:100%;
-    height:50px;
-    border:none;
-    border-bottom:1px solid #EBEAE6;
-  }
-  ul{
-    width:100%;
-    height:200px;
-    margin-top:10px;
-  }
-  li{
-    display:inline-block;
-    position:relative;
-  }
-  .prevexercisebutton{
-      
-    }
-}
-
-#resultbuttons{
-  margin-top:25px;
-}
-.success{
-  position:relative;
-  padding:10px 50px;
-  background:#00503F;
-  color:#fff;
-  box-shadow:  -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-  border-radius: 50px;
-}
-
-.fail{
-  padding:10px 50px;
-  background: #900022;
-  color:#FFFECB;
-  box-shadow:  -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-  border-radius: 50px;
-}
-
-#timer{
-  display:block;
-  margin-top:50px;
-  height:auto;
-  .start,.stop{
-    box-sizing: border-box;
-    margin:25px auto 0 auto;
-    display:block;
-    width:40px;
-    padding:20px 50px 20px 15px;
-    
-    color:#fff;
-    border-radius: 50px;
-    box-shadow:  -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-    text-shadow: -1px -1px #000;
-
-  }
-  .start{
-    background: #900022;
-
-  }
-  .stop{
-    background:#6B696D;
-  }
-}
-
   ::-webkit-input-placeholder {
     color: #ABABA8;
   }
@@ -327,12 +243,12 @@ body{
     }
   }
 
-  header,footer{
+  header{
     text-align:center;
     height:$lineHeight;
     position:absolute;
-    left:0;
-    right:0;
+    width:100%;
+    top:0;
     line-height:$lineHeight;
     h1{
       position:relative;
@@ -348,14 +264,6 @@ body{
       //   opacity:0;
       // }
     }
-  }
-
-  header{
-    top:0;
-  }
-
-  footer{
-    bottom:0;
   }
 
   .left{
@@ -408,16 +316,9 @@ body{
   }
 
 #groups-page, #new-group, #new-exercise, #workout{
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  box-sizing:border-box;
-}
-
-#new-exercise{
-
+  position:relative;
+  height:100%;
+  width:100%;
 }
 
 #groups-page{
@@ -587,5 +488,63 @@ body{
     right:0;
     color:#ABABA8;
     font-size:.8em;
+  }
+}
+
+#workout{
+  ul{
+    position:absolute;
+    top:100px;
+    width:80%;
+    left:10%;
+    background:$textBackground;
+    text-align:center;
+    padding:3px;
+    border-radius:5px;
+    border: 2px solid $mainTextColor;
+  }
+  li{
+    position:relative;
+    height:$lineHeight;
+    &:first-child{
+      padding-top:25px;
+    }
+  }
+  .btn-success,.btn-failure,.btn-done{
+    position:absolute;
+    max-height:$lineHeight;
+    padding:3px;
+    box-sizing:border-box;
+    color:#EBEAE6;
+  }
+  
+  .btn-success,.btn-failure{
+    width:25%;
+    top:350px;
+  }
+  .btn-success{
+    left:25%;
+    border-radius:5px 0 0 0;
+    border: 2px solid $mainTextColor;
+    background:#3C5036;
+  }
+
+  .btn-failure{
+    border-radius:0 5px 0 0;
+    border-top: 2px solid $mainTextColor;
+    border-right: 2px solid $mainTextColor;
+    border-bottom: 2px solid $mainTextColor;
+    left:50%;
+    background:#A71414;
+  }
+  .btn-done{
+    width:50%;
+    top:378px;
+    left:25%;
+    border-radius: 0 0 5px 5px;
+    border-right: 2px solid $mainTextColor;
+    border-bottom: 2px solid $mainTextColor;
+    border-left: 2px solid $mainTextColor;
+    background:$mainTextColor;
   }
 }

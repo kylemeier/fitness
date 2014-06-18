@@ -172,68 +172,6 @@ body {
     border: none;
     box-shadow: none; }
 
-#new-exerciseasdf header {
-  padding-top: 15px;
-  display: block; }
-#new-exerciseasdf h1 {
-  font-size: 1.5em;
-  margin: 10px 50px; }
-#new-exerciseasdf label {
-  display: block;
-  margin-top: 15px;
-  font-size: 1em; }
-#new-exerciseasdf input {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: 50px;
-  border: none;
-  border-bottom: 1px solid #EBEAE6; }
-#new-exerciseasdf ul {
-  width: 100%;
-  height: 200px;
-  margin-top: 10px; }
-#new-exerciseasdf li {
-  display: inline-block;
-  position: relative; }
-
-#resultbuttons {
-  margin-top: 25px; }
-
-.success {
-  position: relative;
-  padding: 10px 50px;
-  background: #00503F;
-  color: #fff;
-  box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-  border-radius: 50px; }
-
-.fail {
-  padding: 10px 50px;
-  background: #900022;
-  color: #FFFECB;
-  box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-  border-radius: 50px; }
-
-#timer {
-  display: block;
-  margin-top: 50px;
-  height: auto; }
-  #timer .start, #timer .stop {
-    box-sizing: border-box;
-    margin: 25px auto 0 auto;
-    display: block;
-    width: 40px;
-    padding: 20px 50px 20px 15px;
-    color: #fff;
-    border-radius: 50px;
-    box-shadow: -1px 0px 3px #6B696D,  1px 2px 3px #6B696D;
-    text-shadow: -1px -1px #000; }
-  #timer .start {
-    background: #900022; }
-  #timer .stop {
-    background: #6B696D; }
-
 ::-webkit-input-placeholder {
   color: #ABABA8; }
 
@@ -255,28 +193,22 @@ button {
   button:focus {
     outline: 0; }
 
-header, footer {
+header {
   text-align: center;
   height: 50px;
   position: absolute;
-  left: 0;
-  right: 0;
+  width: 100%;
+  top: 0;
   line-height: 50px; }
-  header h1, footer h1 {
+  header h1 {
     position: relative;
     display: block;
     color: #E1CCAD; }
-  header button, footer button {
+  header button {
     position: absolute;
     line-height: 50px;
     color: #712D1D;
     top: 0; }
-
-header {
-  top: 0; }
-
-footer {
-  bottom: 0; }
 
 .left {
   position: absolute;
@@ -325,12 +257,9 @@ input {
   bottom: 0; }
 
 #groups-page, #new-group, #new-exercise, #workout {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box; }
+  position: relative;
+  height: 100%;
+  width: 100%; }
 
 #groups-page .add-group {
   font-size: 2em; }
@@ -449,3 +378,49 @@ input {
   right: 0;
   color: #ABABA8;
   font-size: .8em; }
+
+#workout ul {
+  position: absolute;
+  top: 100px;
+  width: 80%;
+  left: 10%;
+  background: #f8f7f2;
+  text-align: center;
+  padding: 3px;
+  border-radius: 5px;
+  border: 2px solid #373a3a; }
+#workout li {
+  position: relative;
+  height: 50px; }
+  #workout li:first-child {
+    padding-top: 25px; }
+#workout .btn-success, #workout .btn-failure, #workout .btn-done {
+  position: absolute;
+  max-height: 50px;
+  padding: 3px;
+  box-sizing: border-box;
+  color: #EBEAE6; }
+#workout .btn-success, #workout .btn-failure {
+  width: 25%;
+  top: 350px; }
+#workout .btn-success {
+  left: 25%;
+  border-radius: 5px 0 0 0;
+  border: 2px solid #373a3a;
+  background: #3C5036; }
+#workout .btn-failure {
+  border-radius: 0 5px 0 0;
+  border-top: 2px solid #373a3a;
+  border-right: 2px solid #373a3a;
+  border-bottom: 2px solid #373a3a;
+  left: 50%;
+  background: #A71414; }
+#workout .btn-done {
+  width: 50%;
+  top: 378px;
+  left: 25%;
+  border-radius: 0 0 5px 5px;
+  border-right: 2px solid #373a3a;
+  border-bottom: 2px solid #373a3a;
+  border-left: 2px solid #373a3a;
+  background: #373a3a; }
