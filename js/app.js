@@ -1,5 +1,6 @@
 //edit should inject name without using setGroup
 //realign exericse delete/edit/confirm
+//footer: infront or behind?
 (function(){
 	var app = angular.module('fitness', ['ngAnimate', 'ngRoute']);
   
@@ -14,25 +15,40 @@
       $routeProvider
 
       .when('/', {
-        templateUrl: 'pages/page-groups.html',
+        templateUrl: 'pages/groups.html',
         controller: 'groupsController'
       })
 
       .when('/new-group',{
-        templateUrl: 'pages/page-new-group.html',
+        templateUrl: 'pages/new-group.html',
         controller: 'newGroupController'
       })
 
       .when('/edit-group',{
-        templateUrl: 'pages/page-edit-group.html',
+        templateUrl: 'pages/edit-group.html',
         controller: 'editGroupController'
+      })
+
+      .when('/new-exercise',{
+        templateUrl: 'pages/new-exercise.html',
+        controller: 'newExerciseController'
+      })
+
+      .when('/new-exercise2',{
+        templateUrl: 'pages/new-exercise.html',
+        controller: 'newExerciseController'
+      })
+
+      .when('/edit-exercise',{
+        templateUrl: 'pages/edit-exercise.html',
+        controller: 'editExerciseController'
       });
 
     });
 
   app.controller( 'slideController', function($rootScope, $scope, $location) {
     $scope.slideView = function (direction, url) {
-        $rootScope.slideDir = direction; 
+        $scope.slideDir = direction; 
         $location.path(url);
     }  
   });
@@ -105,7 +121,6 @@
 
     app.controller('newGroupController',function($rootScope, $scope){
       $scope.input = {};
-      $scope.input.groupName = $rootScope.currentGroup.name;
       $scope.addGroup = function(){
         if($scope.input.groupName){
           $rootScope.allGroups.push({name: $scope.input.groupName, exerciseArray:[]});  
@@ -122,6 +137,14 @@
           //find and edit group name 
         }
       }
+    });
+
+    app.controller('newExerciseController',function(){
+
+    });
+
+    app.controller('editExerciseController',function(){
+
     });
 
 

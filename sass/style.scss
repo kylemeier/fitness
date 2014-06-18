@@ -219,7 +219,7 @@ body{
   }
 }
 
-#exerciseenter{
+#new-exerciseasdf{
   header{
     padding-top:15px;
     display:block;
@@ -326,12 +326,13 @@ body{
       outline:0;
     }
   }
-  header{
+
+  header,footer{
     text-align:center;
     height:$lineHeight;
-    width:100%;
     position:absolute;
-    top:0;
+    left:0;
+    right:0;
     line-height:$lineHeight;
     h1{
       position:relative;
@@ -348,6 +349,15 @@ body{
       // }
     }
   }
+
+  header{
+    top:0;
+  }
+
+  footer{
+    bottom:0;
+  }
+
   .left{
     position:absolute;
     left:0;
@@ -359,9 +369,17 @@ body{
     padding-right:16px;
   }
   input{
-    padding:0;
+    padding-left:16px;
     color:#4C4C4C;
     background:$textBackground;
+    border:none;
+    width:100%;
+    height:$lineHeight;
+    position:absolute;
+    left:0;
+    border-radius:0;
+    box-sizing:border-box;
+    outline:0;
   }
   .container{
     position:absolute;
@@ -374,20 +392,32 @@ body{
     cursor:pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
-  .header-bar{
+  .header-bar-background,.footer-bar-background{
     position:absolute;
-    top:0;
     height:$lineHeight;
     background:$headerBar;
     width:100%;
   }
 
-#groups-page, #new-group, #exerciseenter, #workout{
+  .header-bar-background{
+    top:0; 
+  }
+
+  .footer-bar-background{
+    bottom:0;
+  }
+
+#groups-page, #new-group, #new-exercise, #workout{
   position:absolute;
-  height:100%;
-  width:100%;
   top:0;
+  right:0;
+  bottom:0;
+  left:0;
   box-sizing:border-box;
+}
+
+#new-exercise{
+
 }
 
 #groups-page{
@@ -454,6 +484,9 @@ body{
     }
   }
   
+  .exercise-edit{
+    z-index:2;
+  }
   .exercise-name, .group-name{
     text-align:left;
     padding-left:40px;
@@ -471,7 +504,7 @@ body{
     font-size:.9em;
     line-height:$lineHeight;
     background:$textBackground;
-    top:1px;
+    top:0px;
   }
 
   .icon-expand-list-down, .icon-expand-list-up, .icon-group-delete{
@@ -507,7 +540,7 @@ body{
 
   .confirm-delete-exercise, .confirm-delete-group{
     position:absolute;
-    z-index:1;
+    z-index:100;
     right:0;
     top:0;
     background:#C83029;
@@ -530,14 +563,29 @@ body{
 
 #new-group, #edit-group{
     input{
-      position:absolute;
-      left:0;
       top:100px;
-      padding-left:16px;
-      width:100%;
-      height:$lineHeight;
-      border:none;
-      border-radius:0;
-      box-sizing:border-box;
     }
   }
+
+#new-exercise, #edit-exercise{
+  //refactor with groups page
+  ul{
+    position:absolute;
+    left:0;
+    top:100px;
+    width:100%;
+    background:$textBackground;
+  }
+  li{
+    position:relative;
+    border-top: 1px solid #EBEAE6;
+    left:0;
+    height:$lineHeight;
+  }
+  h3{
+    position:absolute;
+    right:0;
+    color:#ABABA8;
+    font-size:.8em;
+  }
+}

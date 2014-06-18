@@ -172,28 +172,28 @@ body {
     border: none;
     box-shadow: none; }
 
-#exerciseenter header {
+#new-exerciseasdf header {
   padding-top: 15px;
   display: block; }
-#exerciseenter h1 {
+#new-exerciseasdf h1 {
   font-size: 1.5em;
   margin: 10px 50px; }
-#exerciseenter label {
+#new-exerciseasdf label {
   display: block;
   margin-top: 15px;
   font-size: 1em; }
-#exerciseenter input {
+#new-exerciseasdf input {
   display: block;
   margin: 0 auto;
   width: 100%;
   height: 50px;
   border: none;
   border-bottom: 1px solid #EBEAE6; }
-#exerciseenter ul {
+#new-exerciseasdf ul {
   width: 100%;
   height: 200px;
   margin-top: 10px; }
-#exerciseenter li {
+#new-exerciseasdf li {
   display: inline-block;
   position: relative; }
 
@@ -255,22 +255,28 @@ button {
   button:focus {
     outline: 0; }
 
-header {
+header, footer {
   text-align: center;
   height: 50px;
-  width: 100%;
   position: absolute;
-  top: 0;
+  left: 0;
+  right: 0;
   line-height: 50px; }
-  header h1 {
+  header h1, footer h1 {
     position: relative;
     display: block;
     color: #E1CCAD; }
-  header button {
+  header button, footer button {
     position: absolute;
     line-height: 50px;
     color: #712D1D;
     top: 0; }
+
+header {
+  top: 0; }
+
+footer {
+  bottom: 0; }
 
 .left {
   position: absolute;
@@ -283,9 +289,17 @@ header {
   padding-right: 16px; }
 
 input {
-  padding: 0;
+  padding-left: 16px;
   color: #4C4C4C;
-  background: #f8f7f2; }
+  background: #f8f7f2;
+  border: none;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  outline: 0; }
 
 .container {
   position: absolute;
@@ -298,18 +312,24 @@ input {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
-.header-bar {
+.header-bar-background, .footer-bar-background {
   position: absolute;
-  top: 0;
   height: 50px;
   background: #b1462d;
   width: 100%; }
 
-#groups-page, #new-group, #exerciseenter, #workout {
+.header-bar-background {
+  top: 0; }
+
+.footer-bar-background {
+  bottom: 0; }
+
+#groups-page, #new-group, #new-exercise, #workout {
   position: absolute;
-  height: 100%;
-  width: 100%;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   box-sizing: border-box; }
 
 #groups-page .add-group {
@@ -358,6 +378,8 @@ input {
     top: 20px;
     left: 41px;
     padding: 0; }
+#groups-page .exercise-edit {
+  z-index: 2; }
 #groups-page .exercise-name, #groups-page .group-name {
   text-align: left;
   padding-left: 40px;
@@ -371,7 +393,7 @@ input {
   font-size: .9em;
   line-height: 50px;
   background: #f8f7f2;
-  top: 1px; }
+  top: 0px; }
 #groups-page .icon-expand-list-down, #groups-page .icon-expand-list-up, #groups-page .icon-group-delete {
   position: absolute;
   margin-left: 16px;
@@ -394,7 +416,7 @@ input {
   top: -1px; }
 #groups-page .confirm-delete-exercise, #groups-page .confirm-delete-group {
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   right: 0;
   top: 0;
   background: #C83029;
@@ -409,12 +431,21 @@ input {
   width: 100px; }
 
 #new-group input, #edit-group input {
+  top: 100px; }
+
+#new-exercise ul, #edit-exercise ul {
   position: absolute;
   left: 0;
   top: 100px;
-  padding-left: 16px;
   width: 100%;
-  height: 50px;
-  border: none;
-  border-radius: 0;
-  box-sizing: border-box; }
+  background: #f8f7f2; }
+#new-exercise li, #edit-exercise li {
+  position: relative;
+  border-top: 1px solid #EBEAE6;
+  left: 0;
+  height: 50px; }
+#new-exercise h3, #edit-exercise h3 {
+  position: absolute;
+  right: 0;
+  color: #ABABA8;
+  font-size: .8em; }
