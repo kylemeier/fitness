@@ -40,7 +40,7 @@ angular.module('fitness.controllers.signup', [])
             else {
               $scope.login(function(err) {
                 if( !err ) {
-                  loginService.createProfile(user.id, user.email);
+                  loginService.createProfile(user.uid, user.email);
                 }
               });
             }

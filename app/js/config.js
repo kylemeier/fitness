@@ -54,7 +54,6 @@ app.config(['$routeProvider',
     function(angularFireAuth, FBURL, $rootScope) {
       angularFireAuth.initialize(new Firebase(FBURL), {scope: $rootScope, name: 'auth', path: '/signin'});
       $rootScope.FBURL = FBURL;
-      $rootScope.allGroups = [],
       $rootScope.currentExercise = {};
       $rootScope.currentGroup = {};
     }])

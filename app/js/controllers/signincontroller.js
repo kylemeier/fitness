@@ -9,7 +9,7 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
       }
 
       $scope.$on('angularFireAuth:login', function () {
-        console.log('signinCtrl log in');
+        console.log('logged in as:'+$scope.email);
         $location.path('/groups');
       })
 

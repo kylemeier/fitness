@@ -1,17 +1,46 @@
 angular.module('fitness.controllers.groups',['fitness.services.login'])
-  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', 
-    function($rootScope, $scope, $location, loginService, angularFire, FBURL) {
-
+  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'angularFireCollection', 'FBURL', 
+    function($rootScope, $scope, $location, loginService, angularFire, angularFireCollection, FBURL) {
+      $scope.allGroups = [];
+      console.log($scope.allGroups);
       $scope.$on('angularFireAuth:login', function() {
         console.log('groupsCtrl login');
-        angularFire(new Firebase(FBURL+'/users/'+$scope.auth.id), $rootScope, 'user');
+          if ($scope.disassociateUserData) { 
+            console.log('dissassociate');
+      $scope.disassociateUserData();
+  } 
+        angularFire(new Firebase(FBURL+'/users/'+$scope.auth.uid), $rootScope, 'user');
       });
- 
+
       var currentGroup = {};
-          $scope.editMode = false;
+      $scope.editMode = false;
+
+
+      $scope.findGroups = function(){
+        console.log('finding groups');
+        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
+        $scope.allGroups = angularFireCollection(firebaseRef);
+        console.log($scope.allGroups);
+      }
+
       $scope.autofill = function(){ 
-        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.id);
-        firebaseRef.child('group').set('Tuesday Workout');
+        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
+        var groupName = firebaseRef.push({'name':'Tuesday Workout'}).name();
+
+        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Bench Press', weight: 65, sets:3, reps:6});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Incline Bench Press', weight: 40, sets:2, reps:10});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Military Press', weight: 35, sets:3, reps:6});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Barbell Lying Tricep Extensions', weight: 22.5, sets:3, reps:10});
+
+        var groupName = firebaseRef.push({'name':'Thursday Workout'}).name();
+
+        firebaseRef.child(groupName+'/Exercises').push({name:'Pullups', weight: 5, sets:3, reps:10});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Bentover Rows', weight: 85, sets:3, reps:8});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Hammercurls', weight: 30, sets:2, reps:10});
+        firebaseRef.child(groupName+'/Exercises').push({name:'Situps', weight: 20, sets:3, reps:10});
+
+        $scope.findGroups();
+
         // $rootScope.allGroups = [
         //   {groupID: 'g1', name:'Tuesday Workout', exerciseArray:
         //    [{name:'Dumbbell Bench Press', weight: 65, sets:3, reps:6},
@@ -26,6 +55,8 @@ angular.module('fitness.controllers.groups',['fitness.services.login'])
         // ]
         
       }
+
+
 
       $scope.setGroup = function(clickedGroup){
         //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
@@ -58,7 +89,7 @@ angular.module('fitness.controllers.groups',['fitness.services.login'])
 
       //Logic for showing/hiding the Edit button in the top right
       $scope.showEdit = function(){
-        if($rootScope.allGroups.length > 0 && $scope.editMode === false){
+        if($scope.allGroups.length > 0 && $scope.editMode === false){
           return true
         }else{
           return false
