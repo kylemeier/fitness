@@ -1,0 +1,8 @@
+ <div id='new-group'> 
+   <header> 
+     <h1>New Group</h1> 
+     <button class='groups-back left' ng-click='slideView("view-slide-right","/groups"); addGroup()'>&lsaquo; Groups</button> 
+     <button class='fade-in-out right' ng-show='input.groupName.length' ng-click='slideView("view-slide-left","/new-exercise")'> Next &rsaquo;</button> 
+   </header> 
+     <input type='text' name='groupName' placeholder='Enter group name' maxlength='26' ng-model='input.groupName'> 
+ </div>

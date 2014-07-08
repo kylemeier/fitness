@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Fitness</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!-- minimal-ui will throw an error unless you're using mobile safari. expalanation here http://darkblue.sdf.org/weblog/ios-7-dot-1-mobile-safari-minimal-ui.html -->
+    <link rel='stylesheet' href='css/reset.css'>
+    <link rel='stylesheet' href='css/style.css' >
+
+</head>
+<body ng-app='fitness' ng-controller='slideController' ng-cloak>
+	<div class='container' ng-controller='mainController' ng-click='clearDelete()'>
+		<div class='header-bar-background'></div>
+    <div ng-view ng-class='slideDir'></div>
+  </div>
+   <!--       <script src="//static.firebase.com/v0/firebase.js"></script>
+    <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
+    <script src="lib/angular/angular..min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
+    <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.min.js'></script>
+    <script src="lib/angularfire/angularFire.js"></script>
+
+    <script src='js/app.js'></script> -->
+    <!-- // <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script> -->
+    <script src="http://static.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+    <!-- // <script src="lib/angular/angular.js"></script> -->
+    <!-- // <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> -->
+    <!-- // <script src="lib/angular-route/angular-route.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.js"></script>
+    <script src="lib/angular-fire/angularFire.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/controllers/headercontroller.js"></script>
+    <script src="js/controllers/signincontroller.js"></script>
+    <script src="js/controllers/signupcontroller.js"></script>
+    <script src="js/controllers/groupscontroller.js"></script>
+    <script src="js/services/loginservice.js"></script>
+    <script src="js/services/profilecreator.js"></script>
+
+</body>
+</html>

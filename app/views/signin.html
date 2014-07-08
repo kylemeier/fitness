@@ -1,0 +1,26 @@
+ <div id='signin' ng-controller='SigninCtrl'> 
+  <header> 
+    <h1>Sign In</h1> 
+  </header> 
+     <form class='login-info'>
+      <div class='input-wrapper'>
+        <input type='email' name='email' id='email' ng-model='email'>   
+        <h3 class='left'>Email</h3>   
+      </div>
+      <div class='input-wrapper'>
+        <input type="password" ng-model="pass" />
+        <h3 class='left'>Password</h3>
+      </div>
+      <div class='input-wrapper'>  
+        <input type="password" ng-model="confirm" />
+        <h3 class='left'>Confirm Password</h3>
+      </div>
+
+    </form>
+    	<button id='button-signin' ng-click='login()'>Enter</button> 
+    	<button id='button-forgot'>Forgot Password?</button>
+	    <button id='button-signup' ng-click='slideView("view-slide-right","/signup")'>Sign Up</button>
+		<button id='button-guest' ng-click='anonymous()'>Enter as guest*</button>
+	<p>*As a guest, you don't need to provide an email/password, but your data will only be stored for 30 days or until you log out.</p>
+   <p ng-show="err" class="error">{{err}}</p>
+</div>

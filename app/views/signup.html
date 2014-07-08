@@ -1,0 +1,22 @@
+ <div id='signup' ng-controller='SignupCtrl'> 
+  <header> 
+    <h1>Create Account</h1> 
+    <button class ='right' ng-click='slideView("view-slide-left","/signin")'>Sign In &rsaquo;</button>
+  </header> 
+     <ul class='login-info'>
+      <li>
+        <input type='email' name='email' id='email' ng-model='email'>   
+        <h3 class='left'>Email</h3> 
+      </li>
+      <li>     
+        <input type='password' name='pass' id='pass' ng-model='pass'> 
+        <h3 class='left'>Password</h3>  
+      </li>
+      <li>     
+        <input type='password' name='password-verify' id='password-verify' ng-model='passwordVerify'> 
+        <h3 class='left'>Confirm Password</h3>  
+      </li>
+    </ul>
+	    <button id='button-signup' ng-click='createAccount()'>Sign Up</button>
+      {{err}}
+</div>

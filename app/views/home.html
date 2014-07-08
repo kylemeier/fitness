@@ -1,0 +1,23 @@
+ <div id='sign-in' ng-controller='signinController'> 
+  <header> 
+    <h1>Home</h1> 
+  </header> 
+     <ul class='login-info'>
+      <li>
+        <input type='email' name='email' id='email' ng-model='email'>   
+        <h3 class='left'>Email</h3> 
+      </li>
+      <li>     
+        <input type='password' name='password' id='email' ng-model='password'> 
+        <h3 class='left'>Password</h3>  
+      </li>
+    </ul>
+    <ul class='buttons'>
+    	<button id='login'>Login</button> 
+    	<button id='forgot'>Forgot Password?</button>
+	    <button id='signup' ng-click='createAccount()'>Sign Up</button>
+		<button id='login-guest' ng-click='anonymous()'>Login as guest*</button>
+	</ul>
+	<p>*As a guest, you don't need to provide an email/password, but your data will be deleted after 30 days or if you log out.</p>
+
+</div>

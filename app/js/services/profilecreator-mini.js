@@ -1,0 +1,1 @@
+"use strict";angular.module("fitness.services.profileCreator",[]).factory("profileCreator",["Firebase","FBURL","$rootScope",function(e,t,n){return function(r,i,s){console.log("adding to db");(new e(t)).child("users/"+r).set({email:i},function(e){if(s){s(e);n.$apply()}})}}]);
