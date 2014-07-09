@@ -1,23 +1,27 @@
- <div id='sign-in' ng-controller='signinController'> 
+ <div id='signin' ng-controller='SigninCtrl'> 
   <header> 
-    <h1>Home</h1> 
+    <h1>Fitness</h1> 
   </header> 
-     <ul class='login-info'>
-      <li>
+      <p ng-show="err" class="error left">{{err}}</p>
+      <p ng-show='passReset' class='error left'>Forgot your password?<a href=''>  Click here!</a></p>
+     <form class='login-info'>
+      <div class='input-wrapper'>
         <input type='email' name='email' id='email' ng-model='email'>   
-        <h3 class='left'>Email</h3> 
-      </li>
-      <li>     
-        <input type='password' name='password' id='email' ng-model='password'> 
-        <h3 class='left'>Password</h3>  
-      </li>
-    </ul>
-    <ul class='buttons'>
-    	<button id='login'>Login</button> 
-    	<button id='forgot'>Forgot Password?</button>
-	    <button id='signup' ng-click='createAccount()'>Sign Up</button>
-		<button id='login-guest' ng-click='anonymous()'>Login as guest*</button>
-	</ul>
-	<p>*As a guest, you don't need to provide an email/password, but your data will be deleted after 30 days or if you log out.</p>
-
+        <h3 class='left'>Email</h3>   
+      </div>
+      <div class='input-wrapper'>
+        <input type="password" ng-model="pass" />
+        <h3 class='left'>Password</h3>
+      </div>
+      <div class='input-wrapper fade-in-out' ng-show="url === '/signup'">
+        <input type='password' name='pass-confirm' id='pass-confirm' ng-model='passConfirm'> 
+        <h3 class='left'>Confirm Password</h3>
+      </div>
+    </form>
+    	<button id='button-signin' ng-click='login()'>Log in</button> 
+     <button id='button-guest' ng-click='loginAnon()'>Guest*</button>
+    <div class='additional-info fade-in-out'>
+      <p>Need an account? <a href='#/signup' class='sign-up'>Sign up!</a></p>
+	     <p>*As a guest, you don't need to provide an email/password, but your data will only be stored for 30 days or until you log out.</p>
+    </div>
 </div>

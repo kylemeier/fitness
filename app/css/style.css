@@ -46,34 +46,42 @@ body {
 
 .view-slide-left.ng-enter {
   -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
   opacity: 0; }
 
 .view-slide-left.ng-enter.ng-enter-active {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   opacity: 1; }
 
 .view-slide-left.ng-leave {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   opacity: 1; }
 
 .view-slide-left.ng-leave.ng-leave-active {
   -webkit-transform: translate(-100%, 0);
+  transform: translate(0, 0);
   opacity: 0; }
 
 .view-slide-right.ng-enter {
   -webkit-transform: translate(-100%, 0);
+  transform: translate(0, 0);
   opacity: 0; }
 
 .view-slide-right.ng-enter.ng-enter-active {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   opacity: 1; }
 
 .view-slide-right.ng-leave {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   opacity: 1; }
 
 .view-slide-right.ng-leave.ng-leave-active {
   -webkit-transform: translate(100%, 0);
+  transform: translate(0, 0);
   opacity: 0; }
 
 .fade-in-out, .slide-up-down, .icon-slide-right-side, .icon-slide-left-side {
@@ -117,27 +125,32 @@ body {
 .slide-up-down.ng-hide-add,
 .slide-up-down.ng-hide-remove.ng-hide-remove-active {
   -webkit-transform: scaleY(1);
+  transform: scaleY(1);
   opacity: 1;
   display: block !important; }
 
 .icon-slide-right-side.ng-hide-remove,
 .icon-slide-right-side.ng-hide-add.ng-hide-add-active {
   -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
   display: block !important; }
 
 .icon-slide-right-side.ng-hide-add,
 .icon-slide-right-side.ng-hide-remove.ng-hide-remove-active {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   display: block !important; }
 
 .icon-slide-left-side.ng-hide-remove,
 .icon-slide-left-side.ng-hide-add.ng-hide-add-active {
   -webkit-transform: translate(-200%, 0);
+  transform: translate(-200%, 0);
   display: block !important; }
 
 .icon-slide-left-side.ng-hide-add,
 .icon-slide-left-side.ng-hide-remove.ng-hide-remove-active {
   -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
   display: block !important; }
 
 .modalconfirm {
@@ -254,7 +267,7 @@ input {
   top: 0; }
 
 #signin, #signup, #groups, #new-group, #new-exercise, #workout {
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%; }
 
@@ -285,10 +298,11 @@ input {
   font-size: .8em; }
 
 #signin .login-info {
-  position: absolute;
+  position: relative;
   left: 0;
-  top: 100px;
+  margin-top: 100px;
   width: 100%;
+  height: auto;
   background: #f8f7f2; }
   #signin .login-info .input-wrapper {
     position: relative;
@@ -305,20 +319,37 @@ input {
   border-radius: 5px;
   border: 2px solid #373a3a;
   background: #f8f7f2; }
-#signin #button-signin {
+#signin #button-signin, #signin #button-guest {
+  margin-top: 25px;
+  width: 25%;
+  margin-left: 17%; }
+#signin .error {
   position: absolute;
-  top: 250px;
-  width: 80%;
-  margin-left: 10%; }
-#signin #button-forgot, #signin #button-signup, #signin #button-guest {
+  top: 75px;
+  color: #FD6440;
+  font-style: italic;
+  font-size: .9em; }
+  #signin .error a {
+    font-style: normal;
+    color: #7E3220; }
+#signin .additional-info {
   position: relative;
-  top: 300px; }
-#signin p {
-  position: relative;
-  top: 350px; }
+  top: 25px;
+  width: 100%;
+  background: #f8f7f2;
+  color: #040E0F;
+  text-align: center; }
+  #signin .additional-info p {
+    color: #4C4C4C;
+    border-top: 1px solid #EBEAE6;
+    padding: 15px 5%; }
+  #signin .additional-info a {
+    color: #B1462D; }
 
 #groups-page .add-group {
   font-size: 2em; }
+#groups-page .edit-group {
+  right: 50px; }
 #groups-page .intro-text {
   position: absolute;
   top: 50px;
@@ -415,10 +446,7 @@ input {
 #groups-page .delete-active {
   width: 100px; }
 #groups-page #logout {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 5; }
+  position: absolute; }
 
 #new-group input, #edit-group input {
   top: 100px; }

@@ -19,7 +19,7 @@
 
   .controller( 'slideController', function($rootScope, $scope, $location) {
     $scope.slideView = function (direction, url) {
-        $scope.slideDir = direction; 
+        $rootScope.slideDir = direction; 
         $location.path(url);
     }  
   })

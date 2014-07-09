@@ -1,27 +1,23 @@
 angular.module('fitness.controllers.groups',['fitness.services.login'])
   .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'angularFireCollection', 'FBURL', 
     function($rootScope, $scope, $location, loginService, angularFire, angularFireCollection, FBURL) {
-      $scope.allGroups = [];
-      console.log($scope.allGroups);
-      $scope.$on('angularFireAuth:login', function() {
-        console.log('groupsCtrl login');
-          if ($scope.disassociateUserData) { 
-            console.log('dissassociate');
-      $scope.disassociateUserData();
-  } 
-        angularFire(new Firebase(FBURL+'/users/'+$scope.auth.uid), $rootScope, 'user');
-      });
+
+      $scope.numGroups = '';
+
+      $scope.findGroups = function(){
+        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
+        firebaseRef.once('value', function(dataSnapshot){
+          $scope.numGroups = dataSnapshot.numChildren();
+        })
+        $scope.allGroups = angularFireCollection(firebaseRef);
+      }
+
+      $scope.findGroups();
 
       var currentGroup = {};
       $scope.editMode = false;
 
 
-      $scope.findGroups = function(){
-        console.log('finding groups');
-        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
-        $scope.allGroups = angularFireCollection(firebaseRef);
-        console.log($scope.allGroups);
-      }
 
       $scope.autofill = function(){ 
         var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
@@ -89,7 +85,7 @@ angular.module('fitness.controllers.groups',['fitness.services.login'])
 
       //Logic for showing/hiding the Edit button in the top right
       $scope.showEdit = function(){
-        if($scope.allGroups.length > 0 && $scope.editMode === false){
+        if($scope.numGroups > 0 && $scope.editMode === false){
           return true
         }else{
           return false
@@ -99,4 +95,9 @@ angular.module('fitness.controllers.groups',['fitness.services.login'])
       $scope.logout = function() {
          loginService.logout();
       };
+      $scope.$on("angularFireAuth:logout", function() {
+        $location.path('/');
+      });
+
+
     }])

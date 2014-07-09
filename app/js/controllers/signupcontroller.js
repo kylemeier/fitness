@@ -31,11 +31,14 @@ angular.module('fitness.controllers.signup', [])
           console.log('erroring');
           $scope.err = 'Please enter a password';
         }
+        else if( $scope.pass !== $scope.passConfirm){
+          $scope.err = 'Passwords do not match';
+        }
         else {
           console.log('passing off to loginservice');
           loginService.createAccount($scope.email, $scope.pass, function(err, user) {
             if( err ) {
-              $scope.err = err;
+              $scope.err = 'Email already in use';
             }
             else {
               $scope.login(function(err) {

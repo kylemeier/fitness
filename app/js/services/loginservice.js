@@ -15,18 +15,36 @@ angular.module('fitness.services.login', ['fitness.services.profileCreator'])
           });
           p.then(function(user) {
             if( redirect ) {
+              console.log('officially logged in');
+              $location.path(redirect);
+            }
+            callback && callback(null, user);
+          }, callback);
+        },
+        loginAnon: function(redirect, callback) {
+
+          var firebaseRef = new Firebase('https://fitnesskdm.firebaseIO.com');
+          var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user){
+            
+          });
+          
+          var p = auth.login('anonymous', {
+            rememberMe: true
+          });
+          p.then(function(user) {
+            console.log('inside promise callback');
+            if( redirect ) {
+              console.log('officially logged in as anon');
               $location.path(redirect);
             }
             callback && callback(null, user);
           }, callback);
         },
         logout: function(redirectPath) {
-          console.log('logging out');
+          console.log('logging out to '+'/');
           $location.path('/');
           angularFireAuth.logout();
-          if(redirectPath) {
-            $location.path('/');
-          }
+          
         },
         createAccount: function(email, pass, callback) {
           console.log(email, pass);

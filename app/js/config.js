@@ -7,19 +7,20 @@ app.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider
       .when('/', {
-        templateUrl: 'views/signin.html'
+        templateUrl: 'views/home.html'
       })
 
       .when('/signin', {
-        templateUrl: 'views/signin.html'
+        templateUrl: 'views/home.html'
       })
 
       .when('/signup', {
-        templateUrl: 'views/signup.html'
+        templateUrl: 'views/home.html'
       })
 
       .when('/groups', {
-        templateUrl: 'views/groups.html'
+        templateUrl: 'views/groups.html',
+        authRequired: true
       })
 
       .when('/new-group',{
