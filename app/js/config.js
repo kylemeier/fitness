@@ -31,7 +31,7 @@ app.config(['$routeProvider',
         templateUrl: 'views/edit-group.html'
       })
 
-      .when('/new-exercise',{
+      .when('/:groupId/new-exercise',{
         templateUrl: 'views/new-exercise.html'
       })
 

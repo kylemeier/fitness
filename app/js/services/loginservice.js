@@ -41,8 +41,8 @@ angular.module('fitness.services.login', ['fitness.services.profileCreator'])
           }, callback);
         },
         logout: function(redirectPath) {
-          console.log('logging out to '+'/');
-          $location.path('/');
+          console.log('logging out to '+redirectPath);
+          $location.path(redirectPath);
           angularFireAuth.logout();
           
         },

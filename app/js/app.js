@@ -13,13 +13,15 @@
   , 'fitness.controllers.signin'
   , 'fitness.controllers.signup',
     'fitness.controllers.groups',
-    'fitness.services.groups',
+    'fitness.controllers.newGroup',
+    'fitness.controllers.newExercise',
   , 'firebase', 'ngRoute','ngAnimate']
   )
   
 
   .controller( 'slideController', ['$rootScope', '$scope', '$location', '$route', function($rootScope, $scope, $location, $route) {
     $scope.slideView = function (direction, url) {
+      console.log(url);
         $rootScope.slideDir = direction; 
         $location.path(url);
     }  
@@ -33,17 +35,7 @@
     }  
   })
 
-  .controller('newGroupController',['$rootScope','$scope','Groups',
-    function($rootScope, $scope, Groups){
-      console.log('in group controller');
-      $scope.addGroup = function(){
-        console.log('in group controller, before adding group');
-        if($scope.groupName){
-          console.log('in group controller, adding group');
-          Groups.create($scope.groupName);
-        }
-      }
-    }])
+
 
   .controller('editGroupController',function($rootScope, $scope){
       $scope.input = {};

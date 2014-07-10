@@ -10,8 +10,7 @@
 
 </head>
 <body ng-app='fitness' ng-controller='slideController' ng-cloak>
-	<div class='container' ng-controller='mainController'>
-        <!-- ng-click='clearDelete()' -->
+	<div class='container' ng-controller='mainController' ng-click='clearDelete()'>
 		<div class='header-bar-background'></div>
     <div ng-view ng-class='slideDir'></div>
   </div>
@@ -45,10 +44,13 @@
     <script src="js/controllers/signincontroller.js"></script>
     <script src="js/controllers/signupcontroller.js"></script>
     <script src="js/controllers/groupscontroller.js"></script>
+    <script src="js/controllers/newgroupcontroller.js"></script>
+    <script src="js/controllers/newexercisecontroller.js"></script>
 
     <script src="js/services/loginservice.js"></script>
     <script src="js/services/profilecreator.js"></script>
     <script src="js/services/groupservice.js"></script>
+    <script src="js/services/exerciseservice.js"></script>
 
 
 </body>

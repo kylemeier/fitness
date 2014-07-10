@@ -13,22 +13,22 @@
     <p><button class="autofill" ng-click='autofill()'>Load Sample Workouts</button></p>
     <!-- <p ng-repeat='group in groups'>{{group.name}}</p> -->
   </div>
-  <ul class='fade-in-out'>
-    <li ng-repeat='group in allGroups'>
+  <ul class='fade-in-out' ng-show='numGroups > 0'>
+    <li ng-repeat='group in allGroups' ng-init='collectExercises(group.$id)'>
       <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(group) && !editMode'></span>
       <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(group) || editMode'></span>
       <button class='icon-group-delete icon-slide-left-side' ng-show='editMode' ng-click='setGroup(group); $event.stopPropagation()'></button>
       <button class='group-name' ng-click='setGroup(group); $event.stopPropagation()'>{{group.name}}</button>
       <ul>
-        <li class='slide-up-down left' ng-repeat='exercise in group.Exercises' ng-show='isGroupClicked(group) && !editMode'>
+        <li class='slide-up-down left' ng-repeat='exercise in allExercises' ng-show='isGroupClicked(group) && !editMode'>
           <h3 class='exercise-info left'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</h3>
           <button class='exercise-edit right' ng-click='slideView("view-slide-left","/edit-exercise");'>edit</button>
           <button class='icon-exercise-delete'></button>
-          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise) && !editMode'>DELETE</button>
+          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise) && !editMode' ng-click='removeExercise(group.$id, exercise.$id); $event.stopPropagation()'>DELETE</button>
           <button class='exercise-name left' ng-click='setExercise(exercise); $event.stopPropagation();'>{{exercise.name}}</button>
         </li>
         <li class='slide-up-down' ng-show='isGroupClicked(group) && !editMode'>
-          <button ng-click='slideView("view-slide-left","/new-exercise");'>Add New Exercise</button>
+          <button ng-click='slideView("view-slide-left",group.$id+"/new-exercise")'>Add New Exercise</button>
         </li>
       </ul>
       <button class='group-action-button icon-slide-right-side right' ng-hide='editMode' ng-click='slideView("view-slide-left","/workout")'>Start Workout</button>

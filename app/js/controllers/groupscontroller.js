@@ -1,15 +1,21 @@
-angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.services.groups'])
-  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups',
-    function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups) {
-      $rootScope.numGroups = '';
+angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.services.groups', 'fitness.services.exercises'])
+  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups', 'Exercises',
+    function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups, Exercises) {
+      
+
+      $scope.collectExercises = function(groupId){
+        $scope.allExercises = Exercises.collect(groupId);
+      }
+
+      $rootScope.numGroups = 1;
 
       var collectGroups = function(){
         $scope.allGroups = Groups.collect();
       }
-      //getting intro-text to show up after a set time, $timeout automatically runs $apply
+      //have intro-text show up after a set time if no groups exist
       $timeout(function(){
-        Groups.count();
-      },700);
+        // Groups.count();
+      },1000);
 
       collectGroups();
 
@@ -20,8 +26,30 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
         Groups.remove(id);
       }
 
+      $scope.removeExercise = function(groupId, exerciseId){
+        console.log('removing '+exerciseId+' from '+groupId);
+        Exercises.remove(groupId, exerciseId);
+      }
+
 
       $scope.autofill = function(){ 
+        var group1 = Groups.create('Thursday Workout');
+        var group2 = Groups.create('Tuesday Workout');
+
+        Exercises.create(group1, 'Dumbbell Bench Press', 65, 3, 6);
+        Exercises.create(group1, 'Dumbbell Incline Bench Press', 40, 2, 10);
+        Exercises.create(group1, 'Dumbbell Military Press', 35, 3, 6);
+        Exercises.create(group1, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
+
+        // var count = Exercises.count(group1);
+        // console.log('this is count '+count);
+
+        Exercises.create(group2, 'Pullups', 5, 3, 10);
+        Exercises.create(group2, 'Bentover Rows', 85, 3, 8);
+        Exercises.create(group2, 'Dumbbell Hammercurls', 30, 2, 10);
+        Exercises.create(group2, 'Situps', 20, 3, 10);
+
+        Groups.count();
         // var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
         // var groupName = firebaseRef.push({'name':'Tuesday Workout'}).name();
 
@@ -95,11 +123,6 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       }
 
       $scope.logout = function() {
-         loginService.logout();
+         loginService.logout('/');
       };
-      $scope.$on("angularFireAuth:logout", function() {
-        $location.path('/');
-      });
-
-
     }])

@@ -1,0 +1,1 @@
+angular.module("fitness.controllers.newExercise",["fitness.services.exercises"]).controller("newExerciseCtrl",["$rootScope","$scope","$routeParams","Exercises",function(e,t,n,r){t.groupId=n.groupId;console.log("$scope.groupdId = "+t.groupId);t.num=Math.random()*100;t.addExercise=function(){r.create(t.groupId,t.exerciseName,t.exerciseWeight,t.exerciseSets,t.exerciseReps)}}]);
