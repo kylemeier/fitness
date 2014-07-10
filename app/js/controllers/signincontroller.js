@@ -1,16 +1,14 @@
 'use strict';
 
 angular.module('fitness.controllers.signin', ['fitness.services.login'])
-  .controller('SigninCtrl', ['$scope', 'loginService', '$location',
-    function($scope, loginService, $location) {
+  .controller('SigninCtrl', ['$rootScope', '$scope', 'loginService', '$location',
+    function($rootScope, $scope, loginService, $location) {
       $scope.url = $location.path();
-      if(!!$scope.auth){
-        $location.path('/groups');
-      }
 
       $scope.$on('angularFireAuth:login', function () {
         console.log('logged in as:'+$scope.email);
-        $location.path('/groups');
+        $rootScope.userID = $scope.auth.uid;
+        console.log('userID '+$rootScope.userID);
       })
 
       $scope.email = null;
@@ -42,7 +40,7 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
       $scope.loginAnon = function(callback) {
         console.log('attempting to log in anon');
         loginService.loginAnon('/groups', function(err, user) {
-
+          console.log('in controller call back');
           console.log(err);
           typeof(callback) === 'function' && callback(err, user);
         });

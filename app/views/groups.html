@@ -13,7 +13,7 @@
     <p><button class="autofill" ng-click='autofill()'>Load Sample Workouts</button></p>
     <!-- <p ng-repeat='group in groups'>{{group.name}}</p> -->
   </div>
-  <ul class='fade-in-out' ng-if='numGroups > 0'>
+  <ul class='fade-in-out'>
     <li ng-repeat='group in allGroups'>
       <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(group) && !editMode'></span>
       <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(group) || editMode'></span>
@@ -33,7 +33,7 @@
       </ul>
       <button class='group-action-button icon-slide-right-side right' ng-hide='editMode' ng-click='slideView("view-slide-left","/workout")'>Start Workout</button>
       <button class='group-action-button icon-slide-right-side right' ng-show='editMode' ng-click='setGroup(); slideView("view-slide-left","/edit-group");'>Edit Name</button>
-      <button class='confirm-delete-group icon-slide-right-side' ng-show='isGroupClicked(group) && editMode'>DELETE</button> 
+      <button class='confirm-delete-group icon-slide-right-side' ng-show='isGroupClicked(group) && editMode' ng-click='removeGroup(group.$id)'>DELETE</button> 
     </li>
   </ul>
 </div>

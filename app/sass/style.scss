@@ -85,13 +85,13 @@ body{
 }
 .view-slide-left.ng-leave.ng-leave-active {
     -webkit-transform: translate(-100%,0);
-    transform: translate(0,0);
+    transform: translate(-100%,0);
     opacity:0;
 }
 
 .view-slide-right.ng-enter {
     -webkit-transform: translate(-100%,0);
-    transform: translate(0,0);
+    transform: translate(-100%,0);
     opacity:0;
 }
 .view-slide-right.ng-enter.ng-enter-active {
@@ -106,7 +106,7 @@ body{
 }
 .view-slide-right.ng-leave.ng-leave-active {
     -webkit-transform: translate(100%,0);
-    transform: translate(0,0);
+    transform: translate(100%,0);
     opacity:0;
 }
 
@@ -325,7 +325,7 @@ body{
   }
 
 #signin, #signup, #groups, #new-group, #new-exercise, #workout{
-  position:relative;
+  position:absolute;
   height:100%;
   width:100%;
 }
@@ -529,6 +529,7 @@ body{
 
   .icon-expand-list-up{
     -webkit-transform: rotate(-180deg) translateY(4px);
+    transform: rotate(-180deg) translateY(4px);
   }
 
   .icon-expand-list-down:before, .icon-expand-list-up:before{

@@ -34,7 +34,7 @@ angular.module('fitness.services.login', ['fitness.services.profileCreator'])
           p.then(function(user) {
             console.log('inside promise callback');
             if( redirect ) {
-              console.log('officially logged in as anon');
+              console.log('redirecting');
               $location.path(redirect);
             }
             callback && callback(null, user);

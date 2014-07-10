@@ -15,7 +15,7 @@ app.config(['$routeProvider',
       })
 
       .when('/signup', {
-        templateUrl: 'views/home.html'
+        templateUrl: 'views/signup.html'
       })
 
       .when('/groups', {

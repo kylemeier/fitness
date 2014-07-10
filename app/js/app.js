@@ -13,6 +13,7 @@
   , 'fitness.controllers.signin'
   , 'fitness.controllers.signup',
     'fitness.controllers.groups',
+    'fitness.services.groups',
   , 'firebase', 'ngRoute','ngAnimate']
   )
   
@@ -32,14 +33,17 @@
     }  
   })
 
-  .controller('newGroupController',function($rootScope, $scope){
-      $scope.input = {};
+  .controller('newGroupController',['$rootScope','$scope','Groups',
+    function($rootScope, $scope, Groups){
+      console.log('in group controller');
       $scope.addGroup = function(){
-        if($scope.input.groupName){
-          $rootScope.allGroups.push({name: $scope.input.groupName, exerciseArray:[]});  
+        console.log('in group controller, before adding group');
+        if($scope.groupName){
+          console.log('in group controller, adding group');
+          Groups.createGroup($scope.groupName);
         }
       }
-    })
+    }])
 
   .controller('editGroupController',function($rootScope, $scope){
       $scope.input = {};

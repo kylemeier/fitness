@@ -1,41 +1,44 @@
-angular.module('fitness.controllers.groups',['fitness.services.login'])
-  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'angularFireCollection', 'FBURL', 
-    function($rootScope, $scope, $location, loginService, angularFire, angularFireCollection, FBURL) {
+angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.services.groups'])
+  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups',
+    function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups) {
 
-      $scope.numGroups = '';
+      $rootScope.numGroups = '';
 
-      $scope.findGroups = function(){
-        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
-        firebaseRef.once('value', function(dataSnapshot){
-          $scope.numGroups = dataSnapshot.numChildren();
-        })
-        $scope.allGroups = angularFireCollection(firebaseRef);
+      var collectGroups = function(){
+        $scope.allGroups = Groups.collect();
       }
+      //getting intro-text to show up after a set time, $timeout automatically runs $apply
+      $timeout(function(){
+        Groups.count();
+      },700);
 
-      $scope.findGroups();
+      collectGroups();
 
       var currentGroup = {};
       $scope.editMode = false;
 
+      $scope.removeGroup = function(id){
+        Groups.remove(id);
+      }
 
 
       $scope.autofill = function(){ 
-        var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
-        var groupName = firebaseRef.push({'name':'Tuesday Workout'}).name();
+        // var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');
+        // var groupName = firebaseRef.push({'name':'Tuesday Workout'}).name();
 
-        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Bench Press', weight: 65, sets:3, reps:6});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Incline Bench Press', weight: 40, sets:2, reps:10});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Military Press', weight: 35, sets:3, reps:6});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Barbell Lying Tricep Extensions', weight: 22.5, sets:3, reps:10});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Bench Press', weight: 65, sets:3, reps:6});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Incline Bench Press', weight: 40, sets:2, reps:10});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Military Press', weight: 35, sets:3, reps:6});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Barbell Lying Tricep Extensions', weight: 22.5, sets:3, reps:10});
 
-        var groupName = firebaseRef.push({'name':'Thursday Workout'}).name();
+        // var groupName = firebaseRef.push({'name':'Thursday Workout'}).name();
 
-        firebaseRef.child(groupName+'/Exercises').push({name:'Pullups', weight: 5, sets:3, reps:10});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Bentover Rows', weight: 85, sets:3, reps:8});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Hammercurls', weight: 30, sets:2, reps:10});
-        firebaseRef.child(groupName+'/Exercises').push({name:'Situps', weight: 20, sets:3, reps:10});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Pullups', weight: 5, sets:3, reps:10});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Bentover Rows', weight: 85, sets:3, reps:8});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Dumbbell Hammercurls', weight: 30, sets:2, reps:10});
+        // firebaseRef.child(groupName+'/Exercises').push({name:'Situps', weight: 20, sets:3, reps:10});
 
-        $scope.findGroups();
+        // $scope.findGroups();
 
         // $rootScope.allGroups = [
         //   {groupID: 'g1', name:'Tuesday Workout', exerciseArray:
@@ -85,7 +88,7 @@ angular.module('fitness.controllers.groups',['fitness.services.login'])
 
       //Logic for showing/hiding the Edit button in the top right
       $scope.showEdit = function(){
-        if($scope.numGroups > 0 && $scope.editMode === false){
+        if($rootScope.numGroups > 0 && $scope.editMode === false){
           return true
         }else{
           return false
