@@ -1,7 +1,6 @@
 angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.services.groups'])
   .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups',
     function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups) {
-
       $rootScope.numGroups = '';
 
       var collectGroups = function(){

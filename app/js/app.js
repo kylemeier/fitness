@@ -18,12 +18,12 @@
   )
   
 
-  .controller( 'slideController', function($rootScope, $scope, $location) {
+  .controller( 'slideController', ['$rootScope', '$scope', '$location', '$route', function($rootScope, $scope, $location, $route) {
     $scope.slideView = function (direction, url) {
         $rootScope.slideDir = direction; 
         $location.path(url);
     }  
-  })
+  }])
 
   .controller( 'mainController',function($rootScope,$scope){
     //in mainController to track a click anywhere in the app
@@ -40,7 +40,7 @@
         console.log('in group controller, before adding group');
         if($scope.groupName){
           console.log('in group controller, adding group');
-          Groups.createGroup($scope.groupName);
+          Groups.create($scope.groupName);
         }
       }
     }])
