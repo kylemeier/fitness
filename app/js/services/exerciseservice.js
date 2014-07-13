@@ -17,7 +17,8 @@ angular.module('fitness.services.exercises', [])
         })
       }
       , find: function(groupId, exerciseId) {
-          return exerciseRef.child(groupId+'/exercises'+exerciseId);
+        console.log('inside service');
+          return exerciseRef.child(groupId+'/exercises/'+exerciseId);
         }
 
       , create: function(groupId, exerciseName, exerciseWeight, exerciseSets, exerciseReps) {
@@ -28,6 +29,7 @@ angular.module('fitness.services.exercises', [])
             weight: exerciseWeight,
             sets: exerciseSets,
             reps: exerciseReps,
+            maxWeight: 0,
             failures: 0
           }).name();
         }

@@ -461,39 +461,37 @@ input {
 
 #workout ul {
   position: absolute;
+  left: 0;
   top: 100px;
-  width: 80%;
-  left: 10%;
-  background: #f8f7f2;
-  text-align: center;
-  padding: 3px;
-  border-radius: 5px;
-  border: 2px solid #373a3a; }
-#workout li {
-  position: relative;
-  height: 50px; }
-  #workout li:first-child {
-    padding-top: 25px; }
+  width: 100%; }
+  #workout ul li {
+    position: relative;
+    margin-bottom: 5px;
+    left: 0;
+    height: 50px;
+    background: #f8f7f2;
+    text-align: center;
+    border-radius: 100%; }
+#workout .exercise-info {
+  font-size: .8em;
+  color: grey;
+  top: 20px;
+  left: 41px;
+  padding: 0; }
 #workout .btn-success, #workout .btn-failure, #workout .btn-done {
   position: absolute;
-  max-height: 50px;
+  height: 50px;
   padding: 3px;
-  box-sizing: border-box;
   color: #EBEAE6; }
 #workout .btn-success, #workout .btn-failure {
-  width: 25%;
-  top: 350px; }
+  width: 25%; }
 #workout .btn-success {
-  left: 25%;
-  border-radius: 5px 0 0 0;
-  border: 2px solid #373a3a;
+  top: 0;
+  right: 0;
   background: #3C5036; }
 #workout .btn-failure {
-  border-radius: 0 5px 0 0;
-  border-top: 2px solid #373a3a;
-  border-right: 2px solid #373a3a;
-  border-bottom: 2px solid #373a3a;
-  left: 50%;
+  top: 0;
+  left: 0;
   background: #A71414; }
 #workout .btn-done {
   width: 50%;

@@ -24,30 +24,35 @@ app.config(['$routeProvider',
       })
 
       .when('/new-group',{
-        templateUrl: 'views/new-group.html'
+        templateUrl: 'views/new-group.html',
+        authRequired: true
       })
 
-      .when('/edit-group',{
-        templateUrl: 'views/edit-group.html'
+      .when('/:groupId/edit-group',{
+        templateUrl: 'views/edit-group.html',
+        authRequired: true
       })
 
       .when('/:groupId/new-exercise',{
-        templateUrl: 'views/new-exercise.html'
+        templateUrl: 'views/new-exercise.html',
+        authRequired: true
       })
 
       .when('/new-exercise2',{
-        templateUrl: 'views/new-exercise.html'
+        templateUrl: 'views/new-exercise.html',
       })
 
-      .when('/edit-exercise',{
-        templateUrl: 'views/edit-exercise.html'
+      .when('/:groupId/edit-exercise/:exerciseId',{
+        templateUrl: 'views/edit-exercise.html',
+        authRequired: true
       })
 
-      .when('/workout',{
-        templateUrl: 'views/workout.html'
+      .when('/:groupId/workout',{
+        templateUrl: 'views/workout.html',
+        authRequired: true
       })
 
-      .otherwise(       { redirectTo: '/' });
+      .otherwise({ redirectTo: '/' });
     }])
   
   // establish authentication

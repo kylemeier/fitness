@@ -1,0 +1,1 @@
+angular.module("fitness.controllers.editGroup",["fitness.services.groups"]).controller("editGroupCtrl",["$rootScope","$scope","$routeParams","angularFire","Groups",function(e,t,n,r,i){console.log("in group controller");(function(){r(i.find(n.groupId),t,"group")})()}]);

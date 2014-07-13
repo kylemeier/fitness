@@ -4,10 +4,11 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       
 
       $scope.collectExercises = function(groupId){
-        $scope.allExercises = Exercises.collect(groupId);
+        return Exercises.collect(groupId);
       }
 
       $rootScope.numGroups = 1;
+
 
       var collectGroups = function(){
         $scope.allGroups = Groups.collect();
@@ -48,6 +49,8 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
         Exercises.create(group2, 'Bentover Rows', 85, 3, 8);
         Exercises.create(group2, 'Dumbbell Hammercurls', 30, 2, 10);
         Exercises.create(group2, 'Situps', 20, 3, 10);
+
+        $rootScope.numGroups = 2;
 
         Groups.count();
         // var firebaseRef = new Firebase(FBURL+'/users/'+$scope.auth.uid+'/Exercise Groups');

@@ -613,47 +613,46 @@ body{
 #workout{
   ul{
     position:absolute;
+    left:0;
     top:100px;
-    width:80%;
-    left:10%;
-    background:$textBackground;
-    text-align:center;
-    padding:3px;
-    border-radius:5px;
-    border: 2px solid $mainTextColor;
-  }
-  li{
-    position:relative;
-    height:$lineHeight;
-    &:first-child{
-      padding-top:25px;
+    width:100%;
+    li{
+      position:relative;
+      margin-bottom:5px;
+      left:0;
+      height: $lineHeight;
+      background:$textBackground;
+      text-align:center;
+      border-radius:100%;
     }
   }
+  .exercise-info{
+      font-size:.8em;
+      color:grey;
+      top:20px;
+      left:41px;
+      padding:0;
+    }
+
   .btn-success,.btn-failure,.btn-done{
     position:absolute;
-    max-height:$lineHeight;
+    height:$lineHeight;
     padding:3px;
-    box-sizing:border-box;
     color:#EBEAE6;
   }
   
   .btn-success,.btn-failure{
     width:25%;
-    top:350px;
   }
   .btn-success{
-    left:25%;
-    border-radius:5px 0 0 0;
-    border: 2px solid $mainTextColor;
+    top:0;
+    right:0;
     background:#3C5036;
   }
 
   .btn-failure{
-    border-radius:0 5px 0 0;
-    border-top: 2px solid $mainTextColor;
-    border-right: 2px solid $mainTextColor;
-    border-bottom: 2px solid $mainTextColor;
-    left:50%;
+    top:0;
+    left:0;
     background:#A71414;
   }
   .btn-done{
