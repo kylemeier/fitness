@@ -7,10 +7,11 @@ angular.module('fitness.controllers.workout',['fitness.services.groups', 'fitnes
         angularFire(Groups.find($routeParams.groupId), $scope, 'group'); 
       }())
 
-              var d = new Date();
+      var d = new Date();
 
-        $scope.date = d.getDate();
-        
+        $scope.today = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+        console.log($scope.date);
+
       $rootScope.allExercises = Exercises.collect($routeParams.groupId);
 
 
@@ -39,14 +40,19 @@ angular.module('fitness.controllers.workout',['fitness.services.groups', 'fitnes
 //  
       $scope.success = function(exerciseId){
 
+        //set recording date to today
+        Workout.setLastRecorded(exerciseId, $scope.today);
+
         //get current weight
         Workout.getWeight(exerciseId).once('value',function(snapshot){
           weight = snapshot.val(); 
         })
 
         //increase weight by 5lbs, reset failure count
-        Workout.setWeight(exerciseId, weight+5);
-        Workout.setFailures(exerciseId,0);
+        $timeout(function(){
+          Workout.setWeight(exerciseId, weight+5);
+          Workout.setFailures(exerciseId,0);
+        },2001);
       }
 
       var failureLogic = function(exerciseId, failures, currentWeight, maxWeight){

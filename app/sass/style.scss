@@ -58,54 +58,58 @@ body{
 
 }
 
+#view{
+  position:relative;
+}
+
 .view-slide-left.ng-enter,
 .view-slide-left.ng-leave,
 .view-slide-right.ng-enter,
 .view-slide-right.ng-leave {
-  -webkit-transition: 0.5s ease-out;
-  -moz-transition: 0.5s ease-out;
-  -o-transition: 0.5s ease-out;
-  transition: 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .view-slide-left.ng-enter {
-    // -webkit-transform: translate3d(100%,0,0,0);
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%,0,0,0);
     opacity:0;
 }
 .view-slide-left.ng-enter.ng-enter-active {
-    // -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-left.ng-leave {
-    // -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-left.ng-leave.ng-leave-active {
-    // -webkit-transform: translate3d(-100%,0,0);
+    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%,0,0);
     opacity:0;
 }
 
 .view-slide-right.ng-enter {
-    // -webkit-transform: translate3d(-100%,0,0);
+    -webkit-transform: translate3d(-100%,0,0);
     transform: translate3d(-100%,0,0);
     opacity:0;
 }
 .view-slide-right.ng-enter.ng-enter-active {
-    // -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-right.ng-leave {
-    // -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-right.ng-leave.ng-leave-active {
-    // -webkit-transform: translate3d(100%,0,0);
+    -webkit-transform: translate3d(100%,0,0);
     transform: translate3d(100%,0,0);
     opacity:0;
 }
@@ -328,6 +332,7 @@ body{
   position:absolute;
   height:100%;
   width:100%;
+  left:0;
 }
 
 #signup{

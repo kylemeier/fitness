@@ -30,7 +30,8 @@ angular.module('fitness.services.exercises', [])
             sets: exerciseSets,
             reps: exerciseReps,
             maxWeight: 0,
-            failures: 0
+            failures: 0,
+            lastRecorded: ''
           }).name();
         }
 

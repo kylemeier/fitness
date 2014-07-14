@@ -31,6 +31,9 @@ angular.module('fitness.services.workout', [])
         , setMaxWeight: function(exerciseId, weight){
           ref.child(exerciseId+'/maxWeight').set(weight);
         }
+        , setLastRecorded: function(exerciseId, date){
+          ref.child(exerciseId+'/lastRecorded').set(date);
+        }
       }
     }])
 
