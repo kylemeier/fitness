@@ -29,7 +29,7 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
 
       $scope.removeExercise = function(groupId, exerciseId){
         console.log('removing '+exerciseId+' from '+groupId);
-        Exercises.remove(groupId, exerciseId);
+        Exercises.remove(groupId, exerciseId); 
       }
 
       $scope.countExercises = function(groupId){
@@ -98,6 +98,7 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       $scope.setGroup = function(clickedGroup){
         //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
         //also clears currentExercise to hide any viewable delete confirm buttons
+        console.log(clickedGroup);
         if($rootScope.currentGroup === clickedGroup){
           $rootScope.currentGroup = {};
           $rootScope.currentExercise = {};
@@ -107,6 +108,9 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       }
 
       $scope.isGroupClicked = function(checkGroup){
+          if($rootScope.currentGroup === checkGroup){
+            console.log(checkGroup);
+          }
           return $rootScope.currentGroup === checkGroup;
       }
 

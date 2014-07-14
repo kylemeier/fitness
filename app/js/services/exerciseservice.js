@@ -32,7 +32,6 @@ angular.module('fitness.services.exercises', [])
         }
 
       , remove: function(groupId, exerciseId){
-          console.log('inside exercise service');
           exerciseRef.child(groupId+'/exercises/'+exerciseId).remove();
         }
       }
