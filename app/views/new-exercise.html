@@ -2,7 +2,7 @@
   <header>
     <h1>New Exercise</h1>
     <button class='left' ng-click='addExercise(); slideView("view-slide-right","/groups")'>&lsaquo; Done</button>
-    <button class='right' ng-click='slideView("view-slide-left",groupId+"/new-exercise")'>Next &rsaquo;</button>
+    <button class='right' ng-click='addExercise(); countExercises(); slideView("view-slide-left",groupId+"/new-exercise/"+exerciseCount)'>Next &rsaquo;</button>
   </header> 
     <ul class='exercise-inputs'>
       <li>

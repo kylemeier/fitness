@@ -27,7 +27,7 @@
           <button class='exercise-name left' ng-click='setExercise(exercise); $event.stopPropagation();'>{{exercise.name}}</button>
         </li>
         <li class='slide-up-down' ng-show='isGroupClicked(group) && !editMode'>
-          <button ng-click='slideView("view-slide-left",group.$id+"/new-exercise")'>Add New Exercise</button>
+          <button ng-click='countExercises(group.$id); slideView("view-slide-left",group.$id+"/new-exercise/"+exerciseCount)'>Add New Exercise</button>
         </li>
       </ul>
       <button class='group-action-button icon-slide-right-side right' ng-hide='editMode' ng-click='slideView("view-slide-left",group.$id+"/workout")'>Start Workout</button>

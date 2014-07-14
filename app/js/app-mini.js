@@ -5,7 +5,6 @@
 //
 //UI issues:
 //deleting an exercise collapses group
-//screen slide for webkit browsers
 //change screens only after login has completed
 //create truncate function that adds an ellipses to long group/exericse names
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
@@ -18,7 +17,6 @@
 //reminder will be an exclamation point in place of the delete button
 //form checking for new exercise
 //combine login/signup screens
-//add functionality for next button on new group screen
 //
 //Additional Features:
 //after three failures, show alert asking if user wants to set a reminder to change the exercise or reset the count

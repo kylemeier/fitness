@@ -9,12 +9,8 @@ angular.module('fitness.services.exercises', [])
         }
 
       , count: function(groupId){
-          console.log('attempting to count ex for group'+ groupId);
-          var countRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups/'+groupId+'/exercises');
-          countRef.once('value', function(dataSnapshot){
-          $rootScope.numExercises = dataSnapshot.numChildren();
-          console.log('numEx '+$rootScope.numExercises);
-        })
+          return exerciseRef.child(groupId+'/exercises');
+
       }
       , find: function(groupId, exerciseId) {
         console.log('inside service');

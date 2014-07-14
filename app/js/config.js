@@ -33,7 +33,7 @@ app.config(['$routeProvider',
         authRequired: true
       })
 
-      .when('/:groupId/new-exercise',{
+      .when('/:groupId/new-exercise/:exerciseCount',{
         templateUrl: 'views/new-exercise.html',
         authRequired: true
       })

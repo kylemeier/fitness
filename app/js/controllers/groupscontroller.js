@@ -32,6 +32,14 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
         Exercises.remove(groupId, exerciseId);
       }
 
+      $scope.countExercises = function(groupId){
+        console.log(groupId);
+        Exercises.count(groupId).once('value', function(snapshot){
+
+          $scope.exerciseCount = snapshot.numChildren() +1;
+          console.log('exercise count '+$scope.exerciseCount)
+        })
+      }
 
       $scope.autofill = function(){ 
         var group1 = Groups.create('Thursday Workout');
