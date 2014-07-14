@@ -6,13 +6,13 @@
     <button class ='edit-group fade-in-out right' ng-show='editMode' ng-click='setGroup(); editMode = false; $event.stopPropagation()'>Done</button>
     <button class ='add-group right' ng-click='slideView("view-slide-left","/new-group")'>+</button>
   </header>
-  <div class="intro-text fade-in-out" ng-if='numGroups === 0'>
+  <div class="intro-text fade-in-out" ng-if='groupCount === 0'>
     <p>Looks like you don't have any exercise groups set up!</p>
     <p>In each group you'll be entering all the exercises you do in a day (Leg Day, Thursday Workout, etc).</p>
     <p>Click on the '+' in the top right or the button below to get started.</p>
     <p><button class="autofill" ng-click='autofill()'>Load Sample Workouts</button></p>
   </div>
-  <ul class='fade-in-out' ng-show='numGroups > 0'>
+  <ul class='fade-in-out' ng-show='groupCount > 0'>
     <li ng-repeat='group in allGroups' ng-init='allExercises = collectExercises(group.$id)'>
       <span class='icon-expand-list-up fade-in-out' ng-show='isGroupClicked(group.$id) && !editMode'></span>
       <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(group.$id) || editMode'></span>

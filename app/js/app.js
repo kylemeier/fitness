@@ -1,12 +1,12 @@
 //To fix:
 //Refreshing windows causes strange behavior, need to hide/don't load contents until auth has finished
-//Intro text appear/disappear functionality
 //login screen redirect if logged in
 //
 //UI issues:
 //change screens only after login has completed
 //create truncate function that adds an ellipses to long group/exericse names
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
+//login animation
 //
 //To do:
 //style workout page

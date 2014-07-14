@@ -13,7 +13,6 @@ angular.module('fitness.services.exercises', [])
 
       }
       , find: function(groupId, exerciseId) {
-        console.log('inside service');
           return exerciseRef.child(groupId+'/exercises/'+exerciseId);
         }
 

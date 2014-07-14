@@ -11,10 +11,7 @@ angular.module('fitness.services.groups', [])
         }
 
       , count: function(){
-          var countRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
-          countRef.once('value', function(dataSnapshot){
-          $rootScope.numGroups = dataSnapshot.numChildren();
-        })
+          return groupRef;
       }
 
       , find: function(groupId) {
