@@ -35,7 +35,13 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       }
 
       $scope.removeExercise = function(groupId, exerciseId){
-        Exercises.remove(groupId, exerciseId); 
+        $rootScope.currentGroup = {};
+        $timeout(function(){
+          Exercises.remove(groupId, exerciseId);
+          $timeout(function(){
+            $rootScope.currentGroup = groupId;
+          },100);
+        },501);
       }
 
       $scope.countExercises = function(groupId){

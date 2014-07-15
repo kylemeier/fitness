@@ -1,12 +1,11 @@
 angular.module('fitness.controllers.newExercise',['fitness.services.exercises'])
-  .controller('newExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercises',
-    function($rootScope, $scope, $routeParams, Exercises){
+  .controller('newExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercises', '$timeout',
+    function($rootScope, $scope, $routeParams, Exercises, $timeout){
 
       $scope.groupId = $routeParams.groupId;
-      console.log('$scope.groupdId = '+$scope.groupId);
-      (function(){
 
-      })()
+      //number that appears after # in header
+      $scope.headerNum = $routeParams.exerciseCount;
 
       $scope.addExercise = function(){
         if($scope.exerciseName && $scope.exerciseWeight && $scope.exerciseSets && $scope.exerciseReps){
@@ -15,9 +14,7 @@ angular.module('fitness.controllers.newExercise',['fitness.services.exercises'])
       }
       $scope.countExercises = function(){
         Exercises.count($scope.groupId).once('value', function(snapshot){
-
-          $scope.exerciseCount = snapshot.numChildren() +1;
-          console.log('exercise count '+$scope.exerciseCount)
+          $scope.exerciseCount = snapshot.numChildren()+1;
         })
-      }
+      }      
     }])

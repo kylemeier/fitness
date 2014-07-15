@@ -3,7 +3,7 @@
     <h1>Fitness</h1> 
   </header> 
       <p ng-show="err" class="error left">{{err}}</p>
-      <p ng-show='passReset' class='error left'>Forgot your password?<a href=''>  Click here!</a></p>
+      <p ng-show='passReset' class='error left'>Forgot your password? <button ng-click='resetPassword()'> Click here!</button></p>
      <form class='login-info'>
       <div class='input-wrapper'>
         <input type='email' name='email' id='email' ng-model='email'>   

@@ -33,7 +33,7 @@
   -moz-osx-font-smoothing: grayscale; }
 
 body {
-  font-family: "proxima_nova"; }
+  font-family: 'proxima_nova'; }
 
 #view {
   position: relative; }
@@ -48,42 +48,42 @@ body {
   transition: all 0.5s ease-out; }
 
 .view-slide-left.ng-enter {
-  -webkit-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate(100%, 0);
   transform: translate3d(100%, 0, 0, 0);
   opacity: 0; }
 
 .view-slide-left.ng-enter.ng-enter-active {
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate(0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 1; }
 
 .view-slide-left.ng-leave {
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate(0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 1; }
 
 .view-slide-left.ng-leave.ng-leave-active {
-  -webkit-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate(-100%, 0);
   transform: translate3d(-100%, 0, 0);
   opacity: 0; }
 
 .view-slide-right.ng-enter {
-  -webkit-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate(-100%, 0);
   transform: translate3d(-100%, 0, 0);
   opacity: 0; }
 
 .view-slide-right.ng-enter.ng-enter-active {
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate(0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 1; }
 
 .view-slide-right.ng-leave {
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate(0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 1; }
 
 .view-slide-right.ng-leave.ng-leave-active {
-  -webkit-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate(100%, 0);
   transform: translate3d(100%, 0, 0);
   opacity: 0; }
 
@@ -269,11 +269,10 @@ input {
 .header-bar-background {
   top: 0; }
 
-#signin, #signup, #groups, #new-group, #new-exercise, #workout {
+#signin, #signup, #groups-page, #new-group, #new-exercise, #workout {
   position: absolute;
   height: 100%;
-  width: 100%;
-  left: 0; }
+  width: 100%; }
 
 #signup .login-info {
   position: absolute;

@@ -6,9 +6,7 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
       $scope.url = $location.path();
 
       $scope.$on('angularFireAuth:login', function () {
-        console.log('logged in as:'+$scope.email);
-        $rootScope.userID = $scope.auth.uid;
-        console.log('userID '+$rootScope.userID);
+        $rootScope.slideView('view-slide-left','/groups');
       })
 
       $scope.email = null;
@@ -20,7 +18,7 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
         loginService.login($scope.email, $scope.pass, '/groups', function(err, user) {
           $scope.passReset = 0;
           if(err !== null){
-            switch (err['code']){
+            switch (err.code){
               case 'INVALID_EMAIL':
               $scope.err = 'Oops! Double-check that email address.';
               break;
@@ -31,7 +29,7 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
               $scope.passReset = 1;
               break;
               default:
-                $scope.err = err['code'];
+                $scope.err = err.code;
             }
           }
           typeof(callback) === 'function' && callback(err, user);
@@ -45,5 +43,13 @@ angular.module('fitness.controllers.signin', ['fitness.services.login'])
           typeof(callback) === 'function' && callback(err, user);
         });
       };
+
+      $scope.resetPassword = function(callback){
+        console.log('resetting password');
+        loginService.resetPassword($scope.email, function(err,success){
+        });
+        $scope.passReset = 0;
+        $scope.err = 'Password reset email sent!';
+      }
     }])
   
