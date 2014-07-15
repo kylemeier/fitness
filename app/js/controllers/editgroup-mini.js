@@ -1,0 +1,1 @@
+app.controller("EditGroupCtrl",["$rootScope","$scope","$routeParams","angularFire","Groups",function(e,t,n,r,i){console.log("in group controller");(function(){r(i.find(n.groupId),t,"group")})()}]);

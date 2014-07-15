@@ -1,4 +1,4 @@
-<div id='groups-page' ng-controller='groupsCtrl'>
+<div id='groups-page'>
   <header>
     <h1>Groups</h1>
     <button class ='edit-group fade-in-out right' ng-show='showEdit()' ng-click='setGroup(); editMode = true;'>Edit</button>
@@ -23,7 +23,7 @@
           <h3 class='exercise-info left'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</h3>
           <button class='exercise-edit right' ng-click='slideView("view-slide-left",group.$id+"/edit-exercise/"+exercise.$id);'>edit</button>
           <button class='icon-exercise-delete'></button>
-          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise) && !editMode' ng-click='removeExercise(group.$id, exercise.$id); $event.stopPropagation();'>DELETE</button>
+          <button class='confirm-delete-exercise icon-slide-right-side' ng-show='isExerciseClicked(exercise) && !editMode' ng-click='removeExercise(group.$id, exercise.$id)'>DELETE</button>
           <button class='exercise-name left' ng-click='setExercise(exercise); $event.stopPropagation();'>{{exercise.name}}</button>
         </li>
         <li class='slide-up-down' ng-show='isGroupClicked(group.$id) && !editMode'>

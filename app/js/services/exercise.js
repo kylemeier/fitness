@@ -1,6 +1,5 @@
-angular.module('fitness.services.exercises', [])
-  .factory('Exercises', ['$rootScope','angularFireCollection', 'FBURL',
-    function($rootScope, angularFireCollection, FBURL) {
+app.factory('Exercises', ['$rootScope', 'angularFireCollection', 'FBURL',
+  function($rootScope, angularFireCollection, FBURL) {
         var exerciseRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
       return {
 

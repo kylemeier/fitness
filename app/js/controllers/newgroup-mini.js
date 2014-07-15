@@ -1,0 +1,1 @@
+app.controller("NewGroupCtrl",["$rootScope","$scope","Groups",function(e,t,n){t.addGroup=function(){t.groupName&&(t.groupId=n.create(t.groupName))}}]);

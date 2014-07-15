@@ -1,0 +1,1165 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'yo' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose cache add [ 'yo', null ]
+5 verbose cache add name=undefined spec="yo" args=["yo",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'yo',
+6 verbose parsed url   path: 'yo',
+6 verbose parsed url   href: 'yo' }
+7 silly lockFile c41975d1-yo yo
+8 verbose lock yo /Users/kylemeier/.npm/c41975d1-yo.lock
+9 silly lockFile c41975d1-yo yo
+10 silly lockFile c41975d1-yo yo
+11 verbose addNamed [ 'yo', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile d937c28e-yo yo@
+14 verbose lock yo@ /Users/kylemeier/.npm/d937c28e-yo.lock
+15 silly addNameRange { name: 'yo', range: '*', hasData: false }
+16 verbose url raw yo
+17 verbose url resolving [ 'https://registry.npmjs.org/', './yo' ]
+18 verbose url resolved https://registry.npmjs.org/yo
+19 info trying registry request attempt 1 at 12:18:02
+20 verbose etag "627X42GZVQ86RTCITX0A0MFWX"
+21 http GET https://registry.npmjs.org/yo
+22 http 304 https://registry.npmjs.org/yo
+23 silly registry.get cb [ 304,
+23 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+23 silly registry.get     server: 'Apache',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+23 silly registry.get     'cache-control': 'max-age=30',
+23 silly registry.get     etag: '"627X42GZVQ86RTCITX0A0MFWX"',
+23 silly registry.get     'x-served-by': 'cache-lax1424-LAX',
+23 silly registry.get     'x-cache': 'HIT',
+23 silly registry.get     'x-cache-hits': '1',
+23 silly registry.get     'x-timer': 'S1405451882.557736,VS0,VE35',
+23 silly registry.get     vary: 'Accept',
+23 silly registry.get     'content-length': '0',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 verbose etag yo from cache
+25 silly addNameRange number 2 { name: 'yo', range: '*', hasData: true }
+26 silly addNameRange versions [ 'yo',
+26 silly addNameRange   [ '1.0.0-beta.1',
+26 silly addNameRange     '1.0.0-beta.2',
+26 silly addNameRange     '1.0.0-beta.3',
+26 silly addNameRange     '1.0.0-beta.4',
+26 silly addNameRange     '1.0.0-beta.5',
+26 silly addNameRange     '1.0.0-beta.6',
+26 silly addNameRange     '1.0.0-beta.7',
+26 silly addNameRange     '1.0.0-rc.1',
+26 silly addNameRange     '1.0.0-rc.1.1',
+26 silly addNameRange     '1.0.0-rc.1.2',
+26 silly addNameRange     '1.0.0-rc.1.3',
+26 silly addNameRange     '1.0.0-rc.1.4',
+26 silly addNameRange     '1.0.0',
+26 silly addNameRange     '1.0.1',
+26 silly addNameRange     '1.0.2',
+26 silly addNameRange     '1.0.3',
+26 silly addNameRange     '1.0.4',
+26 silly addNameRange     '1.0.5',
+26 silly addNameRange     '1.0.6',
+26 silly addNameRange     '1.0.7-pre.1',
+26 silly addNameRange     '1.0.7-pre.2',
+26 silly addNameRange     '1.0.7-pre.3',
+26 silly addNameRange     '1.1.0',
+26 silly addNameRange     '1.1.1',
+26 silly addNameRange     '1.1.2',
+26 silly addNameRange     '1.2.0' ] ]
+27 verbose addNamed [ 'yo', '1.2.0' ]
+28 verbose addNamed [ '1.2.0', '1.2.0' ]
+29 silly lockFile 43d9b248-yo-1-2-0 yo@1.2.0
+30 verbose lock yo@1.2.0 /Users/kylemeier/.npm/43d9b248-yo-1-2-0.lock
+31 silly lockFile 43d9b248-yo-1-2-0 yo@1.2.0
+32 silly lockFile 43d9b248-yo-1-2-0 yo@1.2.0
+33 silly lockFile d937c28e-yo yo@
+34 silly lockFile d937c28e-yo yo@
+35 silly resolved [ { name: 'yo',
+35 silly resolved     version: '1.2.0',
+35 silly resolved     description: 'CLI tool for running Yeoman generators',
+35 silly resolved     license: 'BSD',
+35 silly resolved     bin: { yo: 'cli.js' },
+35 silly resolved     author: { name: 'The Yeoman Team' },
+35 silly resolved     repository: { type: 'git', url: 'git://github.com/yeoman/yo' },
+35 silly resolved     engines: { node: '>=0.10.0', npm: '>=1.4.3' },
+35 silly resolved     scripts:
+35 silly resolved      { test: 'grunt',
+35 silly resolved        postinstall: 'node ./scripts/doctor',
+35 silly resolved        postupdate: 'node ./scripts/doctor' },
+35 silly resolved     files: [ 'cli.js', 'yoyo.js', 'yeoman.txt', 'scripts' ],
+35 silly resolved     keywords:
+35 silly resolved      [ 'front-end',
+35 silly resolved        'development',
+35 silly resolved        'dev',
+35 silly resolved        'build',
+35 silly resolved        'web',
+35 silly resolved        'tool',
+35 silly resolved        'cli',
+35 silly resolved        'scaffold',
+35 silly resolved        'stack',
+35 silly resolved        'yeoman',
+35 silly resolved        'generator',
+35 silly resolved        'app' ],
+35 silly resolved     dependencies:
+35 silly resolved      { async: '^0.9.0',
+35 silly resolved        chalk: '^0.4.0',
+35 silly resolved        findup: '^0.1.3',
+35 silly resolved        fullname: '^0.1.0',
+35 silly resolved        insight: '^0.3.0',
+35 silly resolved        'is-root': '^0.1.0',
+35 silly resolved        lodash: '^2.4.1',
+35 silly resolved        nopt: '^3.0.0',
+35 silly resolved        opn: '^0.1.1',
+35 silly resolved        shelljs: '^0.3.0',
+35 silly resolved        'string-length': '^0.1.2',
+35 silly resolved        'sudo-block': '^0.4.0',
+35 silly resolved        'update-notifier': '^0.1.3',
+35 silly resolved        'yeoman-generator': '^0.17.0',
+35 silly resolved        yosay: '^0.2.1' },
+35 silly resolved     peerDependencies: { 'grunt-cli': '>=0.1.7', bower: '>=1.0.0' },
+35 silly resolved     devDependencies:
+35 silly resolved      { grunt: '^0.4.2',
+35 silly resolved        'grunt-contrib-jshint': '^0.10.0',
+35 silly resolved        'grunt-contrib-watch': '^0.6.1',
+35 silly resolved        'grunt-mocha-test': '^0.11.0',
+35 silly resolved        mockery: '^1.4.0' },
+35 silly resolved     engineStrict: true,
+35 silly resolved     preferGlobal: true,
+35 silly resolved     bugs: { url: 'https://github.com/yeoman/yo/issues' },
+35 silly resolved     homepage: 'https://github.com/yeoman/yo',
+35 silly resolved     _id: 'yo@1.2.0',
+35 silly resolved     dist:
+35 silly resolved      { shasum: 'ce499ba3f06963772d77c03e8daefe8686d8047d',
+35 silly resolved        tarball: 'http://registry.npmjs.org/yo/-/yo-1.2.0.tgz' },
+35 silly resolved     _from: 'yo@',
+35 silly resolved     _npmVersion: '1.4.6',
+35 silly resolved     _npmUser: { name: 'sboudrias', email: 'admin@simonboudrias.com' },
+35 silly resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+35 silly resolved     directories: {},
+35 silly resolved     _shasum: 'ce499ba3f06963772d77c03e8daefe8686d8047d',
+35 silly resolved     _resolved: 'https://registry.npmjs.org/yo/-/yo-1.2.0.tgz',
+35 silly resolved     readme: 'ERROR: No README data found!' } ]
+36 info install yo@1.2.0 into /usr/local/lib
+37 info installOne yo@1.2.0
+38 info /usr/local/lib/node_modules/yo unbuild
+39 verbose tar unpack /Users/kylemeier/.npm/yo/1.2.0/package.tgz
+40 silly lockFile 7d7c7bef-ar-usr-local-lib-node-modules-yo tar:///usr/local/lib/node_modules/yo
+41 verbose lock tar:///usr/local/lib/node_modules/yo /Users/kylemeier/.npm/7d7c7bef-ar-usr-local-lib-node-modules-yo.lock
+42 silly lockFile 57c8f4cd-lemeier-npm-yo-1-2-0-package-tgz tar:///Users/kylemeier/.npm/yo/1.2.0/package.tgz
+43 verbose lock tar:///Users/kylemeier/.npm/yo/1.2.0/package.tgz /Users/kylemeier/.npm/57c8f4cd-lemeier-npm-yo-1-2-0-package-tgz.lock
+44 silly gunzTarPerm modes [ '755', '644' ]
+45 silly gunzTarPerm extractEntry package.json
+46 silly gunzTarPerm extractEntry cli.js
+47 silly gunzTarPerm extractEntry yoyo.js
+48 silly gunzTarPerm extractEntry readme.md
+49 silly gunzTarPerm extractEntry scripts/doctor.js
+50 silly gunzTarPerm extractEntry yeoman.txt
+51 silly lockFile 7d7c7bef-ar-usr-local-lib-node-modules-yo tar:///usr/local/lib/node_modules/yo
+52 silly lockFile 7d7c7bef-ar-usr-local-lib-node-modules-yo tar:///usr/local/lib/node_modules/yo
+53 silly lockFile 57c8f4cd-lemeier-npm-yo-1-2-0-package-tgz tar:///Users/kylemeier/.npm/yo/1.2.0/package.tgz
+54 silly lockFile 57c8f4cd-lemeier-npm-yo-1-2-0-package-tgz tar:///Users/kylemeier/.npm/yo/1.2.0/package.tgz
+55 info preinstall yo@1.2.0
+56 verbose readDependencies using package.json deps
+57 verbose readDependencies using package.json deps
+58 verbose cache add [ 'async@^0.9.0', null ]
+59 verbose cache add name=undefined spec="async@^0.9.0" args=["async@^0.9.0",null]
+60 verbose parsed url { protocol: null,
+60 verbose parsed url   slashes: null,
+60 verbose parsed url   auth: null,
+60 verbose parsed url   host: null,
+60 verbose parsed url   port: null,
+60 verbose parsed url   hostname: null,
+60 verbose parsed url   hash: null,
+60 verbose parsed url   search: null,
+60 verbose parsed url   query: null,
+60 verbose parsed url   pathname: 'async@^0.9.0',
+60 verbose parsed url   path: 'async@^0.9.0',
+60 verbose parsed url   href: 'async@^0.9.0' }
+61 verbose cache add [ 'chalk@^0.4.0', null ]
+62 verbose cache add name=undefined spec="chalk@^0.4.0" args=["chalk@^0.4.0",null]
+63 verbose parsed url { protocol: null,
+63 verbose parsed url   slashes: null,
+63 verbose parsed url   auth: null,
+63 verbose parsed url   host: null,
+63 verbose parsed url   port: null,
+63 verbose parsed url   hostname: null,
+63 verbose parsed url   hash: null,
+63 verbose parsed url   search: null,
+63 verbose parsed url   query: null,
+63 verbose parsed url   pathname: 'chalk@^0.4.0',
+63 verbose parsed url   path: 'chalk@^0.4.0',
+63 verbose parsed url   href: 'chalk@^0.4.0' }
+64 verbose cache add name="async" spec="^0.9.0" args=["async","^0.9.0"]
+65 verbose parsed url { protocol: null,
+65 verbose parsed url   slashes: null,
+65 verbose parsed url   auth: null,
+65 verbose parsed url   host: null,
+65 verbose parsed url   port: null,
+65 verbose parsed url   hostname: null,
+65 verbose parsed url   hash: null,
+65 verbose parsed url   search: null,
+65 verbose parsed url   query: null,
+65 verbose parsed url   pathname: '^0.9.0',
+65 verbose parsed url   path: '^0.9.0',
+65 verbose parsed url   href: '^0.9.0' }
+66 verbose addNamed [ 'async', '^0.9.0' ]
+67 verbose addNamed [ null, '>=0.9.0-0 <0.10.0-0' ]
+68 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
+69 verbose lock async@^0.9.0 /Users/kylemeier/.npm/7f39d2c2-async-0-9-0.lock
+70 verbose cache add [ 'findup@^0.1.3', null ]
+71 verbose cache add name=undefined spec="findup@^0.1.3" args=["findup@^0.1.3",null]
+72 verbose parsed url { protocol: null,
+72 verbose parsed url   slashes: null,
+72 verbose parsed url   auth: null,
+72 verbose parsed url   host: null,
+72 verbose parsed url   port: null,
+72 verbose parsed url   hostname: null,
+72 verbose parsed url   hash: null,
+72 verbose parsed url   search: null,
+72 verbose parsed url   query: null,
+72 verbose parsed url   pathname: 'findup@^0.1.3',
+72 verbose parsed url   path: 'findup@^0.1.3',
+72 verbose parsed url   href: 'findup@^0.1.3' }
+73 verbose cache add name="chalk" spec="^0.4.0" args=["chalk","^0.4.0"]
+74 verbose parsed url { protocol: null,
+74 verbose parsed url   slashes: null,
+74 verbose parsed url   auth: null,
+74 verbose parsed url   host: null,
+74 verbose parsed url   port: null,
+74 verbose parsed url   hostname: null,
+74 verbose parsed url   hash: null,
+74 verbose parsed url   search: null,
+74 verbose parsed url   query: null,
+74 verbose parsed url   pathname: '^0.4.0',
+74 verbose parsed url   path: '^0.4.0',
+74 verbose parsed url   href: '^0.4.0' }
+75 verbose addNamed [ 'chalk', '^0.4.0' ]
+76 verbose addNamed [ null, '>=0.4.0-0 <0.5.0-0' ]
+77 silly lockFile b2f4396d-chalk-0-4-0 chalk@^0.4.0
+78 verbose lock chalk@^0.4.0 /Users/kylemeier/.npm/b2f4396d-chalk-0-4-0.lock
+79 verbose cache add name="findup" spec="^0.1.3" args=["findup","^0.1.3"]
+80 verbose parsed url { protocol: null,
+80 verbose parsed url   slashes: null,
+80 verbose parsed url   auth: null,
+80 verbose parsed url   host: null,
+80 verbose parsed url   port: null,
+80 verbose parsed url   hostname: null,
+80 verbose parsed url   hash: null,
+80 verbose parsed url   search: null,
+80 verbose parsed url   query: null,
+80 verbose parsed url   pathname: '^0.1.3',
+80 verbose parsed url   path: '^0.1.3',
+80 verbose parsed url   href: '^0.1.3' }
+81 verbose addNamed [ 'findup', '^0.1.3' ]
+82 verbose addNamed [ null, '>=0.1.3-0 <0.2.0-0' ]
+83 silly lockFile 00a3ed0d-findup-0-1-3 findup@^0.1.3
+84 verbose lock findup@^0.1.3 /Users/kylemeier/.npm/00a3ed0d-findup-0-1-3.lock
+85 verbose cache add [ 'fullname@^0.1.0', null ]
+86 verbose cache add name=undefined spec="fullname@^0.1.0" args=["fullname@^0.1.0",null]
+87 verbose parsed url { protocol: null,
+87 verbose parsed url   slashes: null,
+87 verbose parsed url   auth: null,
+87 verbose parsed url   host: null,
+87 verbose parsed url   port: null,
+87 verbose parsed url   hostname: null,
+87 verbose parsed url   hash: null,
+87 verbose parsed url   search: null,
+87 verbose parsed url   query: null,
+87 verbose parsed url   pathname: 'fullname@^0.1.0',
+87 verbose parsed url   path: 'fullname@^0.1.0',
+87 verbose parsed url   href: 'fullname@^0.1.0' }
+88 silly addNameRange { name: 'async', range: '>=0.9.0-0 <0.10.0-0', hasData: false }
+89 verbose cache add name="fullname" spec="^0.1.0" args=["fullname","^0.1.0"]
+90 verbose parsed url { protocol: null,
+90 verbose parsed url   slashes: null,
+90 verbose parsed url   auth: null,
+90 verbose parsed url   host: null,
+90 verbose parsed url   port: null,
+90 verbose parsed url   hostname: null,
+90 verbose parsed url   hash: null,
+90 verbose parsed url   search: null,
+90 verbose parsed url   query: null,
+90 verbose parsed url   pathname: '^0.1.0',
+90 verbose parsed url   path: '^0.1.0',
+90 verbose parsed url   href: '^0.1.0' }
+91 verbose addNamed [ 'fullname', '^0.1.0' ]
+92 verbose addNamed [ null, '>=0.1.0-0 <0.2.0-0' ]
+93 silly lockFile 195bd09f-fullname-0-1-0 fullname@^0.1.0
+94 verbose lock fullname@^0.1.0 /Users/kylemeier/.npm/195bd09f-fullname-0-1-0.lock
+95 verbose cache add [ 'insight@^0.3.0', null ]
+96 verbose cache add name=undefined spec="insight@^0.3.0" args=["insight@^0.3.0",null]
+97 verbose parsed url { protocol: null,
+97 verbose parsed url   slashes: null,
+97 verbose parsed url   auth: null,
+97 verbose parsed url   host: null,
+97 verbose parsed url   port: null,
+97 verbose parsed url   hostname: null,
+97 verbose parsed url   hash: null,
+97 verbose parsed url   search: null,
+97 verbose parsed url   query: null,
+97 verbose parsed url   pathname: 'insight@^0.3.0',
+97 verbose parsed url   path: 'insight@^0.3.0',
+97 verbose parsed url   href: 'insight@^0.3.0' }
+98 silly addNameRange { name: 'chalk', range: '>=0.4.0-0 <0.5.0-0', hasData: false }
+99 silly addNameRange { name: 'findup', range: '>=0.1.3-0 <0.2.0-0', hasData: false }
+100 verbose cache add name="insight" spec="^0.3.0" args=["insight","^0.3.0"]
+101 verbose parsed url { protocol: null,
+101 verbose parsed url   slashes: null,
+101 verbose parsed url   auth: null,
+101 verbose parsed url   host: null,
+101 verbose parsed url   port: null,
+101 verbose parsed url   hostname: null,
+101 verbose parsed url   hash: null,
+101 verbose parsed url   search: null,
+101 verbose parsed url   query: null,
+101 verbose parsed url   pathname: '^0.3.0',
+101 verbose parsed url   path: '^0.3.0',
+101 verbose parsed url   href: '^0.3.0' }
+102 verbose addNamed [ 'insight', '^0.3.0' ]
+103 verbose addNamed [ null, '>=0.3.0-0 <0.4.0-0' ]
+104 silly lockFile 086212c3-insight-0-3-0 insight@^0.3.0
+105 verbose lock insight@^0.3.0 /Users/kylemeier/.npm/086212c3-insight-0-3-0.lock
+106 silly addNameRange { name: 'fullname', range: '>=0.1.0-0 <0.2.0-0', hasData: false }
+107 verbose cache add [ 'is-root@^0.1.0', null ]
+108 verbose cache add name=undefined spec="is-root@^0.1.0" args=["is-root@^0.1.0",null]
+109 verbose parsed url { protocol: null,
+109 verbose parsed url   slashes: null,
+109 verbose parsed url   auth: null,
+109 verbose parsed url   host: null,
+109 verbose parsed url   port: null,
+109 verbose parsed url   hostname: null,
+109 verbose parsed url   hash: null,
+109 verbose parsed url   search: null,
+109 verbose parsed url   query: null,
+109 verbose parsed url   pathname: 'is-root@^0.1.0',
+109 verbose parsed url   path: 'is-root@^0.1.0',
+109 verbose parsed url   href: 'is-root@^0.1.0' }
+110 verbose cache add name="is-root" spec="^0.1.0" args=["is-root","^0.1.0"]
+111 verbose parsed url { protocol: null,
+111 verbose parsed url   slashes: null,
+111 verbose parsed url   auth: null,
+111 verbose parsed url   host: null,
+111 verbose parsed url   port: null,
+111 verbose parsed url   hostname: null,
+111 verbose parsed url   hash: null,
+111 verbose parsed url   search: null,
+111 verbose parsed url   query: null,
+111 verbose parsed url   pathname: '^0.1.0',
+111 verbose parsed url   path: '^0.1.0',
+111 verbose parsed url   href: '^0.1.0' }
+112 verbose addNamed [ 'is-root', '^0.1.0' ]
+113 verbose addNamed [ null, '>=0.1.0-0 <0.2.0-0' ]
+114 silly lockFile bc397d26-is-root-0-1-0 is-root@^0.1.0
+115 verbose lock is-root@^0.1.0 /Users/kylemeier/.npm/bc397d26-is-root-0-1-0.lock
+116 silly addNameRange { name: 'insight', range: '>=0.3.0-0 <0.4.0-0', hasData: false }
+117 verbose cache add [ 'lodash@^2.4.1', null ]
+118 verbose cache add name=undefined spec="lodash@^2.4.1" args=["lodash@^2.4.1",null]
+119 verbose parsed url { protocol: null,
+119 verbose parsed url   slashes: null,
+119 verbose parsed url   auth: null,
+119 verbose parsed url   host: null,
+119 verbose parsed url   port: null,
+119 verbose parsed url   hostname: null,
+119 verbose parsed url   hash: null,
+119 verbose parsed url   search: null,
+119 verbose parsed url   query: null,
+119 verbose parsed url   pathname: 'lodash@^2.4.1',
+119 verbose parsed url   path: 'lodash@^2.4.1',
+119 verbose parsed url   href: 'lodash@^2.4.1' }
+120 verbose url raw async
+121 verbose url resolving [ 'https://registry.npmjs.org/', './async' ]
+122 verbose url resolved https://registry.npmjs.org/async
+123 info trying registry request attempt 1 at 12:18:02
+124 verbose etag "6FTHF8X50V9PZ84TUJ6RKP7AO"
+125 http GET https://registry.npmjs.org/async
+126 verbose cache add [ 'opn@^0.1.1', null ]
+127 verbose cache add name=undefined spec="opn@^0.1.1" args=["opn@^0.1.1",null]
+128 verbose parsed url { protocol: null,
+128 verbose parsed url   slashes: null,
+128 verbose parsed url   auth: null,
+128 verbose parsed url   host: null,
+128 verbose parsed url   port: null,
+128 verbose parsed url   hostname: null,
+128 verbose parsed url   hash: null,
+128 verbose parsed url   search: null,
+128 verbose parsed url   query: null,
+128 verbose parsed url   pathname: 'opn@^0.1.1',
+128 verbose parsed url   path: 'opn@^0.1.1',
+128 verbose parsed url   href: 'opn@^0.1.1' }
+129 verbose cache add [ 'nopt@^3.0.0', null ]
+130 verbose cache add name=undefined spec="nopt@^3.0.0" args=["nopt@^3.0.0",null]
+131 verbose parsed url { protocol: null,
+131 verbose parsed url   slashes: null,
+131 verbose parsed url   auth: null,
+131 verbose parsed url   host: null,
+131 verbose parsed url   port: null,
+131 verbose parsed url   hostname: null,
+131 verbose parsed url   hash: null,
+131 verbose parsed url   search: null,
+131 verbose parsed url   query: null,
+131 verbose parsed url   pathname: 'nopt@^3.0.0',
+131 verbose parsed url   path: 'nopt@^3.0.0',
+131 verbose parsed url   href: 'nopt@^3.0.0' }
+132 verbose cache add [ 'shelljs@^0.3.0', null ]
+133 verbose cache add name=undefined spec="shelljs@^0.3.0" args=["shelljs@^0.3.0",null]
+134 verbose parsed url { protocol: null,
+134 verbose parsed url   slashes: null,
+134 verbose parsed url   auth: null,
+134 verbose parsed url   host: null,
+134 verbose parsed url   port: null,
+134 verbose parsed url   hostname: null,
+134 verbose parsed url   hash: null,
+134 verbose parsed url   search: null,
+134 verbose parsed url   query: null,
+134 verbose parsed url   pathname: 'shelljs@^0.3.0',
+134 verbose parsed url   path: 'shelljs@^0.3.0',
+134 verbose parsed url   href: 'shelljs@^0.3.0' }
+135 verbose cache add [ 'string-length@^0.1.2', null ]
+136 verbose cache add name=undefined spec="string-length@^0.1.2" args=["string-length@^0.1.2",null]
+137 verbose parsed url { protocol: null,
+137 verbose parsed url   slashes: null,
+137 verbose parsed url   auth: null,
+137 verbose parsed url   host: null,
+137 verbose parsed url   port: null,
+137 verbose parsed url   hostname: null,
+137 verbose parsed url   hash: null,
+137 verbose parsed url   search: null,
+137 verbose parsed url   query: null,
+137 verbose parsed url   pathname: 'string-length@^0.1.2',
+137 verbose parsed url   path: 'string-length@^0.1.2',
+137 verbose parsed url   href: 'string-length@^0.1.2' }
+138 verbose cache add name="lodash" spec="^2.4.1" args=["lodash","^2.4.1"]
+139 verbose parsed url { protocol: null,
+139 verbose parsed url   slashes: null,
+139 verbose parsed url   auth: null,
+139 verbose parsed url   host: null,
+139 verbose parsed url   port: null,
+139 verbose parsed url   hostname: null,
+139 verbose parsed url   hash: null,
+139 verbose parsed url   search: null,
+139 verbose parsed url   query: null,
+139 verbose parsed url   pathname: '^2.4.1',
+139 verbose parsed url   path: '^2.4.1',
+139 verbose parsed url   href: '^2.4.1' }
+140 verbose addNamed [ 'lodash', '^2.4.1' ]
+141 verbose addNamed [ null, '>=2.4.1-0 <3.0.0-0' ]
+142 silly lockFile 59759450-lodash-2-4-1 lodash@^2.4.1
+143 verbose lock lodash@^2.4.1 /Users/kylemeier/.npm/59759450-lodash-2-4-1.lock
+144 verbose url raw chalk
+145 verbose url resolving [ 'https://registry.npmjs.org/', './chalk' ]
+146 verbose url resolved https://registry.npmjs.org/chalk
+147 info trying registry request attempt 1 at 12:18:02
+148 verbose etag "BF68UWEO9YALZUO3TKLP8VWHY"
+149 http GET https://registry.npmjs.org/chalk
+150 verbose url raw findup
+151 verbose url resolving [ 'https://registry.npmjs.org/', './findup' ]
+152 verbose url resolved https://registry.npmjs.org/findup
+153 info trying registry request attempt 1 at 12:18:02
+154 verbose etag "5715A4PGOK6RT4GT1A1YLU5JF"
+155 http GET https://registry.npmjs.org/findup
+156 silly addNameRange { name: 'is-root', range: '>=0.1.0-0 <0.2.0-0', hasData: false }
+157 verbose cache add name="opn" spec="^0.1.1" args=["opn","^0.1.1"]
+158 verbose parsed url { protocol: null,
+158 verbose parsed url   slashes: null,
+158 verbose parsed url   auth: null,
+158 verbose parsed url   host: null,
+158 verbose parsed url   port: null,
+158 verbose parsed url   hostname: null,
+158 verbose parsed url   hash: null,
+158 verbose parsed url   search: null,
+158 verbose parsed url   query: null,
+158 verbose parsed url   pathname: '^0.1.1',
+158 verbose parsed url   path: '^0.1.1',
+158 verbose parsed url   href: '^0.1.1' }
+159 verbose addNamed [ 'opn', '^0.1.1' ]
+160 verbose addNamed [ null, '>=0.1.1-0 <0.2.0-0' ]
+161 silly lockFile 4ecb2975-opn-0-1-1 opn@^0.1.1
+162 verbose lock opn@^0.1.1 /Users/kylemeier/.npm/4ecb2975-opn-0-1-1.lock
+163 verbose cache add name="nopt" spec="^3.0.0" args=["nopt","^3.0.0"]
+164 verbose parsed url { protocol: null,
+164 verbose parsed url   slashes: null,
+164 verbose parsed url   auth: null,
+164 verbose parsed url   host: null,
+164 verbose parsed url   port: null,
+164 verbose parsed url   hostname: null,
+164 verbose parsed url   hash: null,
+164 verbose parsed url   search: null,
+164 verbose parsed url   query: null,
+164 verbose parsed url   pathname: '^3.0.0',
+164 verbose parsed url   path: '^3.0.0',
+164 verbose parsed url   href: '^3.0.0' }
+165 verbose addNamed [ 'nopt', '^3.0.0' ]
+166 verbose addNamed [ null, '>=3.0.0-0 <4.0.0-0' ]
+167 silly lockFile 8380067c-nopt-3-0-0 nopt@^3.0.0
+168 verbose lock nopt@^3.0.0 /Users/kylemeier/.npm/8380067c-nopt-3-0-0.lock
+169 verbose cache add name="shelljs" spec="^0.3.0" args=["shelljs","^0.3.0"]
+170 verbose parsed url { protocol: null,
+170 verbose parsed url   slashes: null,
+170 verbose parsed url   auth: null,
+170 verbose parsed url   host: null,
+170 verbose parsed url   port: null,
+170 verbose parsed url   hostname: null,
+170 verbose parsed url   hash: null,
+170 verbose parsed url   search: null,
+170 verbose parsed url   query: null,
+170 verbose parsed url   pathname: '^0.3.0',
+170 verbose parsed url   path: '^0.3.0',
+170 verbose parsed url   href: '^0.3.0' }
+171 verbose addNamed [ 'shelljs', '^0.3.0' ]
+172 verbose addNamed [ null, '>=0.3.0-0 <0.4.0-0' ]
+173 silly lockFile 1ddaa962-shelljs-0-3-0 shelljs@^0.3.0
+174 verbose lock shelljs@^0.3.0 /Users/kylemeier/.npm/1ddaa962-shelljs-0-3-0.lock
+175 verbose cache add name="string-length" spec="^0.1.2" args=["string-length","^0.1.2"]
+176 verbose parsed url { protocol: null,
+176 verbose parsed url   slashes: null,
+176 verbose parsed url   auth: null,
+176 verbose parsed url   host: null,
+176 verbose parsed url   port: null,
+176 verbose parsed url   hostname: null,
+176 verbose parsed url   hash: null,
+176 verbose parsed url   search: null,
+176 verbose parsed url   query: null,
+176 verbose parsed url   pathname: '^0.1.2',
+176 verbose parsed url   path: '^0.1.2',
+176 verbose parsed url   href: '^0.1.2' }
+177 verbose addNamed [ 'string-length', '^0.1.2' ]
+178 verbose addNamed [ null, '>=0.1.2-0 <0.2.0-0' ]
+179 silly lockFile 61b96d80-string-length-0-1-2 string-length@^0.1.2
+180 verbose lock string-length@^0.1.2 /Users/kylemeier/.npm/61b96d80-string-length-0-1-2.lock
+181 verbose cache add [ 'sudo-block@^0.4.0', null ]
+182 verbose cache add name=undefined spec="sudo-block@^0.4.0" args=["sudo-block@^0.4.0",null]
+183 verbose parsed url { protocol: null,
+183 verbose parsed url   slashes: null,
+183 verbose parsed url   auth: null,
+183 verbose parsed url   host: null,
+183 verbose parsed url   port: null,
+183 verbose parsed url   hostname: null,
+183 verbose parsed url   hash: null,
+183 verbose parsed url   search: null,
+183 verbose parsed url   query: null,
+183 verbose parsed url   pathname: 'sudo-block@^0.4.0',
+183 verbose parsed url   path: 'sudo-block@^0.4.0',
+183 verbose parsed url   href: 'sudo-block@^0.4.0' }
+184 verbose cache add [ 'update-notifier@^0.1.3', null ]
+185 verbose cache add name=undefined spec="update-notifier@^0.1.3" args=["update-notifier@^0.1.3",null]
+186 verbose parsed url { protocol: null,
+186 verbose parsed url   slashes: null,
+186 verbose parsed url   auth: null,
+186 verbose parsed url   host: null,
+186 verbose parsed url   port: null,
+186 verbose parsed url   hostname: null,
+186 verbose parsed url   hash: null,
+186 verbose parsed url   search: null,
+186 verbose parsed url   query: null,
+186 verbose parsed url   pathname: 'update-notifier@^0.1.3',
+186 verbose parsed url   path: 'update-notifier@^0.1.3',
+186 verbose parsed url   href: 'update-notifier@^0.1.3' }
+187 verbose cache add [ 'yeoman-generator@^0.17.0', null ]
+188 verbose cache add name=undefined spec="yeoman-generator@^0.17.0" args=["yeoman-generator@^0.17.0",null]
+189 verbose parsed url { protocol: null,
+189 verbose parsed url   slashes: null,
+189 verbose parsed url   auth: null,
+189 verbose parsed url   host: null,
+189 verbose parsed url   port: null,
+189 verbose parsed url   hostname: null,
+189 verbose parsed url   hash: null,
+189 verbose parsed url   search: null,
+189 verbose parsed url   query: null,
+189 verbose parsed url   pathname: 'yeoman-generator@^0.17.0',
+189 verbose parsed url   path: 'yeoman-generator@^0.17.0',
+189 verbose parsed url   href: 'yeoman-generator@^0.17.0' }
+190 verbose cache add [ 'yosay@^0.2.1', null ]
+191 verbose cache add name=undefined spec="yosay@^0.2.1" args=["yosay@^0.2.1",null]
+192 verbose parsed url { protocol: null,
+192 verbose parsed url   slashes: null,
+192 verbose parsed url   auth: null,
+192 verbose parsed url   host: null,
+192 verbose parsed url   port: null,
+192 verbose parsed url   hostname: null,
+192 verbose parsed url   hash: null,
+192 verbose parsed url   search: null,
+192 verbose parsed url   query: null,
+192 verbose parsed url   pathname: 'yosay@^0.2.1',
+192 verbose parsed url   path: 'yosay@^0.2.1',
+192 verbose parsed url   href: 'yosay@^0.2.1' }
+193 verbose url raw fullname
+194 verbose url resolving [ 'https://registry.npmjs.org/', './fullname' ]
+195 verbose url resolved https://registry.npmjs.org/fullname
+196 info trying registry request attempt 1 at 12:18:02
+197 verbose etag "8HN874W52VEKZIPTDRPBU3XCA"
+198 http GET https://registry.npmjs.org/fullname
+199 verbose cache add name="sudo-block" spec="^0.4.0" args=["sudo-block","^0.4.0"]
+200 verbose parsed url { protocol: null,
+200 verbose parsed url   slashes: null,
+200 verbose parsed url   auth: null,
+200 verbose parsed url   host: null,
+200 verbose parsed url   port: null,
+200 verbose parsed url   hostname: null,
+200 verbose parsed url   hash: null,
+200 verbose parsed url   search: null,
+200 verbose parsed url   query: null,
+200 verbose parsed url   pathname: '^0.4.0',
+200 verbose parsed url   path: '^0.4.0',
+200 verbose parsed url   href: '^0.4.0' }
+201 verbose addNamed [ 'sudo-block', '^0.4.0' ]
+202 verbose addNamed [ null, '>=0.4.0-0 <0.5.0-0' ]
+203 silly lockFile 7ee4d005-sudo-block-0-4-0 sudo-block@^0.4.0
+204 verbose lock sudo-block@^0.4.0 /Users/kylemeier/.npm/7ee4d005-sudo-block-0-4-0.lock
+205 verbose cache add name="update-notifier" spec="^0.1.3" args=["update-notifier","^0.1.3"]
+206 verbose parsed url { protocol: null,
+206 verbose parsed url   slashes: null,
+206 verbose parsed url   auth: null,
+206 verbose parsed url   host: null,
+206 verbose parsed url   port: null,
+206 verbose parsed url   hostname: null,
+206 verbose parsed url   hash: null,
+206 verbose parsed url   search: null,
+206 verbose parsed url   query: null,
+206 verbose parsed url   pathname: '^0.1.3',
+206 verbose parsed url   path: '^0.1.3',
+206 verbose parsed url   href: '^0.1.3' }
+207 verbose addNamed [ 'update-notifier', '^0.1.3' ]
+208 verbose addNamed [ null, '>=0.1.3-0 <0.2.0-0' ]
+209 silly lockFile 99a0c2cd-update-notifier-0-1-3 update-notifier@^0.1.3
+210 verbose lock update-notifier@^0.1.3 /Users/kylemeier/.npm/99a0c2cd-update-notifier-0-1-3.lock
+211 verbose cache add name="yeoman-generator" spec="^0.17.0" args=["yeoman-generator","^0.17.0"]
+212 verbose parsed url { protocol: null,
+212 verbose parsed url   slashes: null,
+212 verbose parsed url   auth: null,
+212 verbose parsed url   host: null,
+212 verbose parsed url   port: null,
+212 verbose parsed url   hostname: null,
+212 verbose parsed url   hash: null,
+212 verbose parsed url   search: null,
+212 verbose parsed url   query: null,
+212 verbose parsed url   pathname: '^0.17.0',
+212 verbose parsed url   path: '^0.17.0',
+212 verbose parsed url   href: '^0.17.0' }
+213 verbose addNamed [ 'yeoman-generator', '^0.17.0' ]
+214 verbose addNamed [ null, '>=0.17.0-0 <0.18.0-0' ]
+215 silly lockFile 6bfcf0c0-yeoman-generator-0-17-0 yeoman-generator@^0.17.0
+216 verbose lock yeoman-generator@^0.17.0 /Users/kylemeier/.npm/6bfcf0c0-yeoman-generator-0-17-0.lock
+217 verbose cache add name="yosay" spec="^0.2.1" args=["yosay","^0.2.1"]
+218 verbose parsed url { protocol: null,
+218 verbose parsed url   slashes: null,
+218 verbose parsed url   auth: null,
+218 verbose parsed url   host: null,
+218 verbose parsed url   port: null,
+218 verbose parsed url   hostname: null,
+218 verbose parsed url   hash: null,
+218 verbose parsed url   search: null,
+218 verbose parsed url   query: null,
+218 verbose parsed url   pathname: '^0.2.1',
+218 verbose parsed url   path: '^0.2.1',
+218 verbose parsed url   href: '^0.2.1' }
+219 verbose addNamed [ 'yosay', '^0.2.1' ]
+220 verbose addNamed [ null, '>=0.2.1-0 <0.3.0-0' ]
+221 silly lockFile 2c62b37d-yosay-0-2-1 yosay@^0.2.1
+222 verbose lock yosay@^0.2.1 /Users/kylemeier/.npm/2c62b37d-yosay-0-2-1.lock
+223 silly addNameRange { name: 'lodash', range: '>=2.4.1-0 <3.0.0-0', hasData: false }
+224 silly addNameRange { name: 'opn', range: '>=0.1.1-0 <0.2.0-0', hasData: false }
+225 silly addNameRange { name: 'nopt', range: '>=3.0.0-0 <4.0.0-0', hasData: false }
+226 silly addNameRange { name: 'shelljs', range: '>=0.3.0-0 <0.4.0-0', hasData: false }
+227 silly addNameRange { name: 'string-length',
+227 silly addNameRange   range: '>=0.1.2-0 <0.2.0-0',
+227 silly addNameRange   hasData: false }
+228 verbose url raw insight
+229 verbose url resolving [ 'https://registry.npmjs.org/', './insight' ]
+230 verbose url resolved https://registry.npmjs.org/insight
+231 info trying registry request attempt 1 at 12:18:02
+232 verbose etag "EEQ13CN46VMJTVE55352A1FGR"
+233 http GET https://registry.npmjs.org/insight
+234 silly addNameRange { name: 'sudo-block',
+234 silly addNameRange   range: '>=0.4.0-0 <0.5.0-0',
+234 silly addNameRange   hasData: false }
+235 silly addNameRange { name: 'update-notifier',
+235 silly addNameRange   range: '>=0.1.3-0 <0.2.0-0',
+235 silly addNameRange   hasData: false }
+236 silly addNameRange { name: 'yeoman-generator',
+236 silly addNameRange   range: '>=0.17.0-0 <0.18.0-0',
+236 silly addNameRange   hasData: false }
+237 silly addNameRange { name: 'yosay', range: '>=0.2.1-0 <0.3.0-0', hasData: false }
+238 verbose url raw is-root
+239 verbose url resolving [ 'https://registry.npmjs.org/', './is-root' ]
+240 verbose url resolved https://registry.npmjs.org/is-root
+241 info trying registry request attempt 1 at 12:18:02
+242 verbose etag "BZM8C9E2CGQ8MCJGUN6FK4NCC"
+243 http GET https://registry.npmjs.org/is-root
+244 verbose url raw lodash
+245 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+246 verbose url resolved https://registry.npmjs.org/lodash
+247 info trying registry request attempt 1 at 12:18:02
+248 verbose etag "79KTPIUBVHIX8NM7UFXMZ410P"
+249 http GET https://registry.npmjs.org/lodash
+250 verbose url raw opn
+251 verbose url resolving [ 'https://registry.npmjs.org/', './opn' ]
+252 verbose url resolved https://registry.npmjs.org/opn
+253 info trying registry request attempt 1 at 12:18:02
+254 verbose etag "BOX311F3RTG9OU8DHKMH2S0QN"
+255 http GET https://registry.npmjs.org/opn
+256 verbose url raw nopt
+257 verbose url resolving [ 'https://registry.npmjs.org/', './nopt' ]
+258 verbose url resolved https://registry.npmjs.org/nopt
+259 info trying registry request attempt 1 at 12:18:02
+260 verbose etag "5D0JNA9NFAY71ZAANMNUNVL3U"
+261 http GET https://registry.npmjs.org/nopt
+262 verbose url raw shelljs
+263 verbose url resolving [ 'https://registry.npmjs.org/', './shelljs' ]
+264 verbose url resolved https://registry.npmjs.org/shelljs
+265 info trying registry request attempt 1 at 12:18:02
+266 verbose etag "8N3HI1MPQ6QM6J8DPQTKRZG3L"
+267 http GET https://registry.npmjs.org/shelljs
+268 verbose url raw string-length
+269 verbose url resolving [ 'https://registry.npmjs.org/', './string-length' ]
+270 verbose url resolved https://registry.npmjs.org/string-length
+271 info trying registry request attempt 1 at 12:18:02
+272 verbose etag "A8RW9GKPPZV7259V1GCXVQI0H"
+273 http GET https://registry.npmjs.org/string-length
+274 verbose url raw sudo-block
+275 verbose url resolving [ 'https://registry.npmjs.org/', './sudo-block' ]
+276 verbose url resolved https://registry.npmjs.org/sudo-block
+277 info trying registry request attempt 1 at 12:18:02
+278 verbose etag "9D33JX9D4J11L0SKNE92UHUSR"
+279 http GET https://registry.npmjs.org/sudo-block
+280 verbose url raw update-notifier
+281 verbose url resolving [ 'https://registry.npmjs.org/', './update-notifier' ]
+282 verbose url resolved https://registry.npmjs.org/update-notifier
+283 info trying registry request attempt 1 at 12:18:02
+284 verbose etag "65UVSDQYF2XECTOO4AC24PTH1"
+285 http GET https://registry.npmjs.org/update-notifier
+286 verbose url raw yosay
+287 verbose url resolving [ 'https://registry.npmjs.org/', './yosay' ]
+288 verbose url resolved https://registry.npmjs.org/yosay
+289 info trying registry request attempt 1 at 12:18:02
+290 verbose etag "36SMQFOFKXUW4K4QXWR1DPKGV"
+291 http GET https://registry.npmjs.org/yosay
+292 verbose url raw yeoman-generator
+293 verbose url resolving [ 'https://registry.npmjs.org/', './yeoman-generator' ]
+294 verbose url resolved https://registry.npmjs.org/yeoman-generator
+295 info trying registry request attempt 1 at 12:18:02
+296 verbose etag "1YHTSYUS6Q4YFBKLRJ50USG79"
+297 http GET https://registry.npmjs.org/yeoman-generator
+298 http 304 https://registry.npmjs.org/chalk
+299 silly registry.get cb [ 304,
+299 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+299 silly registry.get     server: 'Apache',
+299 silly registry.get     via: '1.1 varnish',
+299 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:17:41 GMT',
+299 silly registry.get     'cache-control': 'max-age=30',
+299 silly registry.get     etag: '"BF68UWEO9YALZUO3TKLP8VWHY"',
+299 silly registry.get     'x-served-by': 'cache-lax1423-LAX',
+299 silly registry.get     'x-cache': 'HIT',
+299 silly registry.get     'x-cache-hits': '4',
+299 silly registry.get     'x-timer': 'S1405451882.764608,VS0,VE0',
+299 silly registry.get     vary: 'Accept',
+299 silly registry.get     'content-length': '0',
+299 silly registry.get     'keep-alive': 'timeout=10, max=50',
+299 silly registry.get     connection: 'Keep-Alive' } ]
+300 verbose etag chalk from cache
+301 silly addNameRange number 2 { name: 'chalk', range: '>=0.4.0-0 <0.5.0-0', hasData: true }
+302 silly addNameRange versions [ 'chalk',
+302 silly addNameRange   [ '0.1.0',
+302 silly addNameRange     '0.1.1',
+302 silly addNameRange     '0.2.0',
+302 silly addNameRange     '0.2.1',
+302 silly addNameRange     '0.3.0',
+302 silly addNameRange     '0.4.0',
+302 silly addNameRange     '0.5.0',
+302 silly addNameRange     '0.5.1' ] ]
+303 verbose addNamed [ 'chalk', '0.4.0' ]
+304 verbose addNamed [ '0.4.0', '0.4.0' ]
+305 silly lockFile 1efe4790-chalk-0-4-0 chalk@0.4.0
+306 verbose lock chalk@0.4.0 /Users/kylemeier/.npm/1efe4790-chalk-0-4-0.lock
+307 http 304 https://registry.npmjs.org/async
+308 silly registry.get cb [ 304,
+308 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+308 silly registry.get     server: 'Apache',
+308 silly registry.get     via: '1.1 varnish',
+308 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:17:45 GMT',
+308 silly registry.get     'cache-control': 'max-age=30',
+308 silly registry.get     etag: '"6FTHF8X50V9PZ84TUJ6RKP7AO"',
+308 silly registry.get     'x-served-by': 'cache-lax1421-LAX',
+308 silly registry.get     'x-cache': 'HIT',
+308 silly registry.get     'x-cache-hits': '6',
+308 silly registry.get     'x-timer': 'S1405451882.769118,VS0,VE0',
+308 silly registry.get     vary: 'Accept',
+308 silly registry.get     'content-length': '0',
+308 silly registry.get     'keep-alive': 'timeout=10, max=50',
+308 silly registry.get     connection: 'Keep-Alive' } ]
+309 verbose etag async from cache
+310 silly lockFile 1efe4790-chalk-0-4-0 chalk@0.4.0
+311 silly lockFile 1efe4790-chalk-0-4-0 chalk@0.4.0
+312 silly addNameRange number 2 { name: 'async', range: '>=0.9.0-0 <0.10.0-0', hasData: true }
+313 silly addNameRange versions [ 'async',
+313 silly addNameRange   [ '0.1.0',
+313 silly addNameRange     '0.1.1',
+313 silly addNameRange     '0.1.2',
+313 silly addNameRange     '0.1.3',
+313 silly addNameRange     '0.1.4',
+313 silly addNameRange     '0.1.5',
+313 silly addNameRange     '0.1.6',
+313 silly addNameRange     '0.1.7',
+313 silly addNameRange     '0.1.8',
+313 silly addNameRange     '0.1.9',
+313 silly addNameRange     '0.1.10',
+313 silly addNameRange     '0.1.11',
+313 silly addNameRange     '0.1.12',
+313 silly addNameRange     '0.1.13',
+313 silly addNameRange     '0.1.14',
+313 silly addNameRange     '0.1.15',
+313 silly addNameRange     '0.1.16',
+313 silly addNameRange     '0.1.17',
+313 silly addNameRange     '0.1.18',
+313 silly addNameRange     '0.1.19',
+313 silly addNameRange     '0.1.20',
+313 silly addNameRange     '0.1.21',
+313 silly addNameRange     '0.1.22',
+313 silly addNameRange     '0.2.0',
+313 silly addNameRange     '0.2.1',
+313 silly addNameRange     '0.2.2',
+313 silly addNameRange     '0.2.3',
+313 silly addNameRange     '0.2.4',
+313 silly addNameRange     '0.2.5',
+313 silly addNameRange     '0.2.6',
+313 silly addNameRange     '0.2.7',
+313 silly addNameRange     '0.2.8',
+313 silly addNameRange     '0.2.9',
+313 silly addNameRange     '0.2.10',
+313 silly addNameRange     '0.3.0',
+313 silly addNameRange     '0.4.0',
+313 silly addNameRange     '0.4.1',
+313 silly addNameRange     '0.5.0',
+313 silly addNameRange     '0.6.0',
+313 silly addNameRange     '0.6.1',
+313 silly addNameRange     '0.6.2',
+313 silly addNameRange     '0.7.0',
+313 silly addNameRange     '0.8.0',
+313 silly addNameRange     '0.9.0' ] ]
+314 verbose addNamed [ 'async', '0.9.0' ]
+315 verbose addNamed [ '0.9.0', '0.9.0' ]
+316 silly lockFile 9a58a886-async-0-9-0 async@0.9.0
+317 verbose lock async@0.9.0 /Users/kylemeier/.npm/9a58a886-async-0-9-0.lock
+318 silly lockFile b2f4396d-chalk-0-4-0 chalk@^0.4.0
+319 silly lockFile b2f4396d-chalk-0-4-0 chalk@^0.4.0
+320 silly lockFile 9a58a886-async-0-9-0 async@0.9.0
+321 silly lockFile 9a58a886-async-0-9-0 async@0.9.0
+322 http 304 https://registry.npmjs.org/insight
+323 silly registry.get cb [ 304,
+323 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+323 silly registry.get     server: 'Apache',
+323 silly registry.get     via: '1.1 varnish',
+323 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+323 silly registry.get     'cache-control': 'max-age=30',
+323 silly registry.get     etag: '"EEQ13CN46VMJTVE55352A1FGR"',
+323 silly registry.get     'x-served-by': 'cache-lax1432-LAX',
+323 silly registry.get     'x-cache': 'HIT',
+323 silly registry.get     'x-cache-hits': '1',
+323 silly registry.get     'x-timer': 'S1405451882.776120,VS0,VE0',
+323 silly registry.get     vary: 'Accept',
+323 silly registry.get     'content-length': '0',
+323 silly registry.get     'keep-alive': 'timeout=10, max=50',
+323 silly registry.get     connection: 'Keep-Alive' } ]
+324 verbose etag insight from cache
+325 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
+326 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
+327 silly addNameRange number 2 { name: 'insight', range: '>=0.3.0-0 <0.4.0-0', hasData: true }
+328 silly addNameRange versions [ 'insight',
+328 silly addNameRange   [ '0.1.0', '0.1.1', '0.1.2', '0.1.3', '0.2.0', '0.3.0', '0.3.1' ] ]
+329 verbose addNamed [ 'insight', '0.3.1' ]
+330 verbose addNamed [ '0.3.1', '0.3.1' ]
+331 silly lockFile 10741e2f-insight-0-3-1 insight@0.3.1
+332 verbose lock insight@0.3.1 /Users/kylemeier/.npm/10741e2f-insight-0-3-1.lock
+333 silly lockFile 10741e2f-insight-0-3-1 insight@0.3.1
+334 silly lockFile 10741e2f-insight-0-3-1 insight@0.3.1
+335 silly lockFile 086212c3-insight-0-3-0 insight@^0.3.0
+336 silly lockFile 086212c3-insight-0-3-0 insight@^0.3.0
+337 http 304 https://registry.npmjs.org/is-root
+338 silly registry.get cb [ 304,
+338 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+338 silly registry.get     server: 'Apache',
+338 silly registry.get     via: '1.1 varnish',
+338 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+338 silly registry.get     'cache-control': 'max-age=30',
+338 silly registry.get     etag: '"BZM8C9E2CGQ8MCJGUN6FK4NCC"',
+338 silly registry.get     'x-served-by': 'cache-lax1423-LAX',
+338 silly registry.get     'x-cache': 'HIT',
+338 silly registry.get     'x-cache-hits': '1',
+338 silly registry.get     'x-timer': 'S1405451882.788598,VS0,VE0',
+338 silly registry.get     vary: 'Accept',
+338 silly registry.get     'content-length': '0',
+338 silly registry.get     'keep-alive': 'timeout=10, max=49',
+338 silly registry.get     connection: 'Keep-Alive' } ]
+339 verbose etag is-root from cache
+340 http 304 https://registry.npmjs.org/lodash
+341 silly registry.get cb [ 304,
+341 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+341 silly registry.get     server: 'Apache',
+341 silly registry.get     via: '1.1 varnish',
+341 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+341 silly registry.get     'cache-control': 'max-age=30',
+341 silly registry.get     etag: '"79KTPIUBVHIX8NM7UFXMZ410P"',
+341 silly registry.get     'x-served-by': 'cache-lax1421-LAX',
+341 silly registry.get     'x-cache': 'HIT',
+341 silly registry.get     'x-cache-hits': '1',
+341 silly registry.get     'x-timer': 'S1405451882.790576,VS0,VE0',
+341 silly registry.get     vary: 'Accept',
+341 silly registry.get     'content-length': '0',
+341 silly registry.get     'keep-alive': 'timeout=10, max=49',
+341 silly registry.get     connection: 'Keep-Alive' } ]
+342 verbose etag lodash from cache
+343 silly addNameRange number 2 { name: 'is-root', range: '>=0.1.0-0 <0.2.0-0', hasData: true }
+344 silly addNameRange versions [ 'is-root', [ '0.1.0' ] ]
+345 verbose addNamed [ 'is-root', '0.1.0' ]
+346 verbose addNamed [ '0.1.0', '0.1.0' ]
+347 silly lockFile 2bd5d7e4-is-root-0-1-0 is-root@0.1.0
+348 verbose lock is-root@0.1.0 /Users/kylemeier/.npm/2bd5d7e4-is-root-0-1-0.lock
+349 silly addNameRange number 2 { name: 'lodash', range: '>=2.4.1-0 <3.0.0-0', hasData: true }
+350 silly addNameRange versions [ 'lodash',
+350 silly addNameRange   [ '0.1.0',
+350 silly addNameRange     '0.2.0',
+350 silly addNameRange     '0.2.1',
+350 silly addNameRange     '0.2.2',
+350 silly addNameRange     '0.3.0',
+350 silly addNameRange     '0.3.1',
+350 silly addNameRange     '0.3.2',
+350 silly addNameRange     '0.4.0',
+350 silly addNameRange     '0.4.1',
+350 silly addNameRange     '0.4.2',
+350 silly addNameRange     '0.5.0-rc.1',
+350 silly addNameRange     '0.5.0',
+350 silly addNameRange     '0.5.1',
+350 silly addNameRange     '0.5.2',
+350 silly addNameRange     '0.6.0',
+350 silly addNameRange     '0.6.1',
+350 silly addNameRange     '0.7.0',
+350 silly addNameRange     '0.8.0',
+350 silly addNameRange     '0.8.1',
+350 silly addNameRange     '0.8.2',
+350 silly addNameRange     '0.9.0',
+350 silly addNameRange     '0.9.1',
+350 silly addNameRange     '0.9.2',
+350 silly addNameRange     '0.10.0',
+350 silly addNameRange     '1.0.0-rc.1',
+350 silly addNameRange     '1.0.0-rc.2',
+350 silly addNameRange     '1.0.0-rc.3',
+350 silly addNameRange     '1.0.0',
+350 silly addNameRange     '1.0.1',
+350 silly addNameRange     '1.1.0',
+350 silly addNameRange     '1.1.1',
+350 silly addNameRange     '1.2.0',
+350 silly addNameRange     '1.2.1',
+350 silly addNameRange     '1.3.0',
+350 silly addNameRange     '1.3.1',
+350 silly addNameRange     '2.0.0',
+350 silly addNameRange     '2.1.0',
+350 silly addNameRange     '2.2.0',
+350 silly addNameRange     '2.2.1',
+350 silly addNameRange     '2.3.0',
+350 silly addNameRange     '2.4.0',
+350 silly addNameRange     '2.4.1' ] ]
+351 verbose addNamed [ 'lodash', '2.4.1' ]
+352 verbose addNamed [ '2.4.1', '2.4.1' ]
+353 silly lockFile 8502be2a-lodash-2-4-1 lodash@2.4.1
+354 verbose lock lodash@2.4.1 /Users/kylemeier/.npm/8502be2a-lodash-2-4-1.lock
+355 silly lockFile 2bd5d7e4-is-root-0-1-0 is-root@0.1.0
+356 silly lockFile 2bd5d7e4-is-root-0-1-0 is-root@0.1.0
+357 silly lockFile bc397d26-is-root-0-1-0 is-root@^0.1.0
+358 silly lockFile bc397d26-is-root-0-1-0 is-root@^0.1.0
+359 silly lockFile 8502be2a-lodash-2-4-1 lodash@2.4.1
+360 silly lockFile 8502be2a-lodash-2-4-1 lodash@2.4.1
+361 silly lockFile 59759450-lodash-2-4-1 lodash@^2.4.1
+362 silly lockFile 59759450-lodash-2-4-1 lodash@^2.4.1
+363 http 304 https://registry.npmjs.org/opn
+364 silly registry.get cb [ 304,
+364 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+364 silly registry.get     server: 'Apache',
+364 silly registry.get     via: '1.1 varnish',
+364 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:12:04 GMT',
+364 silly registry.get     'cache-control': 'max-age=30',
+364 silly registry.get     etag: '"BOX311F3RTG9OU8DHKMH2S0QN"',
+364 silly registry.get     'x-served-by': 'cache-lax1432-LAX',
+364 silly registry.get     'x-cache': 'HIT',
+364 silly registry.get     'x-cache-hits': '18',
+364 silly registry.get     'x-timer': 'S1405451882.798561,VS0,VE0',
+364 silly registry.get     vary: 'Accept',
+364 silly registry.get     'content-length': '0',
+364 silly registry.get     'keep-alive': 'timeout=10, max=49',
+364 silly registry.get     connection: 'Keep-Alive' } ]
+365 verbose etag opn from cache
+366 silly addNameRange number 2 { name: 'opn', range: '>=0.1.1-0 <0.2.0-0', hasData: true }
+367 silly addNameRange versions [ 'opn', [ '0.1.0', '0.1.1', '0.1.2' ] ]
+368 verbose addNamed [ 'opn', '0.1.2' ]
+369 verbose addNamed [ '0.1.2', '0.1.2' ]
+370 silly lockFile 976bcbd2-opn-0-1-2 opn@0.1.2
+371 verbose lock opn@0.1.2 /Users/kylemeier/.npm/976bcbd2-opn-0-1-2.lock
+372 silly lockFile 976bcbd2-opn-0-1-2 opn@0.1.2
+373 silly lockFile 976bcbd2-opn-0-1-2 opn@0.1.2
+374 silly lockFile 4ecb2975-opn-0-1-1 opn@^0.1.1
+375 silly lockFile 4ecb2975-opn-0-1-1 opn@^0.1.1
+376 http 304 https://registry.npmjs.org/nopt
+377 silly registry.get cb [ 304,
+377 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+377 silly registry.get     server: 'Apache',
+377 silly registry.get     via: '1.1 varnish',
+377 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:17:58 GMT',
+377 silly registry.get     'cache-control': 'max-age=30',
+377 silly registry.get     etag: '"5D0JNA9NFAY71ZAANMNUNVL3U"',
+377 silly registry.get     'x-served-by': 'cache-lax1423-LAX',
+377 silly registry.get     'x-cache': 'HIT',
+377 silly registry.get     'x-cache-hits': '3',
+377 silly registry.get     'x-timer': 'S1405451882.810238,VS0,VE0',
+377 silly registry.get     vary: 'Accept',
+377 silly registry.get     'content-length': '0',
+377 silly registry.get     'keep-alive': 'timeout=10, max=48',
+377 silly registry.get     connection: 'Keep-Alive' } ]
+378 verbose etag nopt from cache
+379 silly addNameRange number 2 { name: 'nopt', range: '>=3.0.0-0 <4.0.0-0', hasData: true }
+380 silly addNameRange versions [ 'nopt',
+380 silly addNameRange   [ '1.0.0',
+380 silly addNameRange     '1.0.1',
+380 silly addNameRange     '1.0.2',
+380 silly addNameRange     '1.0.3',
+380 silly addNameRange     '1.0.4',
+380 silly addNameRange     '1.0.5',
+380 silly addNameRange     '1.0.6',
+380 silly addNameRange     '1.0.7',
+380 silly addNameRange     '1.0.8',
+380 silly addNameRange     '1.0.9',
+380 silly addNameRange     '1.0.10',
+380 silly addNameRange     '2.0.0',
+380 silly addNameRange     '2.1.0',
+380 silly addNameRange     '2.1.1',
+380 silly addNameRange     '2.1.2',
+380 silly addNameRange     '2.2.0',
+380 silly addNameRange     '2.2.1',
+380 silly addNameRange     '3.0.0',
+380 silly addNameRange     '3.0.1' ] ]
+381 verbose addNamed [ 'nopt', '3.0.1' ]
+382 verbose addNamed [ '3.0.1', '3.0.1' ]
+383 silly lockFile a15bc1c5-nopt-3-0-1 nopt@3.0.1
+384 verbose lock nopt@3.0.1 /Users/kylemeier/.npm/a15bc1c5-nopt-3-0-1.lock
+385 silly lockFile a15bc1c5-nopt-3-0-1 nopt@3.0.1
+386 silly lockFile a15bc1c5-nopt-3-0-1 nopt@3.0.1
+387 silly lockFile 8380067c-nopt-3-0-0 nopt@^3.0.0
+388 silly lockFile 8380067c-nopt-3-0-0 nopt@^3.0.0
+389 http 304 https://registry.npmjs.org/shelljs
+390 silly registry.get cb [ 304,
+390 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+390 silly registry.get     server: 'Apache',
+390 silly registry.get     via: '1.1 varnish',
+390 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+390 silly registry.get     'cache-control': 'max-age=30',
+390 silly registry.get     etag: '"8N3HI1MPQ6QM6J8DPQTKRZG3L"',
+390 silly registry.get     'x-served-by': 'cache-lax1421-LAX',
+390 silly registry.get     'x-cache': 'HIT',
+390 silly registry.get     'x-cache-hits': '1',
+390 silly registry.get     'x-timer': 'S1405451882.811720,VS0,VE0',
+390 silly registry.get     vary: 'Accept',
+390 silly registry.get     'content-length': '0',
+390 silly registry.get     'keep-alive': 'timeout=10, max=48',
+390 silly registry.get     connection: 'Keep-Alive' } ]
+391 verbose etag shelljs from cache
+392 http 304 https://registry.npmjs.org/string-length
+393 silly registry.get cb [ 304,
+393 silly registry.get   { date: 'Tue, 15 Jul 2014 19:18:02 GMT',
+393 silly registry.get     server: 'Apache',
+393 silly registry.get     via: '1.1 varnish',
+393 silly registry.get     'last-modified': 'Tue, 15 Jul 2014 19:18:02 GMT',
+393 silly registry.get     'cache-control': 'max-age=30',
+393 silly registry.get     etag: '"A8RW9GKPPZV7259V1GCXVQI0H"',
+393 silly registry.get     'x-served-by': 'cache-lax1432-LAX',
+393 silly registry.get     'x-cache': 'HIT',
+393 silly registry.get     'x-cache-hits': '1',
+393 silly registry.get     'x-timer': 'S1405451882.820926,VS0,VE0',
+393 silly registry.get     vary: 'Accept',
+393 silly registry.get     'content-length': '0',
+393 silly registry.get     'keep-alive': 'timeout=10, max=48',
+393 silly registry.get     connection: 'Keep-Alive' } ]
+394 verbose etag string-length from cache
+395 silly addNameRange number 2 { name: 'shelljs', range: '>=0.3.0-0 <0.4.0-0', hasData: true }
+396 silly addNameRange versions [ 'shelljs',
+396 silly addNameRange   [ '0.0.1',
+396 silly addNameRange     '0.0.2',
+396 silly addNameRange     '0.0.3',
+396 silly addNameRange     '0.0.4',
+396 silly addNameRange     '0.0.5',
+396 silly addNameRange     '0.0.6',
+396 silly addNameRange     '0.0.7',
+396 silly addNameRange     '0.0.8',
+396 silly addNameRange     '0.0.9',
+396 silly addNameRange     '0.1.0',
+396 silly addNameRange     '0.1.1',
+396 silly addNameRange     '0.1.2',
+396 silly addNameRange     '0.1.3',
+396 silly addNameRange     '0.1.4',
+396 silly addNameRange     '0.2.0',
+396 silly addNameRange     '0.2.1',
+396 silly addNameRange     '0.2.2',
+396 silly addNameRange     '0.2.3',
+396 silly addNameRange     '0.2.4',
+396 silly addNameRange     '0.2.5',
+396 silly addNameRange     '0.2.6',
+396 silly addNameRange     '0.3.0',
+396 silly addNameRange     '0.0.1-alpha1',
+396 silly addNameRange     '0.0.2-pre1',
+396 silly addNameRange     '0.0.4-pre1',
+396 silly addNameRange     '0.0.5-pre1',
+396 silly addNameRange     '0.0.5-pre2',
+396 silly addNameRange     '0.0.5-pre3',
+396 silly addNameRange     '0.0.5-pre4',
+396 silly addNameRange     '0.0.6-pre1',
+396 silly addNameRange     '0.0.6-pre2' ] ]
+397 verbose addNamed [ 'shelljs', '0.3.0' ]
+398 verbose addNamed [ '0.3.0', '0.3.0' ]
+399 silly lockFile 7d3918b1-shelljs-0-3-0 shelljs@0.3.0
+400 verbose lock shelljs@0.3.0 /Users/kylemeier/.npm/7d3918b1-shelljs-0-3-0.lock
+401 silly addNameRange number 2 { name: 'string-length',
+401 silly addNameRange   range: '>=0.1.2-0 <0.2.0-0',
+401 silly addNameRange   hasData: true }
+402 silly addNameRange versions [ 'string-length', [ '0.1.0', '0.1.1', '0.1.2' ] ]
+403 verbose addNamed [ 'string-length', '0.1.2' ]
+404 verbose addNamed [ '0.1.2', '0.1.2' ]
+405 silly lockFile 82590660-string-length-0-1-2 string-length@0.1.2
+406 verbose lock string-length@0.1.2 /Users/kylemeier/.npm/82590660-string-length-0-1-2.lock
+407 silly lockFile 7d3918b1-shelljs-0-3-0 shelljs@0.3.0
+408 silly lockFile 7d3918b1-shelljs-0-3-0 shelljs@0.3.0
+409 silly lockFile 1ddaa962-shelljs-0-3-0 shelljs@^0.3.0
+410 silly lockFile 1ddaa962-shelljs-0-3-0 shelljs@^0.3.0
+411 silly lockFile 82590660-string-length-0-1-2 string-length@0.1.2
+412 silly lockFile 82590660-string-length-0-1-2 string-length@0.1.2
+413 silly lockFile 61b96d80-string-length-0-1-2 string-length@^0.1.2
+414 silly lockFile 61b96d80-string-length-0-1-2 string-length@^0.1.2
+415 verbose about to build /usr/local/lib/node_modules/yo
+416 info /usr/local/lib/node_modules/yo unbuild
+417 info preuninstall yo@1.2.0
+418 info uninstall yo@1.2.0
+419 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild yo@1.2.0
+420 verbose /usr/local/bin,[object Object] binRoot
+421 info postuninstall yo@1.2.0
+422 error Error: EACCES, open '/Users/kylemeier/.npm/shelljs/0.3.0/package/package.json'
+422 error  { [Error: EACCES, open '/Users/kylemeier/.npm/shelljs/0.3.0/package/package.json']
+422 error   errno: 3,
+422 error   code: 'EACCES',
+422 error   path: '/Users/kylemeier/.npm/shelljs/0.3.0/package/package.json',
+422 error   parent: 'yo' }
+423 error Please try running this command again as root/Administrator.
+424 error System Darwin 13.3.0
+425 error command "node" "/usr/local/bin/npm" "install" "-g" "yo"
+426 error cwd /Users/kylemeier/Sites/fitness
+427 error node -v v0.10.29
+428 error npm -v 1.4.14
+429 error path /Users/kylemeier/.npm/shelljs/0.3.0/package/package.json
+430 error code EACCES
+431 error errno 3
+432 error stack Error: EACCES, open '/Users/kylemeier/.npm/shelljs/0.3.0/package/package.json'
+433 verbose exit [ 3, true ]

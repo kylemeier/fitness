@@ -1,1 +1,0 @@
-angular.module("fitness.controllers.newGroup",["fitness.services.groups"]).controller("newGroupCtrl",["$rootScope","$scope","Groups",function(e,t,n){t.addGroup=function(){t.groupName&&(t.groupId=n.create(t.groupName))}}]);

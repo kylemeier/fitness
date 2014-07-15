@@ -1,5 +1,4 @@
-angular.module('fitness.controllers.newGroup',['fitness.services.groups'])
-  .controller('newGroupCtrl',['$rootScope','$scope','Groups',
+app.controller('NewGroupCtrl',['$rootScope','$scope','Groups',
     function($rootScope, $scope, Groups){
       $scope.addGroup = function(){
         if($scope.groupName){

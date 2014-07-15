@@ -1,5 +1,4 @@
-angular.module('fitness.controllers.newExercise',['fitness.services.exercises'])
-  .controller('newExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercises', '$timeout',
+app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercises', '$timeout',
     function($rootScope, $scope, $routeParams, Exercises, $timeout){
 
       $scope.groupId = $routeParams.groupId;

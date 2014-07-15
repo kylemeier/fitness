@@ -1,6 +1,4 @@
-angular.module('fitness.controllers.workout',['fitness.services.groups', 'fitness.services.exercises', 'fitness.services.workout'])
-
-  .controller('workoutCtrl',['$rootScope','$scope', '$routeParams', 'angularFire', 'Groups', 'Exercises', 'Workout', 'FBURL', '$timeout',
+app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', 'angularFire', 'Groups', 'Exercises', 'Workout', 'FBURL', '$timeout',
     function($rootScope, $scope, $routeParams, angularFire, Groups, Exercises, Workout, FBURL, $timeout){
 
       (function(){ 

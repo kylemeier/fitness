@@ -1,11 +1,5 @@
-
-'use strict';
-
-/* Services */
-
-angular.module('fitness.services.login', ['fitness.services.profileCreator'])
-  .factory('loginService', ['angularFireAuth', 'profileCreator', '$location', '$rootScope', 'FBURL',
-    function(angularFireAuth, profileCreator, $location, $rootScope, FBURL) {
+app.factory('loginService', ['angularFireAuth', 'profileCreator', '$location', '$rootScope', 'FBURL',
+ function(angularFireAuth, profileCreator, $location, $rootScope, FBURL) {
         var loginRef = new Firebase(FBURL);
       return {
         login: function(email, pass, redirect, callback) {

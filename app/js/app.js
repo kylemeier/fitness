@@ -2,14 +2,13 @@
 //Refreshing windows causes strange behavior, need to hide/don't load contents until auth has finished
 //login screen redirect if logged in
 //intro info only shows up after click
+//done/edit acting funky sometimes on Ios
 //
 //UI issues:
-//change screens only after login has completed
 //create truncate function that adds an ellipses to long group/exericse names
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
 //login animation
-//deleting exercises causes list to flash while it rebuilds, auto close then reopen?
-//sliding between screens on ios has new screen flash for a second before sliding in
+//deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:
 //style workout page
@@ -25,23 +24,83 @@
 //reminder will be an exclamation point in place of the delete button
 //body weight support, doesn't mess with weights
 //animate deletions
-
-	var app = angular.module('fitness',
-  [ 'fitness.config'
-  , 'fitness.controllers.header'
-  , 'fitness.controllers.signin'
-  , 'fitness.controllers.signup',
-    'fitness.controllers.groups',
-    'fitness.controllers.newGroup',
-    'fitness.controllers.editGroup',
-    'fitness.controllers.newExercise',
-    'fitness.controllers.editExercise',
-    'fitness.controllers.workout',    
-  , 'firebase', 'ngRoute','ngAnimate']
-  )
   
+    var app = angular.module('fitness',
+  [ 'firebase', 'ngRoute','ngAnimate']
+  )
 
-  .controller( 'slideController', ['$rootScope', '$scope', '$location', '$route', function($rootScope, $scope, $location, $route) {
+  app.config(['$routeProvider', 
+    function($routeProvider) {
+      $routeProvider
+      .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'SigninCtrl'
+      })
+
+      .when('/signin', {
+        templateUrl: 'views/home.html',
+        controller: 'SigninCtrl'
+      })
+
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
+      })
+
+      .when('/groups', {
+        templateUrl: 'views/groups.html',
+        controller: 'GroupsCtrl',
+        authRequired: true
+      })
+
+      .when('/new-group',{
+        templateUrl: 'views/new-group.html',
+        controller: 'NewGroupCtrl',
+        authRequired: true
+      })
+
+      .when('/:groupId/edit-group',{
+        templateUrl: 'views/edit-group.html',
+        authRequired: true,
+        controller:'EditGroupCtrl'
+      })
+
+      .when('/:groupId/new-exercise/:exerciseCount',{
+        templateUrl: 'views/new-exercise.html',
+        controller: 'NewExerciseCtrl',
+        authRequired: true
+      })
+
+      .when('/:groupId/edit-exercise/:exerciseId',{
+        templateUrl: 'views/edit-exercise.html',
+        controller: 'EditExerciseCtrl',
+        authRequired: true
+      })
+
+      .when('/:groupId/workout',{
+        templateUrl: 'views/workout.html',
+        controller: 'WorkoutCtrl',
+        authRequired: true
+      })
+
+      .otherwise({ redirectTo: '/' });
+    }])
+  
+  // establish authentication
+  app.run(['angularFireAuth', 'FBURL', '$rootScope', 
+    function(angularFireAuth, FBURL, $rootScope) {
+      angularFireAuth.initialize(new Firebase(FBURL), {scope: $rootScope, name: 'auth', path: '/signin'});
+      // $rootScope.auth = new FirebaseSimpleLogin(new Firebase(FBURL), function( error, user){
+
+      // })
+      $rootScope.FBURL = FBURL;
+      $rootScope.currentExercise = {};
+      $rootScope.currentGroup = {};
+    }])
+
+  app.constant('FBURL', 'fitnesskdm.firebaseIO.com')
+  
+  app.controller( 'slideController', ['$rootScope', '$scope', '$location', '$route', function($rootScope, $scope, $location, $route) {
     $rootScope.slideView = function (direction, url) {
       console.log(url);
         $rootScope.slideDir = direction; 
@@ -49,7 +108,7 @@
     }  
   }])
 
-  .controller( 'mainController',function($rootScope,$scope){
+  app.controller( 'mainController',function($rootScope,$scope){
     //in mainController to track a click anywhere in the app
     $scope.clearDelete = function(){
       $rootScope.currentExercise = {};
@@ -57,26 +116,4 @@
     }  
   })
 
-  // auth.createUser(email, password, function(error, user) {
-  //   if (!error) {
-  //     console.log('User Id: ' + user.uid + ', Email: ' + user.email);
-  //   }
-  // });
 
-
-
-  //   app.controller('newExerciseController',function(){
-
-  //   });
-
-  //   app.controller('editExerciseController',function(){
-
-  //   });
-
-  //   app.controller('workoutController',function(){
-
-  //   });
-
-  //   app.controller('homeController', function(){
-
-  //   });

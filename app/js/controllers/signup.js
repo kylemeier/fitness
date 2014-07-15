@@ -1,7 +1,4 @@
-'use strict';
-
-angular.module('fitness.controllers.signup', [])
-  .controller('SignupCtrl', ['$scope', 'loginService', '$location',
+app.controller('SignupCtrl', ['$scope', 'loginService', '$location',
     function($scope, loginService, $location) {
 
       if(!!$scope.auth){

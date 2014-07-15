@@ -1,10 +1,10 @@
- <div id='signin' ng-controller='SigninCtrl'> 
+ <div id='signin'> 
   <header> 
     <h1>Fitness</h1> 
   </header> 
       <p ng-show="err" class="error left">{{err}}</p>
       <p ng-show='passReset' class='error left'>Forgot your password? <button ng-click='resetPassword()'> Click here!</button></p>
-     <form class='login-info'>
+     <form class='login-info' ng-submit='login()'>
       <div class='input-wrapper'>
         <input type='email' name='email' id='email' ng-model='email'>   
         <h3 class='left'>Email</h3>   
@@ -17,6 +17,7 @@
         <input type='password' name='pass-confirm' id='pass-confirm' ng-model='passConfirm'> 
         <h3 class='left'>Confirm Password</h3>
       </div> -->
+      <button type='submit'>Log In</button>
     </form>
     	<button id='button-signin' ng-click='login()'>Log in</button> 
      <button id='button-guest' ng-click='loginAnon()'>Guest*</button>

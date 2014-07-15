@@ -1,5 +1,4 @@
-angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.services.groups', 'fitness.services.exercises'])
-  .controller('groupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups', 'Exercises',
+app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups', 'Exercises',
     function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups, Exercises) {
       
       $scope.countGroups = function(){
@@ -35,13 +34,15 @@ angular.module('fitness.controllers.groups',['fitness.services.login', 'fitness.
       }
 
       $scope.removeExercise = function(groupId, exerciseId){
-        $rootScope.currentGroup = {};
+        $rootScope.currentExercise = {};
+        
         $timeout(function(){
           Exercises.remove(groupId, exerciseId);
+          
           $timeout(function(){
             $rootScope.currentGroup = groupId;
-          },100);
-        },501);
+          },500);
+        },300);
       }
 
       $scope.countExercises = function(groupId){

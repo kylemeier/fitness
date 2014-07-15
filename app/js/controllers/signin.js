@@ -1,19 +1,17 @@
-'use strict';
 
-angular.module('fitness.controllers.signin', ['fitness.services.login'])
-  .controller('SigninCtrl', ['$rootScope', '$scope', 'loginService', '$location',
-    function($rootScope, $scope, loginService, $location) {
+  app.controller('SigninCtrl', ['$rootScope','$scope','loginService','$location', function($rootScope, $scope, loginService, $location) {
       $scope.url = $location.path();
 
       $scope.$on('angularFireAuth:login', function () {
         $rootScope.slideView('view-slide-left','/groups');
       })
 
-      $scope.email = null;
+      $scope.email = 'asdf';
       $scope.pass = null;
       $scope.name = null;
 
       $scope.login = function(callback) {
+        console.log('inside login');
         $scope.err = null;
         loginService.login($scope.email, $scope.pass, '/groups', function(err, user) {
           $scope.passReset = 0;

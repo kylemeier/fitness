@@ -1,1 +1,0 @@
-angular.module("fitness.controllers.editExercise",["fitness.services.exercises"]).controller("editExerciseCtrl",["$rootScope","$scope","$routeParams","angularFire","Exercises",function(e,t,n,r,i){(function(){console.log("group: "+n.groupId+" exercise: "+n.exerciseId);r(i.find(n.groupId,n.exerciseId),t,"exercise")})()}]);
