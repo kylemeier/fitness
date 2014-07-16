@@ -1,18 +1,19 @@
-app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercises', '$timeout',
-    function($rootScope, $scope, $routeParams, Exercises, $timeout){
+app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercise', '$timeout',
+    function($rootScope, $scope, $routeParams, Exercise, $timeout){
 
       $scope.groupId = $routeParams.groupId;
+      console.log($scope.groupId);
 
       //number that appears after # in header
       $scope.headerNum = $routeParams.exerciseCount;
 
       $scope.addExercise = function(){
         if($scope.exerciseName && $scope.exerciseWeight && $scope.exerciseSets && $scope.exerciseReps){
-          Exercises.create($scope.groupId, $scope.exerciseName, $scope.exerciseWeight, $scope.exerciseSets, $scope.exerciseReps);
+          Exercise.create($scope.groupId, $scope.exerciseName, $scope.exerciseWeight, $scope.exerciseSets, $scope.exerciseReps);
         }
       }
       $scope.countExercises = function(){
-        Exercises.count($scope.groupId).once('value', function(snapshot){
+        Exercise.dataRef($scope.groupId).once('value', function(snapshot){
           $scope.exerciseCount = snapshot.numChildren()+1;
         })
       }      

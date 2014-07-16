@@ -2,7 +2,7 @@
 //Refreshing windows causes strange behavior, need to hide/don't load contents until auth has finished
 //login screen redirect if logged in
 //intro info only shows up after click
-//done/edit acting funky sometimes on Ios
+//done/edit acting funky sometimes on iOS
 //
 //UI issues:
 //create truncate function that adds an ellipses to long group/exericse names
@@ -50,7 +50,6 @@
       .when('/groups', {
         templateUrl: 'views/groups.html',
         controller: 'GroupsCtrl',
-        authRequired: true
       })
 
       .when('/new-group',{
@@ -87,16 +86,16 @@
     }])
   
   // establish authentication
-  app.run(['angularFireAuth', 'FBURL', '$rootScope', 
-    function(angularFireAuth, FBURL, $rootScope) {
-      angularFireAuth.initialize(new Firebase(FBURL), {scope: $rootScope, name: 'auth', path: '/signin'});
-      // $rootScope.auth = new FirebaseSimpleLogin(new Firebase(FBURL), function( error, user){
+  // app.run(['angularFireAuth', 'FBURL', '$rootScope', 
+  //   function(angularFireAuth, FBURL, $rootScope) {
+  //     angularFireAuth.initialize(new Firebase(FBURL), {scope: $rootScope, name: 'auth', path: '/signin'});
+  //     // $rootScope.auth = new FirebaseSimpleLogin(new Firebase(FBURL), function( error, user){
 
-      // })
-      $rootScope.FBURL = FBURL;
-      $rootScope.currentExercise = {};
-      $rootScope.currentGroup = {};
-    }])
+  //     // })
+  //     $rootScope.FBURL = FBURL;
+  //     $rootScope.currentExercise = {};
+  //     $rootScope.currentGroup = {};
+  //   }])
 
   app.constant('FBURL', 'fitnesskdm.firebaseIO.com')
   

@@ -1,10 +1,9 @@
-app.controller('EditGroupCtrl',['$rootScope','$scope','$routeParams', 'angularFire', 'Groups',
-    function($rootScope, $scope, $routeParams, angularFire, Groups){
-      console.log('in group controller');
+app.controller('EditGroupCtrl',['$rootScope','$scope','$routeParams', '$firebase', 'Group',
+    function($rootScope, $scope, $routeParams, $firebase, Group){
 
-
-      (function(){ 
-        angularFire(Groups.find($routeParams.groupId), $scope, 'group'); 
+      (function(){
+      	//binding $scope.group to relevant group object in database, ensures all changes are immediately reflected in the db
+        Group.find($routeParams.groupId).$bind($scope, 'group');
       }())
 
     }])

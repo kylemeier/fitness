@@ -1,8 +1,12 @@
-app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService', 'angularFire', 'FBURL', '$timeout', 'Groups', 'Exercises',
-    function($rootScope, $scope, $location, loginService, angularFire, FBURL, $timeout, Groups, Exercises) {
+//get countgroup and count exercise working
+
+app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise',
+    function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise) {
       
+      $scope.allGroups = Group.all;
+
       $scope.countGroups = function(){
-          Groups.count().once('value', function(snapshot){
+          Group.dataRef().once('value', function(snapshot){
             $scope.groupCount = snapshot.numChildren();
             console.log($scope.groupCount);
           })
@@ -10,21 +14,17 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService'
 
       $scope.countGroups();
 
-      $scope.collectExercises = function(groupId){
-        return Exercises.collect(groupId);
+      $scope.allExercises = function(groupId){
+        console.log('calling allexercises on '+groupId);
+        console.log(Exercise.all(groupId));
+        return Exercise.all(groupId);
       }
-
-      var collectGroups = function(){
-        $scope.allGroups = Groups.collect();
-      }
-
-      collectGroups();
 
       var currentGroup = {};
       $scope.editMode = false;
 
       $scope.removeGroup = function(id){
-        Groups.remove(id);
+        Group.remove(id);
         $scope.countGroups()
 
         //leave edit mode if there are no groups
@@ -34,10 +34,11 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService'
       }
 
       $scope.removeExercise = function(groupId, exerciseId){
+        console.log('groupId '+groupId+' exerciseId '+ exerciseId)
         $rootScope.currentExercise = {};
         
         $timeout(function(){
-          Exercises.remove(groupId, exerciseId);
+          Exercise.remove(groupId, exerciseId);
           
           $timeout(function(){
             $rootScope.currentGroup = groupId;
@@ -46,24 +47,31 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService'
       }
 
       $scope.countExercises = function(groupId){
-        Exercises.count(groupId).once('value', function(snapshot){
+        Exercise.dataRef(groupId).once('value', function(snapshot){
           $scope.exerciseCount = snapshot.numChildren() +1;
         })
       }
 
       $scope.autofill = function(){ 
-        var group1 = Groups.create('Thursday Workout');
-        var group2 = Groups.create('Tuesday Workout');
+        Group.create('Thursday Workout').then(function(ref){
+          var groupId = ref.name();
 
-        Exercises.create(group1, 'Dumbbell Bench Press', 65, 3, 6);
-        Exercises.create(group1, 'Dumbbell Incline Bench Press', 40, 2, 10);
-        Exercises.create(group1, 'Dumbbell Military Press', 35, 3, 6);
-        Exercises.create(group1, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
+          Exercise.create(groupId, 'Dumbbell Bench Press', 65, 3, 6);
+          Exercise.create(groupId, 'Dumbbell Incline Bench Press', 40, 2, 10);
+          Exercise.create(groupId, 'Dumbbell Military Press', 35, 3, 6);
+          Exercise.create(groupId, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
+        })
 
-        Exercises.create(group2, 'Pullups', 5, 3, 10);
-        Exercises.create(group2, 'Bentover Rows', 85, 3, 8);
-        Exercises.create(group2, 'Dumbbell Hammercurls', 30, 2, 10);
-        Exercises.create(group2, 'Situps', 20, 3, 10);
+        Group.create('Tuesday Workout').then(function(ref){
+          var groupId = ref.name();
+
+          Exercise.create(groupId, 'Pullups', 5, 3, 10);
+          Exercise.create(groupId, 'Bentover Rows', 85, 3, 8);
+          Exercise.create(groupId, 'Dumbbell Hammercurls', 30, 2, 10);
+          Exercise.create(groupId, 'Situps', 20, 3, 10);
+        })
+
+
 
         $scope.countGroups();
   
@@ -84,9 +92,6 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', 'loginService'
       }
 
       $scope.isGroupClicked = function(checkGroup){
-          if($rootScope.currentGroup === checkGroup){
-            console.log(checkGroup);
-          }
           return $rootScope.currentGroup === checkGroup;
       }
 

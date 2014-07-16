@@ -1,0 +1,1 @@
+app.factory("Group",["$rootScope","$firebase","FBURL",function(e,t,n){var r=new Firebase(n+"/users/"+e.userID+"/exercise groups"),i=t(r),s={all:i,dataRef:function(){return r},find:function(e){return i.$child(e)},create:function(e){return i.$add({name:e})},remove:function(e){return i.$remove(e)}};return s}]);
