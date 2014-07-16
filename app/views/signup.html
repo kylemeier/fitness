@@ -5,11 +5,11 @@
   </header> 
      <ul class='login-info'>
       <li>
-        <input type='email' name='email' id='email' ng-model='email'>   
+        <input type='email' name='email' id='email' ng-model='user.email'>   
         <h3 class='left'>Email</h3> 
       </li>
       <li>     
-        <input type='password' name='pass' id='pass' ng-model='pass'> 
+        <input type='password' name='pass' id='pass' ng-model='user.pass'> 
         <h3 class='left'>Password</h3>  
       </li>
       <li>     
@@ -17,6 +17,6 @@
         <h3 class='left'>Confirm Password</h3>  
       </li>
     </ul>
-	    <button id='button-signup' ng-click='createAccount()'>Sign Up</button>
+	    <button id='button-signup' ng-click='register()'>Sign Up</button>
       {{err}}
 </div>

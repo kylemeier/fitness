@@ -2,15 +2,15 @@
   <header> 
     <h1>Fitness</h1> 
   </header> 
-      <p ng-show="err" class="error left">{{err}}</p>
+      <p ng-show="error && !passReset" class="error left">{{error}}</p>
       <p ng-show='passReset' class='error left'>Forgot your password? <button ng-click='resetPassword()'> Click here!</button></p>
      <form class='login-info' ng-submit='login()'>
       <div class='input-wrapper'>
-        <input type='email' name='email' id='email' ng-model='email'>   
+        <input type='email' name='email' id='email' ng-model='user.email'>   
         <h3 class='left'>Email</h3>   
       </div>
       <div class='input-wrapper'>
-        <input type="password" ng-model="pass" />
+        <input type="password" ng-model="user.password" />
         <h3 class='left'>Password</h3>
       </div>
 <!--       <div class='input-wrapper fade-in-out' ng-show="url === '/signup'">

@@ -1,9 +1,8 @@
-//get countgroup and count exercise working
-
-app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise',
-    function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise) {
+app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise', 'Auth', 'User',
+    function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise, Auth, User) {
       
       $scope.allGroups = Group.all;
+
 
       $scope.countGroups = function(){
           Group.dataRef().once('value', function(snapshot){
@@ -119,6 +118,11 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $scope.logout = function() {
-         loginService.logout('/');
+         Auth.logout()
       };
+
+    $scope.$on('$firebaseSimpleLogin:logout', function(){
+      delete $rootScope.userID;
+      $rootScope.slideView('view-slide-right', '/');
+    });
     }])

@@ -18,6 +18,7 @@
 //form checking for new exercise
 //combine login/signup screens
 //update all login code to new code
+//some sort of action if group has no exercises and 'start workout' is clicked
 //
 //Additional Features:
 //after three failures, show alert asking if user wants to set a reminder to change the exercise or reset the count
@@ -34,22 +35,23 @@
       $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
-        controller: 'SigninCtrl'
+        controller: 'AuthCtrl'
       })
 
       .when('/signin', {
         templateUrl: 'views/home.html',
-        controller: 'SigninCtrl'
+        controller: 'AuthCtrl'
       })
 
       .when('/signup', {
         templateUrl: 'views/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'AuthCtrl'
       })
 
       .when('/groups', {
         templateUrl: 'views/groups.html',
         controller: 'GroupsCtrl',
+        authRequired: true
       })
 
       .when('/new-group',{
@@ -60,8 +62,8 @@
 
       .when('/:groupId/edit-group',{
         templateUrl: 'views/edit-group.html',
-        authRequired: true,
-        controller:'EditGroupCtrl'
+        controller:'EditGroupCtrl',
+        authRequired: true
       })
 
       .when('/:groupId/new-exercise/:exerciseCount',{
@@ -96,6 +98,18 @@
   //     $rootScope.currentExercise = {};
   //     $rootScope.currentGroup = {};
   //   }])
+  app.run(['$rootScope', '$route', 'FBURL',
+    function($rootScope, $route, FBURL){
+      console.log('hey!');
+      var ref = new Firebase(FBURL);
+      var auth = new FirebaseSimpleLogin(ref, function(error,user){
+        if(user){
+          $rootScope.userID = user.uid;
+          console.log('in run '+$rootScope.userID);
+          // $route.reload();
+        }
+      })
+    }])
 
   app.constant('FBURL', 'fitnesskdm.firebaseIO.com')
   
