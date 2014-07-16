@@ -1,8 +1,8 @@
-app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', 'angularFire', 'Groups', 'Exercises', 'Workout', 'FBURL', '$timeout',
-    function($rootScope, $scope, $routeParams, angularFire, Groups, Exercises, Workout, FBURL, $timeout){
+app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase', 'Group', 'Exercise', 'Workout', 'FBURL', '$timeout',
+    function($rootScope, $scope, $routeParams, $firebase, Group, Exercise, Workout, FBURL, $timeout){
 
       (function(){ 
-        angularFire(Groups.find($routeParams.groupId), $scope, 'group'); 
+        Group.find($routeParams.groupId).$bind($scope, 'group'); 
       }())
 
       var d = new Date();
@@ -10,7 +10,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', 'angularFir
         $scope.today = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
         console.log($scope.date);
 
-      $rootScope.allExercises = Exercises.collect($routeParams.groupId);
+
+        $scope.allExercises = Exercise.all($routeParams.groupId);
+        console.log($scope.group, $scope.allExercises);
 
 
       //every success click:
@@ -44,13 +46,14 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', 'angularFir
         //get current weight
         Workout.getWeight(exerciseId).once('value',function(snapshot){
           weight = snapshot.val(); 
+          console.log(weight);
+                    Workout.setWeight(exerciseId, weight+5);
+          Workout.setFailures(exerciseId,0);
         })
 
         //increase weight by 5lbs, reset failure count
-        $timeout(function(){
-          Workout.setWeight(exerciseId, weight+5);
-          Workout.setFailures(exerciseId,0);
-        },2001);
+   
+
       }
 
       var failureLogic = function(exerciseId, failures, currentWeight, maxWeight){

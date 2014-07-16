@@ -4,11 +4,11 @@
     <button class='left' ng-click='slideView("view-slide-right","/groups")'>&lsaquo; Groups</button>
   </header> 
     <ul>
-      <li class='exercise fade-out' ng-repeat='exercise in allExercises' ng-hide='today === exercise.lastRecorded'>
+      <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises'>
         <h1>{{exercise.name}}</h1>
         <h3 class='exercise-info'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</h3>
-        <button class='btn-failure' ng-click='failed(exercise.$id)'>I failed.</button>
-        <button class='btn-success' ng-click='success(exercise.$id)'>I did it!</button>
+        <button class='btn-failure' ng-click='failed(exerciseId)'>I failed.</button>
+        <button class='btn-success' ng-click='success(exerciseId)'>I did it!</button>
       </li>
     </ul>
 </div>
