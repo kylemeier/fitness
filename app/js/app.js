@@ -98,8 +98,8 @@
   //     $rootScope.currentExercise = {};
   //     $rootScope.currentGroup = {};
   //   }])
-  app.run(['$rootScope', '$route', 'FBURL',
-    function($rootScope, $route, FBURL){
+  app.run(['$rootScope', '$route', '$timeout', 'FBURL',
+    function($rootScope, $route, $timeout, FBURL){
       console.log('hey!');
       var ref = new Firebase(FBURL);
       var auth = new FirebaseSimpleLogin(ref, function(error,user){
@@ -107,6 +107,9 @@
           $rootScope.userID = user.uid;
           console.log('in run '+$rootScope.userID);
           // $route.reload();
+          $timeout(function(){
+            console.log('in timeout');
+          })
         }
       })
     }])

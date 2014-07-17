@@ -1,5 +1,6 @@
 app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise', 'Auth', 'User',
     function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise, Auth, User) {
+      console.log('group controller!');
       
       $scope.allGroups = Group.all;
 
