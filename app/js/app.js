@@ -1,7 +1,4 @@
 //To fix:
-//Refreshing windows causes strange behavior, need to hide/don't load contents until auth has finished
-//login screen redirect if logged in
-//intro info only shows up after click
 //done/edit acting funky sometimes on iOS
 //
 //UI issues:
@@ -9,6 +6,7 @@
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
 //login animation
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
+//add some sort of loading indicator
 //
 //To do:
 //style workout page
@@ -17,14 +15,12 @@
 //better form checking on edit/new exercise screen
 //form checking for new exercise
 //combine login/signup screens
-//update all login code to new code
 //some sort of action if group has no exercises and 'start workout' is clicked
 //
 //Additional Features:
 //after three failures, show alert asking if user wants to set a reminder to change the exercise or reset the count
 //reminder will be an exclamation point in place of the delete button
 //body weight support, doesn't mess with weights
-//animate deletions
   
     var app = angular.module('fitness',
   [ 'firebase', 'ngRoute','ngAnimate']
@@ -35,17 +31,53 @@
       $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
-        controller: 'AuthCtrl'
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/signin', {
         templateUrl: 'views/home.html',
-        controller: 'AuthCtrl'
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/signup', {
         templateUrl: 'views/signup.html',
-        controller: 'AuthCtrl'
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/groups', {
@@ -172,12 +204,10 @@
   //   }])
   app.run(['$rootScope', '$route', '$timeout', 'FBURL',
     function($rootScope, $route, $timeout, FBURL){
-      console.log('hey!');
       var ref = new Firebase(FBURL);
       var auth = new FirebaseSimpleLogin(ref, function(error,user){
         if(user){
           $rootScope.userID = user.uid;
-          console.log('in run '+$rootScope.userID);
         }
       })
     }])

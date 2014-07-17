@@ -1,9 +1,8 @@
 app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
   function ($rootScope, $scope, $location, Auth, User) {
-    console.log('hey!');
-    if (Auth.signedIn()) {
-      console.log('checking if signed in');
-      $rootScope.slideView('view-slide-left', '/groups');
+    $scope.user = {
+      email: '',
+      password: ''
     }
 
     $scope.$on('$firebaseSimpleLogin:login', function(user){
@@ -11,8 +10,10 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
     });
 
     $scope.login = function(){
-      Auth.login($scope.user).then(function(auth){
-      }, function(error){
+      Auth.login($scope.user).then(function(user){
+
+      },function(error){
+        console.log(error);
           $scope.passReset = 0;
 
           switch (error.code){
@@ -31,9 +32,21 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
             }
       });
     };
+
+    $scope.loginAnon = function(){
+      Auth.loginAnon().then(function (user){
+        $rootScope.userID = user.uid;
+
+      }, function(error){
+        $scope.error = error.toString();
+      })
+    }
  
     $scope.register = function () {
+
       Auth.register($scope.user).then(function (user) {
+        $rootScope.userID = user.uid;
+        $rootScope.slideView('view-slide-left', '/groups');
         User.create(user);
       }, function(error){
           $scope.error = error.toString();

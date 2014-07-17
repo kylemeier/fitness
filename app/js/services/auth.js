@@ -1,6 +1,6 @@
 app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$location',
 	function($firebaseSimpleLogin, FBURL, $rootScope, $location){
-		console.log('hey!');
+
 		var ref = new Firebase(FBURL);
 
 		var auth =  $firebaseSimpleLogin(ref);
@@ -13,9 +13,15 @@ app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$location',
 				return auth.user !== null;
 			},
 			login: function(user){
+
 				return auth.$login('password', {
 					email: user.email,
 					password: user.password,
+					rememberMe: true
+				});
+			},
+			loginAnon: function(){
+				return auth.$login('anonymous', {
 					rememberMe: true
 				});
 			},

@@ -1,23 +1,17 @@
 app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise', 'Auth', 'User',
     function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise, Auth, User) {
-      console.log('group controller! '+$rootScope.userID);
       
       $scope.allGroups = Group.all;
-      console.log($scope.allGroups);
-
 
       $scope.countGroups = function(){
           Group.dataRef().once('value', function(snapshot){
             $scope.groupCount = snapshot.numChildren();
-            console.log($scope.groupCount);
           })
       }
 
       $scope.countGroups();
 
       $scope.allExercises = function(groupId){
-        console.log('calling allexercises on '+groupId);
-        console.log(Exercise.all(groupId));
         return Exercise.all(groupId);
       }
 
@@ -35,7 +29,6 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $scope.removeExercise = function(groupId, exerciseId){
-        console.log('groupId '+groupId+' exerciseId '+ exerciseId)
         $rootScope.currentExercise = {};
         
         $timeout(function(){
@@ -83,7 +76,6 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       $scope.setGroup = function(clickedGroup){
         //Check if group is already expanded and clear currentGroup if so to allow for collapse on click
         //also clears currentExercise to hide any viewable delete confirm buttons
-        console.log(clickedGroup);
         if($rootScope.currentGroup === clickedGroup){
           $rootScope.currentGroup = {};
           $rootScope.currentExercise = {};

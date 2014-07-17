@@ -1,1 +1,0 @@
-app.factory("messageService",function(e){return{getMessage:function(){return e.when("Hello World!")}}});
