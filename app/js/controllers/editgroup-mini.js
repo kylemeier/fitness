@@ -1,1 +1,1 @@
-app.controller("EditGroupCtrl",["$rootScope","$scope","$routeParams","$firebase","Group",function(e,t,n,r,i){(function(){i.find(n.groupId).$bind(t,"group")})()}]);
+app.controller("EditGroupCtrl",["$rootScope","$scope","$routeParams","$firebase","Group",function(e,t,n,r,i){e.userID||$location.path("/");i.find(n.groupId).$bind(t,"group")}]);

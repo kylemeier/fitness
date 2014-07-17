@@ -1,6 +1,11 @@
 app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Exercise', 'Auth', 'User', 'Group',
     function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Exercise, Auth, User, Group) {
 
+      //prevent user from accessing page if they aren't logged in
+      if(!$rootScope.userID){
+        $location.path('/');
+      }
+      
       Group.setRefs();
       Exercise.setRefs();
       console.log($rootScope.userID);
@@ -121,6 +126,6 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
 
     $scope.$on('$firebaseSimpleLogin:logout', function(){
       delete $rootScope.userID;
-      $rootScope.slideView('view-slide-right', '/');
+      // $rootScope.slideView('view-slide-right', '/');
     });
     }])

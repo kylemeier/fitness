@@ -1,1 +1,1 @@
-app.controller("EditExerciseCtrl",["$rootScope","$scope","$routeParams","$firebase","Exercise",function(e,t,n,r,i){(function(){i.find(n.groupId,n.exerciseId).$bind(t,"exercise")})()}]);
+app.controller("EditExerciseCtrl",["$rootScope","$scope","$routeParams","$firebase","Exercise",function(e,t,n,r,i){e.userID||$location.path("/");i.find(n.groupId,n.exerciseId).$bind(t,"exercise")}]);

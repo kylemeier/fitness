@@ -1,5 +1,9 @@
-app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase', 'Group', 'Exercise', 'Workout', 'FBURL', '$timeout',
-    function($rootScope, $scope, $routeParams, $firebase, Group, Exercise, Workout, FBURL, $timeout){
+app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase', 'Group', 'Exercise', 'Workout', 'FBURL', '$timeout', '$location',
+    function($rootScope, $scope, $routeParams, $firebase, Group, Exercise, Workout, FBURL, $timeout, $location){
+
+      if(!$rootScope.userID){
+        $location.path('/');
+      }
 
       (function(){ 
         Group.find($routeParams.groupId).$bind($scope, 'group'); 

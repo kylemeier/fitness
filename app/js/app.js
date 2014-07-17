@@ -1,5 +1,4 @@
 //To fix:
-//log out doesnt work after registering user
 //
 //UI issues:
 //create truncate function that adds an ellipses to long group/exericse names
@@ -83,7 +82,6 @@
       .when('/groups', {
         templateUrl: 'views/groups.html',
         controller: 'GroupsCtrl',
-        authRequired: true,
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
@@ -103,8 +101,7 @@
       .when('/new-group',{
         templateUrl: 'views/new-group.html',
         controller: 'NewGroupCtrl',
-        authRequired: true,
-                resolve: {
+        resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
@@ -121,7 +118,6 @@
       .when('/:groupId/edit-group',{
         templateUrl: 'views/edit-group.html',
         controller:'EditGroupCtrl',
-        authRequired: true,
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
@@ -139,7 +135,6 @@
       .when('/:groupId/new-exercise/:exerciseCount',{
         templateUrl: 'views/new-exercise.html',
         controller: 'NewExerciseCtrl',
-        authRequired: true,
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
@@ -157,7 +152,6 @@
       .when('/:groupId/edit-exercise/:exerciseId',{
         templateUrl: 'views/edit-exercise.html',
         controller: 'EditExerciseCtrl',
-        authRequired: true,
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
@@ -175,7 +169,6 @@
       .when('/:groupId/workout',{
         templateUrl: 'views/workout.html',
         controller: 'WorkoutCtrl',
-        authRequired: true,
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
@@ -190,7 +183,7 @@
         }
       })
 
-      .otherwise({ redirectTo: '/' });
+      .otherwise({ redirectTo: '/groups' });
     }])
   
   // establish authentication

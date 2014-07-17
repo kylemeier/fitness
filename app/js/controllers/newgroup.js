@@ -1,5 +1,9 @@
-app.controller('NewGroupCtrl',['$rootScope','$scope','Group',
-    function($rootScope, $scope, Group){
+app.controller('NewGroupCtrl',['$rootScope','$scope','Group', '$location',
+    function($rootScope, $scope, Group, $location){
+
+    if(!$rootScope.userID){
+      $location.path('/');
+    }
 
       $scope.buttonClick = function(button){
 

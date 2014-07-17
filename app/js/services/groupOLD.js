@@ -3,6 +3,8 @@ app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
 
         var ref, groups;
 
+        //using setRefs inside object to ensure correct userID is being passed through. Setting refs/groups outside the object caused a previous 
+        //userID to populate in a specific situation
         var Group = {
           setRefs: function(){
             ref = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');

@@ -1,42 +1,39 @@
-app.factory('Group', ['$firebase', 'FBURL', 'User',
-  function($firebase, FBURL, User) {
-        console.log('up here');
-        var ref = new Firebase(FBURL+'/users');
+app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
+  function($rootScope, $firebase, FBURL, User) {
 
-        var groups = $firebase(ref);
+        var ref, groups;
 
-        //injecting userId for each call to ensure the correct user's data is being retrieved. Defining it in ref caused incorrect user data to show
-        //if one user logged out and another logged in as the service wouldn't redefine the variable until a refresh.
+        //using setRefs inside object to ensure correct userID is being passed through. Setting refs/groups outside the object caused a previous 
+        //userID to populate in a specific situation
         var Group = {
-          all: function(userId){
-            console.log('in all');
-            return groups.$child(userId+'/exercise groups')
-          }
-          , dataRef: function(userId){
-            return ref.$child(userId+'/exercise groups')
+          setRefs: function(){
+            ref = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
+            groups = $firebase(ref);
+          },
+          all: function(){
+              return groups
+          },
+          dataRef: function(){
+            console.log('inside data ref '+groups,ref);
+            return ref
           }
         
-          ,find: function(userId, groupId) {
-            return groups.$child(userId+'/exercise groups/'+groupId);
+          ,find: function(groupId) {
+            return groups.$child(groupId);
         }
 
-      , create: function(userId, groupName) {
+      , create: function(groupName) {
 
-         return groups.$child(userId+'/exercise groups').$add({
+         return groups.$add({
             name: groupName
           })
         }
 
-      , remove: function(userId, groupId){
-          return groups.$child(userId+'/exercise groups').$remove(groupId);
+      , remove: function(groupId){
+          return groups.$remove(groupId);
         }
 
         }
-                var ref = new Firebase(FBURL+'/users');
-
-        var groups = $firebase(ref);
-
-        console.log('down here');
 
         return Group
 

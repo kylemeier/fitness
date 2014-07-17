@@ -26,6 +26,8 @@ app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$location',
 				});
 			},
 			logout: function(){
+				delete $rootScope.userID;
+				$rootScope.slideView('view-slide-right', '/');
 				return auth.$logout();
 			}
 		};
