@@ -10,7 +10,7 @@ app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
         console.log($rootScope.userID);
 
         var groups = $firebase(ref);
-        console.log(groups);
+        console.log('groups in group service' +groups);
 
         var Group = {
           all: groups,
@@ -34,7 +34,7 @@ app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
         }
 
         }
-        console.log(Group);
+        console.log('Group in group service'+Group);
         return Group
     // })
 

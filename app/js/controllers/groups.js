@@ -1,8 +1,9 @@
 app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Group', 'Exercise', 'Auth', 'User',
     function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Group, Exercise, Auth, User) {
-      console.log('group controller!');
+      console.log('group controller! '+$rootScope.userID);
       
       $scope.allGroups = Group.all;
+      console.log($scope.allGroups);
 
 
       $scope.countGroups = function(){

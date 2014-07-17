@@ -3,20 +3,15 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
     console.log('hey!');
     if (Auth.signedIn()) {
       console.log('checking if signed in');
-      $location.path('/groups');
+      $rootScope.slideView('view-slide-left', '/groups');
     }
 
     $scope.$on('$firebaseSimpleLogin:login', function(user){
-          console.log('in auth controller login');
-              $rootScope.userID = user.uid;
-              // $location.path('/groups');
-      });
+      $rootScope.slideView('view-slide-left', '/groups');
+    });
 
     $scope.login = function(){
       Auth.login($scope.user).then(function(auth){
-        $rootScope.userID = auth.uid;
-        console.log('userID'+$rootScope.userID);
-        $rootScope.slideView('view-slide-left', '/groups');
       }, function(error){
           $scope.passReset = 0;
 

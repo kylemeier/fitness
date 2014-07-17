@@ -30,7 +30,7 @@
   [ 'firebase', 'ngRoute','ngAnimate']
   )
 
-  app.config(['$routeProvider', 
+  app.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider
       .when('/', {
@@ -51,37 +51,109 @@
       .when('/groups', {
         templateUrl: 'views/groups.html',
         controller: 'GroupsCtrl',
-        authRequired: true
+        authRequired: true,
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/new-group',{
         templateUrl: 'views/new-group.html',
         controller: 'NewGroupCtrl',
-        authRequired: true
+        authRequired: true,
+                resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/:groupId/edit-group',{
         templateUrl: 'views/edit-group.html',
         controller:'EditGroupCtrl',
-        authRequired: true
+        authRequired: true,
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/:groupId/new-exercise/:exerciseCount',{
         templateUrl: 'views/new-exercise.html',
         controller: 'NewExerciseCtrl',
-        authRequired: true
+        authRequired: true,
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/:groupId/edit-exercise/:exerciseId',{
         templateUrl: 'views/edit-exercise.html',
         controller: 'EditExerciseCtrl',
-        authRequired: true
+        authRequired: true,
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .when('/:groupId/workout',{
         templateUrl: 'views/workout.html',
         controller: 'WorkoutCtrl',
-        authRequired: true
+        authRequired: true,
+        resolve: {
+          user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            if(!$rootScope.userID){
+            var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
+            var auth = $firebaseSimpleLogin(ref);
+            return auth.$getCurrentUser()
+          }else{
+            return;
+          }
+        }
+
+        }
       })
 
       .otherwise({ redirectTo: '/' });
@@ -106,10 +178,6 @@
         if(user){
           $rootScope.userID = user.uid;
           console.log('in run '+$rootScope.userID);
-          // $route.reload();
-          $timeout(function(){
-            console.log('in timeout');
-          })
         }
       })
     }])
