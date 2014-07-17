@@ -1,5 +1,5 @@
 //To fix:
-//done/edit acting funky sometimes on iOS
+//log out doesnt work after registering user
 //
 //UI issues:
 //create truncate function that adds an ellipses to long group/exericse names
@@ -87,10 +87,12 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+              console.log('looking for user');
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()
           }else{
+            console.log('already have user '+$rootScope.userID);
             return;
           }
         }
@@ -204,6 +206,7 @@
   //   }])
   app.run(['$rootScope', '$route', '$timeout', 'FBURL',
     function($rootScope, $route, $timeout, FBURL){
+      $rootScope.userID = null;
       var ref = new Firebase(FBURL);
       var auth = new FirebaseSimpleLogin(ref, function(error,user){
         if(user){

@@ -1,10 +1,12 @@
 app.factory('Exercise', ['$rootScope', '$firebase', 'FBURL',
   function($rootScope, $firebase, FBURL) {
-        var ref = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
-
-        var exercises = $firebase(ref);
+        var ref, exercises;
 
         var Exercise = {
+          setRefs: function(){
+            ref = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
+            exercises = $firebase(ref);
+          },
           all: function(groupId){
             return exercises.$child(groupId+'/exercises')
           },

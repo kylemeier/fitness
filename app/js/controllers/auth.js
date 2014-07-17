@@ -5,12 +5,15 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
       password: ''
     }
 
-    $scope.$on('$firebaseSimpleLogin:login', function(user){
-      $rootScope.slideView('view-slide-left', '/groups');
-    });
+    // $scope.$on('$firebaseSimpleLogin:login', function(user){
+    //   $rootScope.slideView('view-slide-left', '/groups');
+    // });
 
     $scope.login = function(){
       Auth.login($scope.user).then(function(user){
+         $rootScope.userID = user.uid;
+         console.log($rootScope.userID);
+         $rootScope.slideView('view-slide-left', '/groups');
 
       },function(error){
         console.log(error);
@@ -36,6 +39,7 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', 'Auth', 'User',
     $scope.loginAnon = function(){
       Auth.loginAnon().then(function (user){
         $rootScope.userID = user.uid;
+        $rootScope.slideView('view-slide-left', '/groups');
 
       }, function(error){
         $scope.error = error.toString();

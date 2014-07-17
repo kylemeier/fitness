@@ -1,16 +1,16 @@
 app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', 'FBURL', '$timeout', 'Exercise', 'Auth', 'User', 'Group',
     function($rootScope, $scope, $location, $firebase, FBURL, $timeout, Exercise, Auth, User, Group) {
-
-      Group.setRefs();
-      Exercise.setRefs();
+      
+      Group.setRef();
       console.log($rootScope.userID);
-      $scope.allGroups = Group.all();
+      $scope.allGroups = Group.all($rootScope.userID);
       console.log($scope.allGroups);
 
+      $scope.groupCount = 1;
       $scope.countGroups = function(){
-          Group.dataRef().once('value', function(snapshot){
-            $scope.groupCount = snapshot.numChildren();
-          })
+          // Group.dataRef($rootScope.userID).once('value', function(snapshot){
+          //   $scope.groupCount = snapshot.numChildren();
+          // })
       }
 
       $scope.countGroups();
@@ -23,7 +23,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       $scope.editMode = false;
 
       $scope.removeGroup = function(id){
-        Group.remove(id);
+        Group.remove($rootScope.userID, id);
         $scope.countGroups()
 
         //leave edit mode if there are no groups
@@ -51,7 +51,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $scope.autofill = function(){ 
-        Group.create('Thursday Workout').then(function(ref){
+        Group.create($rootScope.userID, 'Thursday Workout').then(function(ref){
           var groupId = ref.name();
 
           Exercise.create(groupId, 'Dumbbell Bench Press', 65, 3, 6);
@@ -60,7 +60,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
           Exercise.create(groupId, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
         })
 
-        Group.create('Tuesday Workout').then(function(ref){
+        Group.create($rootScope.userID, 'Tuesday Workout').then(function(ref){
           var groupId = ref.name();
 
           Exercise.create(groupId, 'Pullups', 5, 3, 10);
@@ -116,11 +116,12 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $scope.logout = function() {
+         $rootScope.userID = null;
          Auth.logout()
       };
 
     $scope.$on('$firebaseSimpleLogin:logout', function(){
-      delete $rootScope.userID;
+      $rootScope.userID = null;
       $rootScope.slideView('view-slide-right', '/');
     });
     }])

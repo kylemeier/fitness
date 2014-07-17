@@ -1,32 +1,42 @@
-app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
-  function($rootScope, $firebase, FBURL, User) {
-
-        var ref = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups');
+app.factory('Group', ['$firebase', 'FBURL', 'User',
+  function($firebase, FBURL, User) {
+        console.log('up here');
+        var ref = new Firebase(FBURL+'/users');
 
         var groups = $firebase(ref);
 
+        //injecting userId for each call to ensure the correct user's data is being retrieved. Defining it in ref caused incorrect user data to show
+        //if one user logged out and another logged in as the service wouldn't redefine the variable until a refresh.
         var Group = {
-          all: groups,
-          dataRef: function(){
-            return ref
+          all: function(userId){
+            console.log('in all');
+            return groups.$child(userId+'/exercise groups')
+          }
+          , dataRef: function(userId){
+            return ref.$child(userId+'/exercise groups')
           }
         
-          ,find: function(groupId) {
-            return groups.$child(groupId);
+          ,find: function(userId, groupId) {
+            return groups.$child(userId+'/exercise groups/'+groupId);
         }
 
-      , create: function(groupName) {
+      , create: function(userId, groupName) {
 
-         return groups.$add({
+         return groups.$child(userId+'/exercise groups').$add({
             name: groupName
           })
         }
 
-      , remove: function(groupId){
-          return groups.$remove(groupId);
+      , remove: function(userId, groupId){
+          return groups.$child(userId+'/exercise groups').$remove(groupId);
         }
 
         }
+                var ref = new Firebase(FBURL+'/users');
+
+        var groups = $firebase(ref);
+
+        console.log('down here');
 
         return Group
 
