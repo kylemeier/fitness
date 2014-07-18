@@ -1,5 +1,5 @@
-app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$location',
-	function($firebaseSimpleLogin, FBURL, $rootScope, $location){
+app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$firebase',
+	function($firebaseSimpleLogin, FBURL, $rootScope, $firebase){
 
 		var ref = new Firebase(FBURL);
 
@@ -29,6 +29,13 @@ app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$location',
 				delete $rootScope.userID;
 				$rootScope.slideView('view-slide-right', '/');
 				return auth.$logout();
+			},
+			resetPassword: function(email){
+				console.log(email);
+				return auth.$sendPasswordResetEmail(email);
+			},
+			changePassword: function(user){
+				return auth.$changePassword(user.email, user.password, user.newPassword);
 			}
 		};
 

@@ -336,7 +336,7 @@ body{
   width:100%;
 }
 
-#signup{
+#signup, #reset{
 
     .login-info{
     position:absolute;
@@ -385,6 +385,13 @@ body{
       left:0;
       height:$lineHeight;
     }
+    #submit{
+      position:absolute;
+      // top:-50px;
+      opacity:0;
+      // height:0;
+      // width:0;
+    }
   }
 
   h3{
@@ -406,7 +413,7 @@ body{
     // box-sizing:border-box;
   }
 
-  .error{
+  .message{
     position:absolute;
     top:75px;
     color:#FD6440;

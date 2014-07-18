@@ -274,18 +274,18 @@ input {
   height: 100%;
   width: 100%; }
 
-#signup .login-info {
+#signup .login-info, #reset .login-info {
   position: absolute;
   left: 0;
   top: 100px;
   width: 100%;
   background: #f8f7f2; }
-  #signup .login-info li {
+  #signup .login-info li, #reset .login-info li {
     position: relative;
     border-top: 1px solid #EBEAE6;
     left: 0;
     height: 50px; }
-#signup #button-signup {
+#signup #button-signup, #reset #button-signup {
   position: absolute;
   color: #373a3a;
   padding: 3px;
@@ -296,7 +296,7 @@ input {
   top: 300px;
   width: 80%;
   margin-left: 10%; }
-#signup h3 {
+#signup h3, #reset h3 {
   color: #ABABA8;
   font-size: .8em; }
 
@@ -312,6 +312,9 @@ input {
     border-top: 1px solid #EBEAE6;
     left: 0;
     height: 50px; }
+  #signin .login-info #submit {
+    position: absolute;
+    opacity: 0; }
 #signin h3 {
   color: #ABABA8;
   font-size: .8em; }
@@ -326,13 +329,13 @@ input {
   margin-top: 25px;
   width: 25%;
   margin-left: 17%; }
-#signin .error {
+#signin .message {
   position: absolute;
   top: 75px;
   color: #FD6440;
   font-style: italic;
   font-size: .9em; }
-  #signin .error a {
+  #signin .message a {
     font-style: normal;
     color: #7E3220; }
 #signin .additional-info {

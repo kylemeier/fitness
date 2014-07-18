@@ -1,0 +1,21 @@
+ <div id='reset'> 
+  <header> 
+    <h1>Update Password</h1> 
+  </header> 
+     <ul class='login-info'>
+      <li>
+        <input type='email' name='email' id='email' ng-model='user.email'>   
+        <h3 class='left'>Verify Email Address</h3> 
+      </li>
+      <li>     
+        <input type='password' name='pass' id='pass' ng-model='user.newPassword'> 
+        <h3 class='left'>New Password</h3>  
+      </li>
+      <li>     
+        <input type='password' name='pass-confirm' id='pass-confirm' ng-model='passConfirm'> 
+        <h3 class='left'>Confirm New Password</h3>  
+      </li>
+    </ul>
+	    <button id='button-signup' ng-click='update()'>Update</button>
+      {{message}}
+</div>

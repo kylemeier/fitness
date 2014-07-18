@@ -17,6 +17,7 @@
 //some sort of action if group has no exercises and 'start workout' is clicked
 //
 //Additional Features:
+//after two failures, decrease weight by 5lbs and increase reps by 2 per set
 //after three failures, show alert asking if user wants to set a reminder to change the exercise or reset the count
 //reminder will be an exclamation point in place of the delete button
 //body weight support, doesn't mess with weights
@@ -77,6 +78,11 @@
         }
 
         }
+      })
+
+      .when('/reset/:temp', {
+        templateUrl: 'views/reset.html',
+        controller: 'AuthCtrl'
       })
 
       .when('/groups', {
