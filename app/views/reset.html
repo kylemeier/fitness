@@ -1,7 +1,8 @@
  <div id='reset'> 
   <header> 
     <h1>Update Password</h1> 
-  </header> 
+  </header>
+      <p ng-show="message" class="message left">{{message}}</p>
      <ul class='login-info'>
       <li>
         <input type='email' name='email' id='email' ng-model='user.email'>   
@@ -17,5 +18,4 @@
       </li>
     </ul>
 	    <button id='button-signup' ng-click='update()'>Update</button>
-      {{message}}
 </div>

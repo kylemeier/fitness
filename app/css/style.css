@@ -274,6 +274,16 @@ input {
   height: 100%;
   width: 100%; }
 
+.message {
+  position: absolute;
+  top: 75px;
+  color: #FD6440;
+  font-style: italic;
+  font-size: .9em; }
+  .message a {
+    font-style: normal;
+    color: #7E3220; }
+
 #signup .login-info, #reset .login-info {
   position: absolute;
   left: 0;
@@ -329,15 +339,6 @@ input {
   margin-top: 25px;
   width: 25%;
   margin-left: 17%; }
-#signin .message {
-  position: absolute;
-  top: 75px;
-  color: #FD6440;
-  font-style: italic;
-  font-size: .9em; }
-  #signin .message a {
-    font-style: normal;
-    color: #7E3220; }
 #signin .additional-info {
   position: relative;
   top: 25px;

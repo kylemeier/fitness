@@ -9,8 +9,8 @@
 //
 //To do:
 //style workout page
-//test group/exercise name length
-//password resets
+//max group name length = 12
+//exercise name length = 12
 //better form checking on edit/new exercise screen
 //form checking for new exercise
 //combine login/signup screens

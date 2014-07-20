@@ -24,9 +24,11 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
               break;
             case 'INVALID_PASSWORD':
               $scope.passReset = 1;
+              // $scope.message = 'Oops! Try clicking the link in your email again.'
               break;
             default:
-                $scope.message = error.toString();
+              $scope.message = 'hey'
+                // $scope.message = error.toString();
             }
       });
     };
@@ -91,7 +93,7 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
         },1000);
         
       }, function(error){
-        $scope.message = error.toString();
+        $scope.message = 'Oops! Try clicking the link in your email again.'
       })
     }
 

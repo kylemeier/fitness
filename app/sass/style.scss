@@ -336,6 +336,20 @@ body{
   width:100%;
 }
 
+//error/info message styling
+.message{
+  position:absolute;
+  top:75px;
+  color:#FD6440;
+  font-style:italic;
+  font-size:.9em;
+  a{
+    font-style:normal;
+    color:#7E3220;
+  }
+}
+
+
 #signup, #reset{
 
     .login-info{
@@ -411,18 +425,6 @@ body{
     width:25%;
     margin-left:17%;
     // box-sizing:border-box;
-  }
-
-  .message{
-    position:absolute;
-    top:75px;
-    color:#FD6440;
-    font-style:italic;
-    font-size:.9em;
-    a{
-      font-style:normal;
-      color:#7E3220;
-    }
   }
 
   .additional-info{
