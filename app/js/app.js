@@ -3,9 +3,7 @@
 //UI issues:
 //create truncate function that adds an ellipses to long group/exericse names
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
-//login animation
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
-//add some sort of loading indicator
 //
 //To do:
 //style workout page
@@ -15,6 +13,7 @@
 //form checking for new exercise
 //combine login/signup screens
 //some sort of action if group has no exercises and 'start workout' is clicked
+//move resolve code into a service
 //
 //Additional Features:
 //after two failures, decrease weight by 5lbs and increase reps by 2 per set
@@ -51,6 +50,7 @@
         controller: 'AuthCtrl',
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            
             if(!$rootScope.userID){
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
@@ -90,10 +90,13 @@
         controller: 'GroupsCtrl',
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
+            console.log('loading '+$rootScope.loading);
             if(!$rootScope.userID){
+              $rootScope.loading = 1;
               console.log('looking for user');
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
+            
             return auth.$getCurrentUser()
           }else{
             console.log('already have user '+$rootScope.userID);
@@ -110,6 +113,7 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+            $rootScope.loading = 1;
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()
@@ -127,6 +131,7 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+              $rootScope.loading = 1;
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()
@@ -144,6 +149,7 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+              $rootScope.loading = 1;
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()
@@ -161,6 +167,7 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+              $rootScope.loading = 1;
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()
@@ -178,6 +185,7 @@
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
             if(!$rootScope.userID){
+              $rootScope.loading = 1;
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             return auth.$getCurrentUser()

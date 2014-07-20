@@ -13,6 +13,21 @@
 	<div class='container' ng-controller='mainController' ng-click='clearDelete()'>
 		<div class='header-bar-background'></div>
     <div id='view' ng-view ng-class='slideDir'></div>
+<!--      <div class="spinner circles fade-in-out" ng-class='slideDir' ng-show='loading'>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     <div></div>
+     </div> -->
+     <div class="wait fade-in-out" ng-class="slideDir" ng-show='loading'>
+     <div></div>
+     <div></div>
+     <div></div>
+</div>
   </div>
    <!--       <script src="//static.firebase.com/v0/firebase.js"></script>
     <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>

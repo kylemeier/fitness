@@ -1,13 +1,23 @@
 app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams', '$timeout', 'Auth', 'User',
   function ($rootScope, $scope, $location, $routeParams, $timeout, Auth, User) {
+
+    if($rootScope.userID){
+      $rootScope.slideView('view-slide-left', '/groups');
+    }
+    
     $scope.user = {
       email: '',
       password: '',
       newPassword: ''
     }
 
+    $rootScope.loading = 0;
+
     $scope.login = function(){
+      $rootScope.loading = 1;
       Auth.login($scope.user).then(function(user){
+         $rootScope.loading = 0;
+         console.log($rootScope.loading);
          $rootScope.userID = user.uid;
          $rootScope.slideView('view-slide-left', '/groups');
          

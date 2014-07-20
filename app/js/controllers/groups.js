@@ -5,7 +5,9 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       if(!$rootScope.userID){
         $location.path('/');
       }
-      
+
+      $rootScope.loading = 0;
+      console.log('loaded');
       Group.setRefs();
       Exercise.setRefs();
       console.log($rootScope.userID);
