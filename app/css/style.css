@@ -205,7 +205,8 @@ body {
 button {
   border: none;
   background: none;
-  padding: 0; }
+  padding: 0;
+  margin: 0; }
   button:focus {
     outline: 0; }
 
@@ -488,9 +489,11 @@ input {
   text-overflow: ellipsis; }
 #groups-page .group-select-button {
   position: relative;
-  top: 1px;
   height: 50px;
+  margin-top: -5px;
   width: 100%; }
+#groups-page .group-select-button, #groups-page x:-moz-any-link, #groups-page x:default {
+  margin-top: 0; }
 #groups-page .exercise-select-button {
   position: absolute;
   z-index: 1;

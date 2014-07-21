@@ -19,7 +19,6 @@
       <span class='icon-group-delete icon-slide-left-side' ng-show='editMode'></span>
       <p class='group-name'>{{group.name}}</p>
       <button class='group-select-button' ng-click='setGroup(groupId); $event.stopPropagation()'></button>
-      <!-- <button class='click-area' ng-click='setGroup(groupId); $event.stopPropagation()'></button> -->
       <ul>
         <li class='slide-up-down left' ng-repeat='(exerciseId, exercise) in Exercises' ng-show='isGroupClicked(groupId) && !editMode'>
           <p class='exercise-name left'>{{exercise.name}}</p>

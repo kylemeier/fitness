@@ -257,6 +257,7 @@ body{
     border:none;
     background:none;
     padding:0;
+    margin:0;
     &:focus{
       outline:0;
     }
@@ -618,9 +619,15 @@ body{
 
   .group-select-button{
     position:relative;
-    top:1px;
     height:$lineHeight;
+    margin-top:-5px;
     width:100%;
+  }
+
+  //webkit browsers were adding 5px to each line, while firefox was not. targeted firefox specifically to ignore the -5px adjustment
+
+  .group-select-button, x:-moz-any-link, x:default { 
+    margin-top:0; 
   }
 
   .exercise-select-button{
