@@ -1,8 +1,6 @@
 app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase', 'Group', 'Exercise', 'Workout', 'FBURL', '$timeout', '$location',
     function($rootScope, $scope, $routeParams, $firebase, Group, Exercise, Workout, FBURL, $timeout, $location){
 
-//something to track once all exercises have been clicked
-//
       if(!$rootScope.userID){
         $location.path('/');
       }
@@ -48,6 +46,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         //set recording date to today
         Workout.setLastRecorded(exerciseId, $scope.today);
 
+        //set result as success
+        Workout.setLastResult(exerciseId, 'success');
+
         //get current weight
         Workout.getWeight(exerciseId).once('value',function(snapshot){
           weight = snapshot.val(); 
@@ -92,6 +93,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
 
         //set recording date to today
         Workout.setLastRecorded(exerciseId, $scope.today); 
+
+        //set result as failure
+        Workout.setLastResult(exerciseId, 'failure');
                
         //getting values for each variable from DB
         Workout.getFailures(exerciseId).once('value',function(snapshot){

@@ -763,7 +763,7 @@ body{
   }
   #group-name{ 
     //very similar to groups page code
-    max-width:65%;
+    max-width:70%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -810,15 +810,23 @@ body{
     border-radius:5px;
     border: 2px solid #A71414;
   }
-  .success-background{
+  .success-background, .failure-background{
     position:absolute;
     top:0;
     left:0;
     z-index:0;
     height:100%;
     width:100%;
+  }
+
+  .success-background{
     background: #3C5036;
     background:rgba(60, 80, 54, .7);
+  }
+
+  .failure-background{
+    background: #A71414;
+    background:rgba(167, 20, 20, .7);
   }
   .exercise-name-result{
     position:absolute;

@@ -12,7 +12,8 @@
         </div>
         <button class='btn-failure fade-in-out left' ng-hide='exercise.lastRecorded === today' ng-click='failed(exerciseId)'>I failed.</button>
         <button class='btn-success fade-in-out right' ng-hide='exercise.lastRecorded === today' ng-click='success(exerciseId)'>I did it!</button>
-        <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today'></span>
+        <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "success"'></span>
+        <span class='failure-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "failure"'></span>
         <p class='exercise-name-result fade-in-out' ng-show='exercise.lastRecorded === today'>{{exercise.name}}</p>
       </li>
     </ul>

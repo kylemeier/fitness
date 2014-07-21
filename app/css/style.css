@@ -584,7 +584,7 @@ input {
     background: #f8f7f2;
     text-align: center; }
 #workout #group-name {
-  max-width: 65%;
+  max-width: 70%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -617,15 +617,19 @@ input {
   margin-left: 16px;
   border-radius: 5px;
   border: 2px solid #A71414; }
-#workout .success-background {
+#workout .success-background, #workout .failure-background {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
   height: 100%;
-  width: 100%;
+  width: 100%; }
+#workout .success-background {
   background: #3C5036;
   background: rgba(60, 80, 54, 0.7); }
+#workout .failure-background {
+  background: #A71414;
+  background: rgba(167, 20, 20, 0.7); }
 #workout .exercise-name-result {
   position: absolute;
   font-size: 1.2em;

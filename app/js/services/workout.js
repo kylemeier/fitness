@@ -39,7 +39,7 @@ app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
           }
 
           , setLastResult: function(exerciseId, result){
-            setRef.$child(exerciseId+'/lastResult').$set(date);
+            setRef.$child(exerciseId+'/lastResult').$set(result);
           }
 
         }
