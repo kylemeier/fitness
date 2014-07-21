@@ -7,12 +7,9 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $rootScope.loading = 0;
-      console.log('loaded');
       Group.setRefs();
       Exercise.setRefs();
-      console.log($rootScope.userID);
       $scope.allGroups = Group.all();
-      console.log($scope.allGroups);
 
       $scope.countGroups = function(){
           Group.dataRef().once('value', function(snapshot){
@@ -101,7 +98,6 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
 
       $scope.setExercise = function(clickedExercise){
         //Check if exercise is already clicked
-        console.log(clickedExercise);
         if($rootScope.currentExercise === clickedExercise){
           $rootScope.currentExercise = {};
         }else{

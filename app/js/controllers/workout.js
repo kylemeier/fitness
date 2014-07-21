@@ -5,19 +5,17 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         $location.path('/');
       }
 
-      (function(){ 
-        Group.find($routeParams.groupId).$bind($scope, 'group'); 
-      }())
-
+      $rootScope.loading = 0;
       var d = new Date();
 
-        $scope.today = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-        console.log($scope.date);
+      Group.setRefs();
+      Exercise.setRefs();
+    
+      Group.find($routeParams.groupId).$bind($scope, 'group'); 
 
+      $scope.today = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 
-        $scope.allExercises = Exercise.all($routeParams.groupId);
-        console.log($scope.group, $scope.allExercises);
-
+      $scope.allExercises = Exercise.all($routeParams.groupId);
 
       //every success click:
 //increment stored weight

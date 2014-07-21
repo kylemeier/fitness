@@ -1,8 +1,12 @@
 app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercise', '$timeout',
     function($rootScope, $scope, $routeParams, Exercise, $timeout){
+    
       if(!$rootScope.userID){
         $location.path('/');
       }
+
+      $rootScope.loading = 0;
+      Exercise.setRefs();
       $scope.groupId = $routeParams.groupId;
       console.log($scope.groupId);
 

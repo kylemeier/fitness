@@ -35,7 +35,7 @@ app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$firebase',
 				return auth.$sendPasswordResetEmail(email);
 			},
 			changePassword: function(user){
-				return auth.$changePassword(user.email, user.password, user.newPassword);
+				return auth.$changePassword(user.email, user.oldPassword, user.password);
 			}
 		};
 

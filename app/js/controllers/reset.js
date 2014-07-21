@@ -5,7 +5,6 @@ app.controller('ResetCtrl', ['$rootScope', '$scope', '$routeParams', 'Auth',
       		email: '',
       		newPassword: ''
     	}
-
 	
 	$scope.update = function(){
 		//confirm passwords match

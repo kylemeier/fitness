@@ -14,7 +14,6 @@ app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
               return groups
           },
           dataRef: function(){
-            console.log('inside data ref '+groups,ref);
             return ref
           }
         

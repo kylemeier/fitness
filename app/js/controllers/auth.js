@@ -7,8 +7,8 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
 
     $scope.user = {
       email: '',
-      password: '',
-      newPassword: ''
+      oldPassword: '',
+      password: ''
     }
 
     $rootScope.loading = 0;
@@ -16,8 +16,6 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
     $scope.login = function(){
       $rootScope.loading = 1;
       Auth.login($scope.user).then(function(user){
-         $rootScope.loading = 0;
-         console.log($rootScope.loading);
          $rootScope.userID = user.uid;
          $rootScope.slideView('view-slide-left', '/groups');
          
@@ -35,7 +33,6 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
               break;
             case 'INVALID_PASSWORD':
               $scope.passReset = 1;
-              // $scope.message = 'Oops! Try clicking the link in your email again.'
               break;
             default:
               $scope.message = error.toString();
@@ -44,11 +41,13 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
     };
 
     $scope.loginAnon = function(){
+      $rootScope.loading = 1;
       Auth.loginAnon().then(function (user){
         $rootScope.userID = user.uid;
         $rootScope.slideView('view-slide-left', '/groups');
 
       }, function(error){
+        $rootScope.loading = 0;
         $scope.message = error.toString();
       })
     }
@@ -74,38 +73,36 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
       }, function(error){
         $rootScope.loading = 0;
         $scope.passReset = 0;
-        $scope.message = 'Oops! Something went wrong, please try re-entering your credentials.';
+        $scope.message = 'Oops! Try re-entering your credentials.';
       });
     }
 
       $scope.update = function(){
-    //confirm passwords match
-    if($scope.user.newPassword === $scope.passConfirm){
+        $rootScope.loading = 1;
 
-      //pull temp password from URL
-      $scope.user.password = $routeParams.temp;
+        //confirm passwords on form match
+        if($scope.user.password === $scope.passConfirm){
 
-      //authenticate user
-      $scope.login();
+        //pull temp password from URL
+        $scope.user.oldPassword = $routeParams.temp;
 
-      //update password
-      $scope.changePassword();
+        //update password and login if successful
+        $scope.changePassword();
       
-    }else{
-      $scope.message = 'Passwords don\'t match';
+      }else{
+        $rootScope.loading = 0;
+        $scope.message = 'Passwords don\'t match';
+      }
     }
-
-  }
 
       $scope.changePassword = function(){
       Auth.changePassword($scope.user).then(function(success){
+        $rootScope.loading = 0;
         $scope.message = 'Password updated successfully!'
+        $scope.login();
 
-        $timeout(function(){
-          $rootScope.slideView('view-slide-left', '/groups');
-        },1000);
-        
       }, function(error){
+        $rootScope.loading = 0;
         $scope.message = 'Oops! Try clicking the link in your email again.'
       })
     }

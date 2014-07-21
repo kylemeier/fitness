@@ -1,14 +1,12 @@
 //To fix:
 //
 //UI issues:
-//exercise name text moves when it's truncated in FF
 //'Start Workout' is the wrong font in FF
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:
 //style workout page
 //better form checking on edit/new exercise screen
-//form checking for new exercise
 //combine login/signup screens
 //some sort of action if group has no exercises and 'start workout' is clicked
 //move resolve code into a service
@@ -88,16 +86,13 @@
         controller: 'GroupsCtrl',
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
-            console.log('loading '+$rootScope.loading);
             if(!$rootScope.userID){
               $rootScope.loading = 1;
-              console.log('looking for user');
             var ref = new Firebase('https://fitnesskdm.firebaseIO.com');
             var auth = $firebaseSimpleLogin(ref);
             
             return auth.$getCurrentUser()
           }else{
-            console.log('already have user '+$rootScope.userID);
             return;
           }
         }
@@ -224,7 +219,6 @@
   
   app.controller( 'slideController', ['$rootScope', '$scope', '$location', '$route', function($rootScope, $scope, $location, $route) {
     $rootScope.slideView = function (direction, url) {
-      console.log(url);
         $rootScope.slideDir = direction; 
         $location.path(url);
     }  

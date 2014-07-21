@@ -5,6 +5,7 @@ app.controller('NewGroupCtrl',['$rootScope','$scope','Group', '$location',
       $location.path('/');
     }
     $rootScope.loading = 0;
+    Group.setRefs();
 
       $scope.buttonClick = function(button){
 
