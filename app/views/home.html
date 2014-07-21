@@ -3,7 +3,7 @@
     <h1>Fitness</h1> 
   </header> 
       <p ng-show="message && !passReset" class="message left">{{message}}</p>
-      <p ng-show='passReset' class='message left'>Password incorrect: <button ng-click='resetPassword()'> click here to reset.</button></p>
+      <p ng-show='passReset' class='message left'>Password incorrect: <a ng-click='resetPassword()'> click here to reset.</a></p>
      <form class='login-info' ng-submit='login()'>
       <div class='input-wrapper'>
         <input type='email' name='email' id='email' ng-model='user.email'>   
@@ -22,7 +22,6 @@
     	<button id='button-signin' ng-click='login()'>Log in</button> 
      <button id='button-guest' ng-click='loginAnon()'>Guest*</button>
     <div class='additional-info fade-in-out'>
-      <p>***This app is being actively developed at the moment. Until I put it into production, any data you enter may be deleted at any time.***</p>
       <p>Need an account? <a href='#/signup' class='sign-up'>Sign up!</a></p>
 	     <p>*As a guest, you don't need to provide an email/password, but your data will only be stored for 30 days or until you log out.</p>
     </div>

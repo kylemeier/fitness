@@ -18,6 +18,7 @@
       <span class='icon-expand-list-down fade-in-out' ng-hide='isGroupClicked(groupId) || editMode'></span>
       <button class='icon-group-delete icon-slide-left-side' ng-show='editMode' ng-click='setGroup(group.$id); $event.stopPropagation()'></button>
       <button class='group-name' ng-click='setGroup(groupId); $event.stopPropagation()'>{{group.name}}</button>
+      <!-- make the button wrap around the group name-->
       <ul>
         <li class='slide-up-down left' ng-repeat='(exerciseId, exercise) in Exercises' ng-show='isGroupClicked(groupId) && !editMode'>
           <h3 class='exercise-info left'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</h3>

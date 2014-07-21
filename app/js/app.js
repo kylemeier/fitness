@@ -1,14 +1,12 @@
 //To fix:
 //
 //UI issues:
-//create truncate function that adds an ellipses to long group/exericse names
+//text moves when it's truncated on FF
 //group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:
 //style workout page
-//max group name length = 12
-//exercise name length = 12
 //better form checking on edit/new exercise screen
 //form checking for new exercise
 //combine login/signup screens

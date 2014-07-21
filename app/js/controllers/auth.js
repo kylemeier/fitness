@@ -4,7 +4,7 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
     if($rootScope.userID){
       $rootScope.slideView('view-slide-left', '/groups');
     }
-    
+
     $scope.user = {
       email: '',
       password: '',
@@ -23,6 +23,7 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
          
       },function(error){
           $scope.passReset = 0;
+          $rootScope.loading = 0;
 
           switch (error.code){
 
@@ -37,8 +38,7 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
               // $scope.message = 'Oops! Try clicking the link in your email again.'
               break;
             default:
-              $scope.message = 'hey'
-                // $scope.message = error.toString();
+              $scope.message = error.toString();
             }
       });
     };
@@ -65,11 +65,14 @@ app.controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$routeParams',
     }
 
     $scope.resetPassword = function(){
+       $rootScope.loading = 1;
       Auth.resetPassword($scope.user.email).then(function(success){
+        $rootScope.loading = 0;
         $scope.passReset = 0;
-        $scope.message = 'Reset instructions emailed successfully!'
+        $scope.message = 'Reset instructions emailed successfully.'
 
       }, function(error){
+        $rootScope.loading = 0;
         $scope.passReset = 0;
         $scope.message = 'Oops! Something went wrong, please try re-entering your credentials.';
       });

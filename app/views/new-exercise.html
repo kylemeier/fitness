@@ -6,19 +6,19 @@
   </header> 
     <ul class='exercise-inputs'>
       <li>
-        <input type='text' id='exercisename' maxlength='12' ng-model='exerciseName'>   
+        <input type='text' id='exercisename' ng-model='exerciseName'>   
         <h3 class='left'>Exercise Name</h3> 
       </li>
       <li>     
-        <input type='number' id='exerciseweight' ng-model='exerciseWeight'> 
+        <input type='number' id='exerciseweight' max='9999' ng-model='exerciseWeight'> 
         <h3 class='left'>Weight lifted (in lbs)</h3>  
       </li>
       <li>
-        <input type='number' id='exercisesets' ng-model='exerciseSets'> 
+        <input type='number' id='exercisesets' max='9999' ng-model='exerciseSets'> 
         <h3 class='left'>Sets</h3> 
       </li>
       <li>
-        <input type='number' id='exercisereps' ng-model='exerciseReps'> 
+        <input type='number' id='exercisereps' max='9999' ng-model='exerciseReps'> 
         <h3 class='left'>Reps per set</h3> 
       </li>
     </ul>
