@@ -1,8 +1,14 @@
 app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
     function($rootScope, $routeParams, $firebase, FBURL) {
-        var getRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups/'+$routeParams.groupId+'/exercises/'),
-            setRef = $firebase(getRef),
+
+        var getRef, setRef 
+
             Workout = {
+              setRefs: function(){
+                getRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups/'+$routeParams.groupId+'/exercises/');
+                setRef = $firebase(getRef);
+              },
+
               getFailures: function(exerciseId){
             return getRef.child(exerciseId+'/failures');
           }
@@ -30,6 +36,10 @@ app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
           }
           , setLastRecorded: function(exerciseId, date){
             setRef.$child(exerciseId+'/lastRecorded').$set(date);
+          }
+
+          , setLastResult: function(exerciseId, result){
+            setRef.$child(exerciseId+'/lastResult').$set(date);
           }
 
         }

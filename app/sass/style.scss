@@ -754,17 +754,26 @@ body{
     width:100%;
     li{
       position:relative;
-      margin-bottom:5px;
+      margin-bottom:10px;
       left:0;
       height: $lineHeight;
       background:$textBackground;
       text-align:center;
-      border-radius:100%;
     }
   }
   #group-name{ 
     //very similar to groups page code
     max-width:65%;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .exercise-name{
+    font-size:.9em;
+    position:relative;
+    max-width:50%;
+    left:25%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -777,35 +786,49 @@ body{
       padding:0;
     }
 
-  .btn-success,.btn-failure,.btn-done{
+  .btn-success,.btn-failure{
     position:absolute;
-    height:$lineHeight;
+    // height:$lineHeight/2;
+    bottom:10px;
     padding:3px;
     color:#EBEAE6;
   }
   
   .btn-success,.btn-failure{
-    width:25%;
+    // width:25%;
   }
   .btn-success{
-    top:0;
-    right:0;
-    background:#3C5036;
+    color:#3C5036;
+    margin-right:16px;
+    border-radius:5px;
+    border: 2px solid #3C5036;
   }
 
   .btn-failure{
+    color:#A71414;
+    margin-left:16px;
+    border-radius:5px;
+    border: 2px solid #A71414;
+  }
+  .success-background{
+    position:absolute;
     top:0;
     left:0;
-    background:#A71414;
+    z-index:0;
+    height:100%;
+    width:100%;
+    background: #3C5036;
+    background:rgba(60, 80, 54, .7);
   }
-  .btn-done{
-    width:50%;
-    top:378px;
-    left:25%;
-    border-radius: 0 0 5px 5px;
-    border-right: 2px solid $mainTextColor;
-    border-bottom: 2px solid $mainTextColor;
-    border-left: 2px solid $mainTextColor;
-    background:$mainTextColor;
+  .exercise-name-result{
+    position:absolute;
+    font-size:1.2em;
+    top:50%;
+    margin-top:-11px;
+    color:$textBackground;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:100%;
   }
 }

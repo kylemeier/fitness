@@ -578,14 +578,21 @@ input {
   width: 100%; }
   #workout ul li {
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     left: 0;
     height: 50px;
     background: #f8f7f2;
-    text-align: center;
-    border-radius: 100%; }
+    text-align: center; }
 #workout #group-name {
   max-width: 65%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+#workout .exercise-name {
+  font-size: .9em;
+  position: relative;
+  max-width: 50%;
+  left: 25%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -595,27 +602,37 @@ input {
   top: 20px;
   left: 41px;
   padding: 0; }
-#workout .btn-success, #workout .btn-failure, #workout .btn-done {
+#workout .btn-success, #workout .btn-failure {
   position: absolute;
-  height: 50px;
+  bottom: 10px;
   padding: 3px;
   color: #EBEAE6; }
-#workout .btn-success, #workout .btn-failure {
-  width: 25%; }
 #workout .btn-success {
-  top: 0;
-  right: 0;
-  background: #3C5036; }
+  color: #3C5036;
+  margin-right: 16px;
+  border-radius: 5px;
+  border: 2px solid #3C5036; }
 #workout .btn-failure {
+  color: #A71414;
+  margin-left: 16px;
+  border-radius: 5px;
+  border: 2px solid #A71414; }
+#workout .success-background {
+  position: absolute;
   top: 0;
   left: 0;
-  background: #A71414; }
-#workout .btn-done {
-  width: 50%;
-  top: 378px;
-  left: 25%;
-  border-radius: 0 0 5px 5px;
-  border-right: 2px solid #373a3a;
-  border-bottom: 2px solid #373a3a;
-  border-left: 2px solid #373a3a;
-  background: #373a3a; }
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background: #3C5036;
+  background: rgba(60, 80, 54, 0.7); }
+#workout .exercise-name-result {
+  position: absolute;
+  font-size: 1.2em;
+  top: 50%;
+  margin-top: -11px;
+  color: #f8f7f2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; }

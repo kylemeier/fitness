@@ -5,10 +5,15 @@
   </header> 
     <ul>
       <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises'>
-        <h1>{{exercise.name}}</h1>
-        <h3 class='exercise-info'>{{exercise.weight}} lbs for {{exercise.sets}} sets of {{exercise.reps}} reps</h3>
-        <button class='btn-failure' ng-click='failed(exerciseId)'>I failed.</button>
-        <button class='btn-success' ng-click='success(exerciseId)'>I did it!</button>
+        <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
+          <p class='exercise-name'>{{exercise.name}}</p>
+          <p class='exercise-info fade-in-out'>{{exercise.weight}} lbs</p>
+          <p class='exercise-info fade-in-out'>{{exercise.sets}} sets of {{exercise.reps}} reps</p>
+        </div>
+        <button class='btn-failure fade-in-out left' ng-hide='exercise.lastRecorded === today' ng-click='failed(exerciseId)'>I failed.</button>
+        <button class='btn-success fade-in-out right' ng-hide='exercise.lastRecorded === today' ng-click='success(exerciseId)'>I did it!</button>
+        <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today'></span>
+        <p class='exercise-name-result fade-in-out' ng-show='exercise.lastRecorded === today'>{{exercise.name}}</p>
       </li>
     </ul>
 </div>

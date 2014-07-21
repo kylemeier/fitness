@@ -1,6 +1,8 @@
 app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase', 'Group', 'Exercise', 'Workout', 'FBURL', '$timeout', '$location',
     function($rootScope, $scope, $routeParams, $firebase, Group, Exercise, Workout, FBURL, $timeout, $location){
 
+//something to track once all exercises have been clicked
+//
       if(!$rootScope.userID){
         $location.path('/');
       }
@@ -10,6 +12,7 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
 
       Group.setRefs();
       Exercise.setRefs();
+      Workout.setRefs();
     
       Group.find($routeParams.groupId).$bind($scope, 'group'); 
 
@@ -48,12 +51,15 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         //get current weight
         Workout.getWeight(exerciseId).once('value',function(snapshot){
           weight = snapshot.val(); 
-          console.log(weight);
-                    Workout.setWeight(exerciseId, weight+5);
+
+          //increase weight by 5lbs, reset failure count
+        $timeout(function(){
+          Workout.setWeight(exerciseId, weight+5);
+        },500);
           Workout.setFailures(exerciseId,0);
         })
 
-        //increase weight by 5lbs, reset failure count
+        
    
 
       }
@@ -82,8 +88,11 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         
       $scope.failed = function(exerciseId){
         //need failures, weight, maxweight
-        var failures, weight, maxWeight;        
+        var failures, weight, maxWeight;
 
+        //set recording date to today
+        Workout.setLastRecorded(exerciseId, $scope.today); 
+               
         //getting values for each variable from DB
         Workout.getFailures(exerciseId).once('value',function(snapshot){
 
@@ -97,7 +106,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
           maxWeight = snapshot.val(); 
         })
 
-        failureLogic(exerciseId, failures, weight, maxWeight);
+        $timeout(function(){
+          failureLogic(exerciseId, failures, weight, maxWeight);
+        },500);
       };
 
     }])
