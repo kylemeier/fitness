@@ -101,6 +101,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
 
       $scope.setExercise = function(clickedExercise){
         //Check if exercise is already clicked
+        console.log(clickedExercise);
         if($rootScope.currentExercise === clickedExercise){
           $rootScope.currentExercise = {};
         }else{

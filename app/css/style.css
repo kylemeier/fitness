@@ -486,12 +486,23 @@ input {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
-#groups-page .group-name {
+#groups-page .group-select-button {
   position: relative;
-  font-size: 1em;
   top: 1px;
+  height: 50px;
+  width: 100%; }
+#groups-page .exercise-select-button {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 0;
+  height: 40px;
+  width: 100%; }
+#groups-page .group-name {
+  position: absolute;
+  top: 2px;
   line-height: 50px;
-  max-width: 65%;
+  max-width: 50%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }

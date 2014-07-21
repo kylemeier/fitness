@@ -1,8 +1,8 @@
 //To fix:
 //
 //UI issues:
-//text moves when it's truncated on FF
-//group line items need their own height, currently relying on group name. can't set it directly due to height expanding when clicked
+//exercise name text moves when it's truncated in FF
+//'Start Workout' is the wrong font in FF
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:

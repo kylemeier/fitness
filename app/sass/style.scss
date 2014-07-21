@@ -609,18 +609,34 @@ body{
   }
 
   .exercise-name{
+    // font-size:.9em;
     max-width:65%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
   }
 
-  .group-name{
+  .group-select-button{
     position:relative;
-    font-size:1em;
     top:1px;
+    height:$lineHeight;
+    width:100%;
+  }
+
+  .exercise-select-button{
+    position:absolute;
+    z-index:1;
+    top:5px;
+    left:0;
+    height:40px;
+    width:100%;
+  }
+
+  .group-name{
+    position:absolute;
+    top:2px;
     line-height:$lineHeight;
-    max-width:65%;
+    max-width:50%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -637,6 +653,7 @@ body{
     position:absolute;
     margin-left:16px;
     top:1px;
+    // z-index:100;
   }
 
   .icon-expand-list-up{
