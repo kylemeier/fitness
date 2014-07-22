@@ -55,7 +55,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
       }
 
       $scope.autofill = function(){ 
-        Group.create('Thursday Workout').then(function(ref){
+        Group.create('Tuesday Workout').then(function(ref){
           var groupId = ref.name();
 
           Exercise.create(groupId, 'Dumbbell Bench Press', 65, 3, 6);
@@ -64,7 +64,7 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
           Exercise.create(groupId, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
         })
 
-        Group.create('Tuesday Workout').then(function(ref){
+        Group.create('Thursday Workout').then(function(ref){
           var groupId = ref.name();
 
           Exercise.create(groupId, 'Pullups', 5, 3, 10);

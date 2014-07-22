@@ -340,9 +340,7 @@ body{
   position:absolute;
   height:100%;
   width: 100%;
-
   background: rgba(0,0,0,.2);
-
  }
  .wait{
       position:absolute;
@@ -472,6 +470,11 @@ body{
 
 }
 
+  #submit{
+      position:absolute;
+      opacity:0;
+    }
+
 #signin{
   .login-info{
     position:relative;
@@ -485,13 +488,6 @@ body{
       border-top: 1px solid #EBEAE6;
       left:0;
       height:$lineHeight;
-    }
-    #submit{
-      position:absolute;
-      // top:-50px;
-      opacity:0;
-      // height:0;
-      // width:0;
     }
   }
 
@@ -727,14 +723,14 @@ body{
 
 #new-exercise, #edit-exercise{
   //refactor with groups page
-  ul{
+  form{
     position:absolute;
     left:0;
     top:100px;
     width:100%;
     background:$textBackground;
   }
-  li{
+  .input-wrapper{
     position:relative;
     border-top: 1px solid #EBEAE6;
     left:0;
@@ -744,9 +740,83 @@ body{
     color:#ABABA8;
     font-size:.8em;
   }
+
+  input.ng-dirty.ng-invalid{
+    background:rgba(167, 20, 20, .7);
+  }
+
+  .top{
+    top:60px;
+  }
+
+  .bottom{
+    top:310px;
+  }
+  #modal-wrapper{
+    position:fixed;
+    height:100%;
+    width: 100%;
+    background: rgba(0,0,0,.2);
+  }
+  #modal-window{
+    position:absolute;
+    width:50%;
+    top:20%;
+    left:50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    color:$mainTextColor;
+    padding:3px;
+    border-radius:5px;
+    border: 2px solid $mainTextColor;
+    background:$textBackground;
+    text-align:center;
+    p{
+      padding-bottom:5px;
+      border-bottom: 1px solid $mainTextColor;
+    }
+    button{
+      padding-top: 5px;
+    }
+    #yes-button{
+      float:left;
+      // margin-left:20px;
+      width:50%;
+      font-weight:bold;
+      color: $headerBar;
+    }
+    #no-button{
+      float:right;
+      // margin-right:20px;
+      border-left:1px solid $mainTextColor;
+      width:50%;
+      font-weight:bold;
+      color: $headerBar;
+      // box-sizing:border-box;
+    }
+  }
 }
 
 #workout{
+    .intro-text{
+    position:absolute;
+    top:$lineHeight;
+    width:100%;
+    background:$textBackground;
+    color:#040E0F;
+    text-align:center;
+    p{
+      color:#4C4C4C;
+      border-top:1px solid #EBEAE6;
+      padding:15px 5%;
+    }
+  }
+  .add-exercise{
+    color:$mainTextColor;
+    padding:3px;
+    border-radius:5px;
+    border: 2px solid $mainTextColor;
+  }
   ul{
     position:absolute;
     left:0;

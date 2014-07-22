@@ -385,6 +385,10 @@ input {
   color: #ABABA8;
   font-size: .8em; }
 
+#submit {
+  position: absolute;
+  opacity: 0; }
+
 #signin .login-info {
   position: relative;
   left: 0;
@@ -397,9 +401,6 @@ input {
     border-top: 1px solid #EBEAE6;
     left: 0;
     height: 50px; }
-  #signin .login-info #submit {
-    position: absolute;
-    opacity: 0; }
 #signin h3 {
   color: #ABABA8;
   font-size: .8em; }
@@ -556,13 +557,13 @@ input {
 #new-group input, #edit-group input {
   top: 100px; }
 
-#new-exercise ul, #edit-exercise ul {
+#new-exercise form, #edit-exercise form {
   position: absolute;
   left: 0;
   top: 100px;
   width: 100%;
   background: #f8f7f2; }
-#new-exercise li, #edit-exercise li {
+#new-exercise .input-wrapper, #edit-exercise .input-wrapper {
   position: relative;
   border-top: 1px solid #EBEAE6;
   left: 0;
@@ -570,7 +571,63 @@ input {
 #new-exercise h3, #edit-exercise h3 {
   color: #ABABA8;
   font-size: .8em; }
+#new-exercise input.ng-dirty.ng-invalid, #edit-exercise input.ng-dirty.ng-invalid {
+  background: rgba(167, 20, 20, 0.7); }
+#new-exercise .top, #edit-exercise .top {
+  top: 60px; }
+#new-exercise .bottom, #edit-exercise .bottom {
+  top: 310px; }
+#new-exercise #modal-wrapper, #edit-exercise #modal-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2); }
+#new-exercise #modal-window, #edit-exercise #modal-window {
+  position: absolute;
+  width: 50%;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  color: #373a3a;
+  padding: 3px;
+  border-radius: 5px;
+  border: 2px solid #373a3a;
+  background: #f8f7f2;
+  text-align: center; }
+  #new-exercise #modal-window p, #edit-exercise #modal-window p {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #373a3a; }
+  #new-exercise #modal-window button, #edit-exercise #modal-window button {
+    padding-top: 5px; }
+  #new-exercise #modal-window #yes-button, #edit-exercise #modal-window #yes-button {
+    float: left;
+    width: 50%;
+    font-weight: bold;
+    color: #b1462d; }
+  #new-exercise #modal-window #no-button, #edit-exercise #modal-window #no-button {
+    float: right;
+    border-left: 1px solid #373a3a;
+    width: 50%;
+    font-weight: bold;
+    color: #b1462d; }
 
+#workout .intro-text {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  background: #f8f7f2;
+  color: #040E0F;
+  text-align: center; }
+  #workout .intro-text p {
+    color: #4C4C4C;
+    border-top: 1px solid #EBEAE6;
+    padding: 15px 5%; }
+#workout .add-exercise {
+  color: #373a3a;
+  padding: 3px;
+  border-radius: 5px;
+  border: 2px solid #373a3a; }
 #workout ul {
   position: absolute;
   left: 0;

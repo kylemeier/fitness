@@ -12,7 +12,13 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
       Exercise.setRefs();
       Workout.setRefs();
     
-      Group.find($routeParams.groupId).$bind($scope, 'group'); 
+      Group.find($routeParams.groupId).$bind($scope, 'group');
+      
+
+      Exercise.dataRef($routeParams.groupId).once('value', function(snapshot){
+          $scope.exerciseCount = snapshot.numChildren();
+          console.log($scope.exerciseCount);
+        })
 
       $scope.today = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 

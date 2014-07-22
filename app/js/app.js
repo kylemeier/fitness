@@ -2,14 +2,20 @@
 //
 //UI issues:
 //'Start Workout' is the wrong font in FF
+//submit button not hidden on login screen in ff
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:
-//style workout page
 //better form checking on edit/new exercise screen
 //combine login/signup screens
-//some sort of action if group has no exercises and 'start workout' is clicked
 //move resolve code into a service
+//add a default 'go' option to all input field screens (should act the same as the 'next' button)
+//
+//Desktop view:
+//only one error message on new exercise screen
+//header color spans entire width, content is much smaller, need to determine max width
+//maybe more pronounced borders on content?
+//boxes on groups page need to be inset
 //
 //Additional Features:
 //after two failures, decrease weight by 5lbs and increase reps by 2 per set

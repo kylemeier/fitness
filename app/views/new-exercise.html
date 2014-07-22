@@ -1,25 +1,39 @@
 <div id='new-exercise'> 
   <header>
     <h1>Exercise #{{headerNum}}</h1>
-    <button class='left' ng-click='addExercise(); slideView("view-slide-right","/groups")'>&lsaquo; Done</button>
-    <button class='right' ng-click='addExercise(); countExercises(); slideView("view-slide-left",groupId+"/new-exercise/"+exerciseCount)'>Next &rsaquo;</button>
+    <button class='left' ng-click='submit("done")'>&lsaquo; Done</button>
+    <button class='fade-in-out right' ng-show='exerciseName && exerciseWeight && exerciseSets && exerciseReps' ng-click='submit("next")'>Next &rsaquo;</button>
   </header> 
-    <ul class='exercise-inputs'>
-      <li>
+  <span class='message top fade-in-out left' ng-show='submitted && !modal'>{{message}}</span>
+  <span class='message top fade-in-out left' ng-show='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
+  <!--addExercise(); countExercises(); slideView("view-slide-left",groupId+"/new-exercise/"+exerciseCount)-->
+    <form name='exerciseForm' class='exercise-inputs' ng-submit='submit("next")'>
+      
+      <div class='input-wrapper'>
         <input type='text' id='exercisename' ng-model='exerciseName'>   
         <h3 class='left'>Exercise Name</h3> 
-      </li>
-      <li>     
-        <input type='number' id='exerciseweight' max='9999' ng-model='exerciseWeight'> 
-        <h3 class='left'>Weight lifted (in lbs)</h3>  
-      </li>
-      <li>
-        <input type='number' id='exercisesets' max='9999' ng-model='exerciseSets'> 
+      </div>
+      <div class='input-wrapper'>   
+        <input type='number' name='exerciseWeight' id='exerciseweight' min='0' ng-maxlength='3' ng-model='exerciseWeight'> 
+        <h3 class='left'>Weight lifted (in lbs)</h3> 
+      </div>
+      <div class='input-wrapper'>
+        <input type='number' id='exercisesets' min='0' ng-maxlength='3' ng-model='exerciseSets'> 
         <h3 class='left'>Sets</h3> 
-      </li>
-      <li>
-        <input type='number' id='exercisereps' max='9999' ng-model='exerciseReps'> 
+      </div>
+      <div class='input-wrapper'>
+        <input type='number' id='exercisereps' min='0' ng-maxlength='3' ng-model='exerciseReps'> 
         <h3 class='left'>Reps per set</h3> 
-      </li>
-    </ul>
+      </div>
+      <button id='submit' type='submit'></button>
+    </form>
+    <span class='message bottom fade-in-out left' ng-show='submitted && !modal'>{{message}}</span>
+    <span class='message bottom fade-in-out left' ng-show='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
+    <div id='modal-wrapper' class='fade-in-out' ng-show='modal'>
+      <div id='modal-window'>
+        <p>Because the fields are not complete, this exercise will not be saved. Do you wish to proceed?</p>
+        <button id='yes-button' ng-click='modal=false; slideView("view-slide-right","/groups")'>Yes</button>
+        <button id='no-button' ng-click='modal=false'>No</button>
+      </div>
+    </div>
 </div>
