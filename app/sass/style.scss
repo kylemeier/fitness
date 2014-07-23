@@ -470,8 +470,10 @@ body{
 
 }
 
-  #submit{
-      position:absolute;
+
+  #submit, #focus{
+    //override relative button styling
+      position:absolute !important;
       opacity:0;
     }
 
@@ -731,6 +733,7 @@ body{
     background:$textBackground;
   }
   .input-wrapper{
+    z-index:1;
     position:relative;
     border-top: 1px solid #EBEAE6;
     left:0;
@@ -746,14 +749,17 @@ body{
   }
 
   .top{
+    z-index:0;
     top:60px;
   }
 
   .bottom{
+    z-index:0;
     top:310px;
   }
   #modal-wrapper{
     position:fixed;
+    z-index:100;
     height:100%;
     width: 100%;
     background: rgba(0,0,0,.2);

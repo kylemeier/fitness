@@ -2,11 +2,9 @@
 //
 //UI issues:
 //'Start Workout' is the wrong font in FF
-//submit button not hidden on login screen in ff
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //
 //To do:
-//better form checking on edit/new exercise screen
 //combine login/signup screens
 //move resolve code into a service
 //add a default 'go' option to all input field screens (should act the same as the 'next' button)

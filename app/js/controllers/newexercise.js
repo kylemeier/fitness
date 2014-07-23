@@ -36,11 +36,12 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       //form has all fields filled out, proceed as normal
       if($scope.exerciseName && $scope.exerciseWeight && $scope.exerciseSets && $scope.exerciseReps){
         Exercise.create($scope.groupId, $scope.exerciseName, $scope.exerciseWeight, $scope.exerciseSets, $scope.exerciseReps);
+        document.getElementById("focus").focus();
 
         if(button === 'done'){
           $rootScope.slideView("view-slide-right","/groups");
         }else{
-          $scope.countExercises(); 
+          $scope.countExercises();
           $rootScope.slideView("view-slide-left",$scope.groupId+"/new-exercise/"+$scope.exerciseCount)
         }
 
@@ -51,6 +52,7 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       if(button === 'done'){
         $scope.modal = true;
       }else{
+        document.getElementById("focus").focus();
         $scope.message = 'Please fill out all fields before advancing or click \'Done\' in the top left to go back.'
         $timeout(function(){
           $scope.submitted = false;
@@ -62,6 +64,7 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       //form is completely empty:
       //done button proceeds, next button says 'Please fill out all fields before adding another exercise'
     }else{
+      document.getElementById("focus").focus();
       if(button === 'done'){
         $rootScope.slideView("view-slide-right","/groups");
       }else{

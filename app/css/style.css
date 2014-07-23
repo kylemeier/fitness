@@ -385,8 +385,8 @@ input {
   color: #ABABA8;
   font-size: .8em; }
 
-#submit {
-  position: absolute;
+#submit, #focus {
+  position: absolute !important;
   opacity: 0; }
 
 #signin .login-info {
@@ -564,6 +564,7 @@ input {
   width: 100%;
   background: #f8f7f2; }
 #new-exercise .input-wrapper, #edit-exercise .input-wrapper {
+  z-index: 1;
   position: relative;
   border-top: 1px solid #EBEAE6;
   left: 0;
@@ -574,11 +575,14 @@ input {
 #new-exercise input.ng-dirty.ng-invalid, #edit-exercise input.ng-dirty.ng-invalid {
   background: rgba(167, 20, 20, 0.7); }
 #new-exercise .top, #edit-exercise .top {
+  z-index: 0;
   top: 60px; }
 #new-exercise .bottom, #edit-exercise .bottom {
+  z-index: 0;
   top: 310px; }
 #new-exercise #modal-wrapper, #edit-exercise #modal-wrapper {
   position: fixed;
+  z-index: 100;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.2); }
