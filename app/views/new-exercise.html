@@ -4,9 +4,8 @@
     <button class='left' ng-click='submit("done")'>&lsaquo; Done</button>
     <button class='fade-in-out right' ng-show='exerciseName && exerciseWeight && exerciseSets && exerciseReps' ng-click='submit("next")'>Next &rsaquo;</button>
   </header> 
-  <span class='message top fade-in-out left' ng-show='submitted && !modal'>{{message}}</span>
-  <span class='message top fade-in-out left' ng-show='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
-  <!--addExercise(); countExercises(); slideView("view-slide-left",groupId+"/new-exercise/"+exerciseCount)-->
+  <span class='message top fade-in-out left' ng-if='submitted'>{{message}}</span>
+  <span class='message top fade-in-out left' ng-if='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
     <form name='exerciseForm' class='exercise-inputs' ng-submit='submit("next")'>
       
       <div class='input-wrapper'>
@@ -27,13 +26,13 @@
       </div>
       <button id='submit' type='submit'></button>
     </form>
-    <span class='message bottom fade-in-out left' ng-show='submitted && !modal'>{{message}}</span>
-    <span class='message bottom fade-in-out left' ng-show='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
-    <div id='modal-wrapper' class='fade-in-out' ng-show='modal'>
+  <span class='message bottom fade-in-out left' ng-if='submitted'>{{message}}</span>
+  <span class='message bottom fade-in-out left' ng-if='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
+    <div id='modal-wrapper' class='fade-in-out' ng-if='modal'>
       <div id='modal-window'>
         <p>Because the fields are not complete, this exercise will not be saved. Do you wish to proceed?</p>
-        <button id='yes-button' ng-click='modal=false; slideView("view-slide-right","/groups")'>Yes</button>
-        <button id='no-button' ng-click='modal=false'>No</button>
+        <button id='yes-button' ng-click='modalClick("yes")'>Yes</button>
+        <button id='no-button' ng-click='modalClick()'>No</button>
       </div>
     </div>
 </div>

@@ -1,24 +1,29 @@
 <div id='edit-exercise'> 
   <header>
     <h1>Edit Exercise</h1>
-    <button class='fade-in-out left' ng-if='exercise.name && exercise.weight && exercise.sets && exercise.reps' ng-click='slideView("view-slide-right","/groups")'>&lsaquo; Done</button>
+    <button class='fade-in-out left' ng-click='submit()'>&lsaquo; Done</button>
   </header> 
-    <ul class='exercise-inputs'>
-      <li>
-        <input type='text' id='exercisename' placeholder="What exercise are you doing?" ng-model='exercise.name' required>   
+    <span class='message top fade-in-out left' ng-if='submitted'>{{message}}</span>
+    <span class='message top fade-in-out left' ng-if='!submitted && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
+    <form name='exerciseForm' class='exercise-inputs' ng-submit='submit()'>
+      <div class='input-wrapper'>
+        <input type='text' id='exercisename' ng-model='exercise.name'>   
         <h3 class='left'>Exercise Name</h3> 
-      </li>
-      <li>     
-        <input type='number' id='exerciseweight' placeholder="How much weight are you using? (numbers only)" ng-model='exercise.weight' required> 
+      </div>
+      <div class='input-wrapper'>    
+        <input type='number' id='exerciseweight' ng-model='exercise.weight'> 
         <h3 class='left'>Weight lifted (in lbs)</h3>  
-      </li>
-      <li>
-        <input type='number' id='exercisesets' placeholder="How many sets are you doing? (numbers only)" ng-model='exercise.sets' required> 
+      </div>
+      <div class='input-wrapper'>
+        <input type='number' id='exercisesets' ng-model='exercise.sets'> 
         <h3 class='left'>Sets</h3> 
-      </li>
-      <li>
-        <input type='number' id='exercisereps' placeholder="How many reps are you doing? (numbers only)" ng-model='exercise.reps' required> 
+      </div>
+      <div class='input-wrapper'>
+        <input type='number' id='exercisereps' ng-model='exercise.reps'> 
         <h3 class='left'>Reps per set</h3> 
-      </li>
-    </ul>
+      </div>
+    <button id='submit' type='submit'></button>
+    </form>
+    <span class='message bottom fade-in-out left' ng-if='submitted'>{{message}}</span>
+    <span class='message bottom fade-in-out left' ng-if='!submitted && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
 </div>

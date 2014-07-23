@@ -583,7 +583,7 @@ input {
   width: 100%;
   background: rgba(0, 0, 0, 0.2); }
 #new-exercise #modal-window, #edit-exercise #modal-window {
-  position: absolute;
+  position: fixed;
   width: 50%;
   top: 20%;
   left: 50%;
