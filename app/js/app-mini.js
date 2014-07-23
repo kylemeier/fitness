@@ -7,7 +7,6 @@
 //To do:
 //combine login/signup screens
 //move resolve code into a service
-//add a default 'go' option to all input field screens (should act the same as the 'next' button)
 //
 //Desktop view:
 //only one error message on new exercise screen

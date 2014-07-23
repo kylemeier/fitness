@@ -3,5 +3,8 @@
     <h1>Edit Group</h1> 
     <button class='groups-back fade-in-out left' ng-if='group.name' ng-click='slideView("view-slide-right","/groups")'>&lsaquo; Groups</button> 
   </header> 
-  <input type='text' id='groupNameEdit' placeholder='I need a name!' ng-model='group.name'> 
+  <form ng-submit='slideView("view-slide-right","/groups")'>
+  	<input type='text' id='groupNameEdit' placeholder='I need a name!' ng-model='group.name'> 
+    <button id='submit' type='submit'></button>
+  </form>
 </div>

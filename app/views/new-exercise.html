@@ -2,7 +2,7 @@
   <header>
     <h1>Exercise #{{headerNum}}</h1>
     <button class='left' ng-click='submit("done")'>&lsaquo; Done</button>
-    <button class='fade-in-out right' ng-show='exerciseName && exerciseWeight && exerciseSets && exerciseReps' ng-click='submit("next")'>Next &rsaquo;</button>
+    <button class='fade-in-out right' ng-click='submit("next")'>Next &rsaquo;</button>
   </header> 
   <span class='message top fade-in-out left' ng-if='submitted'>{{message}}</span>
   <span class='message fade-in-out left' ng-class='view' ng-if='!submitted && !modal && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
