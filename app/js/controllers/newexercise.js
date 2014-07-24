@@ -22,26 +22,42 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
     $scope.submitted = false;
     $scope.modal = false;
     $scope.groupId = $routeParams.groupId;
+    $scope.exercise = {};
 
       //number that appears after '#' in header
       $scope.headerNum = $routeParams.exerciseCount;
 
       Exercise.setRefs();
 
+  var clearFocus = function(){
+    if($scope.input){
+      document.getElementById($scope.input).blur();
+    }
+  }
+
+  var countExercises = function(){
+    Exercise.dataRef($scope.groupId).once('value', function(snapshot){
+      $scope.exerciseCount = snapshot.numChildren()+1;
+    })
+  }
+
     $scope.submit =function(button){
+      console.log(button, $scope.exercise);
       $scope.submitted = true;
       $scope.buttonClicked = button;
       $scope.message = '';
 
+
+      clearFocus();
+
       //form has all fields filled out, proceed as normal
-      if($scope.exerciseName && $scope.exerciseWeight && $scope.exerciseSets && $scope.exerciseReps){
-        Exercise.create($scope.groupId, $scope.exerciseName, $scope.exerciseWeight, $scope.exerciseSets, $scope.exerciseReps);
-        document.getElementById("focus").focus();
+      if($scope.exercise.name && $scope.exercise.weight && $scope.exercise.sets && $scope.exercise.reps){
+        Exercise.create($scope.groupId, $scope.exercise);
 
         if(button === 'done'){
           $rootScope.slideView("view-slide-right","/groups");
         }else{
-          $scope.countExercises();
+          countExercises();
           $rootScope.slideView("view-slide-left",$scope.groupId+"/new-exercise/"+$scope.exerciseCount)
         }
 
@@ -52,7 +68,6 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       if(button === 'done'){
         $scope.modal = true;
       }else{
-        document.getElementById("focus").focus();
         $scope.message = 'Please fill out all fields before advancing or click \'Done\' in the top left to go back.'
         $timeout(function(){
           $scope.submitted = false;
@@ -64,7 +79,6 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       //form is completely empty:
       //done button proceeds, next button says 'Please fill out all fields before adding another exercise'
     }else{
-      document.getElementById("focus").focus();
       if(button === 'done'){
         $rootScope.slideView("view-slide-right","/groups");
       }else{
@@ -85,9 +99,4 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
     }
   }
 
-  $scope.countExercises = function(){
-    Exercise.dataRef($scope.groupId).once('value', function(snapshot){
-      $scope.exerciseCount = snapshot.numChildren()+1;
-    })
-  }      
   }])

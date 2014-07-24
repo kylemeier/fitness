@@ -12,14 +12,14 @@ app.factory('Exercise', ['$rootScope', '$firebase', 'FBURL',
           all: function(groupId){
             return exercises.$child(groupId+'/exercises')
           },
-          create: function(groupId, exerciseName, exerciseWeight, exerciseSets, exerciseReps) {
+          create: function(groupId, exercise) {
 
          return exercises.$child(groupId+'/exercises').$add(
           {
-            name: exerciseName,
-            weight: exerciseWeight,
-            sets: exerciseSets,
-            reps: exerciseReps,
+            name: exercise.name,
+            weight: exercise.weight,
+            sets: exercise.sets,
+            reps: exercise.reps,
             maxWeight: 0,
             failures: 0,
             lastRecorded: ''

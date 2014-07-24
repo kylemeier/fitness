@@ -58,19 +58,75 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
         Group.create('Tuesday Workout').then(function(ref){
           var groupId = ref.name();
 
-          Exercise.create(groupId, 'Dumbbell Bench Press', 65, 3, 6);
-          Exercise.create(groupId, 'Dumbbell Incline Bench Press', 40, 2, 10);
-          Exercise.create(groupId, 'Dumbbell Military Press', 35, 3, 6);
-          Exercise.create(groupId, 'Barbell Lying Tricep Extensions', 22.5, 3, 10);
+          var exercise1 = {
+            name: 'Dumbbell Bench Press',
+            weight: 65,
+            sets: 3,
+            reps: 6
+          }
+
+          var exercise2 = {
+            name: 'Dumbbell Incline Bench Press',
+            weight: 40,
+            sets: 2,
+            reps: 10
+          }
+
+          var exercise3 = {
+            name: 'Dumbbell Military Press',
+            weight: 35,
+            sets: 3,
+            reps: 6
+          }
+
+          var exercise4 = {
+            name: 'Barbell Lying Tricep Extensions',
+            weight: 22.5,
+            sets: 3,
+            reps: 10
+          }
+
+          Exercise.create(groupId, exercise1);
+          Exercise.create(groupId, exercise2);
+          Exercise.create(groupId, exercise3);
+          Exercise.create(groupId, exercise4);
         })
 
         Group.create('Thursday Workout').then(function(ref){
           var groupId = ref.name();
 
-          Exercise.create(groupId, 'Pullups', 5, 3, 10);
-          Exercise.create(groupId, 'Bentover Rows', 85, 3, 8);
-          Exercise.create(groupId, 'Dumbbell Hammercurls', 30, 2, 10);
-          Exercise.create(groupId, 'Situps', 20, 3, 10);
+          var exercise1 = {
+            name: 'Pullups',
+            weight: 5,
+            sets: 3,
+            reps: 10
+          }
+
+          var exercise2 = {
+            name: 'Bentover Rows',
+            weight: 85,
+            sets: 3,
+            reps: 8
+          }
+
+          var exercise3 = {
+            name: 'Dumbbell Hammercurls',
+            weight: 30,
+            sets: 2,
+            reps: 10
+          }
+
+          var exercise4 = {
+            name: 'Situps',
+            weight: 20,
+            sets: 3,
+            reps: 10
+          }
+
+          Exercise.create(groupId, exercise1);
+          Exercise.create(groupId, exercise2);
+          Exercise.create(groupId, exercise3);
+          Exercise.create(groupId, exercise4);
         })
 
 

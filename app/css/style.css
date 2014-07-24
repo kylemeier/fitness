@@ -1,4 +1,3 @@
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300");
 @font-face {
   font-family: 'proxima_nova';
   src: url("../fonts/proximanova-light-webfont.eot");
@@ -418,7 +417,6 @@ input {
   #signin .slide-wrapper input {
     position: relative; }
 #signin label {
-  position: absolute;
   color: #ABABA8;
   font-size: .8em;
   font-weight: bold;
@@ -588,9 +586,11 @@ input {
   border-top: 1px solid #EBEAE6;
   left: 0;
   height: 50px; }
-#new-exercise h3, #edit-exercise h3 {
+#new-exercise label, #edit-exercise label {
   color: #ABABA8;
-  font-size: .8em; }
+  font-size: .8em;
+  font-weight: bold;
+  z-index: 1; }
 #new-exercise input.ng-dirty.ng-invalid, #edit-exercise input.ng-dirty.ng-invalid {
   background: rgba(167, 20, 20, 0.7); }
 #new-exercise .top, #edit-exercise .top {

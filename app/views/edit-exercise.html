@@ -3,26 +3,5 @@
     <h1>Edit Exercise</h1>
     <button class='fade-in-out left' ng-click='submit()'>&lsaquo; Done</button>
   </header>
-    <span class='message fade-in-out left' ng-class='view' ng-if='!submitted && exerciseForm.$invalid'>Be sure you're entering a number (and that it's not too outrageous).</span>
-    <span class='message top fade-in-out left' ng-if='submitted'>{{message}}</span>
-    <form name='exerciseForm' class='exercise-inputs' ng-submit='submit()'>
-      <input id="focus"></input>
-      <div class='input-wrapper'>
-        <input type='text' id='exercisename' ng-model='exercise.name' ng-focus='view = "top"'>   
-        <h3 class='left'>Exercise Name</h3> 
-      </div>
-      <div class='input-wrapper'>    
-        <input type='number' name='exerciseweight' id='exerciseweight' min='0' ng-maxlength='3' ng-model='exercise.weight' ng-focus='view = "top"'> 
-        <h3 class='left'>Weight lifted (in lbs)</h3>  
-      </div>
-      <div class='input-wrapper'>
-        <input type='number' id='exercisesets' min='0' ng-maxlength='3' ng-model='exercise.sets' ng-focus='view = "bottom"'> 
-        <h3 class='left'>Sets</h3> 
-      </div>
-      <div class='input-wrapper'>
-        <input type='number' id='exercisereps'  min='0' ng-maxlength='3' ng-model='exercise.reps' ng-focus='view = "bottom"'> 
-        <h3 class='left'>Reps per set</h3> 
-      </div>
-    <button id='submit' type='submit'></button>
-    </form>
+    <div ng-include="'partials/exercise-form.html'"></div>
 </div>

@@ -5,11 +5,13 @@
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
 //modal acting wonky on ios
 //blur hack looks weird when no inputs are focused
-//input slide up/down sticks on ios
+//check for focus issues on all screens with a 'go' option
+//login buttons look wonky in landscape
 //
 //To do:
-//combine login/signup screens
 //move resolve code into a service
+//Add messaging to workout screen 'You're done for the day! You'll be able to perform this workout again tomorrow.'
+//Add weight change notification to workout screen -- under name -- next weight: ##lbs (##lbs change) -- create variable for weight change
 //
 //Desktop view:
 //only one error message on new exercise screen
