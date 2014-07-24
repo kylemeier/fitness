@@ -40,12 +40,14 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
         $rootScope.currentExercise = {};
         
         $timeout(function(){
-          Exercise.remove(groupId, exerciseId);
+          Exercise.remove(groupId, exerciseId).then(function(){
+             $rootScope.currentGroup = groupId;
+          })
           
-          $timeout(function(){
-            $rootScope.currentGroup = groupId;
-          },500);
-        },300);
+          // $timeout(function(){
+            // $rootScope.currentGroup = groupId;
+          // },100);
+        },200);
       }
 
       $scope.countExercises = function(groupId){
@@ -54,8 +56,11 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
         })
       }
 
-      $scope.autofill = function(){ 
-        Group.create('Tuesday Workout').then(function(ref){
+      $scope.autofill = function(){
+
+        var group = {name: 'Tuesday Workout'}
+
+        Group.create(group).then(function(ref){
           var groupId = ref.name();
 
           var exercise1 = {
@@ -92,7 +97,9 @@ app.controller('GroupsCtrl',['$rootScope', '$scope', '$location', '$firebase', '
           Exercise.create(groupId, exercise4);
         })
 
-        Group.create('Thursday Workout').then(function(ref){
+        group = {name: 'Thursday Workout'}
+
+        Group.create(group).then(function(ref){
           var groupId = ref.name();
 
           var exercise1 = {

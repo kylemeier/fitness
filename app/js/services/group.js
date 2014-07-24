@@ -21,10 +21,10 @@ app.factory('Group', ['$rootScope', '$firebase', 'FBURL', 'User',
             return groups.$child(groupId);
         }
 
-      , create: function(groupName) {
+      , create: function(group) {
 
          return groups.$add({
-            name: groupName
+            name: group.name
           })
         }
 

@@ -42,7 +42,6 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
   }
 
     $scope.submit =function(button){
-      console.log(button, $scope.exercise);
       $scope.submitted = true;
       $scope.buttonClicked = button;
       $scope.message = '';
@@ -63,7 +62,7 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
 
       //form has some fields filled out:
       //done button throws modal, next button says 'Please fill out all fields before adding another exercise' 
-    }else if($scope.exerciseName || $scope.exerciseWeight || $scope.exerciseSets || $scope.exerciseReps){
+    }else if($scope.exercise.name || $scope.exercise.weight || $scope.exercise.sets || $scope.exercise.reps){
       
       if(button === 'done'){
         $scope.modal = true;

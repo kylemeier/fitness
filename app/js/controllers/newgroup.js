@@ -5,16 +5,19 @@ app.controller('NewGroupCtrl',['$rootScope','$scope','Group', '$location',
       $location.path('/');
     }
     $rootScope.loading = 0;
+    $scope.group = {};
     Group.setRefs();
 
       $scope.buttonClick = function(button){
+
+        document.getElementById('group-name').blur();
 
         if(button === 'groups'){
           $rootScope.slideView("view-slide-right","/groups");
         }
 
-      	if($scope.groupName){
-           Group.create($scope.groupName).then(function(ref){
+      	if($scope.group.name){
+           Group.create($scope.group).then(function(ref){
 
            	if(button === "next"){
               $rootScope.slideView("view-slide-left",ref.name()+"/new-exercise/1");

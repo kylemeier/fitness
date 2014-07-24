@@ -165,38 +165,6 @@ body {
   transform: translate(0, 0);
   display: block !important; }
 
-.modalconfirm {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  transition: opacity .5s;
-  text-align: center; }
-  .modalconfirm .confirmbox {
-    position: absolute;
-    padding: 10px;
-    max-width: 200px;
-    background: #282828;
-    border-radius: 10px;
-    border: 1px solid #111;
-    color: #fff;
-    left: 50%;
-    margin-left: -100px;
-    top: 50%;
-    margin-top: -61px; }
-  .modalconfirm button {
-    display: inline-block; }
-  .modalconfirm .confirm {
-    background: #00503F;
-    border: none;
-    box-shadow: none; }
-  .modalconfirm .deny {
-    background: #900022;
-    border: none;
-    box-shadow: none; }
-
 ::-webkit-input-placeholder {
   color: #ABABA8; }
 
@@ -602,7 +570,8 @@ input {
 #new-exercise #modal-wrapper, #edit-exercise #modal-wrapper {
   position: fixed;
   z-index: 100;
-  height: 100%;
+  top: -100px;
+  height: 500%;
   width: 100%;
   background: rgba(0, 0, 0, 0.2); }
 #new-exercise #modal-window, #edit-exercise #modal-window {
