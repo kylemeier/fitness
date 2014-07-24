@@ -7,7 +7,7 @@ app.factory('Auth', ['$firebaseSimpleLogin', 'FBURL', '$rootScope', '$firebase',
 
 		var Auth = {
 			register: function(user){
-				return auth.$createUser(user.email, user.pass);
+				return auth.$createUser(user.email, user.password);
 			},
 			signedIn: function(){
 				return auth.user !== null;

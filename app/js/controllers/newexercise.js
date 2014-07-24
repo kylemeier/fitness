@@ -48,7 +48,7 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       //form has some fields filled out:
       //done button throws modal, next button says 'Please fill out all fields before adding another exercise' 
     }else if($scope.exerciseName || $scope.exerciseWeight || $scope.exerciseSets || $scope.exerciseReps){
-
+      
       if(button === 'done'){
         $scope.modal = true;
       }else{

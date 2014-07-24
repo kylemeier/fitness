@@ -2,27 +2,34 @@
   <header> 
     <h1>Fitness</h1> 
   </header> 
-      <p ng-show="message && !passReset" class="message left">{{message}}</p>
-      <p ng-show='passReset' class='message left'>Password incorrect: <a ng-click='resetPassword()'> click here to reset.</a></p>
-     <form class='login-info' ng-submit='login()'>
-      <div class='input-wrapper'>
-        <input type='email' name='email' id='email' ng-model='user.email'>   
-        <h3 class='left'>Email</h3>   
-      </div>
-      <div class='input-wrapper'>
-        <input type="password" ng-model="user.password" />
-        <h3 class='left'>Password</h3>
-      </div>
-<!--       <div class='input-wrapper fade-in-out' ng-show="url === '/signup'">
-        <input type='password' name='pass-confirm' id='pass-confirm' ng-model='passConfirm'> 
-        <h3 class='left'>Confirm Password</h3>
-      </div> -->
-      <button id='submit' type='submit'></button>
-    </form>
-    	<button id='button-signin' ng-click='login()'>Log in</button> 
-     <button id='button-guest' ng-click='loginAnon()'>Guest*</button>
-    <div class='additional-info fade-in-out'>
-      <p>Need an account? <a href='#/signup' class='sign-up'>Sign up!</a></p>
-	     <p>*As a guest, you don't need to provide an email/password, but your data will only be stored until you log out.</p>
+  <p ng-show="message && !passReset" class="message left">{{message}}</p>
+  <p ng-show='passReset' class='message left'>Password incorrect: <a ng-click='resetPassword()'> click here to reset.</a></p>
+  <form class='login-info' ng-submit='submit("logincreate")'>
+    <div class='input-wrapper'>
+      <label for='email' class='left'>Email</label>
+      <input type='email' name='email' id='email' ng-model='user.email'>   
     </div>
-</div>
+    <div class='input-wrapper'>
+      <label class='left'>Password</label>
+      <input type="password" ng-model="user.password" />
+    </div>
+    <div class='slide-wrapper'>
+      <label for='pass-confirm' class='left fade-in-out' ng-show='signUpMode'>Confirm Password</label>
+      <input type='password' name='pass-confirm' id='pass-confirm' class='slide-up-down-input' ng-model='user.passwordConfirm' ng-if='signUpMode'> 
+      <!-- <h3 class='left'>Confirm Password</h3> -->
+    </div>
+    <button id='submit' type='submit'></button>
+  </form>
+  <button id='button-signin' ng-click='submit("logincreate")'>
+    <span class='button-text' ng-hide='signUpMode'>Log in</span>
+    <span class='button-text' ng-show='signUpMode'>Create</span>
+  </button> 
+  <button id='button-guest' ng-click='submit("guestcancel")'>
+    <span class='button-text' ng-hide='signUpMode'>Guest*</span>
+    <span class='button-text' ng-show='signUpMode'>Cancel</span>
+  </button>
+  <div class='additional-info fade-in-out' ng-hide='signUpMode'>
+    <p>Need an account? <button class='sign-up' ng-click='signUpMode = true'>Sign up!</button></p>
+    <p>*As a guest, you don't need to provide an email/password, but your data will only be stored until you log out.</p>
+  </div>
+  </div>

@@ -3,6 +3,9 @@
 //UI issues:
 //'Start Workout' is the wrong font in FF
 //deleting exercises causes list to flash while it rebuilds, auto close then reopen? works, but look into using a callback to speed it up
+//modal acting wonky on ios
+//blur hack looks weird when no inputs are focused
+//input slide up/down sticks on ios
 //
 //To do:
 //combine login/signup screens
@@ -63,7 +66,7 @@
       })
 
       .when('/signup', {
-        templateUrl: 'views/signup.html',
+        templateUrl: 'views/home.html',
         controller: 'AuthCtrl',
         resolve: {
           user: function($rootScope, $firebase, $firebaseSimpleLogin){
