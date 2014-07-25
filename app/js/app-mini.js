@@ -14,7 +14,6 @@
 //store workouts
 //
 //Desktop view:
-//only one error message on new exercise screen
 //header color spans entire width, content is much smaller, need to determine max width
 //maybe more pronounced borders on content?
 //boxes on groups page need to be inset

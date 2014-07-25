@@ -24,6 +24,8 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
 
       $scope.allExercises = Exercise.all($routeParams.groupId);
 
+      $scope.exercisesCompleted = 0;
+
       //every success click:
 //increment stored weight
 //shift to next exercise
@@ -51,6 +53,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
 
         //set recording date to today
         Workout.setLastRecorded(exerciseId, $scope.today);
+
+        //add to completed count
+        $scope.exercisesCompleted++;
 
         //set result as success
         Workout.setLastResult(exerciseId, 'success');
@@ -99,6 +104,9 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
 
         //set recording date to today
         Workout.setLastRecorded(exerciseId, $scope.today); 
+
+        //add to completed count
+        $scope.exercisesCompleted++;
 
         //set result as failure
         Workout.setLastResult(exerciseId, 'failure');

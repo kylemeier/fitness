@@ -618,6 +618,8 @@ input {
     color: #4C4C4C;
     border-top: 1px solid #EBEAE6;
     padding: 15px 5%; }
+#workout .message {
+  top: 60px; }
 #workout .add-exercise {
   color: #373a3a;
   padding: 3px;

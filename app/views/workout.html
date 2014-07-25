@@ -7,6 +7,7 @@
     <p>There are no exercises in this group!</p>
     <p><button class="add-exercise" ng-click='slideView("view-slide-left",group.$id+"/new-exercise/"+1)'>Add An Exercise</button></p>    
   </div>
+  <p class='message fade-in-out left' ng-if='exerciseCount === exercisesCompleted'>You're done for the day! You'll be able to perform this workout again tomorrow.</p>
     <ul>
       <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises'>
         <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
