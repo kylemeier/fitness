@@ -1,8 +1,10 @@
 //To fix:
 //
 //UI issues:
-//'Start Workout' is the wrong font in FF
-//modal acting wonky on ios
+//
+//
+//
+//iOS:
 //login buttons look wonky in landscape
 //
 //To do:

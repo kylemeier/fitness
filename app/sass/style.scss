@@ -84,8 +84,8 @@ body{
 .view-slide-right.ng-leave, 
 .fade-in-out, 
 .slide-up-down, 
-.icon-slide-right-side, 
-.icon-slide-left-side, 
+.slide-right-side, 
+.slide-left-side, 
 .slide-up-down-input.ng-enter,
 .slide-up-down-input.ng-leave{
   -webkit-transition:all .2s ease-out; 
@@ -97,21 +97,25 @@ body{
 //webkit translate3d was causing flickering issues on iOs due to the hardware acceleration it requires
 .view-slide-left.ng-enter {
     -webkit-transform: translate(100%, 0);
+    -moz-transform: translate(100%, 0);
     transform: translate3d(100%,0,0,0);
     opacity:0;
 }
 .view-slide-left.ng-enter.ng-enter-active {
     -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-left.ng-leave {
     -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
     transform: translate3d(0,0,0);
     opacity:1;
 }
 .view-slide-left.ng-leave.ng-leave-active {
     -webkit-transform: translate(-100%, 0);
+    -moz-transform: translate(-100%, 0);
     transform: translate3d(-100%,0,0);
     opacity:0;
 }
@@ -137,7 +141,7 @@ body{
     opacity:0;
 }
 
-// .fade-in-out, .slide-up-down, .icon-slide-right-side, .icon-slide-left-side, .slide-up-down-input{
+// .fade-in-out, .slide-up-down, .slide-right-side, .slide-left-side, .slide-up-down-input{
 //   -webkit-transition:all .3s ease-out; 
 //   -moz-transition:all .3s ease-out;
 //   -o-transition:all .3s ease-out;
@@ -205,30 +209,30 @@ body{
   display: block !important;
 }
 
-.icon-slide-right-side.ng-hide-remove,
-.icon-slide-right-side.ng-hide-add.ng-hide-add-active{
+.slide-right-side.ng-hide-remove,
+.slide-right-side.ng-hide-add.ng-hide-add-active{
   -webkit-transform: translate(100%,0);
   transform: translate(100%,0);
   display: block !important;
 }
 
-.icon-slide-right-side.ng-hide-add,
-.icon-slide-right-side.ng-hide-remove.ng-hide-remove-active{
+.slide-right-side.ng-hide-add,
+.slide-right-side.ng-hide-remove.ng-hide-remove-active{
   // -webkit-transform: scaleY(1);
   -webkit-transform: translate(0,0);
   transform: translate(0,0);
   display: block !important;
 }
 
-.icon-slide-left-side.ng-hide-remove,
-.icon-slide-left-side.ng-hide-add.ng-hide-add-active{
+.slide-left-side.ng-hide-remove,
+.slide-left-side.ng-hide-add.ng-hide-add-active{
   -webkit-transform: translate(-200%,0);
   transform: translate(-200%,0);
   display: block !important;
 }
 
-.icon-slide-left-side.ng-hide-add,
-.icon-slide-left-side.ng-hide-remove.ng-hide-remove-active{
+.slide-left-side.ng-hide-add,
+.slide-left-side.ng-hide-remove.ng-hide-remove-active{
   // -webkit-transform: scaleY(1);
   -webkit-transform: translate(0,0);
   transform: translate(0,0);
@@ -667,7 +671,6 @@ body{
   }
 
   .group-action-button{
-    font-size:.9em;
     line-height:$lineHeight;
     background:$textBackground;
     top:0px;
@@ -722,7 +725,7 @@ body{
 
   .confirm-delete-group{
     line-height:$lineHeight;
-    padding:0 15px;
+    padding:0 16px;
   }
   .delete-active{
     width:100px;
