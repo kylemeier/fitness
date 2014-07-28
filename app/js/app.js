@@ -9,7 +9,6 @@
 //
 //To do:
 //move resolve code into a service
-//Add messaging to workout screen 'You're done for the day! You'll be able to perform this workout again tomorrow.'
 //Add weight change notification to workout screen -- under name -- next weight: ##lbs (##lbs change) -- create variable for weight change
 //store workouts
 //

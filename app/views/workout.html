@@ -9,7 +9,7 @@
   </div>
   <p class='message fade-in-out left' ng-if='exerciseCount === exercisesCompleted'>You're done for the day! You'll be able to perform this workout again tomorrow.</p>
     <ul>
-      <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises'>
+      <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises' ng-init='getLastRecorded(exercise)'>
         <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
           <p class='exercise-name'>{{exercise.name}}</p>
           <p class='exercise-info fade-in-out'>{{exercise.weight}} lbs</p>

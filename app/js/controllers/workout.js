@@ -129,6 +129,12 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         },500);
       };
 
+      $scope.getLastRecorded = function(exercise){
+        if (exercise.lastRecorded === $scope.today){
+          $scope.exercisesCompleted++;
+        }
+      }
+
     }])
 
 
