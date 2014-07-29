@@ -22,7 +22,7 @@ app.controller('EditExerciseCtrl', ['$rootScope', '$scope', '$routeParams', '$ti
       	$scope.submitted = true;
       	$scope.message = '';
       	clearFocus();
-      	if ($scope.exercise.name && $scope.exercise.weight && $scope.exercise.sets && $scope.exercise.reps){
+      	if ($scope.exercise.name && $scope.exercise.weight >=0 && $scope.exercise.sets && $scope.exercise.reps){
       		$rootScope.slideView("view-slide-right","/groups")		
       	}else{
       		$scope.message = 'Please fill out all fields.'

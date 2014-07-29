@@ -4,10 +4,13 @@
     <button class='left' ng-click='slideView("view-slide-right","/groups")'>&lsaquo; Groups</button>
   </header>
     <div class="intro-text fade-in-out" ng-if='exerciseCount === 0'>
-    <p>There are no exercises in this group!</p>
-    <p><button class="add-exercise" ng-click='slideView("view-slide-left",group.$id+"/new-exercise/"+1)'>Add An Exercise</button></p>    
-  </div>
-  <p class='message fade-in-out left' ng-if='exerciseCount === exercisesCompleted && exerciseCount > 0'>You're done for the day! You'll be able to perform this workout again tomorrow.</p>
+      <p>There are no exercises in this group!</p>
+      <p><button class="add-exercise" ng-click='slideView("view-slide-left",group.$id+"/new-exercise/"+1)'>Add An Exercise</button></p>    
+    </div>
+    <div class="intro-text fade-in-out" ng-if='exerciseCount === exercisesCompleted && exerciseCount > 0'>
+  <p>You're done for the day!</p>
+  <p>Come back tomorrow.</p>
+</div>
   <ul>
     <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises' ng-init='getLastRecorded(exercise)'>
       <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
@@ -20,6 +23,7 @@
       <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "success"'></span>
       <span class='failure-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "failure"'></span>
       <p class='exercise-name-result fade-in-out' ng-show='exercise.lastRecorded === today'>{{exercise.name}}</p>
+      <p class='exercise-weight-result fade-in-out' ng-show='exercise.lastRecorded === today && exercise.weightSet'>next weight: {{exercise.weight}}lbs</p>
     </li>
   </ul>
   <div id='modal-wrapper' class='fade-in-out' ng-if='firstWorkout && exerciseCount > 0'>

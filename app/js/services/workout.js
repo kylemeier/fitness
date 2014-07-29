@@ -35,6 +35,7 @@ app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
             if(weight > 0){
               setRef.$child(exerciseId+'/weight').$set(weight);
             }
+            this.setWeightSet(exerciseId, true);
           }
 
           , setMaxWeight: function(exerciseId, weight){
@@ -42,6 +43,12 @@ app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
           }
           , setLastRecorded: function(exerciseId, date){
             setRef.$child(exerciseId+'/lastRecorded').$set(date);
+            this.setWeightSet(exerciseId, false);
+            
+          }
+          //boolean value that notes whether the new weight has been set and can be displayed to the user
+          , setWeightSet: function(exerciseId, value){
+              setRef.$child(exerciseId+'/weightSet').$set(value);
           }
 
           , setLastResult: function(exerciseId, result){

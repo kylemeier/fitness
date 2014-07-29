@@ -50,7 +50,7 @@ app.controller('NewExerciseCtrl',['$rootScope','$scope', '$routeParams','Exercis
       clearFocus();
 
       //form has all fields filled out, proceed as normal
-      if($scope.exercise.name && $scope.exercise.weight && $scope.exercise.sets && $scope.exercise.reps){
+      if($scope.exercise.name && $scope.exercise.weight >=0 && $scope.exercise.sets && $scope.exercise.reps){
         Exercise.create($scope.groupId, $scope.exercise);
 
         if(button === 'done'){

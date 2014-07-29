@@ -12,11 +12,11 @@
   </div>
   <div class='input-wrapper'>
     <label class='left'>Sets</label> 
-    <input type='number' id='exercise-sets' min='0' ng-maxlength='3' ng-model='$parent.exercise.sets' ng-focus='$parent.view = "bottom"; $parent.input = "exercise-sets"'> 
+    <input type='number' id='exercise-sets' min='1' ng-maxlength='3' ng-model='$parent.exercise.sets' ng-focus='$parent.view = "bottom"; $parent.input = "exercise-sets"'> 
   </div>
   <div class='input-wrapper'>
     <label class='left'>Reps per set</label> 
-    <input type='number' id='exercise-reps' min='0' ng-maxlength='3' ng-model='$parent.exercise.reps' ng-focus='$parent.view = "bottom"; $parent.input = "exercise-reps"'> 
+    <input type='number' id='exercise-reps' min='1' ng-maxlength='3' ng-model='$parent.exercise.reps' ng-focus='$parent.view = "bottom"; $parent.input = "exercise-reps"'> 
   </div>
   <button id='submit' type='submit'></button>
 </form>

@@ -861,6 +861,8 @@ body{
   }
   .message{
     top:60px;
+    color:#787775;
+    font-style:normal;
   }
   .add-exercise{
     color:$mainTextColor;
@@ -871,7 +873,7 @@ body{
   ul{
     position:absolute;
     left:0;
-    top:100px;
+    top:150px;
     width:100%;
     li{
       position:relative;
@@ -953,12 +955,18 @@ body{
   .exercise-name-result{
     position:absolute;
     font-size:1.2em;
-    top:50%;
-    margin-top:-11px;
+    top:0;
     color:$textBackground;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    width:100%;
+  }
+  .exercise-weight-result{
+    color:$textBackground;
+    position:absolute;
+    font-size:1em;
+    bottom:0;
     width:100%;
   }
 }

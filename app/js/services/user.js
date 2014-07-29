@@ -15,8 +15,7 @@ app.factory('User', ['$rootScope', '$firebase','FBURL','Auth',
 		var User = {
 			create: function(user){
 				users[user.uid] = {
-					'email': user.email,
-					'first workout': true
+					'email': user.email
 				};
 				users.$save(user.uid).then(function(){
 					setUserID(user.uid);

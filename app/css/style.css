@@ -628,7 +628,9 @@ input {
     border-top: 1px solid #EBEAE6;
     padding: 15px 5%; }
 #workout .message {
-  top: 60px; }
+  top: 60px;
+  color: #787775;
+  font-style: normal; }
 #workout .add-exercise {
   color: #373a3a;
   padding: 3px;
@@ -637,7 +639,7 @@ input {
 #workout ul {
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 150px;
   width: 100%; }
   #workout ul li {
     position: relative;
@@ -697,10 +699,15 @@ input {
 #workout .exercise-name-result {
   position: absolute;
   font-size: 1.2em;
-  top: 50%;
-  margin-top: -11px;
+  top: 0;
   color: #f8f7f2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%; }
+#workout .exercise-weight-result {
+  color: #f8f7f2;
+  position: absolute;
+  font-size: 1em;
+  bottom: 0;
   width: 100%; }

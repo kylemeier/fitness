@@ -15,9 +15,17 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
     
       Group.find($routeParams.groupId).$bind($scope, 'group');
 
-
+      //Wait a little before checking if modal should appear
       $timeout(function(){
-              Workout.getFirstWorkout().$bind($scope, 'firstWorkout');
+
+              //Tie 'first workout' in DB to $scope.firstWorkout
+              Workout.getFirstWorkout().$bind($scope, 'firstWorkout').then(function(){
+
+                //If 'first workout' doesn't exist, set it equal to True
+                if($scope.firstWorkout === null){
+                  $scope.firstWorkout = true;
+                }
+              })
       },500);
 
       Exercise.dataRef($routeParams.groupId).once('value', function(snapshot){
@@ -59,6 +67,8 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         //set recording date to today
         Workout.setLastRecorded(exerciseId, $scope.today);
 
+
+
         //add to completed count
         $scope.exercisesCompleted++;
 
@@ -80,26 +90,27 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
    
 
       }
-
+//check:
+//current weight > max weight -- set max weight to current weight ++
+//current weight less than max weight -- set max weight to current weight, failures = 0 ++
+//current weight equals max weight -- leave weights alone, increment failure count 
+//current weight equals max weight and failures = 2 -- decrease weight by 5lbs if user has failed to surpass maxweight twice, reset count
+//
       var failureLogic = function(exerciseId, failures, currentWeight, maxWeight){
-
-        if(currentWeight > maxWeight) {
-          //set max weight to current weight
-          Workout.setMaxWeight(exerciseId, currentWeight);
-
-        }else if(currentWeight < maxWeight){
+        var weightChange = 0;
+        
+        if(currentWeight < maxWeight){
           //set max weight to current weight, failures = 0
-          Workout.setMaxWeight(exerciseId, currentWeight);
-          Workout.setFailures(exerciseId,0);
-          return;
+          failures = 0;
 
-        }else if(currentWeight === maxWeight && failures === 2){
+        }else if(currentWeight === maxWeight && failures >= 2){
             //decrease weight by 5lbs if user has failed to surpass maxweight twice, reset count
-            Workout.setWeight(exerciseId, currentWeight-5);
-            Workout.setMaxWeight(exerciseId, currentWeight-5);
-            Workout.setFailures(exerciseId,0);
-            return;
-          }
+            failures = 0;
+            weightChange = -5;
+        }
+
+          Workout.setWeight(exerciseId, currentWeight+weightChange);
+          Workout.setMaxWeight(exerciseId, currentWeight+weightChange);
           Workout.setFailures(exerciseId, failures);
       }
         
