@@ -512,7 +512,7 @@ body{
     z-index:1;
   }
   #buttons{
-    width:204px;
+    width:205px;
     margin:25px auto 0 auto;
   }
   #button-signin,#button-guest{
@@ -850,11 +850,11 @@ body{
     }
     .icon-success,.icon-failure{
       line-height:0px;
-      
+      font-size:1em;
     }
-    .icon-failure{
+    .failed{
       position:relative;
-      // left:-7px;
+      left:-33px;
     }
     #yes-button{
       border-top: 1px solid $mainTextColor;
@@ -912,8 +912,8 @@ body{
   .exercise-name{
     font-size:.9em;
     position:relative;
-    max-width:90%;
-    left:5%;
+    max-width:70%;
+    left:15%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -930,17 +930,14 @@ body{
     line-height:$lineHeight;
     bottom:0;
     color:#EBEAE6;
-    // vertical-align:middle;
+    font-size:1.5em;
   }
   
-  .btn-success,.btn-failure{
-    // width:25%;
-  }
   .icon-success:before{
     content:"\e602";
     color:#3C5036;
     border-radius:100%;
-    border: 1px solid #3C5036;
+    border: 2px solid #3C5036;
     padding:1px;
   }
 
@@ -948,7 +945,7 @@ body{
     content:"\e603";
     color:#A71414;
     border-radius:100%;
-    border: 1px solid #A71414;
+    border: 2px solid #A71414;
     padding:1px;
   }
   .success-background, .failure-background{
@@ -989,8 +986,19 @@ body{
 }
 
 @media (min-width:1000px){
-  #view{
-    margin:0 auto;
-    max-width:1000px;
+  .icon-success{
+    right:150px;
+    
   }
+  .icon-failure{
+    left:150px;
+
+  }
+
+  #workout{
+    .exercise-name{
+      max-width:60%;
+      left:20%;
+    }
+  }    
 }

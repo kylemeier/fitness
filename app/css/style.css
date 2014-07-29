@@ -389,7 +389,7 @@ input {
   font-weight: bold;
   z-index: 1; }
 #signin #buttons {
-  width: 204px;
+  width: 205px;
   margin: 25px auto 0 auto; }
 #signin #button-signin, #signin #button-guest {
   position: relative;
@@ -615,9 +615,11 @@ input {
 #workout #modal-window button {
   padding-top: 5px; }
 #workout #modal-window .icon-success, #workout #modal-window .icon-failure {
-  line-height: 0px; }
-#workout #modal-window .icon-failure {
-  position: relative; }
+  line-height: 0px;
+  font-size: 1em; }
+#workout #modal-window .failed {
+  position: relative;
+  left: -33px; }
 #workout #modal-window #yes-button {
   border-top: 1px solid #373a3a;
   width: 100%;
@@ -663,8 +665,8 @@ input {
 #workout .exercise-name {
   font-size: .9em;
   position: relative;
-  max-width: 90%;
-  left: 5%;
+  max-width: 70%;
+  left: 15%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -677,18 +679,19 @@ input {
 #workout .icon-success, #workout .icon-failure {
   line-height: 50px;
   bottom: 0;
-  color: #EBEAE6; }
+  color: #EBEAE6;
+  font-size: 1.5em; }
 #workout .icon-success:before {
   content: "\e602";
   color: #3C5036;
   border-radius: 100%;
-  border: 1px solid #3C5036;
+  border: 2px solid #3C5036;
   padding: 1px; }
 #workout .icon-failure:before {
   content: "\e603";
   color: #A71414;
   border-radius: 100%;
-  border: 1px solid #A71414;
+  border: 2px solid #A71414;
   padding: 1px; }
 #workout .success-background, #workout .failure-background {
   position: absolute;
@@ -720,6 +723,12 @@ input {
   width: 100%; }
 
 @media (min-width: 1000px) {
-  #view {
-    margin: 0 auto;
-    max-width: 1000px; } }
+  .icon-success {
+    right: 150px; }
+
+  .icon-failure {
+    left: 150px; }
+
+  #workout .exercise-name {
+    max-width: 60%;
+    left: 20%; } }

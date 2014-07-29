@@ -29,10 +29,10 @@
   <div id='modal-wrapper' class='fade-in-out' ng-if='firstWorkout && exerciseCount > 0'>
     <div id='modal-window'>
       <p>Welcome to your first workout!</p> 
-      <p>After completing each exercise, let the app know if you:</p>
+      <p>After completing each exercise, click the appropriate icon:</p>
       <p> <span class='icon-success'></span> (finished all sets)</p>
-      <p>or</p>
-      <p><span class='icon-failure'></span> (failed)</p>
+      <!-- <p>or</p> -->
+      <p class='failed'><span class='icon-failure'></span> (failed)</p>
       <button id='yes-button' ng-click='modalClick()'>OK</button>
     </div>
   </div>
