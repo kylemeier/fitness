@@ -45,6 +45,8 @@ body{
 
 #view{
   position:relative;
+  max-width:1000px;
+  margin:0 auto;
 }
 
 
@@ -461,7 +463,7 @@ body{
 }
 
 
-  #submit, #focus{
+  #submit{
     //override relative button styling
       position:absolute !important;
       opacity:0;
@@ -509,6 +511,10 @@ body{
     font-weight:bold;
     z-index:1;
   }
+  #buttons{
+    width:204px;
+    margin:25px auto 0 auto;
+  }
   #button-signin,#button-guest{
     position:relative;
     color:$mainTextColor;
@@ -516,12 +522,19 @@ body{
     border-radius:5px;
     border: 2px solid $mainTextColor;
     background:$textBackground;
+    margin-right:10px;
+    width:90px;
   }
   #button-signin,#button-guest{
-    margin-top:25px;
-    width:25%;
-    margin-left:17%;
-    // box-sizing:border-box;
+    // margin: 0 auto;
+    // margin-top:25px;
+    // width:90px;
+    // margin: 0 auto;
+    // // margin-left:17%;
+    // max-width:150px;
+    // // transform: translateX(5%);
+
+    // // box-sizing:border-box;
   }
 
   .additional-info{
@@ -579,6 +592,7 @@ body{
       position:relative;
       border-top: 1px solid #EBEAE6;
       left:0;
+      overflow: hidden;
       ul{
         position:relative;
         top:0;
@@ -589,6 +603,7 @@ body{
           line-height:40px;
           max-height:40px;
           border: none;
+          overflow:visible;
           //removing borders to provide consistent heights for li
           &:first-child{
             // border-top:1px dashed #EBEAE6; 
@@ -780,13 +795,15 @@ body{
     top:-100px;
     height:500%;
     //
-    width: 100%;
+    width: 1000%;
+    left:0px;
     background: rgba(0,0,0,.2);
 }
 
 #modal-window{
   position:fixed;
   width:50%;
+  max-width:320px;
   top:20%;
   left:50%;
   -webkit-transform: translate(-50%, 0);
@@ -968,5 +985,12 @@ body{
     font-size:1em;
     bottom:0;
     width:100%;
+  }
+}
+
+@media (min-width:1000px){
+  #view{
+    margin:0 auto;
+    max-width:1000px;
   }
 }

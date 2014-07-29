@@ -28,7 +28,9 @@ body {
   font-family: 'proxima_nova'; }
 
 #view {
-  position: relative; }
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto; }
 
 .view-slide-left.ng-enter,
 .view-slide-left.ng-leave,
@@ -359,7 +361,7 @@ input {
   color: #ABABA8;
   font-size: .8em; }
 
-#submit, #focus {
+#submit {
   position: absolute !important;
   opacity: 0; }
 
@@ -386,17 +388,18 @@ input {
   font-size: .8em;
   font-weight: bold;
   z-index: 1; }
+#signin #buttons {
+  width: 204px;
+  margin: 25px auto 0 auto; }
 #signin #button-signin, #signin #button-guest {
   position: relative;
   color: #373a3a;
   padding: 3px;
   border-radius: 5px;
   border: 2px solid #373a3a;
-  background: #f8f7f2; }
-#signin #button-signin, #signin #button-guest {
-  margin-top: 25px;
-  width: 25%;
-  margin-left: 17%; }
+  background: #f8f7f2;
+  margin-right: 10px;
+  width: 90px; }
 #signin .additional-info {
   position: relative;
   top: 25px;
@@ -440,7 +443,8 @@ input {
   #groups-page ul li {
     position: relative;
     border-top: 1px solid #EBEAE6;
-    left: 0; }
+    left: 0;
+    overflow: hidden; }
     #groups-page ul li ul {
       position: relative;
       top: 0;
@@ -450,7 +454,8 @@ input {
         font-size: .9em;
         line-height: 40px;
         max-height: 40px;
-        border: none; }
+        border: none;
+        overflow: visible; }
         #groups-page ul li ul li:last-child {
           text-align: center; }
   #groups-page ul .exercise-info {
@@ -569,12 +574,14 @@ input {
   z-index: 100;
   top: -100px;
   height: 500%;
-  width: 100%;
+  width: 1000%;
+  left: 0px;
   background: rgba(0, 0, 0, 0.2); }
 
 #modal-window {
   position: fixed;
   width: 50%;
+  max-width: 320px;
   top: 20%;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
@@ -711,3 +718,8 @@ input {
   font-size: 1em;
   bottom: 0;
   width: 100%; }
+
+@media (min-width: 1000px) {
+  #view {
+    margin: 0 auto;
+    max-width: 1000px; } }

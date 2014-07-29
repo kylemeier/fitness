@@ -19,14 +19,16 @@
     </div>
     <button id='submit' type='submit'></button>
   </form>
-  <button id='button-signin' ng-click='submit("logincreate")'>
-    <span class='button-text' ng-hide='signUpMode'>Log in</span>
-    <span class='button-text' ng-show='signUpMode'>Create</span>
-  </button> 
-  <button id='button-guest' ng-click='submit("guestcancel")'>
-    <span class='button-text' ng-hide='signUpMode'>Guest*</span>
-    <span class='button-text' ng-show='signUpMode'>Cancel</span>
-  </button>
+  <div id='buttons'>
+    <button id='button-signin' ng-click='submit("logincreate")'>
+      <span class='button-text' ng-hide='signUpMode'>Log in</span>
+      <span class='button-text' ng-show='signUpMode'>Create</span>
+    </button> 
+    <button id='button-guest' ng-click='submit("guestcancel")'>
+      <span class='button-text' ng-hide='signUpMode'>Guest*</span>
+      <span class='button-text' ng-show='signUpMode'>Cancel</span>
+    </button>
+  </div>
   <div class='additional-info fade-in-out' ng-hide='signUpMode'>
     <p>Need an account? <button class='sign-up' ng-click='signUpMode = true'>Sign up!</button></p>
     <p>*As a guest, you don't need to provide an email/password, but your data will only be stored until you log out.</p>
