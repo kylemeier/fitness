@@ -7,19 +7,29 @@
     <p>There are no exercises in this group!</p>
     <p><button class="add-exercise" ng-click='slideView("view-slide-left",group.$id+"/new-exercise/"+1)'>Add An Exercise</button></p>    
   </div>
-  <p class='message fade-in-out left' ng-if='exerciseCount === exercisesCompleted'>You're done for the day! You'll be able to perform this workout again tomorrow.</p>
-    <ul>
-      <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises' ng-init='getLastRecorded(exercise)'>
-        <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
-          <p class='exercise-name'>{{exercise.name}}</p>
-          <p class='exercise-info fade-in-out'>{{exercise.weight}} lbs</p>
-          <p class='exercise-info fade-in-out'>{{exercise.sets}} sets of {{exercise.reps}} reps</p>
-        </div>
-        <button class='btn-failure fade-in-out left' ng-hide='exercise.lastRecorded === today' ng-click='failed(exerciseId)'>I failed.</button>
-        <button class='btn-success fade-in-out right' ng-hide='exercise.lastRecorded === today' ng-click='success(exerciseId)'>I did it!</button>
-        <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "success"'></span>
-        <span class='failure-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "failure"'></span>
-        <p class='exercise-name-result fade-in-out' ng-show='exercise.lastRecorded === today'>{{exercise.name}}</p>
-      </li>
-    </ul>
+  <p class='message fade-in-out left' ng-if='exerciseCount === exercisesCompleted && exerciseCount > 0'>You're done for the day! You'll be able to perform this workout again tomorrow.</p>
+  <ul>
+    <li class='exercise' ng-repeat='(exerciseId, exercise) in allExercises' ng-init='getLastRecorded(exercise)'>
+      <div class='fade-in-out' ng-hide='exercise.lastRecorded === today'>
+        <p class='exercise-name'>{{exercise.name}}</p>
+        <p class='exercise-info fade-in-out'>{{exercise.weight}} lbs</p>
+        <p class='exercise-info fade-in-out'>{{exercise.sets}} sets of {{exercise.reps}} reps</p>
+      </div>
+      <button class='icon-failure fade-in-out left' ng-hide='exercise.lastRecorded === today' ng-click='failed(exerciseId)'></button>
+      <button class='icon-success fade-in-out right' ng-hide='exercise.lastRecorded === today' ng-click='success(exerciseId)'></button>
+      <span class='success-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "success"'></span>
+      <span class='failure-background fade-in-out' ng-show='exercise.lastRecorded === today && exercise.lastResult === "failure"'></span>
+      <p class='exercise-name-result fade-in-out' ng-show='exercise.lastRecorded === today'>{{exercise.name}}</p>
+    </li>
+  </ul>
+  <div id='modal-wrapper' class='fade-in-out' ng-if='firstWorkout && exerciseCount > 0'>
+    <div id='modal-window'>
+      <p>Welcome to your first workout!</p> 
+      <p>After completing each exercise, let the app know if you:</p>
+      <p> <span class='icon-success'></span> (finished all sets)</p>
+      <p>or</p>
+      <p><span class='icon-failure'></span> (failed)</p>
+      <button id='yes-button' ng-click='modalClick()'>OK</button>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,9 @@
 //To fix:
+//creating a user doesn't retain state on refresh
 //
 //UI issues:
-//
-//
+//change look of workout messaging
+//loading icon on create user
 //
 //iOS:
 //login buttons look wonky in landscape
@@ -11,6 +12,7 @@
 //move resolve code into a service
 //Add weight change notification to workout screen -- under name -- next weight: ##lbs (##lbs change) -- create variable for weight change
 //store workouts
+//add modal giving instructions on workout screen
 //
 //Desktop view:
 //header color spans entire width, content is much smaller, need to determine max width

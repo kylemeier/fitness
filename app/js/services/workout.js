@@ -1,15 +1,21 @@
 app.factory('Workout', ['$rootScope','$routeParams','$firebase', 'FBURL',
     function($rootScope, $routeParams, $firebase, FBURL) {
 
-        var getRef, setRef 
+        var getRef, setRef, userRef; 
 
             Workout = {
               setRefs: function(){
                 getRef = new Firebase(FBURL+'/users/'+$rootScope.userID+'/exercise groups/'+$routeParams.groupId+'/exercises/');
                 setRef = $firebase(getRef);
-              },
+                user = new Firebase(FBURL+'/users/'+$rootScope.userID);
+                userRef = $firebase(user);
+              }
 
-              getFailures: function(exerciseId){
+          ,  getFirstWorkout: function(){
+              return userRef.$child('first workout');
+            }
+
+           ,   getFailures: function(exerciseId){
             return getRef.child(exerciseId+'/failures');
           }
 

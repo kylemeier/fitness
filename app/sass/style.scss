@@ -15,17 +15,6 @@ $textBackground: #F8F7F2;
 }
 
 @font-face {
-    font-family: 'proxima_nova';
-    src: url('../fonts/proximanova-regular-webfont.eot');
-    src: url('../fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-regular-webfont.woff') format('woff'),
-         url('../fonts/proximanova-regular-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-regular-webfont.svg#proxima_novalight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
   font-family: 'icons';
   src:url('../icons/icons.eot');
   src:url('../icons/icons.eot?#iefix') format('embedded-opentype'),
@@ -782,56 +771,81 @@ body{
     z-index:0;
     top:310px;
   }
-  #modal-wrapper{
-    position:fixed;
-    z-index:100;
+}
+
+#modal-wrapper{
+  position:fixed;
+  z-index:100;
     //keyboard on Chrome iOS breaks 100% height and moves document down, going over to ensure entire screen is covered once keyboard disappears
     top:-100px;
     height:500%;
     //
     width: 100%;
     background: rgba(0,0,0,.2);
+}
+
+#modal-window{
+  position:fixed;
+  width:50%;
+  top:20%;
+  left:50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  color:$mainTextColor;
+  padding:3px;
+  border-radius:5px;
+  border: 2px solid $mainTextColor;
+  background:$textBackground;
+  text-align:center;
+  p{
+    padding-bottom:5px;
+    border-bottom: 1px solid $mainTextColor;
   }
-  #modal-window{
-    position:fixed;
+  button{
+    padding-top: 5px;
+  }
+  #yes-button{
+    float:left;
+    // margin-left:20px;
     width:50%;
-    top:20%;
-    left:50%;
-    -webkit-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
-    color:$mainTextColor;
-    padding:3px;
-    border-radius:5px;
-    border: 2px solid $mainTextColor;
-    background:$textBackground;
-    text-align:center;
-    p{
-      padding-bottom:5px;
-      border-bottom: 1px solid $mainTextColor;
-    }
-    button{
-      padding-top: 5px;
-    }
-    #yes-button{
-      float:left;
-      // margin-left:20px;
-      width:50%;
-      font-weight:bold;
-      color: $headerBar;
-    }
-    #no-button{
-      float:right;
-      // margin-right:20px;
-      border-left:1px solid $mainTextColor;
-      width:50%;
-      font-weight:bold;
-      color: $headerBar;
-      // box-sizing:border-box;
-    }
+    font-weight:bold;
+    color: $headerBar;
+  }
+  #no-button{
+    float:right;
+    // margin-right:20px;
+    border-left:1px solid $mainTextColor;
+    width:50%;
+    font-weight:bold;
+    color: $headerBar;
+    // box-sizing:border-box;
   }
 }
 
 #workout{
+  #modal-window{
+    p{
+      padding-bottom:5px;
+      border-bottom:none;
+    }
+    button{
+      padding-top: 5px;
+    }
+    .icon-success,.icon-failure{
+      line-height:0px;
+      
+    }
+    .icon-failure{
+      position:relative;
+      // left:-7px;
+    }
+    #yes-button{
+      border-top: 1px solid $mainTextColor;
+      width:100%;
+      font-weight:bold;
+      color: $headerBar;
+    }
+  } 
     .intro-text{
     position:absolute;
     top:$lineHeight;
@@ -879,8 +893,8 @@ body{
   .exercise-name{
     font-size:.9em;
     position:relative;
-    max-width:50%;
-    left:25%;
+    max-width:90%;
+    left:5%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -893,29 +907,30 @@ body{
       padding:0;
     }
 
-  .btn-success,.btn-failure{
-    position:absolute;
-    // height:$lineHeight/2;
-    bottom:10px;
-    padding:3px;
+  .icon-success,.icon-failure{
+    line-height:$lineHeight;
+    bottom:0;
     color:#EBEAE6;
+    // vertical-align:middle;
   }
   
   .btn-success,.btn-failure{
     // width:25%;
   }
-  .btn-success{
+  .icon-success:before{
+    content:"\e602";
     color:#3C5036;
-    margin-right:16px;
-    border-radius:5px;
-    border: 2px solid #3C5036;
+    border-radius:100%;
+    border: 1px solid #3C5036;
+    padding:1px;
   }
 
-  .btn-failure{
+  .icon-failure:before{
+    content:"\e603";
     color:#A71414;
-    margin-left:16px;
-    border-radius:5px;
-    border: 2px solid #A71414;
+    border-radius:100%;
+    border: 1px solid #A71414;
+    padding:1px;
   }
   .success-background, .failure-background{
     position:absolute;

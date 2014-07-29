@@ -6,6 +6,7 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
       }
 
       $rootScope.loading = 0;
+      
       var d = new Date();
 
       Group.setRefs();
@@ -13,7 +14,11 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
       Workout.setRefs();
     
       Group.find($routeParams.groupId).$bind($scope, 'group');
-      
+
+
+      $timeout(function(){
+              Workout.getFirstWorkout().$bind($scope, 'firstWorkout');
+      },500);
 
       Exercise.dataRef($routeParams.groupId).once('value', function(snapshot){
           $scope.exerciseCount = snapshot.numChildren();
@@ -133,6 +138,10 @@ app.controller('WorkoutCtrl',['$rootScope','$scope', '$routeParams', '$firebase'
         if (exercise.lastRecorded === $scope.today){
           $scope.exercisesCompleted++;
         }
+      }
+
+      $scope.modalClick = function(){
+        $scope.firstWorkout = false;
       }
 
     }])
